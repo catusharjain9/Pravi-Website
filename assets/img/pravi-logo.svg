@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 120">
+<rect width="560" height="120" fill="none"/>
+<g transform="translate(4 10)">
+<path d="M0 96V4h43c31 0 48 17 48 43S74 90 43 90H24v6Z" fill="#7A9E8F"/>
+<path d="M24 4h19c31 0 48 17 48 43 0 16-7 29-20 36 4-8 5-16 5-24 0-21-13-34-35-34H24Z" fill="#073B36"/>
+<path d="M24 39h20c11 0 18 6 18 15S55 69 44 69H24Z" fill="#D97B5B"/>
+</g>
+<text x="115" y="59" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="48" letter-spacing="9" font-weight="600" fill="#073B36">PRAVI</text>
+<text x="118" y="88" font-family="DM Sans, Arial, sans-serif" font-size="13" letter-spacing="3.2" font-weight="600" fill="#24363A">BUSINESS ADVISORS LLP</text>
+</svg>

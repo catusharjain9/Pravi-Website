@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+# Add the Sitemap directive after the verified production domain and sitemap are configured.

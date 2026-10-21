@@ -1,0 +1,16 @@
+{
+  "name": "pravi-business-advisors-website",
+  "private": true,
+  "scripts": {
+    "serve": "firebase emulators:start --only hosting,auth,firestore",
+    "deploy": "firebase deploy --only hosting,firestore:rules",
+    "audit": "python scripts/quality-audit.py",
+    "sitemap": "node scripts/generate-sitemap.mjs",
+    "test:csv": "node scripts/test-csv-safety.mjs",
+    "test:csp": "node scripts/test-csp-hashes.mjs"
+  },
+  "devDependencies": {
+    "firebase-tools": "14.0.0"
+  },
+  "type": "module"
+}
