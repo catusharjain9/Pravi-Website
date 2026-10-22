@@ -89,37 +89,6 @@
 
   document.querySelectorAll('[data-print-button]').forEach(button => button.addEventListener('click', () => window.print()));
 
-  // Readiness checklist is local to the current page; nothing is uploaded or saved.
-  const checklist = document.querySelector('[data-readiness-checklist]');
-  if (checklist) {
-    const items = [...checklist.querySelectorAll('input[type="checkbox"]')];
-    const count = checklist.querySelector('[data-check-count]');
-    const bar = checklist.querySelector('[data-check-bar]');
-    const status = checklist.querySelector('[data-check-status]');
-    const update = () => {
-      const n = items.filter(i => i.checked).length;
-      if (count) count.textContent = `${n} of ${items.length} items checked`;
-      if (bar) bar.style.width = `${items.length ? n / items.length * 100 : 0}%`;
-      if (status) status.textContent = n === items.length ? 'All items checked. Use this as a discussion aid, not a compliance certification.' : 'This checklist is a planning aid only; relevance depends on the business and engagement.';
-    };
-    items.forEach(item => item.addEventListener('change', update)); update();
-    const copy = checklist.querySelector('[data-copy-checklist]');
-    if (copy) copy.addEventListener('click', async () => {
-      const text = ['PRAVI BUSINESS ADVISORS LLP — Business readiness checklist', '', ...items.map(i => `${i.checked ? '[x]' : '[ ]'} ${i.dataset.label || i.parentElement.textContent.trim()}`), '', 'Planning aid only; not a compliance certificate.'].join('\n');
-      const msg = checklist.querySelector('[data-copy-status]');
-      try {
-        if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(text);
-        else {
-          const helper = document.createElement('textarea'); helper.value = text; helper.setAttribute('readonly',''); helper.style.position='absolute'; helper.style.left='-9999px'; document.body.appendChild(helper); helper.select();
-          const ok = document.execCommand('copy'); helper.remove(); if (!ok) throw new Error('copy unavailable');
-        }
-        if (msg) msg.textContent = 'Checklist copied. You can paste it into your own working notes.';
-      } catch { if (msg) msg.textContent = 'Copy was unavailable in this browser. Use Print / Save as PDF to keep a copy.'; }
-    });
-    const reset = checklist.querySelector('[data-reset-checklist]');
-    if (reset) reset.addEventListener('click', () => { items.forEach(i => { i.checked = false; }); update(); const msg = checklist.querySelector('[data-copy-status]'); if (msg) msg.textContent = ''; });
-  }
-
   // Site-wide motion system: progressive reveal, staggered groups, and accessible fallbacks.
   const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const revealSelector = [
