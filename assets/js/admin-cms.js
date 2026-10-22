@@ -9,10 +9,23 @@ const value = id => $(id).value.trim();
 const setStatus = (message, error=false) => { statusEl.textContent = message; statusEl.style.background = error ? '#fbe9e7' : 'var(--sand)'; statusEl.style.color = error ? '#8a251d' : 'inherit'; };
 const safeSlug = s => s.toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,100);
 
-function configReady(){return firebaseConfig && firebaseConfig.apiKey && !firebaseConfig.apiKey.startsWith('REPLACE_') && firebaseConfig.projectId && !firebaseConfig.projectId.startsWith('REPLACE_');}
+function configReady(){
+  return Boolean(
+    firebaseConfig &&
+    firebaseConfig.apiKey && !firebaseConfig.apiKey.startsWith('REPLACE_') &&
+    firebaseConfig.authDomain && !firebaseConfig.authDomain.includes('PROJECT_ID') &&
+    firebaseConfig.projectId && !firebaseConfig.projectId.startsWith('REPLACE_') &&
+    firebaseConfig.appId && !firebaseConfig.appId.startsWith('REPLACE_')
+  );
+}
 if (!configReady()) {
   $('sign-in').disabled = true;
-  setStatus('Setup required: copy firebase-config.js.example to firebase-config.js, add your Firebase web-app settings, enable Google Authentication and create Firestore. See FIREBASE_CMS_SETUP.md.', true);
+  setStatus('Insights publishing is not connected yet. The site code is loaded, but Firebase project settings are still placeholders. Open FIREBASE_CMS_SETUP.md and complete steps 1–5: register a Firebase Web app, copy its apiKey, authDomain, projectId and appId into the root firebase-config.js file, enable Google sign-in, create Firestore, and deploy firestore.rules. Then reload this page. Do not share service-account keys or private credentials.', true);
+  const help = document.createElement('p');
+  help.className = 'cms-help';
+  help.style.marginTop = '10px';
+  help.textContent = 'Required: a real Firebase project and Web app configuration. The admin cannot sign in or publish until these are configured.';
+  statusEl.insertAdjacentElement('afterend', help);
 } else {
   try {
   const [{ initializeApp }, { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }, { getFirestore, collection, doc, getDocs, setDoc, deleteDoc, query, orderBy, serverTimestamp }] = await Promise.all([
