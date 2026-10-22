@@ -1,4 +1,4 @@
-import { firebaseConfig } from '../../firebase-config.js';
+import { firebaseConfig } from './firebase-config.js';
 const $=id=>document.getElementById(id);const slug=new URLSearchParams(location.search).get('slug');
 function setMeta(selector,attribute,value){const el=document.querySelector(selector);if(el)el.setAttribute(attribute,value);}
 function setNoIndex(){setMeta('#dynamic-robots','content','noindex,nofollow');}

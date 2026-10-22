@@ -1,4 +1,4 @@
-import { firebaseConfig } from '../../firebase-config.js';
+import { firebaseConfig } from './firebase-config.js';
 const grid=document.querySelector('[data-cms-articles]');
 if(grid && firebaseConfig?.apiKey && !firebaseConfig.apiKey.startsWith('REPLACE_')){
   try{
