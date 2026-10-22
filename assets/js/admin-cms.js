@@ -1,4 +1,4 @@
-import { firebaseConfig } from '../../firebase-config.js';
+import { firebaseConfig } from './firebase-config.js';
 
 const ADMIN_EMAILS = ['catusharjain9@gmail.com']; // Add the second verified email here AND in firestore.rules when supplied.
 const $ = id => document.getElementById(id);

@@ -6,8 +6,8 @@ This adds a private article-management dashboard to the existing static PRAVI we
 
 - Dashboard UI and Firebase client integration are included.
 - The authorised initial administrator is `catusharjain9@gmail.com`.
-- Firebase configuration contains placeholders, not a connected project.
-- Google sign-in, Firestore, domain, rules deployment and live publishing have **not** been configured or tested. The dashboard is not yet operational or secure until the setup below is completed.
+- The Firebase Web App configuration is populated in `assets/js/firebase-config.js`. Google sign-in, Firestore creation, authorised-domain configuration and rules deployment still require setup in Firebase Console.
+- Google sign-in, Firestore, domain, rules deployment and live publishing have **not** been configured or tested. The dashboard will not be operational until the remaining setup below is completed.
 - The second administrator has not been added. When supplied, add the exact verified email to both `assets/js/admin-cms.js` (`ADMIN_EMAILS`) and `firestore.rules` (`isAdmin()`), then deploy rules.
 
 ## Setup steps
