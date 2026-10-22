@@ -55,9 +55,33 @@ dropzone.addEventListener("drop",e=>addFiles([...e.dataTransfer.files]));
 $("pdfFileList").addEventListener("click",e=>{const rm=e.target.closest("[data-file-remove]");if(rm){selectedFiles=selectedFiles.filter(x=>x.id!==Number(rm.dataset.fileRemove));renderFiles();setStatus("File removed. Review the remaining inputs before processing.");return;}const mv=e.target.closest("[data-file-move]");if(mv){const from=Number(mv.dataset.fileMove),to=from+Number(mv.dataset.direction);if(to>=0&&to<selectedFiles.length){[selectedFiles[from],selectedFiles[to]]=[selectedFiles[to],selectedFiles[from]];renderFiles();}}});
 function parsePageList(value,count,{allowAll=false}={}){const raw=String(value||"").trim();if(allowAll&&raw.toLowerCase()==="all")return Array.from({length:count},(_,i)=>i);if(!raw)throw new Error("Enter page numbers or ranges.");const out=[];for(const part0 of raw.split(",")){const part=part0.trim();if(!part)throw new Error("There is an empty item in the page range.");const m=part.match(/^(\d+)(?:\s*-\s*(\d+))?$/);if(!m)throw new Error(`Invalid page range: ${part}. Use syntax like 1,3-5.`);const start=Number(m[1]),end=m[2]?Number(m[2]):start;if(start<1||end<start||end>count)throw new Error(`Page range ${part} is outside the valid range 1-${count}.`);for(let p=start;p<=end;p++)if(!out.includes(p-1))out.push(p-1);}return out;}
 function parseSplitRanges(value,count){const raw=String(value||"").trim();if(!raw)throw new Error("Enter page ranges to split.");const groups=raw.split(",").map(s=>s.trim());const used=new Set();return groups.map(group=>{const m=group.match(/^(\d+)(?:\s*-\s*(\d+))?$/);if(!m)throw new Error(`Invalid split range: ${group}. Use syntax like 1-3,4-6.`);const a=Number(m[1]),b=m[2]?Number(m[2]):a;if(a<1||b<a||b>count)throw new Error(`Range ${group} is outside the valid range 1-${count}.`);const ix=[];for(let p=a;p<=b;p++){if(used.has(p))throw new Error(`Page ${p} appears in more than one split part.`);used.add(p);ix.push(p-1);}return {label:group,indices:ix};});}
-async function pdfLib(){if(!window.PDFLib)throw new Error("The PDF processing library did not load. Check your internet connection, then reload this page.");return window.PDFLib;}
-let pdfJsModulePromise=null;async function pdfJs(){if(window.pdfjsLib){window.pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdn.jsdelivr.net/npm/pdfjs-dist@6.4.299/build/pdf.worker.min.mjs";return window.pdfjsLib;}if(!pdfJsModulePromise){pdfJsModulePromise=import("https://cdn.jsdelivr.net/npm/pdfjs-dist@6.4.299/build/pdf.min.mjs").then(lib=>{lib.GlobalWorkerOptions.workerSrc="https://cdn.jsdelivr.net/npm/pdfjs-dist@6.4.299/build/pdf.worker.min.mjs";return lib;}).catch(()=>{pdfJsModulePromise=null;throw new Error("The PDF rendering library did not load. Check your internet connection, then reload this page.");});}return pdfJsModulePromise;}
-async function zipLib(){if(!window.JSZip)throw new Error("The ZIP library did not load. Check your internet connection, then reload this page.");return window.JSZip;}
+const libraryPromises = new Map();
+function loadLibraryScript(key, urls, globalName) {
+ if (window[globalName]) return Promise.resolve(window[globalName]);
+ if (libraryPromises.has(key)) return libraryPromises.get(key);
+ const promise = (async () => {
+  let lastError;
+  for (const url of urls) {
+   try {
+    await new Promise((resolve, reject) => {
+     const script = document.createElement("script");
+     script.src = url; script.async = true;
+     script.onload = resolve;
+     script.onerror = () => { script.remove(); reject(new Error("Could not load " + url)); };
+     document.head.append(script);
+    });
+    if (window[globalName]) return window[globalName];
+    lastError = new Error("The loaded script did not expose " + globalName + ".");
+   } catch (error) { lastError = error; }
+  }
+  throw new Error("A required PDF tool library could not load. Check your connection or content blocker, then reload the page. " + (lastError?.message || ""));
+ })().catch(error => { libraryPromises.delete(key); throw error; });
+ libraryPromises.set(key, promise);
+ return promise;
+}
+async function pdfLib(){return loadLibraryScript("pdf-lib",["https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js","https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"],"PDFLib");}
+let pdfJsModulePromise=null;async function pdfJs(){if(window.pdfjsLib){window.pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdn.jsdelivr.net/npm/pdfjs-dist@6.4.299/build/pdf.worker.min.mjs";return window.pdfjsLib;}if(!pdfJsModulePromise){pdfJsModulePromise=(async()=>{const sources=[{main:"https://cdn.jsdelivr.net/npm/pdfjs-dist@6.4.299/build/pdf.min.mjs",worker:"https://cdn.jsdelivr.net/npm/pdfjs-dist@6.4.299/build/pdf.worker.min.mjs"},{main:"https://cdnjs.cloudflare.com/ajax/libs/pdf.js/6.4.299/pdf.min.mjs",worker:"https://cdnjs.cloudflare.com/ajax/libs/pdf.js/6.4.299/pdf.worker.min.mjs"}];let lastError;for(const source of sources){try{const lib=await import(source.main);lib.GlobalWorkerOptions.workerSrc=source.worker;return lib;}catch(error){lastError=error;}}throw new Error("The PDF rendering library could not load from either supported CDN. Check your connection or content blocker, then reload the page. "+(lastError?.message||""));})().catch(error=>{pdfJsModulePromise=null;throw error;});}return pdfJsModulePromise;}
+async function zipLib(){return loadLibraryScript("jszip",["https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js","https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"],"JSZip");}
 async function loadRenderedPdf(file){const lib=await pdfJs();return lib.getDocument({data:new Uint8Array(await file.arrayBuffer()),useSystemFonts:true,isEvalSupported:false,cMapUrl:"https://cdn.jsdelivr.net/npm/pdfjs-dist@6.4.299/cmaps/",cMapPacked:true,standardFontDataUrl:"https://cdn.jsdelivr.net/npm/pdfjs-dist@6.4.299/standard_fonts/"}).promise;}
 async function loadPdfDoc(file){const {PDFDocument}=await pdfLib();return PDFDocument.load(await file.arrayBuffer(),{updateMetadata:false,throwOnInvalidObject:false});}
 function blobPdf(bytes){return new Blob([bytes],{type:"application/pdf"});}
