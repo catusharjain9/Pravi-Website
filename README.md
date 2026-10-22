@@ -3,11 +3,11 @@
 A responsive, framework-free static website built with HTML, CSS, JavaScript and SVG. No npm install, build step, API key, database or paid site builder is required to open it locally.
 
 ## Main pages
-- `index.html` — problem-led homepage, four service layers, illustrative outputs, five-stage client engagement path, audience fit and FAQs.
+- `index.html` — founder-led homepage focused on startup foundations, monthly numbers and cash planning, with stage-based pathways, clear engagement principles and FAQs.
 - `services.html` — full eight-area portfolio, professional scope boundaries and links into focused service pages.
 - `about.html` — firm approach, mission/vision themes and working principles without invented firm history, qualifications or testimonials.
 - `contact.html` — click-to-call, WhatsApp and validated enquiry form with optional call-request preference and callback window.
-- `resources.html` — local business-readiness checklist and links to practical guides.
+- `resources.html` — founder-focused workpaper hub linking to monthly MIS, cash-flow planning, GST reconciliation, compliance tracking and PDF tools; no interactive readiness checklist.
 - `tools.html` — business workpaper hub with a link to the dedicated PDF workspace.
 - `pdf-tools.html` — iLovePDF-inspired, PRAVI-branded PDF workspace for merge, split, browser-based compression, PDF-to-JPG, images-to-PDF, rotate, page numbers, watermark, remove pages and extract pages.
 - `mis-generator.html` — monthly MIS generator using a standardized account-summary CSV.
