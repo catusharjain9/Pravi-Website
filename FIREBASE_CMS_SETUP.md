@@ -17,7 +17,7 @@ This adds a private article-management dashboard to the existing static PRAVI we
 3. In Authentication > Sign-in method, enable Google. Configure the project's support email and authorised domains. For local development, use a local HTTP server rather than opening HTML files directly.
 4. Create a Cloud Firestore database.
 5. Deploy `firestore.rules` before testing. These rules restrict writes to verified `catusharjain9@gmail.com` and allow public reads only of documents with `status == 'published'`. Do not weaken these rules to make the UI work.
-6. Install Node.js and Firebase CLI, then from this folder run `npm install -g firebase-tools`, `firebase login`, `firebase use --add` (choose your project), and `firebase deploy --only firestore:rules,hosting`.
+6. Install Node.js and Firebase CLI, then from this folder run `npm install -g firebase-tools`, `firebase login`, `firebase use --add` (choose your project), and `firebase deploy --only firestore:rules,firestore:indexes,hosting`.
 7. Test the dashboard at `/admin.html` using the authorised account. Verify a draft cannot be read while signed out, a published article appears on `insights.html`, and a non-authorised Google account cannot list, edit or publish articles.
 8. Test a published article at `/article.html?slug=your-slug`, mobile layout, browser console, and HTTPS after connecting the domain.
 
