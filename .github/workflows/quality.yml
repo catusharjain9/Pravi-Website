@@ -1,0 +1,37 @@
+name: Website quality gates
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: website-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  static-quality:
+    name: HTML, asset, CSV and CSP checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Audit HTML structure and local references
+        run: python scripts/quality-audit.py
+      - name: Test CSV export safety
+        run: node scripts/test-csv-safety.mjs
+      - name: Test Content Security Policy JSON-LD hashes
+        run: node scripts/test-csp-hashes.mjs
