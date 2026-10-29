@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1040" role="img" aria-labelledby="title desc">
+<title id="title">PRAVI founder finance illustration</title>
+<desc id="desc">A calm editorial still life of a founder's workspace, with a laptop showing a clear cash-flow chart, a finance report, calculator and pencil in warm ivory, stone, charcoal and sunrise yellow.</desc>
+<defs>
+  <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#F7EEDB"/><stop offset="1" stop-color="#E5D6BB"/></linearGradient>
+  <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#33494A"/><stop offset="1" stop-color="#1F2A2E"/></linearGradient>
+  <linearGradient id="desk" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#D8C3A0"/><stop offset="1" stop-color="#BFA27A"/></linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%"><feGaussianBlur stdDeviation="18"/></filter>
+  <pattern id="grain" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="4" cy="5" r="1" fill="#8A7656" opacity=".11"/><circle cx="19" cy="17" r=".8" fill="#8A7656" opacity=".09"/></pattern>
+</defs>
+<rect width="1200" height="1040" fill="url(#wall)"/>
+<circle cx="1000" cy="150" r="260" fill="#F6D365" opacity=".42"/>
+<circle cx="1000" cy="150" r="190" fill="none" stroke="#C9A85B" stroke-width="2" opacity=".35"/>
+<path d="M0 690 1200 540V1040H0Z" fill="url(#desk)"/>
+<path d="M0 690 1200 540" fill="none" stroke="#A98A60" stroke-width="3" opacity=".4"/>
+<rect width="1200" height="1040" fill="url(#grain)"/>
+<ellipse cx="625" cy="785" rx="420" ry="100" fill="#514536" opacity=".2" filter="url(#shadow)"/>
+<!-- laptop -->
+<g transform="translate(300 190)">
+  <path d="M55 45Q55 25 78 25H585Q608 25 608 47V410H55Z" fill="#293638"/>
+  <rect x="75" y="48" width="513" height="335" rx="5" fill="url(#screen)"/>
+  <rect x="98" y="72" width="468" height="288" fill="#F7F3E9"/>
+  <rect x="98" y="72" width="468" height="50" fill="#1F2A2E"/>
+  <circle cx="119" cy="96" r="4" fill="#F6D365"/><circle cx="134" cy="96" r="4" fill="#F6D365" opacity=".55"/>
+  <rect x="153" y="91" width="96" height="8" rx="4" fill="#F8F4EA" opacity=".85"/>
+  <rect x="118" y="144" width="155" height="11" rx="3" fill="#1F2A2E"/>
+  <rect x="118" y="164" width="90" height="6" rx="3" fill="#A8A99E"/>
+  <rect x="118" y="196" width="185" height="132" fill="#EFE9DC"/>
+  <path d="M135 301V218M168 301V254M201 301V235M234 301V204M267 301V225" stroke="#D4B55E" stroke-width="16" stroke-linecap="butt"/>
+  <path d="M323 294 358 267 391 277 428 218 464 230 514 174" fill="none" stroke="#527B68" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M323 294 358 267 391 277 428 218 464 230 514 174V328H323Z" fill="#91AD9B" opacity=".18"/>
+  <path d="M322 312H526M322 275H526M322 238H526M322 201H526" stroke="#D7D4C9" stroke-width="1.5"/>
+  <rect x="118" y="341" width="113" height="5" rx="2.5" fill="#C9C1B2"/>
+  <path d="M20 410H644L706 467Q712 478 694 480H-27Q-45 477-34 466Z" fill="#9CA5A0"/>
+  <path d="M20 410H644L686 460H-14Z" fill="#D6D9D1"/>
+  <path d="M255 419H430L413 440H272Z" fill="#9BA5A0"/>
+  <path d="M-14 460H686" stroke="#717D78" stroke-width="2" opacity=".55"/>
+</g>
+<!-- report sheet -->
+<g transform="translate(130 515) rotate(-8)">
+  <rect x="10" y="14" width="282" height="345" fill="#766650" opacity=".13"/>
+  <rect width="282" height="345" fill="#FFFDF7" stroke="#D7CBB7" stroke-width="2"/>
+  <rect x="25" y="25" width="130" height="10" rx="2" fill="#1F2A2E"/>
+  <rect x="25" y="45" width="80" height="5" rx="2" fill="#A9A194"/>
+  <rect x="25" y="79" width="232" height="1.5" fill="#E3DCCF"/>
+  <rect x="25" y="101" width="75" height="7" rx="2" fill="#A9A194"/>
+  <rect x="25" y="122" width="232" height="95" fill="#F2EEE4"/>
+  <path d="M43 193 75 171 111 181 143 146 176 160 211 133 239 143" fill="none" stroke="#537A68" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M43 198H240" stroke="#C9C1B2" stroke-width="1.5"/>
+  <rect x="25" y="238" width="105" height="6" rx="2" fill="#A9A194"/>
+  <rect x="25" y="256" width="210" height="4" rx="2" fill="#D8D1C5"/>
+  <rect x="25" y="270" width="184" height="4" rx="2" fill="#D8D1C5"/>
+  <rect x="25" y="295" width="68" height="24" fill="#F6D365"/>
+  <rect x="104" y="295" width="68" height="24" fill="#E8E1D3"/>
+  <rect x="183" y="295" width="74" height="24" fill="#E8E1D3"/>
+</g>
+<!-- calculator -->
+<g transform="translate(845 640) rotate(7)">
+  <rect width="190" height="255" rx="10" fill="#354243"/>
+  <rect x="18" y="18" width="154" height="53" rx="4" fill="#DDE2D5"/>
+  <rect x="31" y="34" width="94" height="7" rx="3" fill="#64766D"/>
+  <rect x="31" y="48" width="124" height="5" rx="2" fill="#A4B2A5"/>
+  <g fill="#F3EEE3">
+    <rect x="18" y="89" width="32" height="29" rx="3"/><rect x="57" y="89" width="32" height="29" rx="3"/><rect x="96" y="89" width="32" height="29" rx="3"/><rect x="135" y="89" width="37" height="29" rx="3"/>
+    <rect x="18" y="126" width="32" height="29" rx="3"/><rect x="57" y="126" width="32" height="29" rx="3"/><rect x="96" y="126" width="32" height="29" rx="3"/><rect x="135" y="126" width="37" height="29" rx="3"/>
+    <rect x="18" y="163" width="32" height="29" rx="3"/><rect x="57" y="163" width="32" height="29" rx="3"/><rect x="96" y="163" width="32" height="29" rx="3"/><rect x="135" y="163" width="37" height="66" rx="3" fill="#F6D365"/>
+    <rect x="18" y="200" width="32" height="29" rx="3"/><rect x="57" y="200" width="32" height="29" rx="3"/><rect x="96" y="200" width="32" height="29" rx="3"/>
+  </g>
+</g>
+<!-- pencil -->
+<g transform="translate(450 900) rotate(-18)">
+  <rect width="270" height="13" rx="6" fill="#C49B46"/>
+  <rect width="34" height="13" rx="5" fill="#1F2A2E"/>
+  <path d="M270 0 292 6.5 270 13Z" fill="#D5B98B"/>
+  <path d="M285 5 292 6.5 285 8Z" fill="#5E5140"/>
+</g>
+<!-- sunlight edge -->
+<path d="M840 0H1200V440L1030 500Z" fill="#FFF7E5" opacity=".3"/>
+<path d="M0 870Q240 820 410 900T800 920" fill="none" stroke="#9D8055" stroke-width="2" opacity=".22"/>
+</svg>
