@@ -504,3 +504,103 @@ input,select,textarea{background:#FFFDF9;color:#1F2A2E;border-color:#B9B5AA}
 input::placeholder,textarea::placeholder{color:#68716B}
 :focus-visible{outline:3px solid #9A7414;outline-offset:3px}
 ::selection{background:#F6D365;color:#1F2A2E}
+
+
+/* PRAVI complete theme audit v3 — harmonise legacy page-local tool styles.
+   Brand surfaces: ivory / warm beige. Reserve charcoal for text and selected controls. */
+:root{
+  color-scheme:light;
+  --navy:#1F2A2E;--navy-2:#1F2A2E;--navy-3:#1F2A2E;
+  --ink:#1F2A2E;--muted:#59615F;--soft-muted:#59615F;
+  --gold:#F6D365;--gold-light:#FFF7E1;
+  --paper:#FCF9F1;--white:#FFFDF9;--cream:#FCF9F1;--beige:#FFF7E1;
+  --sand:#F0EADF;--stone:#D9D2C6;--line:#D9D2C6;--border:#D9D2C6;
+  --font:'Poppins',sans-serif;--display:'Poppins',sans-serif;--font-sans:'Poppins',sans-serif;
+}
+
+/* Convert every section-level legacy dark banner to a light, readable surface.
+   These names occur in embedded CSS on the tools, calculator, PDF and CMS pages. */
+:is(.hero,.page-hero,.section-dark,.cta-band,.tool-hero,.tax-hero,.hero-tools,.pdf-hero,.notice-hero,.cms-header){
+  background:#FFF7E1!important;color:#1F2A2E!important;border-color:#D9D2C6!important;
+}
+:is(.hero,.page-hero,.section-dark,.cta-band,.tool-hero,.tax-hero,.hero-tools,.pdf-hero,.notice-hero,.cms-header) :is(h1,h2,h3,h4,strong,b){
+  color:#1F2A2E!important;
+}
+:is(.hero,.page-hero,.section-dark,.cta-band,.tool-hero,.tax-hero,.hero-tools,.pdf-hero,.notice-hero,.cms-header) :is(p,li,small,span,label,.lead,.body-lead,.breadcrumb,.hero-note,.pdf-trust){
+  color:#46514D!important;
+}
+:is(.hero,.page-hero,.section-dark,.cta-band,.tool-hero,.tax-hero,.hero-tools,.pdf-hero,.notice-hero,.cms-header) :is(.eyebrow,.section-kicker,.kicker,.tool-label,.tax-small,.pdf-step,.notice-label){
+  color:#755A12!important;
+}
+:is(.hero,.page-hero,.section-dark,.cta-band,.tool-hero,.tax-hero,.hero-tools,.pdf-hero,.notice-hero) :is(.hero-pattern,.hero::before,.hero::after){
+  opacity:.18;
+}
+.cms-header a,.cms-header-inner,.cms-header-inner *{color:#1F2A2E!important}
+.hero .lead,.page-hero p,.tool-hero p,.tax-hero p,.hero-tools p,.pdf-hero p,.notice-hero p,
+.section-dark .muted,.section-dark .body-lead,.cta-band p:not(.eyebrow){
+  color:#46514D!important;
+}
+.hero .eyebrow,.page-hero .eyebrow,.tool-hero .eyebrow,.tax-hero .eyebrow,.hero-tools .eyebrow,
+.pdf-hero .section-kicker,.notice-hero .eyebrow,.section-dark .section-kicker,.cta-band .eyebrow{
+  color:#755A12!important;
+}
+.hero .eyebrow::before,.page-hero .eyebrow::before,.tool-hero .eyebrow::before,.tax-hero .eyebrow::before,
+.hero-tools .eyebrow::before,.pdf-hero .section-kicker::before,.notice-hero .eyebrow::before{
+  background:#B18B2A!important;
+}
+
+/* Light card and workpaper surfaces with consistently high text contrast. */
+:is(.workspace,.pane,.tax-panel,.pdf-workspace,.panel,.tax-kpis,.summary-grid,.kpis,.metric,.kpi,.tax-kpi,
+.resource-card,.resource-feature,.notice-card,.cms-panel,.service-card,.value-card,.service-intro,
+.quick-start-card,.service-layer,.audience-card,.journey-card,.guide-card,.insight-card,.tool-card,
+.stat-card,.metric-card,.case-card,.service-photo-card,.contact-form-card,.faq-item){
+  color:#1F2A2E;border-color:#D9D2C6;
+}
+:is(.workspace,.pane,.tax-panel,.pdf-workspace,.panel,.metric,.kpi,.tax-kpi,.cms-panel,.notice-card){
+  background:#FFFDF9;
+}
+:is(.workspace,.pane,.tax-panel,.pdf-workspace,.panel,.cms-panel) :is(h1,h2,h3,h4,strong,label,th){
+  color:#1F2A2E;
+}
+:is(.field,.toolbar label,.inputs label,.filters label,.tax-field,.cms-field label,.fields label,.panel>label){
+  color:#1F2A2E!important;
+}
+:is(.field small,.help,.subtle,.fine,.fineprint,.footer-note,.tax-small,.muted,.cms-help,
+.kpi span,.metric span,.tax-kpi span,.tool-card p,.tool-label,.pdf-tool p,.pdf-heading p,
+.pdf-workspace-header p,.notice-card p,.notice-card li){
+  color:#59615F!important;
+}
+:is(.tool-label,.kicker,.pdf-step,.notice-label,.cms-help){
+  color:#755A12!important;
+}
+:is(.data-table th,.report-table th,table th,.tax-table th,.pdf-workspace table th){
+  background:#F0EADF!important;color:#1F2A2E!important;border-color:#D9D2C6!important;
+}
+:is(.tool-icon,.pdf-tool-icon,.step-label,.chip,.pill){
+  background:#FFF7E1!important;color:#1F2A2E!important;border-color:#D9D2C6!important;
+}
+
+/* Normalise the old teal-only action colours while retaining strong button contrast. */
+:is(.btn-main,.btn-work,.run,.cms-button-primary,.tax-btn.primary,.tax-tab[aria-selected="true"],.pdf-filter[aria-pressed="true"]){
+  background:#1F2A2E!important;color:#FCF9F1!important;border-color:#1F2A2E!important;
+}
+:is(.btn-lite,.btn-work.secondary,.btn-work.tertiary,.tax-tab,.tax-btn,.secondary,.pdf-filter,.cms-button){
+  background:#F0EADF!important;color:#1F2A2E!important;border-color:#D9D2C6!important;
+}
+:is(.btn-lite,.btn-work.secondary,.btn-work.tertiary,.tax-tab,.tax-btn,.secondary,.pdf-filter,.cms-button):hover{
+  background:#E7DFD0!important;border-color:#9B907D!important;color:#1F2A2E!important;
+}
+:is(.form-field input,.form-field select,.form-field textarea,.field input,.field select,.field textarea,
+.inputs input,.inputs select,.inputs textarea,.filters input,.filters select,.tax-field input,.tax-field select,
+.fields input,.fields select,.cms-field input,.cms-field select,.cms-field textarea,
+.pdf-search-wrap input,td input,td select){
+  color:#1F2A2E;background:#FFFDF9;border-color:#BDB5A7;
+}
+:is(input,select,textarea,button,a,[tabindex]):focus-visible{
+  outline:3px solid #9A7414!important;outline-offset:3px!important;
+}
+.site-footer{background:#F0EADF!important;color:#1F2A2E!important;border-top:1px solid #D9D2C6}
+.site-footer :is(.footer-title,.brand-name,.brand-sub,.footer-links a,.footer-description,.footer-identity,.footer-bottom,.footer-legal a){
+  color:#1F2A2E!important;
+}
+.site-footer .fine-print{color:#59615F!important}
