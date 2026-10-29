@@ -404,110 +404,8 @@ img,svg,video,canvas{max-width:100%;height:auto}
 }
 
 
-/* PRAVI Brand Identity Catalogue v1.0 — 29 October 2026 */
-:root{
-  color-scheme:light;
-  --navy:#1F2A2E; --navy-2:#1F2A2E; --navy-3:#1F2A2E;
-  --ink:#1F2A2E; --muted:#59615F; --soft-muted:#777E79;
-  --gold:#F6D365; --gold-light:#F6D365;
-  --paper:#FCF9F1; --cream:#FCF9F1; --beige:#FFF7E1;
-  --stone:#D9D2C6; --border:#D9D2C6;
-  --font-sans:'Poppins',sans-serif;
-}
-html,body{font-family:'Poppins',sans-serif;background:#FCF9F1;color:#1F2A2E}
-.site-header,.site-footer{background:#FCF9F1;color:#1F2A2E}
-.brand-name{font-family:'Poppins',sans-serif;font-weight:600;letter-spacing:-.045em;text-transform:lowercase;color:#1F2A2E}
-.brand-sub{font-family:'Poppins',sans-serif;letter-spacing:.08em;color:#1F2A2E}
-.btn-primary,.btn-primary:visited{background:#F6D365;border-color:#F6D365;color:#1F2A2E}
-.btn-primary:hover{background:#eac34f;border-color:#eac34f;color:#1F2A2E}
-.btn-dark{background:#1F2A2E;border-color:#1F2A2E;color:#FCF9F1}
-.section-dark,.hero{background:#1F2A2E;color:#FCF9F1}
-.section-kicker,.eyebrow,.section-kicker a{color:#8B6C12}
-.quick-start-card,.service-layer,.audience-card,.journey-card,.faq-item{background:#FFF7E1;border-color:#D9D2C6}
-:focus-visible{outline:3px solid #F6D365;outline-offset:3px}
-@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
 
-.brand-tagline{display:block;font-size:10px;line-height:1.4;font-weight:500;letter-spacing:.02em;color:#8B6C12;margin-top:3px}
-@media(max-width:560px){.brand-tagline{font-size:9px}}
-
-
-/* PRAVI accessibility and complete light-theme correction — 29 Oct 2026
-   Keep dark charcoal for typography and small accents, not large text-bearing surfaces. */
-:root{
-  color-scheme:light;
-  --navy:#1F2A2E;--navy-2:#1F2A2E;--navy-3:#1F2A2E;
-  --ink:#1F2A2E;--muted:#59615F;--soft-muted:#777E79;
-  --gold:#F6D365;--gold-light:#FFF7E1;
-  --paper:#FCF9F1;--white:#FFFDF9;--cream:#FCF9F1;--beige:#FFF7E1;
-  --sand:#F0EADF;--stone:#D9D2C6;--line:#D9D2C6;--border:#D9D2C6;
-  --font:'Poppins',sans-serif;--display:'Poppins',sans-serif;--font-sans:'Poppins',sans-serif;
-}
-html,body{background:#FCF9F1;color:#1F2A2E;font-family:'Poppins',sans-serif}
-h1,h2,h3,h4,p,li,label,small,strong,summary{ text-wrap:pretty }
-h1,h2,h3,h4{color:#1F2A2E}
-p,li{color:inherit}
-.muted,.body-lead,.fine-print,.small{color:#59615F}
-.hero,.page-hero,.section-dark,.cta-band{
-  background:#FFF7E1!important;color:#1F2A2E!important;
-  border-color:#D9D2C6;
-}
-.hero::before,.hero::after,.hero-pattern,.page-hero::before,.page-hero::after,.cta-band::after{opacity:.25}
-.hero h1,.page-hero h1,.cta-inner h2,.section-dark h2,.section-dark h3,
-.hero .eyebrow,.page-hero .eyebrow,.section-dark .section-kicker,.cta-band .eyebrow{
-  color:#1F2A2E!important;
-}
-.hero .lead,.page-hero p:not(.eyebrow):not(.breadcrumb),.cta-inner p:not(.eyebrow),
-.section-dark .muted,.section-dark .body-lead,.hero-note,.breadcrumb{
-  color:#46514D!important;
-}
-.hero-note i{background:#9A7414;box-shadow:0 0 0 4px rgba(154,116,20,.12)}
-.btn-outline-light{border-color:#6B706A!important;color:#1F2A2E!important;background:transparent}
-.btn-outline-light:hover{background:#F0EADF!important;border-color:#1F2A2E!important;color:#1F2A2E!important}
-.principle-panel,.art-window{
-  background:#FFFDF9!important;color:#1F2A2E!important;
-  border:1px solid #D9D2C6!important;box-shadow:0 14px 36px rgba(31,42,46,.08)!important;
-}
-.principle-panel h3,.art-title,.art-step strong,.art-brand{color:#1F2A2E!important}
-.principle-list li,.art-subtitle,.art-tag,.art-step small,.art-bottom{color:#59615F!important}
-.principle-list li,.art-window-top,.art-step{border-color:#D9D2C6!important}
-.art-step{background:#FCF9F1!important}
-.art-step-num{color:#1F2A2E!important;border-color:#D9D2C6!important}
-.art-sticker{background:#F6D365!important;color:#1F2A2E!important}
-.value-strip,.service-card,.deliverable,.value-card,.service-intro,.resource-card,
-.resource-feature,.contact-form-card,.quick-start-card,.service-layer,.audience-card,
-.journey-card,.guide-card,.insight-card,.tool-card,.stat-card,.metric-card,
-.case-card,.service-photo-card,.faq-item,.checklist-item{
-  color:#1F2A2E;background:#FFFDF9;border-color:#D9D2C6;
-}
-.value-point strong,.service-card h3,.deliverable strong,.value-card h3,
-.resource-card h3,.resource-feature h2,.contact-form-card h2,.quick-start-copy strong,
-.service-layer h3,.audience-card h3,.journey-card h3,.guide-card h3,.insight-card h3,
-.tool-card h3,.stat-card strong,.metric-card strong,.case-card h3,.faq-item summary{
-  color:#1F2A2E;
-}
-.value-point small,.service-card p,.deliverable p,.value-card p,.resource-card p,
-.resource-feature p,.contact-form-card>p,.quick-start-copy small,.service-layer p,
-.audience-card p,.journey-card p,.guide-card p,.insight-card p,.tool-card p,
-.stat-card p,.metric-card p,.case-card p,.faq-item p{color:#59615F}
-.site-header{background:rgba(252,249,241,.97);color:#1F2A2E}
-.site-footer{background:#F0EADF;color:#1F2A2E;border-top:1px solid #D9D2C6}
-.site-footer .footer-title,.site-footer .brand-name,.site-footer .brand-sub,
-.site-footer .footer-links a,.site-footer .footer-description,.site-footer .footer-identity,
-.site-footer .footer-bottom,.site-footer .footer-legal a{color:#1F2A2E}
-.site-footer .fine-print{color:#59615F!important}
-.nav-link,.nav-phone{color:#46514D}
-.nav-link:hover,.nav-link[aria-current="page"]{color:#1F2A2E}
-.section-kicker,.eyebrow{color:#755A12}
-.section-kicker::before,.eyebrow::before{background:#B18B2A}
-.text-link{color:#1F2A2E}
-input,select,textarea{background:#FFFDF9;color:#1F2A2E;border-color:#B9B5AA}
-input::placeholder,textarea::placeholder{color:#68716B}
-:focus-visible{outline:3px solid #9A7414;outline-offset:3px}
-::selection{background:#F6D365;color:#1F2A2E}
-
-
-/* PRAVI complete theme audit v3 — harmonise legacy page-local tool styles.
-   Brand surfaces: ivory / warm beige. Reserve charcoal for text and selected controls. */
+/* PRAVI approved brand theme and accessibility layer — 29 October 2026 */
 :root{
   color-scheme:light;
   --navy:#1F2A2E;--navy-2:#1F2A2E;--navy-3:#1F2A2E;
@@ -515,11 +413,41 @@ input::placeholder,textarea::placeholder{color:#68716B}
   --gold:#F6D365;--gold-light:#FFF7E1;
   --paper:#FCF9F1;--white:#FFFDF9;--cream:#FCF9F1;--beige:#FFF7E1;
   --sand:#F0EADF;--stone:#D9D2C6;--line:#D9D2C6;--border:#D9D2C6;
+  --green:#1F2A2E;--green-soft:#FFF7E1;
   --font:'Poppins',sans-serif;--display:'Poppins',sans-serif;--font-sans:'Poppins',sans-serif;
+  --shadow:0 18px 55px rgba(31,42,46,.08);--shadow-lg:0 22px 55px rgba(31,42,46,.12);
 }
+html,body{font-family:'Poppins',sans-serif;background:#FCF9F1;color:#1F2A2E}
+body{color:#1F2A2E}
+h1,h2,h3,h4{font-family:'Poppins',sans-serif;color:#1F2A2E}
+p,li{color:inherit}
+.muted,.body-lead,.fine-print,.small{color:#59615F}
+a{color:inherit}
+::selection{background:#F6D365;color:#1F2A2E}
+:focus-visible{outline:3px solid #9A7414!important;outline-offset:3px!important}
 
-/* Convert every section-level legacy dark banner to a light, readable surface.
-   These names occur in embedded CSS on the tools, calculator, PDF and CMS pages. */
+/* Brand wordmark and navigation */
+.site-header{background:rgba(252,249,241,.97);color:#1F2A2E;border-bottom:1px solid #D9D2C6}
+.brand-name{font-family:'Poppins',sans-serif;font-weight:600;letter-spacing:-.045em;text-transform:lowercase;color:#1F2A2E}
+.brand-sub{font-family:'Poppins',sans-serif;letter-spacing:.08em;color:#1F2A2E}
+.brand-tagline{display:block;font-size:10px;line-height:1.4;font-weight:500;letter-spacing:.02em;color:#755A12;margin-top:3px}
+@media(max-width:560px){.brand-tagline{font-size:9px}}
+.nav-link,.nav-phone{color:#46514D}
+.nav-link:hover,.nav-link[aria-current="page"]{color:#1F2A2E}
+.nav-link[aria-current="page"]::after{background:#F6D365}
+
+/* Brand buttons retain strong contrast on every surface */
+.btn-primary,.btn-primary:visited{background:#F6D365;border-color:#F6D365;color:#1F2A2E}
+.btn-primary:hover{background:#EAC34F;border-color:#EAC34F;color:#1F2A2E}
+.btn-dark{background:#1F2A2E;border-color:#1F2A2E;color:#FCF9F1}
+.btn-dark:hover{background:#39474A;color:#FCF9F1}
+.btn-outline-light{border-color:#777E79!important;color:#1F2A2E!important;background:transparent}
+.btn-outline-light:hover{border-color:#1F2A2E!important;background:#F0EADF!important;color:#1F2A2E!important}
+.btn-outline{border-color:#BDB5A7;color:#1F2A2E}
+.btn-outline:hover{border-color:#1F2A2E;background:#FFFDF9;color:#1F2A2E}
+
+/* Replace legacy dark, text-heavy banners on the homepage, service pages,
+   PDF workspace, tools, calculators and CMS with the approved light surfaces. */
 :is(.hero,.page-hero,.section-dark,.cta-band,.tool-hero,.tax-hero,.hero-tools,.pdf-hero,.notice-hero,.cms-header){
   background:#FFF7E1!important;color:#1F2A2E!important;border-color:#D9D2C6!important;
 }
@@ -532,34 +460,52 @@ input::placeholder,textarea::placeholder{color:#68716B}
 :is(.hero,.page-hero,.section-dark,.cta-band,.tool-hero,.tax-hero,.hero-tools,.pdf-hero,.notice-hero,.cms-header) :is(.eyebrow,.section-kicker,.kicker,.tool-label,.tax-small,.pdf-step,.notice-label){
   color:#755A12!important;
 }
-:is(.hero,.page-hero,.section-dark,.cta-band,.tool-hero,.tax-hero,.hero-tools,.pdf-hero,.notice-hero) :is(.hero-pattern,.hero::before,.hero::after){
-  opacity:.18;
-}
-.cms-header a,.cms-header-inner,.cms-header-inner *{color:#1F2A2E!important}
-.hero .lead,.page-hero p,.tool-hero p,.tax-hero p,.hero-tools p,.pdf-hero p,.notice-hero p,
-.section-dark .muted,.section-dark .body-lead,.cta-band p:not(.eyebrow){
-  color:#46514D!important;
-}
-.hero .eyebrow,.page-hero .eyebrow,.tool-hero .eyebrow,.tax-hero .eyebrow,.hero-tools .eyebrow,
-.pdf-hero .section-kicker,.notice-hero .eyebrow,.section-dark .section-kicker,.cta-band .eyebrow{
-  color:#755A12!important;
-}
-.hero .eyebrow::before,.page-hero .eyebrow::before,.tool-hero .eyebrow::before,.tax-hero .eyebrow::before,
-.hero-tools .eyebrow::before,.pdf-hero .section-kicker::before,.notice-hero .eyebrow::before{
+:is(.hero,.page-hero,.tool-hero,.tax-hero,.hero-tools,.pdf-hero,.notice-hero) :is(.eyebrow,.section-kicker)::before{
   background:#B18B2A!important;
 }
+.hero::before,.hero::after,.page-hero::before,.page-hero::after,.cta-band::after{border-color:rgba(177,139,42,.18)}
+.hero-pattern{
+  opacity:.22;
+  background-image:radial-gradient(circle at 25% 30%,rgba(246,211,101,.26),transparent 32%),
+    radial-gradient(circle at 82% 70%,rgba(217,210,198,.34),transparent 28%)!important;
+}
+.hero-note i{background:#9A7414;box-shadow:0 0 0 4px rgba(154,116,20,.12)}
+.cms-header a,.cms-header-inner,.cms-header-inner *{color:#1F2A2E!important}
 
-/* Light card and workpaper surfaces with consistently high text contrast. */
-:is(.workspace,.pane,.tax-panel,.pdf-workspace,.panel,.tax-kpis,.summary-grid,.kpis,.metric,.kpi,.tax-kpi,
-.resource-card,.resource-feature,.notice-card,.cms-panel,.service-card,.value-card,.service-intro,
-.quick-start-card,.service-layer,.audience-card,.journey-card,.guide-card,.insight-card,.tool-card,
-.stat-card,.metric-card,.case-card,.service-photo-card,.contact-form-card,.faq-item){
+/* Light panel surfaces; retain a dark translucent caption only over photography. */
+.principle-panel,.art-window{
+  background:#FFFDF9!important;color:#1F2A2E!important;
+  border:1px solid #D9D2C6!important;box-shadow:0 14px 36px rgba(31,42,46,.08)!important;
+}
+.principle-panel h3,.art-title,.art-step strong,.art-brand{color:#1F2A2E!important}
+.principle-list li,.art-subtitle,.art-tag,.art-step small,.art-bottom{color:#59615F!important}
+.principle-list li,.art-window-top,.art-step{border-color:#D9D2C6!important}
+.art-step{background:#FCF9F1!important}
+.art-step-num{color:#1F2A2E!important;border-color:#D9D2C6!important}
+.art-sticker{background:#F6D365!important;color:#1F2A2E!important}
+.value-strip{background:#FFFDF9}
+.quick-start-card,.service-layer,.audience-card,.journey-card,.faq-item{
+  background:#FFF7E1;border-color:#D9D2C6;color:#1F2A2E;
+}
+:is(.quick-start-copy strong,.service-layer h3,.audience-card h3,.journey-card h3,.faq-item summary,
+.service-card h3,.deliverable strong,.value-card h3,.resource-card h3,.contact-form-card h2){color:#1F2A2E}
+:is(.quick-start-copy small,.service-layer p,.audience-card p,.journey-card p,.faq-item p,
+.service-card p,.deliverable p,.value-card p,.resource-card p,.resource-feature p){color:#59615F}
+.section-kicker,.eyebrow{color:#755A12!important}
+.section-kicker::before,.eyebrow::before{background:#B18B2A!important}
+.text-link,.text-link:hover{color:#1F2A2E}
+.text-link .arrow{color:#8B6C12}
+.service-icon,.method-icon{background:#FFF7E1;color:#755A12;border-color:#D9D2C6}
+
+/* Workpaper cards, forms, tables and status messages */
+:is(.workspace,.pane,.tax-panel,.pdf-workspace,.panel,.metric,.kpi,.tax-kpi,.cms-panel,.notice-card,
+.resource-card,.resource-feature,.service-card,.value-card,.service-intro,.tool-card,.contact-form-card){
   color:#1F2A2E;border-color:#D9D2C6;
 }
 :is(.workspace,.pane,.tax-panel,.pdf-workspace,.panel,.metric,.kpi,.tax-kpi,.cms-panel,.notice-card){
   background:#FFFDF9;
 }
-:is(.workspace,.pane,.tax-panel,.pdf-workspace,.panel,.cms-panel) :is(h1,h2,h3,h4,strong,label,th){
+:is(.workspace,.pane,.tax-panel,.pdf-workspace,.panel,.cms-panel,.notice-card) :is(h1,h2,h3,h4,strong,label,th){
   color:#1F2A2E;
 }
 :is(.field,.toolbar label,.inputs label,.filters label,.tax-field,.cms-field label,.fields label,.panel>label){
@@ -567,20 +513,25 @@ input::placeholder,textarea::placeholder{color:#68716B}
 }
 :is(.field small,.help,.subtle,.fine,.fineprint,.footer-note,.tax-small,.muted,.cms-help,
 .kpi span,.metric span,.tax-kpi span,.tool-card p,.tool-label,.pdf-tool p,.pdf-heading p,
-.pdf-workspace-header p,.notice-card p,.notice-card li){
-  color:#59615F!important;
-}
-:is(.tool-label,.kicker,.pdf-step,.notice-label,.cms-help){
-  color:#755A12!important;
-}
+.pdf-workspace-header p,.notice-card p,.notice-card li){color:#59615F!important}
+:is(.tool-label,.kicker,.pdf-step,.notice-label,.cms-help){color:#755A12!important}
 :is(.data-table th,.report-table th,table th,.tax-table th,.pdf-workspace table th){
   background:#F0EADF!important;color:#1F2A2E!important;border-color:#D9D2C6!important;
 }
 :is(.tool-icon,.pdf-tool-icon,.step-label,.chip,.pill){
   background:#FFF7E1!important;color:#1F2A2E!important;border-color:#D9D2C6!important;
 }
+:is(.status,.result,.tax-result,.empty,.checklist-status){color:#1F2A2E!important}
+:is(.metric,.kpi,.tax-kpi,.summary-grid,.kpis,.tax-kpis){border-color:#D9D2C6}
+:is(.notice,.notice.warn,.alert-box,.ok-box,.tax-warn,.form-alert){border-color:#D9D2C6}
+:is(.form-field input,.form-field select,.form-field textarea,.field input,.field select,.field textarea,
+.inputs input,.inputs select,.inputs textarea,.filters input,.filters select,.tax-field input,.tax-field select,
+.fields input,.fields select,.cms-field input,.cms-field select,.cms-field textarea,
+.pdf-search-wrap input,td input,td select){
+  color:#1F2A2E;background:#FFFDF9;border-color:#BDB5A7;
+}
 
-/* Normalise the old teal-only action colours while retaining strong button contrast. */
+/* Consistent action colours for page-local buttons defined by inline styles. */
 :is(.btn-main,.btn-work,.run,.cms-button-primary,.tax-btn.primary,.tax-tab[aria-selected="true"],.pdf-filter[aria-pressed="true"]){
   background:#1F2A2E!important;color:#FCF9F1!important;border-color:#1F2A2E!important;
 }
@@ -590,40 +541,19 @@ input::placeholder,textarea::placeholder{color:#68716B}
 :is(.btn-lite,.btn-work.secondary,.btn-work.tertiary,.tax-tab,.tax-btn,.secondary,.pdf-filter,.cms-button):hover{
   background:#E7DFD0!important;border-color:#9B907D!important;color:#1F2A2E!important;
 }
-:is(.form-field input,.form-field select,.form-field textarea,.field input,.field select,.field textarea,
-.inputs input,.inputs select,.inputs textarea,.filters input,.filters select,.tax-field input,.tax-field select,
-.fields input,.fields select,.cms-field input,.cms-field select,.cms-field textarea,
-.pdf-search-wrap input,td input,td select){
-  color:#1F2A2E;background:#FFFDF9;border-color:#BDB5A7;
+:is(.notice-card a,.card-link,.tool-link-back,.pdf-tool .pdf-card-arrow,.official-links a){
+  color:#1F2A2E!important;text-decoration-color:#B18B2A;
 }
-:is(input,select,textarea,button,a,[tabindex]):focus-visible{
-  outline:3px solid #9A7414!important;outline-offset:3px!important;
-}
+
+/* Footer and floating contact stay legible and on-brand. */
 .site-footer{background:#F0EADF!important;color:#1F2A2E!important;border-top:1px solid #D9D2C6}
 .site-footer :is(.footer-title,.brand-name,.brand-sub,.footer-links a,.footer-description,.footer-identity,.footer-bottom,.footer-legal a){
   color:#1F2A2E!important;
 }
 .site-footer .fine-print{color:#59615F!important}
-
-
-/* Final legacy-accent cleanup and persistent control contrast. */
-.hero-pattern{
-  background-image:radial-gradient(circle at 25% 30%,rgba(246,211,101,.26),transparent 32%),
-    radial-gradient(circle at 82% 70%,rgba(217,210,198,.34),transparent 28%)!important;
-}
-.floating-whatsapp{
-  background:#1F2A2E!important;color:#FCF9F1!important;border-color:#1F2A2E!important;
-}
+.floating-whatsapp{background:#1F2A2E!important;color:#FCF9F1!important;border-color:#1F2A2E!important}
 .floating-whatsapp:hover{background:#39474A!important;color:#FCF9F1!important}
-:is(.notice-card a,.card-link,.tool-link-back,.pdf-tool .pdf-card-arrow,.official-links a){
-  color:#1F2A2E!important;text-decoration-color:#B18B2A;
-}
-:is(.status,.result,.tax-result,.empty,.checklist-status){
-  color:#1F2A2E!important;
-}
-:is(.metric,.kpi,.tax-kpi,.summary-grid,.kpis,.tax-kpis){
-  border-color:#D9D2C6;
-}
-:is(.notice,.notice.warn,.alert-box,.ok-box,.tax-warn,.form-alert){
-  border-color:#D9D2C6;
+:is(input,select,textarea,button,a,[tabindex]):focus-visible{outline:3px solid #9A7414!important;outline-offset:3px!important}
+@media(prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
