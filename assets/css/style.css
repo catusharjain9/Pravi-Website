@@ -604,3 +604,26 @@ input::placeholder,textarea::placeholder{color:#68716B}
   color:#1F2A2E!important;
 }
 .site-footer .fine-print{color:#59615F!important}
+
+
+/* Final legacy-accent cleanup and persistent control contrast. */
+.hero-pattern{
+  background-image:radial-gradient(circle at 25% 30%,rgba(246,211,101,.26),transparent 32%),
+    radial-gradient(circle at 82% 70%,rgba(217,210,198,.34),transparent 28%)!important;
+}
+.floating-whatsapp{
+  background:#1F2A2E!important;color:#FCF9F1!important;border-color:#1F2A2E!important;
+}
+.floating-whatsapp:hover{background:#39474A!important;color:#FCF9F1!important}
+:is(.notice-card a,.card-link,.tool-link-back,.pdf-tool .pdf-card-arrow,.official-links a){
+  color:#1F2A2E!important;text-decoration-color:#B18B2A;
+}
+:is(.status,.result,.tax-result,.empty,.checklist-status){
+  color:#1F2A2E!important;
+}
+:is(.metric,.kpi,.tax-kpi,.summary-grid,.kpis,.tax-kpis){
+  border-color:#D9D2C6;
+}
+:is(.notice,.notice.warn,.alert-box,.ok-box,.tax-warn,.form-alert){
+  border-color:#D9D2C6;
+}
