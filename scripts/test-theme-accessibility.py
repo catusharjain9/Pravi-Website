@@ -65,7 +65,7 @@ missing_stylesheet = []
 for page in pages:
     html = page.read_text(encoding="utf-8")
     # All pages intentionally use double-quoted, relative stylesheet links.
-    if not re.search(r'<link\b[^>]*href="assets/css/style\.css\?v=20261029-editorial2"[^>]*>', html, re.I):
+    if not re.search(r'<link\b[^>]*href="assets/css/style\.css\?v=20261029-editorial2(?:-heroart1)?"[^>]*>', html, re.I):
         missing_stylesheet.append(page.name)
 if missing_stylesheet:
     fail("pages not linked to shared stylesheet: " + ", ".join(missing_stylesheet))
