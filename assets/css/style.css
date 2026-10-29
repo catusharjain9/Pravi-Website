@@ -1158,3 +1158,28 @@ p{line-height:1.75}
   .hero-visual-note strong{font-size:.82rem}
   .hero-visual-note small{font-size:.68rem}
 }
+
+
+/* Locked PRAVI logo system — consistent lowercase wordmark and separate Sanskrit tagline. */
+.brand-name{
+  text-transform:lowercase!important;
+  font-family:'Poppins',sans-serif!important;
+  font-size:1.12rem!important;font-weight:600!important;letter-spacing:-.055em!important;
+  color:#1F2A2E!important;line-height:1.08!important;
+}
+.brand-sub{
+  margin-top:4px!important;color:#59615F!important;font-size:.49rem!important;
+  font-weight:600!important;letter-spacing:.12em!important;
+}
+.brand-tagline{
+  display:block!important;margin-top:4px!important;color:#755A12!important;
+  font-family:'Poppins',sans-serif!important;font-size:9px!important;font-weight:500!important;
+  letter-spacing:0!important;line-height:1.2!important;white-space:nowrap;
+}
+.brand-symbol{object-fit:contain!important;border-radius:0!important;box-shadow:none!important}
+.footer-brand .brand{align-items:center}
+@media(max-width:520px){
+  .brand-name{font-size:1.05rem!important}
+  .brand-sub{font-size:.46rem!important}
+  .brand-tagline{font-size:8px!important}
+}

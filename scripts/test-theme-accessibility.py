@@ -43,6 +43,9 @@ for colour_name, colour in PALETTE.items():
 if "'Poppins'" not in css or "--font:'Poppins',sans-serif" not in css:
     fail("Poppins is not configured as the common body/display font")
 
+if ".brand-tagline" not in css or "text-transform:lowercase!important" not in css:
+    fail("locked lowercase PRAVI wordmark and tagline styles are missing")
+
 if "PRAVI editorial redesign" not in css:
     fail("editorial design layer is missing")
 for selector in (".quick-start-grid{", ".service-layer-grid{", ".insights-grid{", ".tool-grid,.grid.tool-grid{"):
@@ -62,13 +65,22 @@ if not pages:
     fail("no root HTML pages were found")
 
 missing_stylesheet = []
+missing_brand_lockup = []
 for page in pages:
     html = page.read_text(encoding="utf-8")
     # All pages intentionally use double-quoted, relative stylesheet links.
-    if not re.search(r'<link\b[^>]*href="assets/css/style\.css\?v=20261029-editorial2(?:-heroart1)?"[^>]*>', html, re.I):
+    if not re.search(r'<link\b[^>]*href="assets/css/style\.css\?v=20261029-brandlock1"[^>]*>', html, re.I):
         missing_stylesheet.append(page.name)
 if missing_stylesheet:
     fail("pages not linked to shared stylesheet: " + ", ".join(missing_stylesheet))
+for page in pages:
+    if page.name == "admin.html":
+        continue
+    html = page.read_text(encoding="utf-8")
+    if 'class="brand-name">pravi' not in html or 'class="brand-tagline">लेखा | अर्थ | वृद्धि</span>' not in html:
+        missing_brand_lockup.append(page.name)
+if missing_brand_lockup:
+    fail("pages missing the approved lowercase PRAVI lockup: " + ", ".join(missing_brand_lockup))
 
 checks = [
     ("body text on ivory", PALETTE["charcoal"], PALETTE["ivory"]),
