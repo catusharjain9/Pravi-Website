@@ -1066,3 +1066,62 @@ p{line-height:1.75}
 
 /* Homepage copy is specific to founder finance, not generic inspiration language. */
 .hero .eyebrow{font-size:.65rem;letter-spacing:.13em}
+
+
+/* Final card audit: preserve the image-led sequence, flatten the remaining tile sections. */
+.audience-grid:has(> .audience-item){
+  grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:0!important;
+  background:transparent!important;
+}
+.audience-item{
+  padding:22px 22px 24px 0!important;background:transparent!important;
+  border:0!important;border-top:1px solid #BDB5A7!important;
+  border-radius:0!important;box-shadow:none!important;
+}
+.audience-item+.audience-item{padding-left:20px!important;border-left:1px solid #D9D2C6!important}
+.audience-item h3{font-size:1.04rem;font-weight:600;margin:12px 0 8px}
+.audience-item p{font-size:.82rem;line-height:1.72;color:#59615F;margin:0}
+.audience-mark{color:#8B6C12!important;margin-bottom:0;font-size:.66rem;letter-spacing:.12em}
+.service-photo-strip{
+  gap:0!important;border-top:1px solid #D9D2C6;border-bottom:1px solid #D9D2C6;
+}
+.service-photo-card{
+  border-radius:0!important;box-shadow:none!important;border:0!important;
+  min-height:285px;background:#D9D2C6;
+}
+.service-photo-card+.service-photo-card{border-left:1px solid rgba(252,249,241,.75)!important}
+.service-photo-card:after{background:linear-gradient(180deg,transparent 42%,rgba(31,42,46,.85))!important}
+.service-directory{
+  display:flex;align-items:center;flex-wrap:wrap;gap:0 20px;
+  padding:15px 0;border-top:1px solid #BDB5A7;border-bottom:1px solid #D9D2C6;
+  background:transparent!important;border-radius:0!important;
+}
+.service-directory .directory-label{
+  display:block;color:#755A12!important;font-size:.64rem;letter-spacing:.13em;
+  font-weight:700;text-transform:uppercase;margin-right:7px;
+}
+.service-directory a{
+  padding:7px 0!important;border:0!important;border-radius:0!important;
+  background:transparent!important;color:#1F2A2E!important;font-size:.77rem;
+  text-decoration:none;text-underline-offset:4px;
+}
+.service-directory a:hover{text-decoration:underline;text-decoration-color:#B18B2A}
+:is(.tax-tab,.tax-btn,.pdf-filter,.cms-button,.btn-work,.btn-main,.btn-lite,.run){
+  border-radius:0!important;
+}
+.pdf-filters{gap:0!important;border-bottom:1px solid #D9D2C6}
+.pdf-filter{border-radius:0!important;border-width:0 0 2px!important;padding:10px 15px!important}
+.pdf-filter[aria-pressed="true"]{
+  background:transparent!important;color:#1F2A2E!important;border-bottom-color:#B18B2A!important;
+}
+@media(max-width:760px){
+  .audience-grid:has(> .audience-item){grid-template-columns:1fr}
+  .audience-item,.audience-item+.audience-item{
+    padding:18px 0!important;border-left:0!important;
+  }
+  .service-photo-strip{grid-template-columns:1fr!important}
+  .service-photo-card{min-height:245px}
+  .service-photo-card+.service-photo-card{border-left:0!important;border-top:1px solid rgba(252,249,241,.75)!important}
+  .service-directory{gap:4px 15px}
+  .service-directory .directory-label{flex-basis:100%;margin-bottom:5px}
+}
