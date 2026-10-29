@@ -16,15 +16,8 @@ PALETTE = {
     "accent": "#755A12",
 }
 LEGACY_HERO_CLASSES = (
-    ".tool-hero",
-    ".tax-hero",
-    ".hero-tools",
-    ".pdf-hero",
-    ".notice-hero",
-    ".cms-header",
-    ".page-hero",
-    ".section-dark",
-    ".cta-band",
+    ".tool-hero", ".tax-hero", ".hero-tools", ".pdf-hero",
+    ".notice-hero", ".cms-header", ".page-hero", ".section-dark", ".cta-band",
 )
 
 def luminance(hex_color: str) -> float:
@@ -47,14 +40,12 @@ css = CSS_PATH.read_text(encoding="utf-8")
 for colour_name, colour in PALETTE.items():
     if colour.lower() not in css.lower():
         fail(f"approved palette colour {colour_name} ({colour}) is missing from the stylesheet")
-
 if "'Poppins'" not in css or "--font:'Poppins',sans-serif" not in css:
     fail("Poppins is not configured as the common body/display font")
 
 for selector in LEGACY_HERO_CLASSES:
     if selector not in css:
         fail(f"legacy banner selector {selector} has no shared theme override")
-
 if "background:#FFF7E1!important;color:#1F2A2E!important" not in css:
     fail("legacy hero/banner overrides must force a warm-light surface and charcoal text")
 
@@ -65,10 +56,9 @@ if not pages:
 missing_stylesheet = []
 for page in pages:
     html = page.read_text(encoding="utf-8")
-    if not re.search(r'<link\\b[^>]*href=["\\']assets/css/style\\.css(?:\\?[^"\\']*)?["\\'][^>]*>', html, re.I):
-        # Attribute order can vary; accept any stylesheet link that refers to the shared CSS.
-        if not re.search(r'<link\\b(?=[^>]*rel=["\\']stylesheet["\\'])(?=[^>]*href=["\\']assets/css/style\\.css(?:\\?[^"\\']*)?["\\'])[^>]*>', html, re.I):
-            missing_stylesheet.append(page.name)
+    # All pages intentionally use double-quoted, relative stylesheet links.
+    if not re.search(r'<link\b[^>]*href="assets/css/style\.css(?:\?[^"]*)?"[^>]*>', html, re.I):
+        missing_stylesheet.append(page.name)
 if missing_stylesheet:
     fail("pages not linked to shared stylesheet: " + ", ".join(missing_stylesheet))
 
@@ -86,6 +76,6 @@ for label, foreground, background in checks:
         fail(f"{label} contrast is {ratio:.2f}:1; minimum required here is 4.5:1")
 
 print(f"PASS: {len(pages)} HTML pages use the shared stylesheet.")
-print(f"PASS: all {len(LEGACY_HERO_CLASSES)} legacy dark-banner classes have shared-theme overrides.")
+print(f"PASS: all {len(LEGACY_HERO_CLASSES)} legacy banner classes have shared-theme overrides.")
 for label, foreground, background in checks:
     print(f"PASS: {label}: {contrast_ratio(foreground, background):.2f}:1")
