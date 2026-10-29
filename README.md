@@ -76,7 +76,7 @@ The site now emphasises problem-led positioning, four comprehensible service lay
 
 
 ## Brand identity
-The refreshed identity uses a custom abstract P mark with deep teal (`#073B36`), sage (`#7A9E8F`), terracotta (`#D97B5B`) and warm stone (`#F5F1E9`). The mark is used in the site header, favicon and homepage framework illustration. `assets/img/pravi-logo.svg` is a standalone horizontal logo asset suitable for documents and design layouts. The brand system is designed to remain legible at small header and favicon sizes.
+The approved PRAVI visual identity uses sunrise yellow (`#F6D365`), warm beige (`#FFF7E1`), ivory (`#FCF9F1`), charcoal (`#1F2A2E`) and stone grey (`#D9D2C6`), with Poppins typography. Use the lowercase `pravi` wordmark and keep the Sanskrit tagline `लेखा | अर्थ | वृद्धि` separate from the logo mark. Do not put Sanskrit text or symbols inside the logo. The approved mark is used in the site header and favicon.
 
 
 ## Final client logo assets
@@ -126,3 +126,10 @@ See `WEBSITE_IMPROVEMENT_REPORT.md` for a precise change log and remaining relea
 - Before production, configure Firebase, test Firestore rules with authorised and unauthorised accounts, and verify the CSP against all required Firebase/CDN features.
 - After the real domain is confirmed, run `npm run sitemap -- https://your-verified-domain.example` to generate canonical tags, `sitemap.xml`, and `robots.txt`. This edits canonical tags in public HTML files.
 - Run dependency installation in an internet-enabled build environment, then `npm run audit`, `npm run test:csv`, JavaScript syntax checks, and manual/browser tests for all tools before release.
+
+
+## Theme readability audit (29 October 2026)
+- Reviewed all 33 root HTML pages and the shared stylesheet; 11 workpaper/CMS pages also include page-local CSS that had retained older teal/white hero treatments.
+- The shared theme now overrides those page-local banner classes and normalises the page title, body copy, action buttons, tables, inputs, footers, and contact controls to the approved warm-light palette.
+- Added `scripts/test-theme-accessibility.py` to check stylesheet coverage, required palette/hero overrides, and contrast ratios for the core text/background combinations. The test is included in the website quality workflow.
+- Source changes are committed to GitHub. Production visual verification/deployment is still unconfirmed: this repository has no `.firebaserc`, production domain, or hosting deploy workflow. Do not treat a source commit as proof that the live site changed.
