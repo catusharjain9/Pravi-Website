@@ -43,6 +43,14 @@ for colour_name, colour in PALETTE.items():
 if "'Poppins'" not in css or "--font:'Poppins',sans-serif" not in css:
     fail("Poppins is not configured as the common body/display font")
 
+if "PRAVI editorial redesign" not in css:
+    fail("editorial design layer is missing")
+for selector in (".quick-start-grid{", ".service-layer-grid{", ".insights-grid{", ".tool-grid,.grid.tool-grid{"):
+    if selector not in css:
+        fail(f"editorial layout rule {selector} is missing")
+if "border-radius:0!important" not in css or "box-shadow:none!important" not in css:
+    fail("decorative card radius/shadow removal is missing")
+
 for selector in LEGACY_HERO_CLASSES:
     if selector not in css:
         fail(f"legacy banner selector {selector} has no shared theme override")
@@ -57,7 +65,7 @@ missing_stylesheet = []
 for page in pages:
     html = page.read_text(encoding="utf-8")
     # All pages intentionally use double-quoted, relative stylesheet links.
-    if not re.search(r'<link\b[^>]*href="assets/css/style\.css(?:\?[^"]*)?"[^>]*>', html, re.I):
+    if not re.search(r'<link\b[^>]*href="assets/css/style\.css\?v=20261029-editorial1"[^>]*>', html, re.I):
         missing_stylesheet.append(page.name)
 if missing_stylesheet:
     fail("pages not linked to shared stylesheet: " + ", ".join(missing_stylesheet))
