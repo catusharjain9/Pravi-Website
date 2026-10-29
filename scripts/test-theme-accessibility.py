@@ -74,8 +74,6 @@ for page in pages:
 if missing_stylesheet:
     fail("pages not linked to shared stylesheet: " + ", ".join(missing_stylesheet))
 for page in pages:
-    if page.name == "admin.html":
-        continue
     html = page.read_text(encoding="utf-8")
     if 'class="brand-name">pravi' not in html or 'class="brand-tagline">लेखा | अर्थ | वृद्धि</span>' not in html:
         missing_brand_lockup.append(page.name)
