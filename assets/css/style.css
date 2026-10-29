@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 /* PRAVI BUSINESS ADVISORS LLP — design system */
 :root{
   color-scheme:light;
@@ -413,7 +414,6 @@ img,svg,video,canvas{max-width:100%;height:auto}
   --stone:#D9D2C6; --border:#D9D2C6;
   --font-sans:'Poppins',sans-serif;
 }
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 html,body{font-family:'Poppins',sans-serif;background:#FCF9F1;color:#1F2A2E}
 .site-header,.site-footer{background:#FCF9F1;color:#1F2A2E}
 .brand-name{font-family:'Poppins',sans-serif;font-weight:600;letter-spacing:-.045em;text-transform:lowercase;color:#1F2A2E}
