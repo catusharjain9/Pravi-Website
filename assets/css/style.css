@@ -1183,3 +1183,24 @@ p{line-height:1.75}
   .brand-sub{font-size:.46rem!important}
   .brand-tagline{font-size:8px!important}
 }
+
+
+/* PRAVI hand-drawn illustration system — original doodles, no stock photography */
+.hero-visual{position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0}
+.hero-visual>img{position:relative;z-index:1;width:100%;max-width:590px;height:auto;object-fit:contain;filter:none}
+.hero-visual::before{position:absolute;z-index:-1;content:"";width:78%;aspect-ratio:1;border:1.5px dashed rgba(246,211,101,.6);border-radius:48% 52% 57% 43%;transform:rotate(-8deg)}
+.hero-visual-note{position:relative;z-index:2;align-self:flex-end;display:flex;align-items:center;gap:13px;margin:-8px 0 0;padding:13px 16px;background:#FCF9F1;color:#1F2A2E;border:1px solid #D9D2C6;box-shadow:5px 5px 0 rgba(246,211,101,.5);transform:rotate(-1deg)}
+.hero-visual-note .visual-note-index{font-size:.65rem;font-weight:800;letter-spacing:.12em;color:#755A12}
+.hero-visual-note strong,.hero-visual-note small{display:block}
+.hero-visual-note strong{font-size:.86rem}
+.hero-visual-note small{margin-top:2px;color:#59615F;font-size:.72rem}
+.page-hero{position:relative;isolation:isolate;overflow:hidden}
+.page-hero::after{position:absolute;z-index:-1;right:clamp(-45px,4vw,55px);top:22px;width:clamp(110px,16vw,205px);height:clamp(110px,16vw,205px);content:"";opacity:.52;background-repeat:no-repeat;background-size:contain;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' fill='none' stroke='%23755A12' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M35 143c15-12 28-14 43-8 13 5 20 3 30-9 12-15 27-19 46-12' stroke-dasharray='3 7'/%3E%3Cpath d='M37 117c8-24 25-35 45-29 15 4 20 16 31 15 12-1 16-18 31-25 11-5 22-1 29 7'/%3E%3Cpath d='M151 73l22 5-5 21M45 56l7-15 7 15M52 48l-15 7M128 153c7 5 12 11 14 20M138 165l4 8 7-6'/%3E%3Ccircle cx='80' cy='88' r='3' fill='%23F6D365' stroke='none'/%3E%3Ccircle cx='151' cy='103' r='4' fill='%23F6D365' stroke='none'/%3E%3C/svg%3E");pointer-events:none}
+.section-heading{position:relative}
+.section-heading::after{position:absolute;right:0;top:4px;width:62px;height:26px;content:"";opacity:.62;background-repeat:no-repeat;background-size:contain;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 28' fill='none' stroke='%23B08A3C' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M3 21c10-17 15-18 22-4S38 28 46 9 56 2 61 7'/%3E%3C/svg%3E")}
+.quick-start-icon,.layer-number,.audience-index{position:relative}
+.quick-start-icon::after,.layer-number::after,.audience-index::after{position:absolute;z-index:-1;inset:-5px -7px;content:"";border:1px solid rgba(176,138,60,.45);border-radius:44% 56% 51% 49%;transform:rotate(-8deg)}
+.service-layer,.audience-card,.journey-card{position:relative}
+.service-layer::after,.audience-card::after,.journey-card::after{position:absolute;right:15px;top:15px;width:21px;height:21px;content:"";opacity:.5;border-top:1.5px solid #B08A3C;border-right:1.5px solid #B08A3C;border-radius:0 9px 0 0;pointer-events:none}
+@media(max-width:760px){.hero-visual{margin-top:8px}.hero-visual-note{margin-top:-2px;align-self:center}.page-hero::after{right:-24px;top:auto;bottom:0;opacity:.25}.section-heading::after{width:38px;right:0;top:-8px}.section-heading{padding-right:35px}}
+@media(prefers-reduced-motion:reduce){.hero-visual-note{transform:none}}
