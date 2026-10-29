@@ -557,3 +557,21 @@ a{color:inherit}
 @media(prefers-reduced-motion:reduce){
   *{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
+
+
+/* Exceptions for text sitting on photographs and for text inside action controls. */
+.hero-photo-panel .photo-caption{
+  background:rgba(31,42,46,.88)!important;
+  border-color:rgba(255,253,249,.38)!important;
+  color:#FCF9F1!important;
+}
+.hero-photo-panel .photo-caption :is(strong,span,small){
+  color:#FCF9F1!important;
+}
+.hero-photo-panel .photo-index{
+  color:#FCF9F1!important;
+}
+:is(.hero,.page-hero,.tool-hero,.tax-hero,.hero-tools,.pdf-hero,.notice-hero,.cms-header)
+:is(.btn,.btn-main,.btn-work,.run,.cms-button-primary,.tax-btn,.tax-tab,.pdf-filter) *{
+  color:inherit!important;
+}
