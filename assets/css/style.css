@@ -1204,3 +1204,11 @@ p{line-height:1.75}
 .service-layer::after,.audience-card::after,.journey-card::after{position:absolute;right:15px;top:15px;width:21px;height:21px;content:"";opacity:.5;border-top:1.5px solid #B08A3C;border-right:1.5px solid #B08A3C;border-radius:0 9px 0 0;pointer-events:none}
 @media(max-width:760px){.hero-visual{margin-top:8px}.hero-visual-note{margin-top:-2px;align-self:center}.page-hero::after{right:-24px;top:auto;bottom:0;opacity:.25}.section-heading::after{width:38px;right:0;top:-8px}.section-heading{padding-right:35px}}
 @media(prefers-reduced-motion:reduce){.hero-visual-note{transform:none}}
+
+
+/* Small, topic-specific doodles on the homepage service pathways */
+.service-layer::after{top:auto;bottom:12px;right:12px;width:74px;height:74px;border:0;border-radius:0;opacity:.28;background-position:center;background-repeat:no-repeat;background-size:contain;pointer-events:none}
+.service-layer:nth-child(1)::after{background-image:url('../img/pravi-doodle-compliance.svg')}
+.service-layer:nth-child(2)::after{background-image:url('../img/pravi-doodle-cashflow.svg')}
+.service-layer:nth-child(3)::after{background-image:url('../img/pravi-doodle-growth.svg')}
+@media(max-width:560px){.service-layer::after{width:56px;height:56px;bottom:10px;right:10px;opacity:.22}}
