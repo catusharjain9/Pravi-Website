@@ -1216,3 +1216,9 @@ p{line-height:1.75}
 /* PRAVI catalogue lockup: one identical approved wordmark in every header and footer. */
 .brand{width:210px;height:59px;background-image:url("../img/pravi-logo.svg");background-repeat:no-repeat;background-position:left center;background-size:contain;}
 @media(max-width:520px){.brand{width:174px;height:50px}}
+
+/* Final PRAVI logo lockup: real inline image, fixed responsive dimensions. */
+.site-header .brand,.footer-brand .brand{display:inline-flex!important;align-items:center!important;flex:0 0 auto!important;width:210px!important;height:auto!important;max-width:calc(100vw - 88px)!important;min-width:0!important;background:none!important;gap:0!important;overflow:visible!important}
+.site-header .brand-logo,.footer-brand .brand-logo{display:block!important;width:100%!important;height:auto!important;max-height:60px!important;object-fit:contain!important;object-position:left center!important}
+.site-header .brand-symbol,.site-header .brand-copy,.footer-brand .brand-symbol,.footer-brand .brand-copy{display:none!important}
+@media(max-width:560px){.site-header .brand,.footer-brand .brand{width:205px!important;max-width:calc(100vw - 82px)!important}.site-header .brand-logo,.footer-brand .brand-logo{max-height:58px!important}}
