@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 225" role="img" aria-labelledby="title">
 <title id="title">pravi — Business Advisors LLP</title>
 <style>
-.logo-dot-halo{fill:none;stroke:#F6D365;stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:center;animation:pravi-dot-pulse 2.2s ease-out infinite}
-.logo-rule{stroke-dasharray:55;stroke-dashoffset:55;animation:pravi-rule-draw 0.65s cubic-bezier(.22,.75,.25,1) .12s forwards}
+.logo-dot-halo{fill:none;stroke:#F6D365;stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:center;animation:pravi-dot-pulse 2.8s ease-out infinite}
+.logo-rule{stroke-dasharray:55;stroke-dashoffset:55;animation:pravi-rule-draw 0.8s cubic-bezier(.22,.75,.25,1) .12s forwards}
 @keyframes pravi-dot-pulse{0%,100%{opacity:0;transform:scale(.9)}45%{opacity:.5;transform:scale(1.65)}65%{opacity:0;transform:scale(2.1)}}
 @keyframes pravi-rule-draw{to{stroke-dashoffset:0}}
 @media(prefers-reduced-motion:reduce){.logo-dot-halo,.logo-rule{animation:none!important;stroke-dashoffset:0!important}}
