@@ -98,7 +98,7 @@
     '.tool-card', '.resource-card', '.service-card', '.service-photo-card', '.split-grid > *',
     '.deliverable', '.cta-band > *', '.resource-feature', '.guide-card', '.insight-card',
     '.checklist-item', '.tool-panel', '.calculator-card', '.faq-item', '.content-card',
-    '.stat-card', '.metric-card', '.timeline-item', '.page-hero > *'
+    '.stat-card', '.metric-card', '.timeline-item', '.page-hero > *', '.page-hero-inner > *', '.breadcrumb', '.service-intro', '.service-detail', '.about-callout', '.contact-method', '.article-card', '.article-note', '.tool-panel', '.tax-card', '.section > .container > *', '.section-heading + *'
   ].join(',');
   const revealTargets = [...document.querySelectorAll(revealSelector)];
   if (reduceMotion || !('IntersectionObserver' in window)) {
