@@ -1418,3 +1418,67 @@ h1,h2,h3,h4{color:var(--pravi-charcoal);letter-spacing:-.035em}h1{font-size:clam
 .page-hero .eyebrow{color:#80631f!important}
 .page-hero .breadcrumb{color:#747b74!important}
 .page-hero .breadcrumb a:hover{color:var(--navy)!important}
+
+
+/* Repair the four-stage process infographic and restore its PRAVI motion graphic. */
+.about-process .process-flow,
+.infographic-section .process-flow{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:0!important;
+  align-items:stretch!important;
+  margin-top:28px!important;
+  border-top:1px solid var(--line)!important;
+}
+.infographic-section .process-node{
+  position:relative!important;
+  min-width:0!important;
+  min-height:174px!important;
+  padding:22px 22px 30px 10px!important;
+  border:0!important;
+  border-bottom:1px solid var(--line)!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+.infographic-section .process-node:nth-of-type(4n+2){background:transparent!important}
+.infographic-section .process-node-number{
+  display:block!important;
+  width:auto!important;height:auto!important;
+  padding:0!important;margin:0 0 18px!important;
+  border:0!important;border-radius:0!important;
+  background:transparent!important;
+  color:#8B6C12!important;
+  font-size:.72rem!important;font-weight:800!important;
+}
+.infographic-section .process-node h3{margin:0 0 7px!important;font-size:1.08rem!important}
+.infographic-section .process-node p{max-width:230px;margin:0!important;font-size:.86rem!important;line-height:1.65!important}
+.infographic-section .process-node:after{
+  content:""!important;
+  position:absolute!important;right:18px!important;bottom:14px!important;
+  width:58px!important;height:34px!important;opacity:.72!important;
+  pointer-events:none!important;
+  background:center/contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 90 42' fill='none' stroke='%23C49A3A' stroke-width='1.5' stroke-linecap='round'%3E%3Ccircle cx='9' cy='8' r='3' fill='%23F6D365' stroke='none'/%3E%3Cpath d='M18 8h28M28 17h40M40 26h38' stroke-dasharray='28 40'/%3E%3C/svg%3E")!important;
+  animation:pravi-process-mark 2.4s ease-in-out infinite!important;
+}
+.infographic-section .process-node:nth-child(3):after{animation-delay:.18s!important}
+.infographic-section .process-node:nth-child(5):after{animation-delay:.36s!important}
+.infographic-section .process-node:nth-child(7):after{animation-delay:.54s!important}
+@keyframes pravi-process-mark{
+  0%,100%{opacity:.42;transform:translateY(0)}
+  50%{opacity:.95;transform:translateY(-3px)}
+}
+.infographic-section .process-arrow{display:none!important}
+@media(max-width:900px){
+ .infographic-section .process-flow{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .infographic-section .process-node{min-height:150px!important;padding:20px 18px 28px 0!important}
+}
+@media(max-width:520px){
+ .infographic-section .process-flow{grid-template-columns:1fr!important;gap:0!important}
+ .infographic-section .process-node{min-height:0!important;padding:18px 8px 30px 0!important}
+ .infographic-section .process-node p{max-width:300px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .infographic-section .process-node:after{animation:none!important}
+}
