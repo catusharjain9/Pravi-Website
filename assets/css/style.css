@@ -1229,3 +1229,9 @@ p{line-height:1.75}
 .site-header .header-inner{min-height:104px!important}
 @media(max-width:820px){.site-header .header-inner{min-height:98px!important}}
 @media(max-width:560px){.site-header .brand,.footer-brand .brand{width:190px!important;height:82px!important;max-width:calc(100vw - 82px)!important}.site-header .brand-logo,.footer-brand .brand-logo{height:82px!important;max-height:82px!important}}
+
+
+/* Homepage hero layout after removing the founder illustration */
+.hero-inner-text-only{grid-template-columns:minmax(0,1fr);min-height:520px}
+.hero-inner-text-only .hero-copy{max-width:900px}
+@media(max-width:820px){.hero-inner-text-only{min-height:0}}
