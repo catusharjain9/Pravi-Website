@@ -1,12 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 150" role="img" aria-labelledby="title desc">
-<title id="title">pravi Business Advisors LLP</title><desc id="desc">Lowercase pravi wordmark with the separate Sanskrit tagline लेखा | अर्थ | वृद्धि.</desc>
-<rect width="620" height="150" fill="none"/>
-<g transform="translate(8 22)">
-<rect width="94" height="94" rx="18" fill="#1F2A2E"/>
-<path d="M24 73V21h28c18 0 28 10 28 25S70 71 52 71H39v2Z" fill="none" stroke="#F6D365" stroke-width="8" stroke-linejoin="round"/>
-<path d="M39 39h13c5 0 8 2.5 8 7s-3 7-8 7H39Z" fill="#F6D365"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 180" role="img" aria-labelledby="title desc">
+<title id="title">pravi — Business Advisors LLP</title>
+<desc id="desc">PRAVI wordmark, Business Advisors LLP, लेखा | अर्थ | वृद्धि, and Clarity Today. Stronger Businesses Tomorrow.</desc>
+<g fill="#1F2A2E" font-family="Poppins,Arial,sans-serif">
+<text x="3" y="88" font-size="88" font-weight="700" letter-spacing="-5">pravı</text>
+<text x="7" y="116" font-size="15" font-weight="600" letter-spacing="3.2">BUSINESS ADVISORS LLP</text>
 </g>
-<text x="130" y="75" font-family="Poppins,Arial,sans-serif" font-size="58" font-weight="600" letter-spacing="-3" fill="#1F2A2E">pravi</text>
-<text x="134" y="101" font-family="Poppins,Arial,sans-serif" font-size="15" font-weight="600" letter-spacing="2.5" fill="#59615F">BUSINESS ADVISORS LLP</text>
-<text x="134" y="127" font-family="Poppins,Arial,sans-serif" font-size="15" font-weight="500" fill="#755A12">लेखा | अर्थ | वृद्धि</text>
+<circle cx="225" cy="23" r="9" fill="#F6D365"/>
+<path d="M8 132h45" stroke="#F6D365" stroke-width="2"/>
+<text x="65" y="140" fill="#B88719" font-family="Poppins,Arial,sans-serif" font-size="20" font-weight="600">लेखा  |  अर्थ  |  वृद्धि</text>
+<path d="M380 132h45" stroke="#F6D365" stroke-width="2"/>
+<text x="8" y="169" fill="#59615F" font-family="Poppins,Arial,sans-serif" font-size="11" font-weight="500" letter-spacing="2.2">CLARITY TODAY. STRONGER BUSINESSES TOMORROW.</text>
 </svg>
