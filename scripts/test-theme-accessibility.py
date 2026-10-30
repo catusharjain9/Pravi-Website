@@ -75,10 +75,10 @@ if missing_stylesheet:
     fail("pages not linked to shared stylesheet: " + ", ".join(missing_stylesheet))
 for page in pages:
     html = page.read_text(encoding="utf-8")
-    if 'class="brand-name">pravi' not in html or 'class="brand-tagline">लेखा | अर्थ | वृद्धि</span>' not in html:
+    if 'class="brand-logo"' not in html or 'assets/img/pravi-logo.svg' not in html:
         missing_brand_lockup.append(page.name)
 if missing_brand_lockup:
-    fail("pages missing the approved lowercase PRAVI lockup: " + ", ".join(missing_brand_lockup))
+    fail("pages missing the approved PRAVI logo asset: " + ", ".join(missing_brand_lockup))
 
 checks = [
     ("body text on ivory", PALETTE["charcoal"], PALETTE["ivory"]),
