@@ -1404,3 +1404,17 @@ h1,h2,h3,h4{color:var(--pravi-charcoal);letter-spacing:-.035em}h1{font-size:clam
 .section:not(.hero) .section-heading:before,.eyebrow:before,.section-kicker:before{animation-duration:.28s!important}
 .btn-primary:after{transition-duration:.2s!important}
 @media(prefers-reduced-motion:reduce){.motion-ready{transition:none!important}}
+
+
+/* Interior page hero contrast correction: keep PRAVI's approved light editorial surface. */
+.page-hero{
+  background:var(--paper)!important;
+  background-image:none!important;
+  color:var(--ink)!important;
+}
+.page-hero::before,.page-hero::after{display:none!important;animation:none!important}
+.page-hero h1{color:var(--navy)!important}
+.page-hero p:not(.eyebrow):not(.breadcrumb){color:var(--muted)!important}
+.page-hero .eyebrow{color:#80631f!important}
+.page-hero .breadcrumb{color:#747b74!important}
+.page-hero .breadcrumb a:hover{color:var(--navy)!important}
