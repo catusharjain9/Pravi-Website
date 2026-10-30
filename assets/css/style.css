@@ -1392,3 +1392,15 @@ h1,h2,h3,h4{color:var(--pravi-charcoal);letter-spacing:-.035em}h1{font-size:clam
 :is(.service-card,.service-layer,.audience-item,.audience-card,.quick-start-card,.guide-card,.resource-card,.insight-card,.tool-card,.journey-card,.value-card,.pillar-card,.service-intro,.deliverable,.firm-detail,.mission-vision-card,.accountability-card,.service-detail,.article-note,.about-callout,.contact-note,.contact-method,.article-card,.article-content-card,.tool-panel,.tax-card)::after{animation-duration:5s!important}
 .site-footer:before{animation-duration:.8s!important}
 @media(prefers-reduced-motion:reduce){.motion-ready{transition:none!important}}
+
+
+/* PRAVI fast-motion refinement: short entrances, tighter logo cues, brisk ambient movement. */
+.motion-ready{transform:translateY(5px);transition:opacity .18s ease-out,transform .18s ease-out!important}
+.page-hero:before{animation-duration:2.8s!important}
+.page-hero:after{animation-duration:3.2s!important}
+.section:not(.hero) .section-heading:after{animation-duration:3.2s!important}
+:is(.service-card,.service-layer,.audience-item,.audience-card,.quick-start-card,.guide-card,.resource-card,.insight-card,.tool-card,.journey-card,.value-card,.pillar-card,.service-intro,.deliverable,.firm-detail,.mission-vision-card,.accountability-card,.service-detail,.article-note,.about-callout,.contact-note,.contact-method,.article-card,.article-content-card,.tool-panel,.tax-card)::after{animation-duration:3s!important}
+.site-footer:before{animation-duration:.35s!important}
+.section:not(.hero) .section-heading:before,.eyebrow:before,.section-kicker:before{animation-duration:.28s!important}
+.btn-primary:after{transition-duration:.2s!important}
+@media(prefers-reduced-motion:reduce){.motion-ready{transition:none!important}}
