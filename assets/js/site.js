@@ -110,7 +110,7 @@
       const group = el.parentElement || document.body;
       const position = groups.get(group) || 0;
       groups.set(group, position + 1);
-      el.style.setProperty('--motion-delay', `${Math.min(position, 4) * 25}ms`);
+      el.style.setProperty('--motion-delay', `${Math.min(position, 3) * 10}ms`);
     });
     const revealObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -119,7 +119,7 @@
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px -28px 0px' });
+    }, { threshold: 0.02, rootMargin: '0px 0px 0px 0px' });
     revealTargets.forEach(el => revealObserver.observe(el));
   }
 
