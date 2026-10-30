@@ -1,13 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 180" role="img" aria-labelledby="title desc">
 <title id="title">pravi — Business Advisors LLP</title>
-<desc id="desc">PRAVI wordmark, Business Advisors LLP, लेखा | अर्थ | वृद्धि, and Clarity Today. Stronger Businesses Tomorrow.</desc>
-<g fill="#1F2A2E" font-family="Poppins,Arial,sans-serif">
-<text x="3" y="88" font-size="88" font-weight="700" letter-spacing="-5">pravı</text>
-<text x="7" y="116" font-size="15" font-weight="600" letter-spacing="3.2">BUSINESS ADVISORS LLP</text>
-</g>
-<circle cx="225" cy="23" r="9" fill="#F6D365"/>
-<path d="M8 132h45" stroke="#F6D365" stroke-width="2"/>
-<text x="65" y="140" fill="#B88719" font-family="Poppins,Arial,sans-serif" font-size="20" font-weight="600">लेखा  |  अर्थ  |  वृद्धि</text>
-<path d="M380 132h45" stroke="#F6D365" stroke-width="2"/>
-<text x="8" y="169" fill="#59615F" font-family="Poppins,Arial,sans-serif" font-size="11" font-weight="500" letter-spacing="2.2">CLARITY TODAY. STRONGER BUSINESSES TOMORROW.</text>
+<desc id="desc">Lowercase pravi wordmark with yellow dot above the i, company descriptor, Sanskrit tagline and supporting line.</desc>
+<text x="5" y="91" fill="#1F2A2E" font-family="Poppins,Arial,sans-serif" font-size="88" font-weight="700" letter-spacing="-5">pravı</text>
+<circle cx="168" cy="23" r="9" fill="#F6D365"/>
+<text x="8" y="119" fill="#1F2A2E" font-family="Poppins,Arial,sans-serif" font-size="15" font-weight="600" letter-spacing="3.2">BUSINESS ADVISORS LLP</text>
+<path d="M8 137h42" stroke="#F6D365" stroke-width="2"/>
+<text x="62" y="144" fill="#B88719" font-family="Poppins,Arial,sans-serif" font-size="19" font-weight="600">लेखा  |  अर्थ  |  वृद्धि</text>
+<path d="M373 137h42" stroke="#F6D365" stroke-width="2"/>
+<text x="8" y="170" fill="#59615F" font-family="Poppins,Arial,sans-serif" font-size="11" font-weight="500" letter-spacing="2.1">CLARITY TODAY. STRONGER BUSINESSES TOMORROW.</text>
 </svg>
