@@ -40,11 +40,11 @@ css = CSS_PATH.read_text(encoding="utf-8")
 for colour_name, colour in PALETTE.items():
     if colour.lower() not in css.lower():
         fail(f"approved palette colour {colour_name} ({colour}) is missing from the stylesheet")
-if "'Poppins'" not in css or "--font:'Poppins',sans-serif" not in css:
+if '--font:"Poppins",ui-sans-serif' not in css or '--display:"Poppins",ui-sans-serif' not in css:
     fail("Poppins is not configured as the common body/display font")
 
-if ".brand-tagline" not in css or "text-transform:lowercase!important" not in css:
-    fail("locked lowercase PRAVI wordmark and tagline styles are missing")
+if ".brand" not in css or "pravi-logo.svg" not in css:
+    fail("shared approved PRAVI logo lockup is missing")
 
 if "PRAVI editorial redesign" not in css:
     fail("editorial design layer is missing")
