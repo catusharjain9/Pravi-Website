@@ -6,7 +6,7 @@ A responsive, framework-free static website built with HTML, CSS, JavaScript and
 - `index.html` — founder-led homepage focused on startup foundations, monthly numbers and cash planning, with stage-based pathways, clear engagement principles and FAQs.
 - `services.html` — full eight-area portfolio, professional scope boundaries and links into focused service pages.
 - `about.html` — firm approach, mission/vision themes and working principles without invented firm history, qualifications or testimonials.
-- `contact.html` — click-to-call, WhatsApp and validated enquiry form with optional call-request preference and callback window.
+- `contact.html` — official email contact (`info@praviba.com`), WhatsApp and validated enquiry form with optional call-request preference and callback window.
 - `resources.html` — founder-focused workpaper hub linking to monthly MIS, cash-flow planning, GST reconciliation, compliance tracking and PDF tools; no interactive readiness checklist.
 - `tools.html` — business workpaper hub with a link to the dedicated PDF workspace.
 - `pdf-tools.html` — iLovePDF-inspired, PRAVI-branded PDF workspace for merge, split, browser-based compression, PDF-to-JPG, images-to-PDF, rotate, page numbers, watermark, remove pages and extract pages.
