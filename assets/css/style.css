@@ -1268,3 +1268,9 @@ h1,h2,h3,h4{color:var(--pravi-charcoal);letter-spacing:-.035em}h1{font-size:clam
 
 /* Legacy hero and utility banner contrast contract: warm surface, charcoal copy. */
 .tool-hero,.tax-hero,.hero-tools,.pdf-hero,.notice-hero,.cms-header,.page-hero,.section-dark,.cta-band{background:#FFF7E1!important;color:#1F2A2E!important}
+
+/* Warm CTA band text contrast after the legacy-banner reset. */
+.cta-band .cta-inner h2,.cta-band .cta-inner p:not(.eyebrow){color:#1F2A2E!important}
+.cta-band .cta-inner .eyebrow{color:#755A12!important}
+.cta-band .btn-outline-light{border-color:#1F2A2E!important;color:#1F2A2E!important}
+.cta-band .btn-outline-light:hover{background:#FCF9F1!important}
