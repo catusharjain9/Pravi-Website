@@ -68,8 +68,8 @@ missing_stylesheet = []
 missing_brand_lockup = []
 for page in pages:
     html = page.read_text(encoding="utf-8")
-    # All pages intentionally use double-quoted, relative stylesheet links.
-    if not re.search(r'<link\b[^>]*href="assets/css/style\.css\?v=202610(?:29-doodle1|30-no-hero-illustration|30-remove-footer-identity)"[^>]*>', html, re.I):
+    # Accept any versioned shared stylesheet URL; cache-busting values change per release.
+    if not re.search(r'<link\b[^>]*href="assets/css/style\.css(?:\?[^" ]*)?"[^>]*>', html, re.I):
         missing_stylesheet.append(page.name)
 if missing_stylesheet:
     fail("pages not linked to shared stylesheet: " + ", ".join(missing_stylesheet))
