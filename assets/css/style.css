@@ -1222,3 +1222,10 @@ p{line-height:1.75}
 .site-header .brand-logo,.footer-brand .brand-logo{display:block!important;width:100%!important;height:auto!important;max-height:60px!important;object-fit:contain!important;object-position:left center!important}
 .site-header .brand-symbol,.site-header .brand-copy,.footer-brand .brand-symbol,.footer-brand .brand-copy{display:none!important}
 @media(max-width:560px){.site-header .brand,.footer-brand .brand{width:205px!important;max-width:calc(100vw - 82px)!important}.site-header .brand-logo,.footer-brand .brand-logo{max-height:58px!important}}
+
+/* PRAVI final lockup sizing: preserve the full descriptor/tagline and keep clear space. */
+.site-header .brand,.footer-brand .brand{width:210px!important;height:82px!important;max-width:calc(100vw - 92px)!important;align-items:center!important;overflow:visible!important}
+.site-header .brand-logo,.footer-brand .brand-logo{width:100%!important;height:82px!important;max-height:82px!important;object-fit:contain!important;object-position:left center!important;display:block!important}
+.site-header .header-inner{min-height:98px!important}
+@media(max-width:820px){.site-header .header-inner{min-height:92px!important}}
+@media(max-width:560px){.site-header .brand,.footer-brand .brand{width:190px!important;height:74px!important;max-width:calc(100vw - 82px)!important}.site-header .brand-logo,.footer-brand .brand-logo{height:74px!important;max-height:74px!important}}
