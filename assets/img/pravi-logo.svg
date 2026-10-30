@@ -1,9 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 225" role="img" aria-labelledby="title">
 <title id="title">pravi — Business Advisors LLP</title>
+<style>
+.logo-dot-halo{fill:none;stroke:#F6D365;stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:center;animation:pravi-dot-pulse 3.6s ease-out infinite}
+.logo-rule{stroke-dasharray:55;stroke-dashoffset:55;animation:pravi-rule-draw 1.4s cubic-bezier(.22,.75,.25,1) .35s forwards}
+@keyframes pravi-dot-pulse{0%,100%{opacity:0;transform:scale(.9)}45%{opacity:.5;transform:scale(1.65)}65%{opacity:0;transform:scale(2.1)}}
+@keyframes pravi-rule-draw{to{stroke-dashoffset:0}}
+@media(prefers-reduced-motion:reduce){.logo-dot-halo,.logo-rule{animation:none!important;stroke-dashoffset:0!important}}
+</style>
+<circle class="logo-dot-halo" cx="194" cy="29" r="10.5"/>
 <text x="8" y="99" fill="#1F2A2E" font-family="Poppins,Arial,sans-serif" font-size="92" font-weight="700" letter-spacing="-5">pravı</text>
 <circle cx="194" cy="29" r="10.5" fill="#F6D365"/>
 <text x="9" y="166" fill="#1F2A2E" font-family="Poppins,Arial,sans-serif" font-size="15" font-weight="600" letter-spacing="3.1">BUSINESS ADVISORS LLP</text>
-<path d="M9 190h55" stroke="#F6D365" stroke-width="2.5"/>
+<path class="logo-rule" d="M9 190h55" stroke="#F6D365" stroke-width="2.5"/>
 <text x="78" y="200" fill="#B88719" font-family="Poppins,Arial,sans-serif" font-size="22" font-weight="600">लेखा  |  अर्थ  |  वृद्धि</text>
-<path d="M260 190h55" stroke="#F6D365" stroke-width="2.5"/>
+<path class="logo-rule" d="M260 190h55" stroke="#F6D365" stroke-width="2.5"/>
 </svg>
