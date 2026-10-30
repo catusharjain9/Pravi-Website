@@ -110,7 +110,7 @@
       const group = el.parentElement || document.body;
       const position = groups.get(group) || 0;
       groups.set(group, position + 1);
-      el.style.setProperty('--motion-delay', `${Math.min(position, 5) * 85}ms`);
+      el.style.setProperty('--motion-delay', `${Math.min(position, 4) * 35}ms`);
     });
     const revealObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
