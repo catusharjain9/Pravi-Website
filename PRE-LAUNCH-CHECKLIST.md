@@ -6,10 +6,10 @@
 - [ ] Confirm the purchased domain and hosting provider / hosting panel.
 - [ ] Verify the registered office address against the latest MCA master data; the current website notes it was transcribed from an extract dated 10 March 2024.
 - [ ] Confirm all client/ecosystem names shown on the site are approved for public identification; remove any unapproved name.
-- [ ] Review the privacy notice against the actual host, server logs, backups, analytics and form behaviour.
-- [ ] Confirm phone and WhatsApp number `+91 91731 21611` is correct and intended for publication.
+- [ ] Finalise the privacy notice only after confirming the production host, server logs, backups, analytics, WhatsApp handoff and any third-party CDN/Firebase data flows. Keep `privacy.html` marked noindex and draft until this review is complete.
+- [ ] Confirm phone and WhatsApp number `+91 91731 21611` is correct and intended for publication in the footer/contact page. The number is intentionally absent from the site header.
 - [ ] Confirm all service descriptions and regulated-service caveats are appropriate to the firm's actual eligibility and authorisations.
-- [ ] Do not publish an email address, partner bio, credential, testimonial, metric or integration unless verified.
+- [x] Confirmed official business email: `info@praviba.com`; it is displayed in the footer across all 33 HTML pages. Partner bios, credentials, testimonials, metrics and integrations still require verification before publication.
 
 ## B. Upload the website
 1. Extract the ZIP locally on your computer.
