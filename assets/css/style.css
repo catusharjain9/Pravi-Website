@@ -1582,3 +1582,6 @@ h1,h2,h3,h4{color:var(--pravi-charcoal);letter-spacing:-.035em}h1{font-size:clam
 
 /* Header phone number removed site-wide at client request. */
 .nav-phone{display:none!important}
+
+/* About page process section: use the approved warm PRAVI ivory instead of the legacy mint-blue fill. */
+.about-process{background:var(--pravi-ivory)!important}
