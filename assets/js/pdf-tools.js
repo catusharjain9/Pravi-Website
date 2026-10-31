@@ -108,7 +108,7 @@ async function perform(){if(!activeTool)return;if(!selectedFiles.length){setStat
  default:throw new Error("Unknown PDF tool.");
  }
  const inputSize=total,outputSize=blob.size;let message=`Done. Created ${name} (${fmtBytes(outputSize)}).`;if(activeTool==="compress"){const delta= inputSize?Math.round((1-outputSize/inputSize)*100):0;message+=delta>0?` File size reduced by about ${delta}%.`:` Output is ${Math.abs(delta)}% larger than the input; try a smaller-file preset or keep the original.`;message+=" This is an image-based PDF; text search and selection are not preserved.";}setSuccess(message,blob,name);
- }catch(error){console.warn("PRAVI PDF tool notice:",error);setStatus(error&&error.message?error.message:"The operation could not be completed. Try another file or a different browser.","error");}finally{processButton.disabled=false;processButton.innerHTML='Process PDF <span aria-hidden="true">→</span>';}}
+ }catch(error){console.warn("PRAVI PDF tool notice:",error);setStatus(error&&error.message?error.message:"The operation could not be completed. Try another file or a different browser.","error");}finally{const passwordField=$("optUnlockPassword");if(passwordField)passwordField.value="";processButton.disabled=false;processButton.innerHTML='Process PDF <span aria-hidden="true">→</span>';}}
 $("processPdf").addEventListener("click",perform);
 // Support links from a direct hash such as pdf-tools.html#merge.
 const initial=location.hash.slice(1);if(toolInfo[initial])openTool(initial);
