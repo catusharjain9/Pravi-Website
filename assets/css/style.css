@@ -1591,3 +1591,32 @@ h1,h2,h3,h4{color:var(--pravi-charcoal);letter-spacing:-.035em}h1{font-size:clam
 .site-footer .footer-social a{color:#d5d4cb;text-decoration:underline;text-decoration-color:rgba(246,211,101,.55);text-underline-offset:3px}
 .site-footer .footer-social a:hover,.site-footer .footer-social a:focus-visible{color:var(--pravi-yellow)}
 .social-contact .contact-number{font-size:1rem;line-height:1.5;overflow-wrap:anywhere}
+
+/* Final palette normalization: remove residual blue/mint-tinted utility surfaces. */
+:root{
+  --pravi-ivory:#FCF9F1;
+  --pravi-beige:#FFF7E1;
+  --pravi-stone:#D9D2C6;
+  --pravi-charcoal:#1F2A2E;
+}
+:is(.status,.result,.tax-result,.empty,.checklist-status,.good,.ok-box,.success,.success-message,.notice-success){
+  background:#FFF7E1!important;
+  border-color:#D9D2C6!important;
+  color:#1F2A2E!important;
+}
+:is(.official-links a,.btn-work.secondary,.btn-work.tertiary,.row-actions button,.utility-links button,.secondary,.btn-lite){
+  background:#FFF7E1!important;
+  border-color:#D9D2C6!important;
+  color:#1F2A2E!important;
+}
+:is(.official-links a,.btn-work.secondary,.btn-work.tertiary,.row-actions button,.utility-links button,.secondary,.btn-lite):hover{
+  background:#F0EADF!important;
+  border-color:#BDB5A7!important;
+  color:#1F2A2E!important;
+}
+:is(.metric,.panel,.pane,.workspace,.tax-panel,.notice-card,.tool-review-strip,.tool-review-card){
+  border-color:#D9D2C6!important;
+}
+:is(.metric,.panel,.pane,.workspace,.tax-panel,.notice-card,.tool-review-strip,.tool-review-card){
+  background:#FFFDF9!important;
+}
