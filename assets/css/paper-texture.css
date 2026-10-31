@@ -1,0 +1,22 @@
+/* PRAVI warm paper texture — subtle, repeatable and shared across every page. */
+html, body {
+  background-color: #FCF9F1;
+}
+body {
+  background-image: url("../img/pravi-paper-texture.svg") !important;
+  background-repeat: repeat !important;
+  background-size: 91px 144px !important;
+}
+/* Keep editorial ivory areas on the same paper treatment; preserve deliberate dark and sand bands. */
+.page-hero,
+.about-process,
+.audience-item {
+  background-color: #FCF9F1 !important;
+  background-image: url("../img/pravi-paper-texture.svg") !important;
+  background-repeat: repeat !important;
+  background-size: 91px 144px !important;
+}
+/* Slightly translucent header lets the texture remain part of the overall canvas. */
+.site-header {
+  background-color: rgba(252, 249, 241, .94) !important;
+}
