@@ -1585,3 +1585,9 @@ h1,h2,h3,h4{color:var(--pravi-charcoal);letter-spacing:-.035em}h1{font-size:clam
 
 /* About page process section: use the approved warm PRAVI ivory instead of the legacy mint-blue fill. */
 .about-process{background:var(--pravi-ivory)!important}
+
+/* PRAVI official social profile links */
+.site-footer .footer-social{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;margin:14px auto 0;color:#d5d4cb;font-size:.88rem}
+.site-footer .footer-social a{color:#d5d4cb;text-decoration:underline;text-decoration-color:rgba(246,211,101,.55);text-underline-offset:3px}
+.site-footer .footer-social a:hover,.site-footer .footer-social a:focus-visible{color:var(--pravi-yellow)}
+.social-contact .contact-number{font-size:1rem;line-height:1.5;overflow-wrap:anywhere}
