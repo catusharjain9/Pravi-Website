@@ -76,3 +76,47 @@ a,button{touch-action:manipulation}
 .enquiry-optional-fields[open]>summary::after{content:"−"}
 .enquiry-optional-fields .form-grid{margin-top:16px}
 .enquiry-optional-fields .form-field{min-width:0}
+
+
+/* Shared tool controls: replace legacy green action chrome with the approved PRAVI palette.
+   Status/result colours are deliberately excluded so success, warning and error remain semantic. */
+:where(.btn-main,.btn-work,.run,.pdf-process,.cms-button-primary,.tool-primary,.calc-primary){
+  background:#F6D365!important;border-color:#F6D365!important;color:#1F2A2E!important;
+}
+:where(.btn-main,.btn-work,.run,.pdf-process,.cms-button-primary,.tool-primary,.calc-primary):hover{
+  background:#E9C451!important;border-color:#E9C451!important;color:#1F2A2E!important;
+}
+:where(.btn-lite,.secondary,.pdf-filter,.cms-button){
+  background:#FFF7E1!important;border:1px solid #D9D2C6!important;color:#1F2A2E!important;
+}
+.pdf-filter[aria-pressed="true"]{
+  background:#1F2A2E!important;border-color:#1F2A2E!important;color:#FCF9F1!important;
+  box-shadow:inset 0 -3px 0 #F6D365!important;
+}
+:where(.tool-icon,.pdf-tool-icon,.tool-review-number,.step-label){
+  background:#FFF7E1!important;color:#755A12!important;border-color:#D9D2C6!important;
+}
+:where(.tool-label,.kicker,.tool-link-back,.card-link,.pdf-card-arrow){
+  color:#755A12!important;
+}
+:where(.workspace,.pane,.panel,.utility-section,.tool-review-strip,.tool-cta,.pdf-options,.pdf-workspace){
+  border-color:#D9D2C6!important;background-color:#FFFDFA!important;color:#1F2A2E;
+}
+:where(.workspace,.pane,.panel,.utility-section,.tool-review-strip,.tool-cta,.pdf-options,.pdf-workspace)
+  :where(h1,h2,h3,h4,strong){color:#1F2A2E!important}
+:where(.workspace,.pane,.panel,.utility-section,.tool-review-strip,.tool-cta,.pdf-options,.pdf-workspace)
+  :where(p,small,.muted,.lead){color:#59615F!important}
+:where(.field,.fields,.toolbar,.pdf-option) :where(label){color:#1F2A2E!important}
+:where(.field,.fields,.toolbar,.pdf-option) :where(input,select,textarea){
+  border-color:#BEB6A8!important;background:#FFFDFA!important;color:#1F2A2E!important;border-radius:6px!important;
+}
+:where(.table-scroll,.table-wrap,.table-responsive,.table-container) :where(th){
+  background:#F3EBDD!important;color:#1F2A2E!important;border-color:#D9D2C6!important;
+}
+:where(.table-scroll,.table-wrap,.table-responsive,.table-container) :where(td){
+  border-color:#D9D2C6!important;color:#1F2A2E;
+}
+:where(.kpi,.metric,.result-card,.summary-card){
+  border-color:#D9D2C6!important;background:#FFF7E1!important;
+}
+:where(.kpi,.metric,.result-card,.summary-card) :where(strong,h2,h3){color:#1F2A2E!important}
