@@ -2242,3 +2242,70 @@ html body :is(.official-links a,.btn-work.secondary,.btn-work.tertiary,.row-acti
 @media(prefers-reduced-motion:reduce){
   :is(.layer-icon,.service-icon){animation:none!important;transition:none!important}
 }
+
+
+/* PRAVI warm-yellow masthead system — shared by tool and interior-page banners.
+   Footer is intentionally excluded and retains its established dark treatment. */
+:is(.page-hero,.hero-tools,.tool-hero,.tax-hero,.pdf-hero,.notice-hero,.cms-header,.dep-hero,.fx-hero){
+  position:relative!important;
+  isolation:isolate;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse at 88% 18%,rgba(255,255,255,.72) 0,rgba(255,255,255,0) 34%),
+    linear-gradient(112deg,#F6D365 0%,#F9E6A8 48%,#FFF4D4 100%)!important;
+  color:#1F2A2E!important;
+  border:0!important;
+  border-bottom:1px solid #D9C58A!important;
+}
+:is(.page-hero,.hero-tools,.tool-hero,.tax-hero,.pdf-hero,.notice-hero,.cms-header,.dep-hero,.fx-hero)::before{
+  content:""!important;
+  position:absolute!important;
+  z-index:-1!important;
+  right:clamp(18px,7vw,110px)!important;
+  top:50%!important;
+  width:clamp(110px,16vw,205px)!important;
+  height:clamp(110px,16vw,205px)!important;
+  transform:translateY(-50%) rotate(12deg)!important;
+  border:1px solid rgba(139,108,18,.20)!important;
+  border-radius:44% 56% 51% 49%!important;
+  opacity:.75!important;
+  pointer-events:none!important;
+}
+:is(.page-hero,.hero-tools,.tool-hero,.tax-hero,.pdf-hero,.notice-hero,.cms-header,.dep-hero,.fx-hero)::after{
+  content:""!important;
+  position:absolute!important;
+  z-index:-1!important;
+  right:clamp(48px,10vw,150px)!important;
+  top:50%!important;
+  width:clamp(74px,10vw,132px)!important;
+  height:clamp(74px,10vw,132px)!important;
+  transform:translateY(-50%) rotate(-10deg)!important;
+  border:1px dashed rgba(139,108,18,.23)!important;
+  border-radius:50%!important;
+  opacity:.8!important;
+  pointer-events:none!important;
+}
+:is(.page-hero,.hero-tools,.tool-hero,.tax-hero,.pdf-hero,.notice-hero,.cms-header,.dep-hero,.fx-hero) :is(h1,h2,h3,h4){
+  position:relative;
+  z-index:1;
+  color:#1F2A2E!important;
+}
+:is(.page-hero,.hero-tools,.tool-hero,.tax-hero,.pdf-hero,.notice-hero,.cms-header,.dep-hero,.fx-hero) :is(p,li,small,.lead,.breadcrumb){
+  position:relative;
+  z-index:1;
+  color:#46514D!important;
+}
+:is(.page-hero,.hero-tools,.tool-hero,.tax-hero,.pdf-hero,.notice-hero,.cms-header,.dep-hero,.fx-hero) :is(.eyebrow,.section-kicker,.kicker,.tool-label,.tax-small,.pdf-step,.notice-label){
+  color:#755A12!important;
+}
+:is(.page-hero,.hero-tools,.tool-hero,.tax-hero,.pdf-hero,.notice-hero,.cms-header,.dep-hero,.fx-hero) :is(.eyebrow,.section-kicker)::before{
+  background:#8B6C12!important;
+}
+.dep-hero,.fx-hero{padding:46px 0 38px!important}
+.dep-hero h1,.fx-hero h1{max-width:900px!important;font-size:clamp(2.35rem,4.8vw,4.1rem)!important;line-height:1.04!important}
+.dep-hero p,.fx-hero p{max-width:800px!important;font-size:1rem!important;line-height:1.8!important}
+@media(max-width:640px){
+  :is(.page-hero,.hero-tools,.tool-hero,.tax-hero,.pdf-hero,.notice-hero,.cms-header,.dep-hero,.fx-hero)::before{right:-22px!important;opacity:.38!important}
+  :is(.page-hero,.hero-tools,.tool-hero,.tax-hero,.pdf-hero,.notice-hero,.cms-header,.dep-hero,.fx-hero)::after{right:8px!important;opacity:.38!important}
+  .dep-hero,.fx-hero{padding:34px 0 28px!important}
+}
