@@ -16,7 +16,7 @@ for colour in PALETTE:
  if colour.lower() not in css.lower() and colour.lower() not in style.lower(): fail(f"approved palette token missing: {colour}")
 if 'brand-audit-refinement.css' not in paper: fail("paper-texture.css must load the shared refinement layer")
 if '.page-hero' in paper and 'background-image' in paper: fail("paper texture must not overwrite page-hero mastheads")
-for rule in (':focus-visible','prefers-reduced-motion','max-width:1100px','.table-wrap','.site-footer','Noto Sans Devanagari'):
+for rule in (':focus-visible','prefers-reduced-motion','max-width:1100px','.table-wrap','.site-footer','Noto Sans Devanagari','.menu-toggle','primary-nav.is-open','min-height:100svh','footer-brand .brand-logo'):
  if rule not in css and rule not in style: fail(f"required design/accessibility rule missing: {rule}")
 pages=sorted(ROOT.glob("*.html"))
 if len(pages)<30: fail(f"expected at least 30 HTML pages, found {len(pages)}")
