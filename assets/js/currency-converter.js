@@ -15,7 +15,8 @@ import { convertCurrencyAmount, validateFxRate } from './currency-engine.js';
     ['NOK','Norwegian Krone'],['DKK','Danish Krone'],['PLN','Polish Zloty'],
     ['TRY','Turkish Lira']
   ];
-  const cache = new Map();
+  const baseCache = new Map();
+  const pairFallbackCache = new Map();
   const CACHE_MS = 10 * 60 * 1000;
   let activeQuote = null;
   let requestId = 0;
@@ -51,24 +52,33 @@ import { convertCurrencyAmount, validateFxRate } from './currency-engine.js';
     $('fxTo').value = 'USD';
   };
   async function fetchPrimary(base, quote, force) {
-    const key = base + ':' + quote;
-    const cached = cache.get(key);
-    if (!force && cached && Date.now() - cached.receivedAt < CACHE_MS) return cached;
-    const url = 'https://api.exchangerate.dev/v1/latest/' + encodeURIComponent(base) + '?symbols=' + encodeURIComponent(quote);
-    const data = await requestJson(url);
+    let cached = baseCache.get(base);
+    let data = cached && !force && Date.now() - cached.receivedAt < CACHE_MS ? cached.data : null;
+    if (!data) {
+      const symbols = currencies.map(item => item[0]).filter(code => code !== base).join(',');
+      const url = 'https://api.exchangerate.dev/v1/latest/' + encodeURIComponent(base) + '?symbols=' + encodeURIComponent(symbols);
+      data = await requestJson(url);
+      if (data?.result === 'error' || data?.base !== base || !data?.rates || typeof data.rates !== 'object') {
+        throw new Error('The primary FX source returned an invalid base-currency response.');
+      }
+      cached = { data, receivedAt: Date.now() };
+      baseCache.set(base, cached);
+    }
     const rate = validateFxRate(data?.rates?.[quote], base, quote);
     const source = data?.sources?.[quote] || data?.source || 'indicative';
     const effectiveAt = data?.effective_at?.[quote] || data?.data_updated_at || data?.timestamp || null;
-    const quoteData = {
+    return {
       base, quote, rate, provider: 'exchangerate.dev', source,
       session: data?.market_session || 'not supplied',
       stale: Boolean(data?.stale?.[quote]),
-      effectiveAt, receivedAt: Date.now(), fallback: false, derived: Array.isArray(data?.derived_symbols) && data.derived_symbols.includes(quote)
+      effectiveAt, receivedAt: cached?.receivedAt || Date.now(), fallback: false,
+      derived: Array.isArray(data?.derived_symbols) && data.derived_symbols.includes(quote)
     };
-    cache.set(key, quoteData);
-    return quoteData;
   }
   async function fetchFallback(base, quote) {
+    const cacheKey = base + ':' + quote;
+    const cached = pairFallbackCache.get(cacheKey);
+    if (cached && Date.now() - cached.receivedAt < CACHE_MS) return cached;
     const url = 'https://api.frankfurter.dev/v2/rate/' + encodeURIComponent(base.toLowerCase()) + '/' + encodeURIComponent(quote.toLowerCase());
     const data = await requestJson(url);
     const rate = validateFxRate(data?.rate, base, quote);
@@ -77,7 +87,7 @@ import { convertCurrencyAmount, validateFxRate } from './currency-engine.js';
       session: 'daily reference', stale: false,
       effectiveAt: data?.date || null, receivedAt: Date.now(), fallback: true
     };
-    cache.set(base + ':' + quote, quoteData);
+    pairFallbackCache.set(cacheKey, quoteData);
     return quoteData;
   }
   async function loadQuote(force = false) {
