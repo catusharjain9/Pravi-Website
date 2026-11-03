@@ -142,7 +142,7 @@ import { convertCurrencyAmount, validateFxRate } from './currency-engine.js';
     else if (activeQuote.source === 'daily_reference') sourceLabel += ' · daily reference';
     $('fxSource').textContent = 'Source: ' + sourceLabel;
     const rawEffective = activeQuote.effectiveAt;
-    const dateOnly = typeof rawEffective === 'string' && /^\\d{4}-\\d{2}-\\d{2}$/.test(rawEffective);
+    const dateOnly = typeof rawEffective === 'string' && rawEffective.length === 10 && rawEffective[4] === '-' && rawEffective[7] === '-' && Number.isFinite(Date.parse(rawEffective));
     const effective = safeDate(rawEffective);
     const isDaily = activeQuote.fallback || dateOnly || ['ecb_daily', 'market_daily', 'daily_reference'].includes(activeQuote.source);
     $('fxUpdated').textContent = 'Effective ' + (dateOnly && effective
