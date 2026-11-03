@@ -33,6 +33,8 @@ jobs:
         run: python scripts/quality-audit.py
       - name: Test PRAVI theme contrast and page overrides
         run: python scripts/test-theme-accessibility.py
+      - name: Test approved PRAVI brand refinement layer
+        run: python scripts/test-brand-refinement.py
       - name: Check depreciation calculator JavaScript syntax
         run: node --check assets/js/depreciation-calculator.js
       - name: Check currency converter JavaScript syntax

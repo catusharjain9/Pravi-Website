@@ -9,7 +9,8 @@
     "test:csv": "node scripts/test-csv-safety.mjs",
     "test:csp": "node scripts/test-csp-hashes.mjs",
     "test:depreciation": "node scripts/test-depreciation-engine.mjs",
-    "test:currency": "node scripts/test-currency-engine.mjs"
+    "test:currency": "node scripts/test-currency-engine.mjs",
+    "test:brand": "python scripts/test-brand-refinement.py"
   },
   "devDependencies": {
     "firebase-tools": "14.0.0"
