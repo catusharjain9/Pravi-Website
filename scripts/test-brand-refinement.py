@@ -31,3 +31,15 @@ if "success, warning and error remain semantic" not in css: fail("tool palette o
 print(f"PASS: {len(pages)} HTML pages load shared brand CSS and the approved logo.")
 print("PASS: hero mastheads are protected from paper-texture overrides.")
 print("PASS: approved palette, keyboard focus, responsive navigation, table and reduced-motion rules.")
+
+# The public Resources page must contain actual guide and article cards.
+resources=(ROOT/"resources.html").read_text(encoding="utf-8")
+if resources.count('class="guide-card"') < 4:
+ fail("Resources page must display at least four founder guide cards")
+if resources.count('class="insight-card"') < 4:
+ fail("Resources page must display at least four further-reading article cards")
+for target in ("guide-startup-compliance.html","guide-virtual-cfo.html","guide-monthly-mis.html","guide-gst-reconciliation.html","article-13-week-cashflow.html","article-first-90-days-accounting.html","article-gst-purchase-reconciliation.html","article-monthly-mis-review.html"):
+ if not (ROOT/target).is_file(): fail(f"Resources card target missing: {target}")
+if 'content="#FCF9F1" name="theme-color"' not in resources:
+ fail("Resources page browser theme colour must match the ivory brand canvas")
+print("PASS: Resources page contains four working guide cards and four article cards.")
