@@ -59,6 +59,13 @@ const bookWdv = calculateBookAssetSchedule([{
 const expectedRate = 1 - Math.pow(0.05, 1 / 5);
 assert.ok(Math.abs(bookWdv[0].charge - 100000 * expectedRate) < 0.01);
 
+const explicitBookWdv = calculateBookAssetSchedule([{
+  name: "Explicit WDV rate asset", cost: 100000, put: new Date(2026, 3, 1),
+  life: 10, residual: 0, openingNBV: 100000, wdvRate: 15, end: new Date(2036, 3, 1)
+}], 2026, 1, "WDV", "days");
+assert.equal(explicitBookWdv[0].charge, 15000);
+assert.equal(explicitBookWdv[0].closing, 85000);
+
 const dtl = calculateDeferredTax({ carryingAmount: 80000, taxBase: 70000, taxRate: 25, recogniseDta: true });
 assert.equal(dtl.temporaryDifference, 10000);
 assert.equal(dtl.dtl, 2500);
