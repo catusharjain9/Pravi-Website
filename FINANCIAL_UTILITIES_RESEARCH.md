@@ -37,7 +37,9 @@ Research date: 3 November 2026
 
 ### Peer and implementation review
 
-Reviewed public workflows from TaxAdda's separate Income-tax and Companies Act calculators, and public depreciation workpapers that distinguish block-based tax WDV from asset-wise Schedule II depreciation. The PRAVI implementation preserves that separation and adds a deferred-tax bridge. Public open-source examples were reviewed for validation and schedule patterns; no third-party code was copied into the PRAVI engine. The calculation engine is original and covered by local regression tests.
+Reviewed TaxAdda's separate Income-tax and Companies Act calculators, plus current public workpapers from GetSleet, Jai Prakash & Co., SKAG and CA Alok Kumar. These comparisons reinforced the need to keep the Income-tax block WDV and Companies Act asset-wise Schedule II methods separate, to show the 180-day split, and to expose additional-depreciation and block-cessation assumptions. The PRAVI implementation preserves that separation and adds a deferred-tax bridge.
+
+Open-source repositories reviewed: wig1-max/taxdesk-os (Apache-2.0; versioned statutory rules, deterministic computation and reviewer controls); JamesIan-Bayonas/centralog (asset-ledger and depreciation architecture, .NET / React; no licence metadata relied on); Pilotyoussef2663/asset-deprec (multi-method, data-driven depreciation schedules; no licence metadata relied on). These were architecture and test-design references only; no third-party code was copied into the PRAVI engine. The calculation engine is original and covered by regression tests.
 
 ## 2. Currency converter
 
@@ -74,6 +76,12 @@ Reviewed public workflows from TaxAdda's separate Income-tax and Companies Act c
 - exchangerate.dev documentation: https://exchangerate.dev/docs
 - Frankfurter documentation: https://frankfurter.dev/
 - Frankfurter source repository: https://github.com/lineofflight/frankfurter
-- ExchangeRate.fun source repository: https://github.com/haxqer/FreeExchangeRateApi
+- ExchangeRate.fun source repository (MIT, hourly reference data): https://github.com/haxqer/FreeExchangeRateApi
+- SeyyidKadir/fx-currency-converter (browser-only, caching and refresh UX; README declares MIT): https://github.com/SeyyidKadir/fx-currency-converter
+- Alkaison/Currency-Converter (vanilla JS, MIT): https://github.com/Alkaison/Currency-Converter
+- AllRates-Today/currency-converter (MIT, SDK-based Next.js reference implementation): https://github.com/AllRates-Today/currency-converter
 - TaxAdda Income-tax depreciation calculator: https://calculator.taxadda.com/depreciation-calculator-as-per-income-tax-act
 - TaxAdda Companies Act depreciation calculator: https://calculator.taxadda.com/depreciation-calculator-companies-act-2013
+- GetSleet combined Indian depreciation calculator: https://getsleet.cloud/accounting/tools/depreciation-calculator
+- Jai Prakash & Co. depreciation calculator: https://jaiprakashco.in/depreciation-calculator
+- SKAG depreciation calculator: https://skagandassociates.com/tools/income-tax/depreciation-calculator/
