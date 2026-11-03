@@ -2588,3 +2588,21 @@ body>main,body> #main,main#main{min-height:0}
 @media(prefers-reduced-motion:reduce){
  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 }
+
+/* Resources library layout: deliberate card hierarchy and a clear bridge to tools. */
+.resources-card-grid,.resources-article-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:18px!important}
+.resources-card-grid .guide-card,.resources-article-grid .insight-card{display:flex!important;flex-direction:column!important;align-items:flex-start!important;padding:26px!important;min-height:245px!important}
+.resources-card-grid .guide-card h3,.resources-article-grid .insight-card h3{font-size:1.18rem!important;line-height:1.32!important;margin:12px 0 10px!important}
+.resources-card-grid .guide-card p,.resources-article-grid .insight-card p{font-size:.91rem!important;line-height:1.72!important}
+.resources-card-grid .guide-card .text-link,.resources-article-grid .insight-card .text-link{margin-top:auto!important;padding-top:18px!important;font-size:.84rem!important;font-weight:650!important}
+.resources-insights-heading{margin-top:64px!important}
+.resources-tools-callout{display:flex;align-items:center;justify-content:space-between;gap:28px;margin-top:52px;padding:30px 32px;background:#FFF7E1;border:1px solid #D9D2C6;border-radius:8px}
+.resources-tools-callout h2{font-size:clamp(1.5rem,2.6vw,2rem);margin:0 0 8px}
+.resources-tools-callout p:not(.section-kicker){margin:0;max-width:650px}
+.resources-tools-callout .btn{flex:0 0 auto}
+@media(max-width:680px){
+ .resources-card-grid,.resources-article-grid{grid-template-columns:1fr!important}
+ .resources-card-grid .guide-card,.resources-article-grid .insight-card{min-height:0!important;padding:22px!important}
+ .resources-insights-heading{margin-top:42px!important}
+ .resources-tools-callout{align-items:flex-start;flex-direction:column;padding:24px!important}
+}
