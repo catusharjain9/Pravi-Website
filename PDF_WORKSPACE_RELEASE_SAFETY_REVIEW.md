@@ -40,3 +40,13 @@ Keep this change in a review branch until the remaining browser/fixture checks c
 - Compression is explicitly image-based and warns that text search/copy and vector quality are not retained.
 - PDF processing is local in the browser after libraries load, but internet access is needed to load those libraries.
 - The browser tool does not send document files to PRAVI servers according to the reviewed code; this is not a guarantee against device compromise, browser extensions, CDN supply-chain issues, or all privacy risks.
+
+## 3 November 2026 — Unlock PDF processor correction
+
+- Replaced the Unlock PDF rasterisation pipeline (PDF.js render → JPEG pages → pdf-lib rebuild) with the qpdf WebAssembly engine through pdfstudio 0.4.0.
+- Unlock now supplies the user's existing password to qpdf and writes an unencrypted PDF without intentionally converting pages to images. This retains the original page content and document structure far better than the previous image-only rebuild.
+- Added jsDelivr and unpkg runtime loading paths for the pdfstudio module and its qpdf WebAssembly binary. The document bytes and password are processed in the browser; they are not sent to PRAVI application servers by this implementation.
+- Kept the ownership/authorisation confirmation and added an explicit warning that rewriting a signed PDF invalidates its existing digital signatures.
+- Added pdfstudio/qpdf attribution to the PDF library notices and refreshed the PDF processor cache-busting version.
+- Static verification on 3 November 2026: JavaScript parses successfully; source checks confirm both CDN paths, the qpdf unlock call, absence of the former rasterisation unlock code, updated cache version and library notice.
+- Still required before claiming end-to-end production QA: test with synthetic encrypted PDFs using user and owner passwords, wrong passwords, AES-256/AES-128/legacy RC4, unencrypted PDFs, malformed PDFs, larger files, and verify output opens without a password while retaining text selection, page count, links and form fields. Run this in the deployed site's supported browsers and verify CDN/CSP/worker/runtime compatibility. Do not use confidential client documents for testing.
