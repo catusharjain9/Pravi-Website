@@ -25,6 +25,9 @@ for page in pages:
  if 'assets/css/paper-texture.css' not in html: fail(f"{page.name}: shared brand stylesheet missing")
  if 'assets/img/pravi-logo.svg' not in html: fail(f"{page.name}: approved logo missing")
  if '<title>' not in html.lower(): fail(f"{page.name}: page title missing")
+for selector in (".btn-main",".btn-work",".run",".pdf-process",".pdf-filter[aria-pressed=\"true\"]",".workspace",".pane",".table-scroll"):
+ if selector not in css: fail(f"legacy tool palette override missing: {selector}")
+if "semantic success, warning and error" not in css: fail("tool palette overrides must preserve semantic status colours")
 print(f"PASS: {len(pages)} HTML pages load shared brand CSS and the approved logo.")
 print("PASS: hero mastheads are protected from paper-texture overrides.")
 print("PASS: approved palette, keyboard focus, responsive navigation, table and reduced-motion rules.")
