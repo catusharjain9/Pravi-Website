@@ -36,28 +36,31 @@ export function calculateBookAssetSchedule(assets, startYear, years, method = "S
     const lifeEnd = asset.end instanceof Date ? asset.end : addYears(put, life);
     const depreciableAmount = cost - residual;
     const annualWdvRate = asset.wdvRate ? Number(asset.wdvRate) / 100 : 1 - Math.pow(residual / cost, 1 / life);
-    let nbv = openingNBV;
+    let nbv = put < fyStart(startYear) ? openingNBV : 0;
     for (let index = 0; index < years; index++) {
       const fy = startYear + index;
       const start = fyStart(fy);
       const end = fyEnd(fy);
       const daysInYear = days(start, end);
+      const notYetPut = put >= end;
+      const putInYear = put >= start && put < end;
+      const opening = notYetPut || putInYear ? 0 : nbv;
+      const depreciableOpening = putInYear ? cost : nbv;
       const fraction = proration === "months"
         ? usedMonths(start, end, put, lifeEnd) / 12
         : usedDays(start, end, put, lifeEnd) / daysInYear;
       let depreciation = 0;
-      if (end > put && start < lifeEnd && nbv > residual) {
+      if (!notYetPut && end > put && start < lifeEnd && depreciableOpening > residual) {
         depreciation = method === "WDV"
-          ? nbv * annualWdvRate * fraction
+          ? depreciableOpening * annualWdvRate * fraction
           : (depreciableAmount / life) * fraction;
       }
-      if (end >= lifeEnd) depreciation = Math.max(0, nbv - residual);
-      depreciation = Math.min(Math.max(0, nbv - residual), Math.max(0, depreciation));
-      const opening = nbv;
-      nbv = Math.max(residual, nbv - depreciation);
+      if (!notYetPut && end >= lifeEnd) depreciation = Math.max(0, depreciableOpening - residual);
+      depreciation = Math.min(Math.max(0, depreciableOpening - residual), Math.max(0, depreciation));
+      nbv = notYetPut ? 0 : Math.max(residual, depreciableOpening - depreciation);
       rows.push({
-        name, fy, opening, charge: depreciation, acc: cost - nbv,
-        closing: nbv, remaining: Math.max(0, (lifeEnd - end) / 31557600000)
+        name, fy, opening, charge: depreciation, acc: notYetPut ? 0 : cost - nbv,
+        closing: nbv, remaining: Math.max(0, (lifeEnd - maxDate(end, put)) / 31557600000)
       });
     }
   }
