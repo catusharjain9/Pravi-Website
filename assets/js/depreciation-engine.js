@@ -84,6 +84,7 @@ export function calculateTaxBlockSchedule(blocks, startYear, years, regime = "no
         saleProceeds < 0 || additionalFull < 0 || additionalHalf < 0) {
       throw new Error("Invalid tax block values for " + (block.name || "unnamed block") + ".");
     }
+    if (block.continues === false) throw new Error("Block cessation / section 50 balancing treatment is outside this workpaper. Remove the block from this simplified schedule and complete a separate tax computation for " + block.name + ".");
     if (additionalFull > fullAdditions + 0.005 || additionalHalf > halfAdditions + 0.005) {
       throw new Error("Additional-depreciation eligible base cannot exceed the corresponding additions for " + block.name + ".");
     }
