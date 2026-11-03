@@ -19,7 +19,7 @@ import { convertCurrencyAmount, validateFxRate } from './currency-engine.js';
   const CACHE_MS = 10 * 60 * 1000;
   let activeQuote = null;
   let requestId = 0;
-  const amount = () => Number($('fxAmount').value);
+  const amount = () => $('fxAmount').value.trim() === '' ? NaN : Number($('fxAmount').value);
   const safeDate = value => {
     if (!value) return null;
     const date = typeof value === 'number' ? new Date(value * 1000) : new Date(value);
