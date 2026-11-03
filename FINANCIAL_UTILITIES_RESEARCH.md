@@ -20,7 +20,7 @@ Research date: 3 November 2026
 - SLM: (cost − residual value) ÷ useful life, prorated for actual days or whole months selected by the user.
 - WDV: rate derived from useful life and residual value unless an explicit rate is supplied for a zero-residual-value case.
 - Closing carrying amount is not allowed to fall below residual value.
-- The model does not automatically infer component accounting, impairment, revaluation, change in estimate, disposal accounting, or regulatory-specific useful lives.
+- The model supports full-asset disposals with date, proceeds, depreciation up to disposal, carrying amount and gain/loss. It does not automatically infer partial disposals, component accounting, impairment, revaluation, change in estimate, or regulatory-specific useful lives.
 
 **Income-tax**
 - Block-wise WDV model; user enters opening WDV, additions split into at-least-180-day and less-than-180-day use buckets, sale proceeds and any additional-depreciation-eligible portion of additions.
