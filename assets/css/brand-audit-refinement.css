@@ -68,3 +68,11 @@ a,button{touch-action:manipulation}
  html{scroll-behavior:auto!important}
  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
 }
+/* Contact form progressive disclosure: required essentials first, optional detail on demand. */
+.enquiry-optional-fields{grid-column:1/-1;border:1px solid var(--pravi-stone);border-radius:8px;background:#FCF9F1;padding:14px 16px}
+.enquiry-optional-fields>summary{color:var(--pravi-charcoal);font-weight:600;cursor:pointer;list-style:none}
+.enquiry-optional-fields>summary::-webkit-details-marker{display:none}
+.enquiry-optional-fields>summary::after{content:"+";float:right;color:var(--pravi-accent-ink);font-size:1.15rem}
+.enquiry-optional-fields[open]>summary::after{content:"−"}
+.enquiry-optional-fields .form-grid{margin-top:16px}
+.enquiry-optional-fields .form-field{min-width:0}
