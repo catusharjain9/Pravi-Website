@@ -34,6 +34,17 @@ export function calculateBookAssetSchedule(assets, startYear, years, method = "S
       throw new Error("Invalid book asset inputs for " + (name || "unnamed asset") + ".");
     }
     const lifeEnd = asset.end instanceof Date ? asset.end : addYears(put, life);
+    const disposalDate = asset.disposalDate instanceof Date ? asset.disposalDate : null;
+    if (disposalDate && disposalDate < fyStart(startYear)) {
+      throw new Error("Asset " + (name || "unnamed asset") + " was disposed before the selected financial year; exclude it from the current asset register.");
+    }
+    if (disposalDate && disposalDate <= put) {
+      throw new Error("Disposal date must be after the put-to-use date for " + (name || "unnamed asset") + ".");
+    }
+    const disposalProceeds = Number(asset.disposalProceeds || 0);
+    if (!Number.isFinite(disposalProceeds) || disposalProceeds < 0) {
+      throw new Error("Disposal proceeds must be a non-negative amount for " + (name || "unnamed asset") + ".");
+    }
     const depreciableAmount = cost - residual;
     const annualWdvRate = asset.wdvRate ? Number(asset.wdvRate) / 100 : 1 - Math.pow(residual / cost, 1 / life);
     let nbv = put < fyStart(startYear) ? openingNBV : 0;
@@ -44,23 +55,36 @@ export function calculateBookAssetSchedule(assets, startYear, years, method = "S
       const daysInYear = days(start, end);
       const notYetPut = put >= end;
       const putInYear = put >= start && put < end;
-      const opening = notYetPut || putInYear ? 0 : nbv;
+      const disposedBeforeYear = disposalDate && disposalDate < start;
+      const disposedInYear = disposalDate && disposalDate >= start && disposalDate < end;
+      const opening = notYetPut || putInYear || disposedBeforeYear ? 0 : nbv;
       const depreciableOpening = putInYear ? cost : nbv;
+      const chargeEnd = disposedInYear ? disposalDate : end;
       const fraction = proration === "months"
-        ? usedMonths(start, end, put, lifeEnd) / 12
-        : usedDays(start, end, put, lifeEnd) / daysInYear;
+        ? usedMonths(start, chargeEnd, put, lifeEnd) / 12
+        : usedDays(start, chargeEnd, put, lifeEnd) / daysInYear;
       let depreciation = 0;
-      if (!notYetPut && end > put && start < lifeEnd && depreciableOpening > residual) {
+      if (!notYetPut && !disposedBeforeYear && chargeEnd > put && start < lifeEnd && depreciableOpening > residual) {
         depreciation = method === "WDV"
           ? depreciableOpening * annualWdvRate * fraction
           : (depreciableAmount / life) * fraction;
       }
-      if (!notYetPut && end >= lifeEnd) depreciation = Math.max(0, depreciableOpening - residual);
+      if (!notYetPut && !disposedBeforeYear && !disposedInYear && end >= lifeEnd) {
+        depreciation = Math.max(0, depreciableOpening - residual);
+      }
       depreciation = Math.min(Math.max(0, depreciableOpening - residual), Math.max(0, depreciation));
-      nbv = notYetPut ? 0 : Math.max(residual, depreciableOpening - depreciation);
+      const carryingAtDisposal = disposedInYear ? Math.max(0, depreciableOpening - depreciation) : null;
+      const disposalGainLoss = disposedInYear ? disposalProceeds - carryingAtDisposal : null;
+      nbv = notYetPut || disposedBeforeYear || disposedInYear
+        ? 0
+        : Math.max(residual, depreciableOpening - depreciation);
       rows.push({
-        name, fy, opening, charge: depreciation, acc: notYetPut ? 0 : cost - nbv,
-        closing: nbv, remaining: Math.max(0, (lifeEnd - maxDate(end, put)) / 31557600000)
+        name, fy, opening, charge: depreciation,
+        acc: notYetPut || disposedBeforeYear ? 0 : cost - (disposedInYear ? carryingAtDisposal : nbv),
+        closing: nbv, remaining: disposedInYear || disposedBeforeYear ? 0 : Math.max(0, (lifeEnd - maxDate(end, put)) / 31557600000),
+        disposed: Boolean(disposedInYear), disposalDate: disposedInYear ? disposalDate : null,
+        disposalProceeds: disposedInYear ? disposalProceeds : 0,
+        carryingAtDisposal, disposalGainLoss
       });
     }
   }
