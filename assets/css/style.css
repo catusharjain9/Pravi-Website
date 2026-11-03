@@ -2015,3 +2015,20 @@ html body :is(.official-links a,.btn-work.secondary,.btn-work.tertiary,.row-acti
     animation:none!important;
   }
 }
+
+
+/* Number markers: remove the ornamental second ring that made repeated indices look like badges. */
+.quick-start-icon::after,
+.layer-number::after,
+.audience-index::after{
+  display:none!important;
+  content:none!important;
+}
+.quick-start-icon{
+  width:34px!important;height:34px!important;
+  border:1px solid #E5D9BF!important;
+  border-radius:8px!important;
+  background:#F7F2E8!important;
+  color:#80621F!important;
+  box-shadow:none!important;
+}
