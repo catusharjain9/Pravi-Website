@@ -63,7 +63,7 @@ import { convertCurrencyAmount, validateFxRate } from './currency-engine.js';
       base, quote, rate, provider: 'exchangerate.dev', source,
       session: data?.market_session || 'not supplied',
       stale: Boolean(data?.stale?.[quote]),
-      effectiveAt, receivedAt: Date.now(), fallback: false
+      effectiveAt, receivedAt: Date.now(), fallback: false, derived: Array.isArray(data?.derived_symbols) && data.derived_symbols.includes(quote)
     };
     cache.set(key, quoteData);
     return quoteData;
@@ -140,6 +140,7 @@ import { convertCurrencyAmount, validateFxRate } from './currency-engine.js';
     else if (activeQuote.source === 'ecb_daily') sourceLabel += ' · ECB daily reference';
     else if (activeQuote.source === 'market_daily') sourceLabel += ' · daily market close';
     else if (activeQuote.source === 'daily_reference') sourceLabel += ' · daily reference';
+    if (activeQuote.derived) sourceLabel += ' · cross-rate derived';
     $('fxSource').textContent = 'Source: ' + sourceLabel;
     const rawEffective = activeQuote.effectiveAt;
     const dateOnly = typeof rawEffective === 'string' && rawEffective.length === 10 && rawEffective[4] === '-' && rawEffective[7] === '-' && Number.isFinite(Date.parse(rawEffective));
