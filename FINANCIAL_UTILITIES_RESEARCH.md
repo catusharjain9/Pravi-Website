@@ -48,9 +48,10 @@ Open-source repositories reviewed: wig1-max/taxdesk-os (Apache-2.0; versioned st
 - ISO 4217 uses internationally recognised three-letter alphabetic currency codes. The converter uses an intentionally curated set of major fiat currencies and excludes crypto-assets, metals, obsolete and fund codes.
 - The conversion direction is explicit: 1 source currency equals the displayed target-currency rate; converted amount is input amount multiplied by rate, with no intermediate rounding.
 - The result is formatted using the browser's ISO currency metadata, including the currency's standard minor-unit precision.
-- The primary data source is exchangerate.dev. Its public documentation describes source, observation/effective timestamps, market-session and stale fields. Keyless/free access is delayed by up to 15 minutes; paid tiers provide live observations. The page therefore does not claim that the free public feed is tick-by-tick real-time.
+- The primary data source is exchangerate.dev. Its public documentation describes per-currency source, observation/effective timestamps, market-session, stale and derived-cross fields. The keyless/free tier is 15 minutes delayed but permits commercial display with visible linked credit; its Basic plan is listed at USD 19/month for live rates and 100,000 calls. The page therefore labels the current no-cost feed as delayed and does not claim tick-by-tick real-time data.
+- AllRatesToday was also evaluated: its documentation describes mid-market rates refreshed about every 60 seconds. Its free tier is limited to 300 lifetime requests and personal/non-commercial use; its Small plan is listed at EUR 4.99/month for 5,000 requests and commercial use. It is a viable lower-cost live alternative, but it requires a protected API key and a server-side proxy. It was not activated because that requires a paid subscription and server-side secret configuration.
 - If the primary source is unavailable, the converter may use Frankfurter's daily reference-rate endpoint and labels it explicitly as a daily reference fallback. It never silently presents a daily reference rate as a live market observation.
-- Both sources are indicative only. Bank spreads, transfer fees, card markups, taxes and settlement quotes are not inferred.
+- Both sources are indicative only. Bank spreads, transfer fees, card markups, taxes and settlement quotes are not inferred. The exchangerate.dev free-tier implementation is a transparent interim mode; true live commercial use requires the paid plan or another provider with appropriate commercial rights.
 
 ### Open-source review
 
@@ -74,6 +75,9 @@ Open-source repositories reviewed: wig1-max/taxdesk-os (Apache-2.0; versioned st
 - ICAI Educational Material on Ind AS 12: https://www.icai.org/post/19824
 - ISO 4217 overview: https://www.iso.org/iso-4217-currency-codes.html
 - exchangerate.dev documentation: https://exchangerate.dev/docs
+- exchangerate.dev pricing / free-tier limits: https://exchangerate.dev/pricing
+- AllRatesToday live FX API documentation: https://allratestoday.com/docs/
+- AllRatesToday commercial pricing: https://allratestoday.com/pricing/
 - Frankfurter documentation: https://frankfurter.dev/
 - Frankfurter source repository: https://github.com/lineofflight/frankfurter
 - ExchangeRate.fun source repository (MIT, hourly reference data): https://github.com/haxqer/FreeExchangeRateApi
