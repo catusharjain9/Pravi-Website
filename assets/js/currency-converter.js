@@ -141,11 +141,17 @@ import { convertCurrencyAmount, validateFxRate } from './currency-engine.js';
     else if (activeQuote.source === 'market_daily') sourceLabel += ' · daily market close';
     else if (activeQuote.source === 'daily_reference') sourceLabel += ' · daily reference';
     $('fxSource').textContent = 'Source: ' + sourceLabel;
-    const effective = safeDate(activeQuote.effectiveAt);
-    $('fxUpdated').textContent = 'Effective time: ' + (effective ? effective.toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Asia/Kolkata' }) + ' IST' : 'not supplied');
+    const rawEffective = activeQuote.effectiveAt;
+    const dateOnly = typeof rawEffective === 'string' && /^\\d{4}-\\d{2}-\\d{2}$/.test(rawEffective);
+    const effective = safeDate(rawEffective);
+    const isDaily = activeQuote.fallback || dateOnly || ['ecb_daily', 'market_daily', 'daily_reference'].includes(activeQuote.source);
+    $('fxUpdated').textContent = 'Effective ' + (dateOnly && effective
+      ? 'date: ' + effective.toLocaleDateString('en-IN', { dateStyle: 'medium', timeZone: 'UTC' }) + ' (date only)'
+      : effective ? 'time: ' + effective.toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Asia/Kolkata' }) + ' IST'
+      : 'time: not supplied');
     $('fxSession').textContent = 'Market session: ' + activeQuote.session;
-    const age = effective ? Math.max(0, Date.now() - effective.getTime()) : null;
-    $('fxFreshness').textContent = activeQuote.stale ? 'Freshness: stale' : age === null ? 'Freshness: not supplied' : 'Freshness: ' + (age < 3600000 ? 'under 1 hour' : Math.floor(age / 3600000) + ' hour(s)');
+    const age = effective && !isDaily ? Math.max(0, Date.now() - effective.getTime()) : null;
+    $('fxFreshness').textContent = activeQuote.stale ? 'Freshness: stale' : isDaily ? 'Freshness: daily reference' : age === null ? 'Freshness: not supplied' : 'Freshness: ' + (age < 3600000 ? 'under 1 hour' : Math.floor(age / 3600000) + ' hour(s)');
     $('fxCopy').disabled = !validAmount;
   }
   $('fxAmount').addEventListener('input', render);
