@@ -1,6 +1,6 @@
 # PRAVI BUSINESS ADVISORS LLP — Website
 
-A responsive, framework-free static website built with HTML, CSS, JavaScript and SVG. No npm install, build step, API key, database or paid site builder is required to open it locally.
+A responsive, framework-free static website built with HTML, CSS, JavaScript and SVG. No npm install, build step, database or paid site builder is required to open it locally. The currency converter requires an internet connection for timestamped exchange-rate data.
 
 ## Main pages
 - `index.html` — founder-led homepage focused on startup foundations, monthly numbers and cash planning, with stage-based pathways, clear engagement principles and FAQs.
@@ -14,6 +14,8 @@ A responsive, framework-free static website built with HTML, CSS, JavaScript and
 - `compliance-tracker.html` — configurable client/entity-wise compliance due-date register, saved locally in the browser.
 - `gst-reconciliation.html` — GSTR-2B vs purchase-register reconciliation workpaper with configurable mapping and exception CSV.
 - `depreciation-register.html` — multi-asset SLM depreciation estimate with CSV import/export.
+- `depreciation-calculator.html` — Companies Act Schedule II SLM/WDV, Income-tax block WDV, additional-depreciation timing, year-wise schedules and depreciation-related deferred-tax estimates.
+- `currency-converter.html` — major ISO 4217 fiat currencies with timestamped indicative FX data, source/freshness labels, pair conversion, and daily-reference fallback.
 - `cashflow-planner.html` — 13-week cash forecast with downside case and CSV export.
 - `privacy.html` — pre-publication draft privacy notice; must be reviewed against the actual host and data flows.
 - `404.html` — branded not-found page.
@@ -61,7 +63,7 @@ After the final domain is known:
 The uploaded profile belongs to Jain Ashwin & Co and has been used as a service-portfolio reference only. Its team, names, CA credentials, experience claims, contacts, associate network, client sectors and results are not attributed to PRAVI. Reserved audit/assurance, certification, legal, transaction, tax-representation and other regulated work must be accepted only where professional eligibility, appointment, independence and authorisation requirements are met. Tally/Zoho and other software appear only as possible workflows; no integration or partner status is claimed.
 
 ## Technical quality checks
-The website includes GSTR-2B reconciliation, depreciation, a 13-week cash-flow planner, a monthly MIS generator, a browser-local compliance tracker and a PDF workspace with ten operations. The latest test report is `TESTING_REPORT.md`; it records the browser/functional tests completed, changes made and production gates still open. Tests covered all 31 HTML pages at 320, 390, 768 and 1365 CSS-pixel widths, calculator and workpaper fixtures, CSV safety, tracker persistence failures, GST reconciliation exceptions, PDF workspace UI/range validation, sitemap generation and CSP hashes for inline JSON-LD. The actual PDF processing libraries, real Excel exports, Firebase authentication/rules and production CSP still require tests with external services enabled. The site has not been deployed.
+The website includes GSTR-2B reconciliation, a multi-regime depreciation and deferred-tax workpaper, a major-currency converter, a 13-week cash-flow planner, a monthly MIS generator, a browser-local compliance tracker and a PDF workspace with ten operations. The latest test report is `TESTING_REPORT.md`; it records the browser/functional tests completed, changes made and production gates still open. Tests covered all 31 HTML pages at 320, 390, 768 and 1365 CSS-pixel widths, calculator and workpaper fixtures, CSV safety, tracker persistence failures, GST reconciliation exceptions, PDF workspace UI/range validation, sitemap generation and CSP hashes for inline JSON-LD. The actual PDF processing libraries, real Excel exports, Firebase authentication/rules and production CSP still require tests with external services enabled. The site has not been deployed.
 
 ## Peer-informed design principles
 The site now emphasises problem-led positioning, four comprehensible service layers, explicit outputs, a five-stage onboarding path, specific service landing pages and plain-language guides. These are common public-facing patterns seen in Indian finance and advisory websites; PRAVI's content remains original and does not adopt peers' credentials, metrics or outcome guarantees.
