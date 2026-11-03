@@ -42,7 +42,7 @@ export function calculateBookAssetSchedule(assets, startYear, years, method = "S
       throw new Error("Disposal date must be after the put-to-use date for " + (name || "unnamed asset") + ".");
     }
     const disposalProceeds = Number(asset.disposalProceeds || 0);
-    if (!Number.isFinite(disposalProceeds) || disposalProceeds < 0) {
+    if (!Number.isFinite(disposalProceeds) || disposalProceeds < 0 || (!disposalDate && disposalProceeds > 0)) {
       throw new Error("Disposal proceeds must be a non-negative amount for " + (name || "unnamed asset") + ".");
     }
     const depreciableAmount = cost - residual;
@@ -69,7 +69,7 @@ export function calculateBookAssetSchedule(assets, startYear, years, method = "S
           ? depreciableOpening * annualWdvRate * fraction
           : (depreciableAmount / life) * fraction;
       }
-      if (!notYetPut && !disposedBeforeYear && !disposedInYear && end >= lifeEnd) {
+      if (!notYetPut && !disposedBeforeYear && chargeEnd >= lifeEnd) {
         depreciation = Math.max(0, depreciableOpening - residual);
       }
       depreciation = Math.min(Math.max(0, depreciableOpening - residual), Math.max(0, depreciation));
