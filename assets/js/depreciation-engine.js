@@ -114,7 +114,10 @@ export function calculateTaxBlockSchedule(blocks, startYear, years, regime = "no
       wdv = Math.max(0, blockBase - depreciation);
       rows.push({
         name: block.name, fy, opening, full, half, sale,
-        normalDepreciation, additional: additionalDepreciation,
+        normalDepreciation, additionalFullBase: index === 0 ? additionalFull : 0,
+        additionalHalfBase: index === 0 ? additionalHalf : 0,
+        additionalHalfCarryBase: index === 1 ? additionalHalf : 0,
+        additional: additionalDepreciation,
         dep: depreciation, closing: wdv, rate
       });
     }
