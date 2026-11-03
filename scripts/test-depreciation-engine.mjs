@@ -87,6 +87,28 @@ assert.equal(futureBook[0].closing, 0);
 assert.ok(futureBook[1].charge > 0);
 assert.ok(futureBook[1].closing < 100000);
 
+const disposedBook = calculateBookAssetSchedule([{
+  name: "Disposed asset", cost: 100000, put: new Date(2026, 3, 1),
+  life: 5, residual: 5000, openingNBV: 100000, end: new Date(2031, 3, 1),
+  disposalDate: new Date(2027, 9, 1), disposalProceeds: 80000
+}], 2026, 3, "SLM", "days");
+assert.equal(disposedBook[0].closing, 81000);
+assert.equal(disposedBook[1].disposed, true);
+assert.equal(disposedBook[1].closing, 0);
+assert.equal(disposedBook[1].disposalProceeds, 80000);
+assert.ok(disposedBook[1].carryingAtDisposal > 70000);
+assert.ok(disposedBook[1].disposalGainLoss > 0);
+assert.equal(disposedBook[2].closing, 0);
+assert.throws(() => calculateBookAssetSchedule([{
+  name: "Invalid disposal proceeds", cost: 100000, put: new Date(2026, 3, 1),
+  life: 5, residual: 5000, openingNBV: 100000, disposalProceeds: 10000
+}], 2026, 1, "SLM", "days"), /Disposal proceeds/);
+assert.throws(() => calculateBookAssetSchedule([{
+  name: "Pre-FY disposal", cost: 100000, put: new Date(2024, 3, 1),
+  life: 5, residual: 5000, openingNBV: 81000, end: new Date(2029, 3, 1),
+  disposalDate: new Date(2025, 8, 1), disposalProceeds: 50000
+}], 2026, 1, "SLM", "days"), /disposed before the selected financial year/);
+
 const bookWdv = calculateBookAssetSchedule([{
   name: "WDV asset", cost: 100000, put: new Date(2026, 3, 1),
   life: 5, residual: 5000, openingNBV: 100000, end: new Date(2031, 3, 1)
