@@ -98,6 +98,14 @@ assert.equal(disposedBook[1].closing, 0);
 assert.equal(disposedBook[1].disposalProceeds, 80000);
 assert.ok(disposedBook[1].carryingAtDisposal > 70000);
 assert.ok(disposedBook[1].disposalGainLoss > 0);
+const disposedWdvBook = calculateBookAssetSchedule([{
+  name: "WDV disposed asset", cost: 100000, put: new Date(2026, 3, 1),
+  life: 5, residual: 5000, openingNBV: 100000, end: new Date(2031, 3, 1),
+  disposalDate: new Date(2027, 9, 1), disposalProceeds: 50000
+}], 2026, 2, "WDV", "days");
+assert.equal(disposedWdvBook[1].disposed, true);
+assert.equal(disposedWdvBook[1].closing, 0);
+assert.ok(disposedWdvBook[1].carryingAtDisposal > 0);
 assert.equal(disposedBook[2].closing, 0);
 assert.throws(() => calculateBookAssetSchedule([{
   name: "Invalid disposal proceeds", cost: 100000, put: new Date(2026, 3, 1),
