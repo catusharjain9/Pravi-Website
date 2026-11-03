@@ -27,7 +27,7 @@ for page in pages:
  if '<title>' not in html.lower(): fail(f"{page.name}: page title missing")
 for selector in (".btn-main",".btn-work",".run",".pdf-process",".pdf-filter[aria-pressed=\"true\"]",".workspace",".pane",".table-scroll"):
  if selector not in css: fail(f"legacy tool palette override missing: {selector}")
-if "semantic success, warning and error" not in css: fail("tool palette overrides must preserve semantic status colours")
+if "success, warning and error remain semantic" not in css: fail("tool palette overrides must preserve semantic status colours")
 print(f"PASS: {len(pages)} HTML pages load shared brand CSS and the approved logo.")
 print("PASS: hero mastheads are protected from paper-texture overrides.")
 print("PASS: approved palette, keyboard focus, responsive navigation, table and reduced-motion rules.")
