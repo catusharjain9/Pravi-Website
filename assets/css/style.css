@@ -1789,3 +1789,34 @@ html body :is(.official-links a,.btn-work.secondary,.btn-work.tertiary,.row-acti
  .site-footer:before,.site-footer:after,.site-footer .footer-brand:after{animation:none!important}
  .site-footer .footer-links a,.site-footer .footer-title:after{transition:none!important}
 }
+
+
+/* Header balance: remove the oversized dead zone between the PRAVI mark and navigation. */
+@media(min-width:821px){
+  .site-header .header-inner{
+    justify-content:flex-start!important;
+    gap:clamp(18px,2.2vw,30px)!important;
+  }
+  .site-header .header-inner>.brand{
+    flex:0 0 210px!important;
+  }
+  .site-header .primary-nav{
+    flex:1 1 auto!important;
+    min-width:0!important;
+    justify-content:space-between!important;
+    gap:clamp(12px,1.5vw,22px)!important;
+  }
+  .site-header .nav-link{
+    flex:0 0 auto!important;
+  }
+  .site-header .nav-actions{
+    flex:0 0 auto!important;
+    margin-left:clamp(4px,.6vw,10px)!important;
+  }
+}
+@media(min-width:821px) and (max-width:1080px){
+  .site-header .header-inner>.brand{flex-basis:170px!important}
+  .site-header .primary-nav{gap:10px!important}
+  .site-header .nav-link{font-size:.76rem!important}
+  .site-header .nav-actions .btn{padding-inline:13px!important;font-size:.78rem!important}
+}
