@@ -30,3 +30,21 @@
 - Tax and legal review of calculation rules before describing the calculators as statutory or filing-ready.
 
 This branch is a draft for review. No merge or deployment is performed by this change.
+
+
+## Subsequent implementation — comprehensive depreciation workpaper
+
+On 3 November 2026, a separate comprehensive workpaper was added at `depreciation-calculator.html` with a pure calculation engine in `assets/js/depreciation-engine.js`. It is distinct from the quick WDV estimator in `tax-calculators.html` and the whole-life SLM register in `depreciation-register.html`.
+
+The new workpaper adds:
+- Companies Act Schedule II asset-wise SLM / WDV schedules.
+- Income-tax block-wise WDV schedules with 180-day additions split.
+- Additional depreciation inputs split by 180-day use and the 10% succeeding-year carry-forward.
+- Mapped concessional regime restrictions for sections 115BA / 115BAA / 115BAB / 115BAC / 115BAD / 115BAE and the corresponding 2025 Act sections.
+- Explicit rejection of unsupported block-cessation computations.
+- Deferred-tax DTA / DTL workings, with DTA recognition off by default.
+- Separate year-wise, asset-wise and tax-block CSV exports.
+
+Regression tests are maintained in `scripts/test-depreciation-engine.mjs`. These tests cover SLM, WDV, future put-to-use assets, block depreciation, additional-depreciation timing and carry-forward, regime restrictions, block cessation, and deferred-tax direction / recognition. Passing these tests does not replace statutory review of asset classification, rates, tax regime eligibility, or entity-specific facts.
+
+The comprehensive tool is a professional working aid, not a filing engine. It does not compute section 50 block-cessation gains/losses, special power-generation methods, business-use restrictions, unabsorbed depreciation carry-forward, asset disposals in the Companies Act schedule, or all other temporary differences. Live browser/device and production API verification remain separate release checks.
