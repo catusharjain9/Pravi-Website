@@ -11,10 +11,16 @@ const tax = calculateTaxBlockSchedule([{
 }], 2026, 2, "normal");
 assert.equal(tax.length, 2);
 assert.equal(tax[0].normalDepreciation, 30000);
+assert.equal(tax[0].additionalFullBase, 100000);
+assert.equal(tax[0].additionalHalfBase, 200000);
+assert.equal(tax[0].additionalHalfCarryBase, 0);
 assert.equal(tax[0].additional, 40000);
 assert.equal(tax[0].dep, 70000);
 assert.equal(tax[0].closing, 230000);
 assert.equal(tax[1].normalDepreciation, 34500);
+assert.equal(tax[1].additionalFullBase, 0);
+assert.equal(tax[1].additionalHalfBase, 0);
+assert.equal(tax[1].additionalHalfCarryBase, 200000);
 assert.equal(tax[1].additional, 20000);
 assert.equal(tax[1].dep, 54500);
 assert.equal(tax[1].closing, 175500);
