@@ -2128,3 +2128,71 @@ html body :is(.official-links a,.btn-work.secondary,.btn-work.tertiary,.row-acti
 @media(prefers-reduced-motion:reduce){
   :is([class*="card"],[class*="tile"]):not(.card-num){transition:none!important}
 }
+
+
+/* Remove repeated horizontal rules and top-edge strips from card/tile layouts. */
+:is([class*="card"],[class*="tile"]):not(.card-num):not(.art-window):not(.footer-brand){
+  background-image:none!important;
+  background-size:auto!important;
+  border-top-color:#E1D7C6!important;
+}
+.quick-start-card::before{display:none!important;content:none!important}
+:is(
+  .service-layer-grid,
+  .journey-grid,
+  .service-grid,
+  .guide-card-grid,
+  .resource-grid,
+  .insights-grid,
+  .tool-grid,
+  .grid.tool-grid,
+  .firm-details-grid,
+  .mission-vision-grid,
+  .accountability-grid,
+  .case-grid,
+  .pain-grid,
+  .stat-grid,
+  .metric-grid,
+  .process-flow,
+  .client-experience,
+  .summary-grid,
+  .kpis,
+  .tax-kpis
+){
+  border-top:0!important;
+}
+:is(
+  .service-layer,
+  .journey-card,
+  .service-intro,
+  .pillar-card,
+  .value-card,
+  .deliverable,
+  .service-card,
+  .guide-card,
+  .resource-card,
+  .insight-card,
+  .tool-card,
+  .firm-detail,
+  .mission-vision-card,
+  .accountability-card,
+  .case-card,
+  .pain-card,
+  .stat-card,
+  .metric-card,
+  .process-node,
+  .audience-card,
+  .audience-item,
+  .notice-card,
+  .pdf-tool,
+  .pane,
+  .tax-panel,
+  .metric,
+  .kpi,
+  .tax-kpi
+){
+  border-top:0!important;
+}
+:is(.quick-start,.startup-journey,.audience-fit){
+  border-top:0!important;
+}
