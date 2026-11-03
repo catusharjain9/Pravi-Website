@@ -48,6 +48,10 @@ assert.throws(() => calculateTaxBlockSchedule([{
   name: "Plant", rate: 0.15, opening: 100, full: 0, half: 0,
   sale: 200, addFull: 0, addHalf: 0
 }], 2026, 2, "normal"), /Sale proceeds exceed/);
+assert.throws(() => calculateTaxBlockSchedule([{
+  name: "Plant", rate: 0.15, opening: 100000, full: 0, half: 0,
+  sale: 50000, addFull: 0, addHalf: 0, continues: false
+}], 2026, 2, "normal"), /Block cessation/);
 
 const book = calculateBookAssetSchedule([{
   name: "Test asset", cost: 100000, put: new Date(2026, 3, 1),
