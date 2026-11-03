@@ -33,7 +33,7 @@ jobs:
         run: python scripts/quality-audit.py
       - name: Test PRAVI theme contrast and page overrides
         run: python scripts/test-theme-accessibility.py
-      - name: Test CSV export safety
+      - name: Check depreciation calculator JavaScript syntax\n        run: node --check assets/js/depreciation-calculator.js\n      - name: Test CSV export safety
         run: node scripts/test-csv-safety.mjs
       - name: Test Content Security Policy JSON-LD hashes
         run: node scripts/test-csp-hashes.mjs
