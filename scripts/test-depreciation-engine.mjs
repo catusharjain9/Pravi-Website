@@ -62,6 +62,16 @@ assert.equal(book[0].closing, 81000);
 assert.equal(book[1].charge, 19000);
 assert.equal(book[1].closing, 62000);
 
+const futureBook = calculateBookAssetSchedule([{
+  name: "Future in-service asset", cost: 100000, put: new Date(2027, 9, 1),
+  life: 5, residual: 5000, openingNBV: 100000, end: new Date(2032, 9, 1)
+}], 2026, 3, "SLM", "days");
+assert.equal(futureBook[0].opening, 0);
+assert.equal(futureBook[0].charge, 0);
+assert.equal(futureBook[0].closing, 0);
+assert.ok(futureBook[1].charge > 0);
+assert.ok(futureBook[1].closing < 100000);
+
 const bookWdv = calculateBookAssetSchedule([{
   name: "WDV asset", cost: 100000, put: new Date(2026, 3, 1),
   life: 5, residual: 5000, openingNBV: 100000, end: new Date(2031, 3, 1)
