@@ -83,6 +83,7 @@ export function calculateBookAssetSchedule(assets, startYear, years, method = "S
         acc: notYetPut || disposedBeforeYear ? 0 : cost - (disposedInYear ? carryingAtDisposal : nbv),
         closing: nbv, remaining: disposedInYear || disposedBeforeYear ? 0 : Math.max(0, (lifeEnd - maxDate(end, put)) / 31557600000),
         disposed: Boolean(disposedInYear), disposalDate: disposedInYear ? disposalDate : null,
+        plannedDisposalDate: disposalDate, plannedDisposalProceeds: disposalProceeds,
         disposalProceeds: disposedInYear ? disposalProceeds : 0,
         carryingAtDisposal, disposalGainLoss
       });
