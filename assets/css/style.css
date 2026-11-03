@@ -2032,3 +2032,51 @@ html body :is(.official-links a,.btn-work.secondary,.btn-work.tertiary,.row-acti
   color:#80621F!important;
   box-shadow:none!important;
 }
+
+
+/* PRAVI index system v2: numbers are typographic labels, never decorative badges. */
+:is(
+  .quick-start-icon,
+  .layer-number,
+  .audience-index,
+  .card-num,
+  .pillar-no,
+  .approach-num,
+  .service-index,
+  .mv-index,
+  .pain-index,
+  .journey-step,
+  .process-node-number,
+  .photo-index,
+  .visual-note-index
+){
+  display:inline-block!important;
+  width:auto!important;
+  height:auto!important;
+  min-width:0!important;
+  min-height:0!important;
+  padding:0!important;
+  margin-top:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  color:#8B6C12!important;
+  font-family:var(--font)!important;
+  font-size:.68rem!important;
+  font-weight:800!important;
+  line-height:1.35!important;
+  letter-spacing:.12em!important;
+  text-transform:uppercase!important;
+  text-decoration:none!important;
+}
+.quick-start-icon{align-self:start!important;justify-self:start!important}
+.layer-number{place-items:initial!important}
+.audience-index{margin-bottom:17px!important}
+.approach-num{align-self:start!important}
+.process-node-number{color:#8B6C12!important}
+.photo-index{position:absolute!important;top:20px!important;right:20px!important;z-index:1!important}
+.visual-note-index{padding-right:15px!important;border-right:1px solid #D9D2C6!important}
+@media(prefers-reduced-motion:reduce){
+  :is(.quick-start-icon,.layer-number,.audience-index,.card-num,.pillar-no,.approach-num,.service-index,.mv-index,.pain-index,.journey-step,.process-node-number,.photo-index,.visual-note-index){transition:none!important}
+}
