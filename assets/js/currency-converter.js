@@ -1,0 +1,176 @@
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const currencies = [
+    ['INR','Indian Rupee'],['USD','US Dollar'],['EUR','Euro'],['GBP','Pound Sterling'],
+    ['JPY','Japanese Yen'],['CNY','Chinese Yuan'],['AED','UAE Dirham'],['SAR','Saudi Riyal'],
+    ['SGD','Singapore Dollar'],['AUD','Australian Dollar'],['CAD','Canadian Dollar'],
+    ['CHF','Swiss Franc'],['NZD','New Zealand Dollar'],['HKD','Hong Kong Dollar'],
+    ['MYR','Malaysian Ringgit'],['THB','Thai Baht'],['ZAR','South African Rand'],
+    ['KRW','South Korean Won'],['IDR','Indonesian Rupiah'],['QAR','Qatari Riyal'],
+    ['KWD','Kuwaiti Dinar'],['BHD','Bahraini Dinar'],['OMR','Omani Rial'],
+    ['LKR','Sri Lankan Rupee'],['NPR','Nepalese Rupee'],['PKR','Pakistani Rupee'],
+    ['BRL','Brazilian Real'],['MXN','Mexican Peso'],['SEK','Swedish Krona'],
+    ['NOK','Norwegian Krone'],['DKK','Danish Krone'],['PLN','Polish Zloty'],
+    ['TRY','Turkish Lira']
+  ];
+  const cache = new Map();
+  const CACHE_MS = 10 * 60 * 1000;
+  let activeQuote = null;
+  let requestId = 0;
+  const amount = () => Number($('fxAmount').value);
+  const safeDate = value => {
+    if (!value) return null;
+    const date = typeof value === 'number' ? new Date(value * 1000) : new Date(value);
+    return Number.isNaN(date.getTime()) ? null : date;
+  };
+  const formatMoney = (value, code) => new Intl.NumberFormat('en-IN', {
+    style: 'currency', currency: code, maximumFractionDigits: undefined
+  }).format(value);
+  const formatRate = value => new Intl.NumberFormat('en-IN', {
+    maximumSignificantDigits: 10
+  }).format(value);
+  const setStatus = (message, error = false) => {
+    $('fxStatus').textContent = message;
+    $('fxStatus').classList.toggle('error', error);
+  };
+  const currencyName = code => currencies.find(item => item[0] === code)?.[1] || code;
+  const populate = () => {
+    const html = currencies.map(([code, name]) => '<option value="' + code + '">' + code + ' — ' + name + '</option>').join('');
+    $('fxFrom').innerHTML = html;
+    $('fxTo').innerHTML = html;
+    $('fxFrom').value = 'INR';
+    $('fxTo').value = 'USD';
+  };
+  async function fetchPrimary(base, quote, force) {
+    const key = base + ':' + quote;
+    const cached = cache.get(key);
+    if (!force && cached && Date.now() - cached.receivedAt < CACHE_MS) return cached;
+    const url = 'https://api.exchangerate.dev/v1/latest/' + encodeURIComponent(base) + '?symbols=' + encodeURIComponent(quote);
+    const response = await fetch(url, { headers: { Accept: 'application/json' }, cache: 'no-store' });
+    if (!response.ok) throw new Error('Primary FX source returned HTTP ' + response.status + '.');
+    const data = await response.json();
+    const rate = Number(data?.rates?.[quote]);
+    if (!(rate > 0) || !Number.isFinite(rate)) throw new Error('The primary FX source did not return a valid ' + base + '/' + quote + ' rate.');
+    const source = data?.sources?.[quote] || data?.source || 'indicative';
+    const effectiveAt = data?.effective_at?.[quote] || data?.data_updated_at || data?.timestamp || null;
+    const quoteData = {
+      base, quote, rate, provider: 'exchangerate.dev', source,
+      session: data?.market_session || 'not supplied',
+      stale: Boolean(data?.stale?.[quote]),
+      effectiveAt, receivedAt: Date.now(), fallback: false
+    };
+    cache.set(key, quoteData);
+    return quoteData;
+  }
+  async function fetchFallback(base, quote) {
+    const url = 'https://api.frankfurter.dev/v2/rate/' + encodeURIComponent(base.toLowerCase()) + '/' + encodeURIComponent(quote.toLowerCase());
+    const response = await fetch(url, { headers: { Accept: 'application/json' }, cache: 'no-store' });
+    if (!response.ok) throw new Error('Daily reference fallback returned HTTP ' + response.status + '.');
+    const data = await response.json();
+    const rate = Number(data?.rate);
+    if (!(rate > 0) || !Number.isFinite(rate)) throw new Error('No valid daily reference rate is available for this pair.');
+    const quoteData = {
+      base, quote, rate, provider: 'Frankfurter', source: 'daily_reference',
+      session: 'daily reference', stale: false,
+      effectiveAt: data?.date || null, receivedAt: Date.now(), fallback: true
+    };
+    cache.set(base + ':' + quote, quoteData);
+    return quoteData;
+  }
+  async function loadQuote(force = false) {
+    const id = ++requestId;
+    const base = $('fxFrom').value;
+    const quote = $('fxTo').value;
+    $('fxRefresh').disabled = true;
+    $('fxCopy').disabled = true;
+    setStatus('Retrieving the latest available ' + base + '/' + quote + ' observation…');
+    if (base === quote) {
+      activeQuote = { base, quote, rate: 1, provider: 'Identity conversion', source: 'identity', session: 'not applicable', stale: false, effectiveAt: new Date().toISOString(), fallback: false };
+      render();
+      $('fxRefresh').disabled = false;
+      return;
+    }
+    let result;
+    try {
+      try {
+        result = await fetchPrimary(base, quote, force);
+      } catch (primaryError) {
+        result = await fetchFallback(base, quote);
+        result.primaryError = primaryError.message;
+      }
+      if (id !== requestId) return;
+      activeQuote = result;
+      render();
+      $('fxCopy').disabled = false;
+      if (result.fallback) {
+        setStatus('Live indicative source is unavailable. Showing a clearly labelled daily reference rate instead.');
+      } else if (result.stale) {
+        setStatus('The provider marked this observation as stale. Treat it as a reference only.', true);
+      } else {
+        setStatus('Rate loaded successfully. Amounts are recalculated locally; refresh to request a newer observation.');
+      }
+    } catch (error) {
+      if (id !== requestId) return;
+      activeQuote = null;
+      $('fxConverted').textContent = '—';
+      $('fxResultAmount').textContent = 'Rate unavailable';
+      $('fxPairRate').textContent = 'No verified rate was returned for this pair.';
+      $('fxSource').textContent = 'Source: unavailable';
+      $('fxUpdated').textContent = 'Effective time: —';
+      $('fxSession').textContent = 'Market session: —';
+      $('fxFreshness').textContent = 'Freshness: unknown';
+      setStatus('Could not retrieve a verified rate. Check your connection and try again. ' + error.message, true);
+    } finally {
+      if (id === requestId) $('fxRefresh').disabled = false;
+    }
+  }
+  function render() {
+    if (!activeQuote) return;
+    const value = amount();
+    const validAmount = Number.isFinite(value) && value >= 0;
+    const converted = validAmount ? value * activeQuote.rate : NaN;
+    $('fxConverted').textContent = validAmount ? formatMoney(converted, activeQuote.quote) : 'Enter a valid non-negative amount';
+    $('fxResultAmount').textContent = '1 ' + activeQuote.base + ' = ' + formatRate(activeQuote.rate) + ' ' + activeQuote.quote;
+    $('fxPairRate').textContent = currencyName(activeQuote.base) + ' to ' + currencyName(activeQuote.quote) + ' · ' + activeQuote.base + '/' + activeQuote.quote;
+    let sourceLabel = activeQuote.provider;
+    if (activeQuote.source === 'live') sourceLabel += ' · indicative market feed';
+    else if (activeQuote.source === 'ecb_daily') sourceLabel += ' · ECB daily reference';
+    else if (activeQuote.source === 'market_daily') sourceLabel += ' · daily market close';
+    else if (activeQuote.source === 'daily_reference') sourceLabel += ' · daily reference';
+    $('fxSource').textContent = 'Source: ' + sourceLabel;
+    const effective = safeDate(activeQuote.effectiveAt);
+    $('fxUpdated').textContent = 'Effective time: ' + (effective ? effective.toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Asia/Kolkata' }) + ' IST' : 'not supplied');
+    $('fxSession').textContent = 'Market session: ' + activeQuote.session;
+    const age = effective ? Math.max(0, Date.now() - effective.getTime()) : null;
+    $('fxFreshness').textContent = activeQuote.stale ? 'Freshness: stale' : age === null ? 'Freshness: not supplied' : 'Freshness: ' + (age < 3600000 ? 'under 1 hour' : Math.floor(age / 3600000) + ' hour(s)');
+    $('fxCopy').disabled = !validAmount;
+  }
+  $('fxAmount').addEventListener('input', render);
+  $('fxFrom').addEventListener('change', () => loadQuote());
+  $('fxTo').addEventListener('change', () => loadQuote());
+  $('fxSwap').addEventListener('click', () => {
+    const from = $('fxFrom').value;
+    $('fxFrom').value = $('fxTo').value;
+    $('fxTo').value = from;
+    loadQuote();
+  });
+  $('fxRefresh').addEventListener('click', () => loadQuote(true));
+  $('fxCopy').addEventListener('click', async () => {
+    if (!activeQuote || !Number.isFinite(amount()) || amount() < 0) return;
+    const text = amount() + ' ' + activeQuote.base + ' = ' + (amount() * activeQuote.rate) + ' ' + activeQuote.quote +
+      ' | 1 ' + activeQuote.base + ' = ' + activeQuote.rate + ' ' + activeQuote.quote +
+      ' | Source: ' + activeQuote.provider + ' | Effective: ' + (activeQuote.effectiveAt || 'not supplied');
+    try {
+      await navigator.clipboard.writeText(text);
+      setStatus('Conversion and rate evidence copied.');
+    } catch {
+      setStatus('Clipboard access is unavailable in this browser. Select and copy the displayed result.', true);
+    }
+  });
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && activeQuote && Date.now() - activeQuote.receivedAt >= 15 * 60 * 1000) loadQuote();
+  });
+  populate();
+  loadQuote();
+})();
