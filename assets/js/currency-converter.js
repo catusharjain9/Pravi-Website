@@ -24,9 +24,16 @@
     const date = typeof value === 'number' ? new Date(value * 1000) : new Date(value);
     return Number.isNaN(date.getTime()) ? null : date;
   };
-  const formatMoney = (value, code) => new Intl.NumberFormat('en-IN', {
-    style: 'currency', currency: code, maximumFractionDigits: undefined
-  }).format(value);
+  const formatMoney = (value, code) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: code }).format(value);
+  async function requestJson(url) {
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 12000);
+    try {
+      const response = await fetch(url, { headers: { Accept: 'application/json' }, cache: 'no-store', signal: controller.signal });
+      if (!response.ok) throw new Error('FX data source returned HTTP ' + response.status + '.');
+      return await response.json();
+    } finally { window.clearTimeout(timeout); }
+  }
   const formatRate = value => new Intl.NumberFormat('en-IN', {
     maximumSignificantDigits: 10
   }).format(value);
@@ -47,9 +54,7 @@
     const cached = cache.get(key);
     if (!force && cached && Date.now() - cached.receivedAt < CACHE_MS) return cached;
     const url = 'https://api.exchangerate.dev/v1/latest/' + encodeURIComponent(base) + '?symbols=' + encodeURIComponent(quote);
-    const response = await fetch(url, { headers: { Accept: 'application/json' }, cache: 'no-store' });
-    if (!response.ok) throw new Error('Primary FX source returned HTTP ' + response.status + '.');
-    const data = await response.json();
+    const data = await requestJson(url);
     const rate = Number(data?.rates?.[quote]);
     if (!(rate > 0) || !Number.isFinite(rate)) throw new Error('The primary FX source did not return a valid ' + base + '/' + quote + ' rate.');
     const source = data?.sources?.[quote] || data?.source || 'indicative';
@@ -65,9 +70,7 @@
   }
   async function fetchFallback(base, quote) {
     const url = 'https://api.frankfurter.dev/v2/rate/' + encodeURIComponent(base.toLowerCase()) + '/' + encodeURIComponent(quote.toLowerCase());
-    const response = await fetch(url, { headers: { Accept: 'application/json' }, cache: 'no-store' });
-    if (!response.ok) throw new Error('Daily reference fallback returned HTTP ' + response.status + '.');
-    const data = await response.json();
+    const data = await requestJson(url);
     const rate = Number(data?.rate);
     if (!(rate > 0) || !Number.isFinite(rate)) throw new Error('No valid daily reference rate is available for this pair.');
     const quoteData = {
@@ -134,7 +137,7 @@
     $('fxResultAmount').textContent = '1 ' + activeQuote.base + ' = ' + formatRate(activeQuote.rate) + ' ' + activeQuote.quote;
     $('fxPairRate').textContent = currencyName(activeQuote.base) + ' to ' + currencyName(activeQuote.quote) + ' · ' + activeQuote.base + '/' + activeQuote.quote;
     let sourceLabel = activeQuote.provider;
-    if (activeQuote.source === 'live') sourceLabel += ' · indicative market feed';
+    if (activeQuote.source === 'live') sourceLabel += ' · indicative market feed (up to 15 min delayed)';
     else if (activeQuote.source === 'ecb_daily') sourceLabel += ' · ECB daily reference';
     else if (activeQuote.source === 'market_daily') sourceLabel += ' · daily market close';
     else if (activeQuote.source === 'daily_reference') sourceLabel += ' · daily reference';
@@ -171,6 +174,9 @@
   document.addEventListener('visibilitychange', () => {
     if (!document.hidden && activeQuote && Date.now() - activeQuote.receivedAt >= 15 * 60 * 1000) loadQuote();
   });
+  window.setInterval(() => {
+    if (!document.hidden && activeQuote && Date.now() - activeQuote.receivedAt >= 15 * 60 * 1000) loadQuote();
+  }, 60 * 1000);
   populate();
   loadQuote();
 })();
