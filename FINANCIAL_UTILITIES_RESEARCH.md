@@ -11,7 +11,7 @@ Research date: 3 November 2026
 - Income-tax Act, 2025, section 33 and Income-tax Rules, 2026, Rule 25 / Appendix I apply from 1 April 2026. The Income Tax Department's commencement announcement confirms the effective date.
 - Income-tax Act, 2025, section 33(4): tax depreciation under the block method is restricted to 50% of the prescribed rate for qualifying assets acquired in the tax year and put to use for less than 180 days.
 - Income-tax Act, 2025, section 33(8)–(9): eligible new plant and machinery for qualifying manufacturing/production or power businesses may attract additional depreciation of 20%; where put to use for less than 180 days, 10% is allowed in the year of use and the remaining 10% in the immediately succeeding year. Eligibility conditions and exclusions must be checked.
-- Specified concessional regimes restrict rates / disallow additional depreciation; the calculator blocks the relevant additional-depreciation inputs and applies the 40% cap for the regimes represented in its settings.
+- The 2025 Act maps the former sections 115BA, 115BAA, 115BAB, 115BAC, 115BAD and 115BAE to sections 199, 200, 201, 202, 203 and 204 respectively. Rule 25 caps depreciation at 40% for the specified opted-in regimes; section 205 disallows additional depreciation under section 33(8) for those regimes. The selector maps these options and the engine applies the corresponding restrictions.
 
 ### Calculation design
 
