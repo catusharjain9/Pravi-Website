@@ -2092,3 +2092,39 @@ html body :is(.official-links a,.btn-work.secondary,.btn-work.tertiary,.row-acti
 }
 
 .photo-index{color:#FFFDF9!important;text-shadow:0 1px 5px rgba(0,0,0,.55)!important}
+
+
+/* PRAVI unified card language — warm paper, fine gold edge and calm editorial geometry. */
+:is([class*="card"],[class*="tile"]):not(.card-num):not(.art-window):not(.footer-brand){
+  border:1px solid #E1D7C6!important;
+  border-radius:16px!important;
+  background-color:#FFFDFA!important;
+  background-image:linear-gradient(90deg,#B18B2A 0%,#E5CD8D 38%,rgba(229,205,141,0) 100%)!important;
+  background-repeat:no-repeat!important;
+  background-position:top left!important;
+  background-size:100% 2px!important;
+  box-shadow:0 7px 22px rgba(55,48,35,.045)!important;
+  transition:transform .24s ease,border-color .24s ease,box-shadow .24s ease!important;
+}
+:is([class*="card"],[class*="tile"]):not(.card-num):not(.art-window):not(.footer-brand):hover{
+  border-color:#CDB783!important;
+  box-shadow:0 13px 30px rgba(55,48,35,.085)!important;
+}
+:is(a[class*="card"],button[class*="card"],[class*="card"] a,[class*="tile"] a):hover{
+  transform:translateY(-3px);
+}
+:is([class*="card"],[class*="tile"]):not(.card-num) :is(h2,h3,h4,strong){
+  color:#1F2A2E;
+}
+:is([class*="card"],[class*="tile"]):not(.card-num) :is(p,small,.muted){
+  color:#59615F;
+}
+@media(max-width:600px){
+  :is([class*="card"],[class*="tile"]):not(.card-num):not(.art-window):not(.footer-brand){
+    border-radius:13px!important;
+    box-shadow:0 5px 16px rgba(55,48,35,.04)!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  :is([class*="card"],[class*="tile"]):not(.card-num){transition:none!important}
+}
