@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Convert major international currencies using timestamped indicative exchange rates, with ISO 4217 currency codes and visible rate-source information.">
+<meta name="robots" content="index,follow">
+<title>Currency Converter – Major Currencies & Indicative FX Rates | PRAVI</title>
+<link rel="stylesheet" href="assets/css/style.css?v=20261103-financial-tools-1">
+<link rel="stylesheet" href="assets/css/paper-texture.css?v=20261031-paper-1">
+<style>
+.fx-hero{background:#1f2a2e;color:#fff;padding:46px 0 36px}.fx-hero h1{color:#fff;font-size:clamp(2.1rem,4.5vw,3.6rem);line-height:1.04;max-width:850px;margin:10px 0}.fx-hero p{max-width:780px;color:#e2e2dc;line-height:1.7}.fx-main{padding:30px 0 72px}.fx-shell{max-width:980px;margin:0 auto;background:#fffdfa;border:1px solid #ded6c8;border-radius:18px;padding:clamp(18px,3vw,32px);box-shadow:0 14px 38px rgba(45,39,27,.055)}.fx-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.fx-field{display:flex;flex-direction:column;gap:8px;color:#35433f;font-size:.9rem;font-weight:750;min-width:0}.fx-field input,.fx-field select{width:100%;min-width:0;box-sizing:border-box;padding:13px 14px;border:1px solid #d8d0c2;border-radius:10px;background:#fff;color:#26332f;font:inherit}.fx-field input{font-size:1.15rem;font-variant-numeric:tabular-nums}.fx-currency-row{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:end}.fx-swap{width:46px;height:46px;border:1px solid #dfd2b7;border-radius:50%;background:#f8f1e4;color:#805f18;font-size:1.2rem;cursor:pointer;transition:transform .22s ease,background .22s ease}.fx-swap:hover{transform:rotate(180deg);background:#f2e7d1}.fx-result{margin-top:20px;padding:22px;border-radius:14px;background:#f6f1e7;border:1px solid #e6dcc9}.fx-result-label{font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:#80672f;font-weight:850}.fx-amount{font-size:clamp(1.7rem,4vw,2.8rem);font-weight:800;color:#1f2a2e;line-height:1.2;overflow-wrap:anywhere;margin:7px 0}.fx-rate{font-size:.95rem;color:#5f6964;font-variant-numeric:tabular-nums}.fx-meta{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin-top:14px;color:#6b716c;font-size:.8rem}.fx-meta span{padding:5px 9px;border:1px solid #e2d8c7;border-radius:999px;background:rgba(255,255,255,.7)}.fx-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}.fx-btn{border:1px solid #1f2a2e;border-radius:9px;padding:11px 15px;background:#1f2a2e;color:#fff;font:inherit;font-weight:750;cursor:pointer}.fx-btn.alt{background:#fffdfa;color:#4d4a40;border-color:#d8d0c2}.fx-btn:disabled{opacity:.55;cursor:wait}.fx-status{margin-top:14px;min-height:1.4em;color:#53645b;font-size:.88rem;line-height:1.6}.fx-status.error{color:#963f2d}.fx-note{margin:20px 0 0;padding:13px 15px;border-left:3px solid #b08a3c;background:#f8f4e9;color:#5d5748;font-size:.84rem;line-height:1.65}.fx-note strong{color:#403a2f}.fx-credit{margin-top:12px;font-size:.8rem;color:#73756e;line-height:1.6}.fx-credit a{color:#765b1d;font-weight:750}.fx-disclaimer{max-width:980px;margin:22px auto 0;color:#737a74;font-size:.82rem;line-height:1.7}.fx-disclaimer h2{font-size:1rem;color:#39443e;margin-bottom:5px}@media(max-width:680px){.fx-grid{grid-template-columns:1fr}.fx-currency-row{grid-template-columns:1fr 42px 1fr;gap:7px}.fx-swap{width:40px;height:40px}.fx-shell{border-radius:14px}.fx-hero{padding:36px 0 28px}}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="container header-inner"><a aria-label="PRAVI home" class="brand" href="index.html"><img alt="PRAVI Business Advisors LLP" class="brand-logo" height="180" src="assets/img/pravi-logo.svg?v=20261030-hero-contrast-fix" width="640"></a><button aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation menu" class="menu-toggle" data-menu-toggle type="button"><svg aria-hidden="true" data-menu-icon fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button><nav aria-label="Primary navigation" class="primary-nav" data-primary-nav id="primary-navigation"><a class="nav-link" href="services.html">Services</a><a class="nav-link" href="index.html#who-we-help">Who we help</a><a class="nav-link" href="insights.html">Insights</a><a class="nav-link" href="resources.html">Resources &amp; tools</a><a class="nav-link" href="about.html">About</a><div class="nav-actions"><a class="btn btn-dark" href="contact.html">Discuss your requirement ↗</a></div></nav></div></header>
+<main>
+<section class="fx-hero"><div class="container"><p class="section-kicker">PRAVI · FINANCIAL UTILITY</p><h1>Currency converter</h1><p>Convert between major international currencies using the latest available indicative FX observations. Every quote shows its source, effective timestamp and market-session status.</p></div></section>
+<section class="fx-main"><div class="container"><a class="tool-link-back" href="tools.html">← Back to business tools</a>
+<div class="fx-shell">
+<div class="fx-currency-row">
+<label class="fx-field">From currency<select id="fxFrom" aria-label="Source currency"></select></label>
+<button class="fx-swap" id="fxSwap" type="button" aria-label="Swap currencies" title="Swap currencies">⇄</button>
+<label class="fx-field">To currency<select id="fxTo" aria-label="Target currency"></select></label>
+</div>
+<div class="fx-grid" style="margin-top:16px">
+<label class="fx-field">Amount to convert<input id="fxAmount" type="number" min="0" step="any" inputmode="decimal" value="1000"></label>
+<label class="fx-field">Converted amount<output id="fxConverted" aria-live="polite" style="display:block;padding:13px 14px;border:1px solid #e5dccb;border-radius:10px;background:#f8f5ed;color:#1f2a2e;font-size:1.15rem;font-weight:800;min-height:49px;box-sizing:border-box">—</output></label>
+</div>
+<div class="fx-result" aria-live="polite">
+<div class="fx-result-label">Indicative exchange rate</div>
+<div class="fx-amount" id="fxResultAmount">Waiting for rate…</div>
+<div class="fx-rate" id="fxPairRate">—</div>
+<div class="fx-meta"><span id="fxSource">Source: not loaded</span><span id="fxUpdated">Effective time: —</span><span id="fxSession">Market session: —</span><span id="fxFreshness">Freshness: —</span></div>
+</div>
+<div class="fx-actions"><button class="fx-btn" id="fxRefresh" type="button">Refresh exchange rate</button><button class="fx-btn alt" id="fxCopy" type="button" disabled>Copy conversion</button></div>
+<div class="fx-status" id="fxStatus" role="status" aria-live="polite">Loading the latest available rate…</div>
+<p class="fx-credit">Rate data provided by <a href="https://exchangerate.dev/" target="_blank" rel="noopener noreferrer">exchangerate.dev</a>. Free public-feed observations may be delayed by up to 15 minutes; daily reference data is identified separately.</p>
+<div class="fx-note"><strong>Important:</strong> This is an indicative mid-market conversion for reference only, not a bank quote, remittance quote or settlement rate. Banks and payment providers may apply their own spread, fees and taxes. Foreign-exchange markets operate on business days; weekend and holiday observations may be stale or unavailable.</div>
+</div>
+<div class="fx-disclaimer"><h2>Currency and calculation standard</h2><p>The converter uses three-letter ISO 4217 currency codes, keeps the direction explicit (1 unit of the source currency equals the displayed target-currency rate), and calculates the converted amount without intermediate rounding. Only the displayed result is formatted to the target currency’s standard minor-unit precision. Crypto-assets, precious metals and obsolete currency codes are excluded.</p></div>
+</div></section>
+</main>
+<footer class="site-footer"><div class="container footer-main"><div class="footer-brand"><a class="brand" href="index.html"><img alt="PRAVI Business Advisors LLP" class="brand-logo" height="180" src="assets/img/pravi-logo.svg" width="640"></a></div><div><p class="footer-title">Explore</p><ul class="footer-links"><li><a href="services.html">Services</a></li><li><a href="resources.html">Resources &amp; tools</a></li><li><a href="about.html">About PRAVI</a></li></ul></div><div><p class="footer-title">Contact</p><ul class="footer-links"><li><a href="mailto:info@praviba.com">info@praviba.com</a></li><li><a href="tel:+919173121611">+91 91731 21611</a></li></ul></div></div><div class="container footer-bottom"><span>© PRAVI Business Advisors LLP</span><span>Accounting · Tax · Growth</span></div></footer>
+<script src="assets/js/site.js?v=20261030-site-nav-2" defer></script>
+<script src="assets/js/currency-converter.js?v=20261103-fx-1" defer></script>
+</body></html>
