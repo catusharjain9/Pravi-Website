@@ -1,3 +1,4 @@
+import { convertCurrencyAmount, validateFxRate } from './currency-engine.js';
 (() => {
   'use strict';
   const $ = id => document.getElementById(id);
@@ -55,8 +56,7 @@
     if (!force && cached && Date.now() - cached.receivedAt < CACHE_MS) return cached;
     const url = 'https://api.exchangerate.dev/v1/latest/' + encodeURIComponent(base) + '?symbols=' + encodeURIComponent(quote);
     const data = await requestJson(url);
-    const rate = Number(data?.rates?.[quote]);
-    if (!(rate > 0) || !Number.isFinite(rate)) throw new Error('The primary FX source did not return a valid ' + base + '/' + quote + ' rate.');
+    const rate = validateFxRate(data?.rates?.[quote], base, quote);
     const source = data?.sources?.[quote] || data?.source || 'indicative';
     const effectiveAt = data?.effective_at?.[quote] || data?.data_updated_at || data?.timestamp || null;
     const quoteData = {
@@ -71,8 +71,7 @@
   async function fetchFallback(base, quote) {
     const url = 'https://api.frankfurter.dev/v2/rate/' + encodeURIComponent(base.toLowerCase()) + '/' + encodeURIComponent(quote.toLowerCase());
     const data = await requestJson(url);
-    const rate = Number(data?.rate);
-    if (!(rate > 0) || !Number.isFinite(rate)) throw new Error('No valid daily reference rate is available for this pair.');
+    const rate = validateFxRate(data?.rate, base, quote);
     const quoteData = {
       base, quote, rate, provider: 'Frankfurter', source: 'daily_reference',
       session: 'daily reference', stale: false,
@@ -132,7 +131,7 @@
     if (!activeQuote) return;
     const value = amount();
     const validAmount = Number.isFinite(value) && value >= 0;
-    const converted = validAmount ? value * activeQuote.rate : NaN;
+    const converted = validAmount ? convertCurrencyAmount(value, activeQuote.rate) : NaN;
     $('fxConverted').textContent = validAmount ? formatMoney(converted, activeQuote.quote) : 'Enter a valid non-negative amount';
     $('fxResultAmount').textContent = '1 ' + activeQuote.base + ' = ' + formatRate(activeQuote.rate) + ' ' + activeQuote.quote;
     $('fxPairRate').textContent = currencyName(activeQuote.base) + ' to ' + currencyName(activeQuote.quote) + ' · ' + activeQuote.base + '/' + activeQuote.quote;
@@ -161,7 +160,7 @@
   $('fxRefresh').addEventListener('click', () => loadQuote(true));
   $('fxCopy').addEventListener('click', async () => {
     if (!activeQuote || !Number.isFinite(amount()) || amount() < 0) return;
-    const text = amount() + ' ' + activeQuote.base + ' = ' + (amount() * activeQuote.rate) + ' ' + activeQuote.quote +
+    const text = amount() + ' ' + activeQuote.base + ' = ' + convertCurrencyAmount(amount(), activeQuote.rate) + ' ' + activeQuote.quote +
       ' | 1 ' + activeQuote.base + ' = ' + activeQuote.rate + ' ' + activeQuote.quote +
       ' | Source: ' + activeQuote.provider + ' | Effective: ' + (activeQuote.effectiveAt || 'not supplied');
     try {
