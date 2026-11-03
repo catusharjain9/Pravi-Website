@@ -39,7 +39,9 @@ jobs:
         run: node --check assets/js/currency-converter.js
       - name: Test depreciation calculation engine
         run: node scripts/test-depreciation-engine.mjs
-      - name: Test depreciation calculation engine\n        run: node scripts/test-depreciation-engine.mjs\n      - name: Test CSV export safety
+      - name: Test depreciation calculation engine
+        run: node scripts/test-depreciation-engine.mjs
+      - name: Test CSV export safety
         run: node scripts/test-csv-safety.mjs
       - name: Test Content Security Policy JSON-LD hashes
         run: node scripts/test-csp-hashes.mjs
