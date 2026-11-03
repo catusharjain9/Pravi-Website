@@ -146,7 +146,7 @@ import { convertCurrencyAmount, validateFxRate } from './currency-engine.js';
     $('fxResultAmount').textContent = '1 ' + activeQuote.base + ' = ' + formatRate(activeQuote.rate) + ' ' + activeQuote.quote;
     $('fxPairRate').textContent = currencyName(activeQuote.base) + ' to ' + currencyName(activeQuote.quote) + ' · ' + activeQuote.base + '/' + activeQuote.quote;
     let sourceLabel = activeQuote.provider;
-    if (activeQuote.source === 'live') sourceLabel += ' · indicative market feed (up to 15 min delayed)';
+    if (activeQuote.source === 'live') sourceLabel += ' · indicative market feed (15-minute delay)';
     else if (activeQuote.source === 'ecb_daily') sourceLabel += ' · ECB daily reference';
     else if (activeQuote.source === 'market_daily') sourceLabel += ' · daily market close';
     else if (activeQuote.source === 'daily_reference') sourceLabel += ' · daily reference';
