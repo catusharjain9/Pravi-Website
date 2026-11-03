@@ -52,7 +52,7 @@ assert.throws(() => calculateTaxBlockSchedule([{
 for (const regime of ["115ba", "115bad", "115bae"]) {
   assert.throws(() => calculateTaxBlockSchedule([{
     name: "Plant", rate: 0.15, opening: 0, full: 100000, half: 0,
-    sale: 0, addFull: 100000, addHalf: 0, additionalEligible: true
+    sale: 0, addFull: 100000, addHalf: 0, additionalEligible: true, continues: true
   }], 2026, 2, regime), /disallows additional depreciation/);
 }
 assert.throws(() => calculateTaxBlockSchedule([{
