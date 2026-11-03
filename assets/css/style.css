@@ -1972,3 +1972,46 @@ html body :is(.official-links a,.btn-work.secondary,.btn-work.tertiary,.row-acti
 @media(prefers-reduced-motion:reduce){
  .quick-start-card,.quick-start-card:before,.quick-start-card:after,.quick-start-arrow{animation:none!important;transition:none!important}
 }
+
+
+/* Site-wide visual QA safeguards — keep decorative marks away from readable content. */
+:is(.service-card,.service-layer,.audience-item,.audience-card,.guide-card,.resource-card,.insight-card,.tool-card,.journey-card,.value-card,.pillar-card,.service-intro,.deliverable,.firm-detail,.mission-vision-card,.accountability-card)::after{
+  z-index:0!important;
+  right:12px!important;bottom:12px!important;
+  width:44px!important;height:44px!important;
+  opacity:.18!important;
+  pointer-events:none!important;
+}
+:is(.service-card,.service-layer,.audience-item,.audience-card,.guide-card,.resource-card,.insight-card,.tool-card,.journey-card,.value-card,.pillar-card,.service-intro,.deliverable,.firm-detail,.mission-vision-card,.accountability-card)>*{
+  position:relative!important;z-index:1!important;
+}
+:is(.service-card,.service-layer,.audience-item,.audience-card,.guide-card,.resource-card,.insight-card,.tool-card,.journey-card,.value-card,.pillar-card,.service-intro,.deliverable,.firm-detail,.mission-vision-card,.accountability-card){
+  min-width:0!important;
+}
+:is(.service-card,.service-layer,.audience-item,.audience-card,.guide-card,.resource-card,.insight-card,.tool-card,.journey-card,.value-card,.pillar-card,.service-intro,.deliverable,.firm-detail,.mission-vision-card,.accountability-card) :is(h2,h3,p,a,li,strong,small){
+  overflow-wrap:anywhere;
+}
+:is(.service-detail,.article-note,.about-callout,.contact-note,.contact-method,.article-card,.article-content-card,.tool-panel,.tax-card)::after{
+  z-index:0!important;right:12px!important;bottom:10px!important;
+  width:40px!important;height:40px!important;opacity:.14!important;
+}
+:is(.service-detail,.article-note,.about-callout,.contact-note,.contact-method,.article-card,.article-content-card,.tool-panel,.tax-card)>*{
+  position:relative!important;z-index:1!important;
+}
+:is(.service-detail,.article-note,.about-callout,.contact-note,.contact-method,.article-card,.article-content-card,.tool-panel,.tax-card){
+  min-width:0!important;
+}
+@media(max-width:900px){
+  .three-pillar-grid,.services-intro-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:560px){
+  .three-pillar-grid,.services-intro-grid{grid-template-columns:1fr!important}
+  :is(.service-card,.service-layer,.audience-item,.audience-card,.guide-card,.resource-card,.insight-card,.tool-card,.journey-card,.value-card,.pillar-card,.service-intro,.deliverable,.firm-detail,.mission-vision-card,.accountability-card)::after{
+    width:38px!important;height:38px!important;opacity:.14!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  :is(.service-card,.service-layer,.audience-item,.audience-card,.guide-card,.resource-card,.insight-card,.tool-card,.journey-card,.value-card,.pillar-card,.service-intro,.deliverable,.firm-detail,.mission-vision-card,.accountability-card,.service-detail,.article-note,.about-callout,.contact-note,.contact-method,.article-card,.article-content-card,.tool-panel,.tax-card)::after{
+    animation:none!important;
+  }
+}
