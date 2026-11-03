@@ -2090,3 +2090,5 @@ html body :is(.official-links a,.btn-work.secondary,.btn-work.tertiary,.row-acti
   box-shadow:none!important;color:#E6D4AD!important;
   font-size:.68rem!important;font-weight:800!important;letter-spacing:.12em!important;
 }
+
+.photo-index{color:#FFFDF9!important;text-shadow:0 1px 5px rgba(0,0,0,.55)!important}
