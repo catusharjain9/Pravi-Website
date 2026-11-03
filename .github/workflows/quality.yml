@@ -2,7 +2,7 @@ name: Website quality gates
 
 on:
   push:
-    branches: [main]
+    branches: [main, audit-approved-design-refinement]
   pull_request:
     branches: [main]
   workflow_dispatch:
