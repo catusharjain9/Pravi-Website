@@ -69,7 +69,7 @@ export function calculateTaxBlockSchedule(blocks, startYear, years, regime = "no
   if (!Number.isInteger(startYear) || !Number.isInteger(years) || years < 1 || years > 20) {
     throw new Error("Invalid financial year or projection period.");
   }
-  const restrictedRegime = ["115baa", "115bab", "115bac"].includes(regime);
+  const restrictedRegime = ["115ba", "115baa", "115bab", "115bac", "115bad", "115bae"].includes(regime);
   const rows = [];
   for (const block of blocks) {
     const rate = Number(block.rate);
