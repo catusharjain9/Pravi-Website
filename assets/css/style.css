@@ -2080,3 +2080,13 @@ html body :is(.official-links a,.btn-work.secondary,.btn-work.tertiary,.row-acti
 @media(prefers-reduced-motion:reduce){
   :is(.quick-start-icon,.layer-number,.audience-index,.card-num,.pillar-no,.approach-num,.service-index,.mv-index,.pain-index,.journey-step,.process-node-number,.photo-index,.visual-note-index){transition:none!important}
 }
+
+
+/* Keep the hero's miniature process numbers in the same typographic index system. */
+.art-step-num{
+  display:inline-block!important;width:auto!important;height:auto!important;
+  min-width:0!important;min-height:0!important;padding:0!important;
+  border:0!important;border-radius:0!important;background:transparent!important;
+  box-shadow:none!important;color:#E6D4AD!important;
+  font-size:.68rem!important;font-weight:800!important;letter-spacing:.12em!important;
+}
