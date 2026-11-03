@@ -103,10 +103,10 @@ a,button{touch-action:manipulation}
   border-color:#D9D2C6!important;background-color:#FFFDFA!important;color:#1F2A2E;
 }
 :where(.workspace,.pane,.panel,.utility-section,.tool-review-strip,.tool-cta,.pdf-options,.pdf-workspace)
-  :where(h1,h2,h3,h4,strong){color:#1F2A2E}
+  :where(h1,h2,h3,h4,strong){color:#1F2A2E!important}
 :where(.workspace,.pane,.panel,.utility-section,.tool-review-strip,.tool-cta,.pdf-options,.pdf-workspace)
-  :where(p,small,.muted,.lead){color:#59615F}
-:where(.field,.fields,.toolbar,.pdf-option) :where(label){color:#1F2A2E}
+  :where(p,small,.muted,.lead){color:#59615F!important}
+:where(.field,.fields,.toolbar,.pdf-option) :where(label){color:#1F2A2E!important}
 :where(.field,.fields,.toolbar,.pdf-option) :where(input,select,textarea){
   border-color:#BEB6A8!important;background:#FFFDFA!important;color:#1F2A2E!important;border-radius:6px!important;
 }
