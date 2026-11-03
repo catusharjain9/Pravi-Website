@@ -35,7 +35,7 @@ export function calculateBookAssetSchedule(assets, startYear, years, method = "S
     }
     const lifeEnd = asset.end instanceof Date ? asset.end : addYears(put, life);
     const depreciableAmount = cost - residual;
-    const annualWdvRate = 1 - Math.pow(residual / cost, 1 / life);
+    const annualWdvRate = asset.wdvRate ? Number(asset.wdvRate) / 100 : 1 - Math.pow(residual / cost, 1 / life);
     let nbv = openingNBV;
     for (let index = 0; index < years; index++) {
       const fy = startYear + index;
