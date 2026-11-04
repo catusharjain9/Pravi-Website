@@ -2606,3 +2606,108 @@ body>main,body> #main,main#main{min-height:0}
  .resources-insights-heading{margin-top:42px!important}
  .resources-tools-callout{align-items:flex-start;flex-direction:column;padding:24px!important}
 }
+
+/* PRAVI visual correction — light editorial site, navy footer only. */
+:root{
+  --pravi-ivory:#FCF9F1;
+  --pravi-beige:#FFF7E1;
+  --pravi-charcoal:#1F2A2E;
+  --pravi-yellow:#F6D365;
+  --pravi-stone:#D9D2C6;
+}
+/* Keep the page canvas and interior mastheads light. */
+.hero,
+.page-hero,
+.section-dark,
+.cta-band,
+.tool-hero,
+.tax-hero,
+.hero-tools,
+.pdf-hero,
+.notice-hero,
+.cms-header{
+  background:#FFF7E1!important;
+  color:#1F2A2E!important;
+}
+.hero h1,.page-hero h1,.section-dark h1,.section-dark h2,.section-dark h3,
+.cta-band h1,.cta-band h2,.tool-hero h1,.tax-hero h1,.hero-tools h1,
+.pdf-hero h1,.notice-hero h1,.cms-header h1{
+  color:#1F2A2E!important;
+}
+.hero .lead,.hero .hero-note,
+.page-hero p:not(.eyebrow):not(.breadcrumb),
+.section-dark p,.cta-band .cta-inner p:not(.eyebrow),
+.tool-hero p,.tax-hero p,.hero-tools p,.pdf-hero p,.notice-hero p,.cms-header p{
+  color:#59615F!important;
+}
+.hero .eyebrow,.page-hero .eyebrow,.section-dark .eyebrow,
+.cta-band .eyebrow,.tool-hero .eyebrow,.tax-hero .eyebrow{
+  color:#755A12!important;
+}
+.page-hero .breadcrumb{color:#59615F!important}
+.page-hero .breadcrumb a:hover{color:#1F2A2E!important}
+.hero::before,.hero::after,.page-hero::before,.page-hero::after,
+.cta-band::after{border-color:rgba(117,90,18,.16)!important}
+.hero-pattern{opacity:.07!important}
+.hero-note i{background:#755A12!important;box-shadow:0 0 0 4px rgba(117,90,18,.10)!important}
+.section-dark .muted,.section-dark .body-lead{color:#59615F!important}
+.cta-band .btn-outline-light,.hero .btn-outline-light{
+  border-color:#1F2A2E!important;color:#1F2A2E!important;
+}
+.cta-band .btn-outline-light:hover,.hero .btn-outline-light:hover{
+  background:rgba(31,42,46,.06)!important;border-color:#1F2A2E!important;
+}
+/* Restore the earlier deep-navy footer as the one intentional dark anchor. */
+.site-footer{
+  position:relative!important;
+  isolation:isolate!important;
+  overflow:hidden!important;
+  background:#172A35!important;
+  color:#F8F4E9!important;
+  border-top:3px solid #F6D365!important;
+}
+.site-footer::before{
+  content:""!important;display:block!important;width:100%!important;height:3px!important;
+  background:linear-gradient(90deg,#F6D365 0%,#C69A3B 24%,rgba(198,154,59,.12) 72%,transparent 100%)!important;
+}
+.site-footer .footer-main{
+  display:grid!important;
+  grid-template-columns:minmax(250px,1.35fr) minmax(150px,.8fr) minmax(190px,1fr)!important;
+  gap:clamp(28px,5vw,76px)!important;
+  align-items:start!important;
+  padding-top:54px!important;padding-bottom:44px!important;
+}
+.site-footer .footer-brand{
+  max-width:420px!important;padding:0!important;border:0!important;
+  border-radius:0!important;background:transparent!important;box-shadow:none!important;
+}
+.site-footer .footer-brand .brand{width:min(100%,300px)!important;background-image:none!important}
+.site-footer .footer-brand .brand-logo{
+  display:block!important;max-width:290px!important;max-height:82px!important;
+  height:auto!important;filter:brightness(0) invert(1)!important;
+}
+.site-footer .footer-description{color:#D5DED9!important;max-width:390px!important}
+.site-footer .footer-title{
+  margin:4px 0 18px!important;color:#F6D365!important;
+  font-size:.7rem!important;font-weight:800!important;letter-spacing:.16em!important;
+  text-transform:uppercase!important;
+}
+.site-footer .footer-links{display:grid!important;gap:12px!important;margin:0!important;padding:0!important;list-style:none!important}
+.site-footer .footer-links a{color:#D5DED9!important;font-size:.85rem!important;line-height:1.6!important}
+.site-footer .footer-links a:hover{color:#F6D365!important}
+.site-footer .footer-bottom{
+  padding-top:19px!important;padding-bottom:21px!important;
+  border-top:1px solid rgba(246,211,101,.23)!important;color:#BFC8C4!important;
+  font-size:.75rem!important;
+}
+@media(max-width:820px){
+  .site-footer .footer-main{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:30px 24px!important;padding-top:38px!important}
+  .site-footer .footer-brand{grid-column:1/-1!important;max-width:430px!important}
+}
+@media(max-width:520px){
+  .site-footer .footer-main{grid-template-columns:1fr 1fr!important;gap:26px 16px!important;padding-top:32px!important;padding-bottom:32px!important}
+  .site-footer .footer-brand{grid-column:1/-1!important}
+  .site-footer .footer-brand .brand{width:min(100%,260px)!important}
+  .site-footer .footer-links{gap:10px!important}
+  .site-footer .footer-links a{font-size:.8rem!important;overflow-wrap:anywhere!important}
+}
