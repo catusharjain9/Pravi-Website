@@ -1,0 +1,46 @@
+/* PRAVI motion language — fluid contours, geometric reveals, hand-drawn emphasis and city-line art. */
+.pravi-contour-field{position:absolute;inset:-5% -3% -5% 0;z-index:0;pointer-events:none;overflow:hidden;opacity:.64}
+.pravi-contour-field svg{position:absolute;width:100%;height:100%;inset:0;max-width:none}
+.pravi-contour-field .contour-line{fill:none;stroke:#D9B66E;stroke-width:1.05;vector-effect:non-scaling-stroke;opacity:.22;stroke-dasharray:1200 28;animation:pravi-contour-drift 32s linear infinite}
+.pravi-contour-field .contour-line:nth-child(2n){animation-duration:42s;animation-direction:reverse;opacity:.15}
+.pravi-contour-field .contour-line:nth-child(3n){stroke:#F5E7C5;opacity:.12;animation-duration:52s}
+.pravi-contour-field .contour-core{fill:none;stroke:#D9B66E;stroke-width:1;opacity:.32;transform-origin:center;animation:pravi-core-breathe 8s ease-in-out infinite}
+.hero-art{isolation:isolate}
+.hero-art>.pravi-contour-field{inset:-8% -12%;z-index:0;opacity:.9}
+.hero-art>.art-window,.hero-art>.hero-dashboard,.hero-art>*:not(.pravi-contour-field){position:relative;z-index:1}
+.section-heading{position:relative}
+.pravi-geometric-accent{position:absolute;right:0;top:-17px;width:86px;height:54px;pointer-events:none;opacity:.48;color:#9A793F}
+.pravi-geometric-accent svg{width:100%;height:100%;overflow:visible}
+.pravi-geometric-accent path,.pravi-geometric-accent rect{fill:none;stroke:currentColor;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:110;stroke-dashoffset:110}
+.section-heading.motion-in .pravi-geometric-accent path,.section-heading.motion-in .pravi-geometric-accent rect{animation:pravi-geometry-draw 1.3s cubic-bezier(.2,.7,.2,1) forwards}
+.section-heading .section-kicker{position:relative;width:max-content;max-width:100%}
+.section-heading .section-kicker::after{content:"";position:absolute;left:0;right:-13px;bottom:-5px;height:5px;border-bottom:1.5px solid #C4A36B;border-radius:50%;transform:rotate(-1.6deg);opacity:.72}
+.service-layer,.journey-card,.audience-card,.resource-card,.insight-card{position:relative;overflow:hidden}
+.service-layer::before,.journey-card::before,.audience-card::before,.resource-card::before,.insight-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,#D9B66E,rgba(217,182,110,0));transform:scaleX(0);transform-origin:left;transition:transform .65s cubic-bezier(.2,.7,.2,1)}
+.service-layer:hover::before,.journey-card:hover::before,.audience-card:hover::before,.resource-card:hover::before,.insight-card:hover::before{transform:scaleX(1)}
+.pravi-cityline{position:relative;z-index:0;height:clamp(92px,14vw,170px);margin:0 auto -1px;overflow:hidden;pointer-events:none;opacity:.72;color:#B69A68}
+.pravi-cityline svg{position:absolute;inset:auto 0 0;width:100%;height:100%;max-width:none}
+.pravi-cityline .city-drawing{fill:none;stroke:currentColor;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:4000;stroke-dashoffset:4000;animation:pravi-city-draw 5.5s cubic-bezier(.2,.7,.2,1) .25s forwards}
+.pravi-cityline .city-hill{fill:rgba(217,182,110,.09);stroke:#C6A66F;stroke-width:1}
+.site-footer{position:relative;overflow:hidden}
+.site-footer>.pravi-cityline{margin-top:0}
+.site-footer>.footer-main,.site-footer>.footer-bottom{position:relative;z-index:1}
+@keyframes pravi-contour-drift{to{stroke-dashoffset:-176}}
+@keyframes pravi-core-breathe{0%,100%{transform:scale(.96);opacity:.18}50%{transform:scale(1.035);opacity:.46}}
+@keyframes pravi-geometry-draw{to{stroke-dashoffset:0}}
+@keyframes pravi-city-draw{to{stroke-dashoffset:0}}
+@media(max-width:820px){
+ .pravi-contour-field{opacity:.34}
+ .hero-art>.pravi-contour-field{inset:-5% -15%;opacity:.55}
+ .pravi-geometric-accent{width:58px;height:38px;right:0;top:-12px;opacity:.3}
+ .pravi-cityline{height:94px;opacity:.52}
+}
+@media(max-width:560px){
+ .hero-art>.pravi-contour-field{opacity:.32}
+ .pravi-cityline{height:70px;opacity:.4}
+ .section-heading .section-kicker::after{right:-7px}
+}
+@media(prefers-reduced-motion:reduce){
+ .pravi-contour-field *, .pravi-geometric-accent *, .pravi-cityline *{animation:none!important;transition:none!important}
+ .pravi-geometric-accent path,.pravi-geometric-accent rect,.pravi-cityline .city-drawing{stroke-dashoffset:0}
+}
