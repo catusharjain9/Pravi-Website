@@ -247,4 +247,26 @@
     host.insertBefore(scene, host.firstChild);
   });
 
+
+  // PRAVI reference-inspired artwork attached to the real shared page structure.
+  const makeMotionArt = (markup, className) => {
+    const wrap = document.createElement('div');
+    wrap.className = className;
+    wrap.setAttribute('aria-hidden', 'true');
+    wrap.innerHTML = markup;
+    return wrap;
+  };
+  const hero = document.querySelector('.hero');
+  if (hero && !hero.querySelector('.pravi-contour-field')) {
+    const paths = Array.from({length:15}, (_,i) => '<ellipse class="contour-line" cx="780" cy="300" rx="'+(110+i*22)+'" ry="'+(68+i*15)+'" transform="rotate(-17 780 300)"/>').join('');
+    hero.insertBefore(makeMotionArt('<svg viewBox="0 0 1200 620" preserveAspectRatio="xMidYMid slice"><g>'+paths+'</g><circle class="contour-core" cx="780" cy="300" r="34"/><circle class="contour-core" cx="780" cy="300" r="51"/></svg>','pravi-contour-field'),hero.firstChild);
+  }
+  document.querySelectorAll('.section-heading').forEach((heading,index)=>{
+    if(index%2===0&&!heading.querySelector('.pravi-geometric-accent')) heading.appendChild(makeMotionArt('<svg viewBox="0 0 86 54"><path d="M5 44 29 7l22 37Z"/><path d="M34 44 58 7l22 37Z"/><rect x="26" y="16" width="34" height="28" rx="2"/></svg>','pravi-geometric-accent'));
+  });
+  const footer=document.querySelector('.site-footer');
+  if(footer&&!footer.querySelector('.pravi-cityline')){
+    footer.insertBefore(makeMotionArt('<svg viewBox="0 0 1440 170" preserveAspectRatio="xMidYMax slice"><path class="city-hill" d="M0 142 Q180 78 360 132 T720 126 T1080 112 T1440 130 V170 H0Z"/><g class="city-drawing"><path d="M0 143h90v-35h38v35h34V82h42v61h32V55h55v88h35V97h45v46h42V72h63v71h38V44h58v99h38V88h45v55h48V67h60v76h45V35h64v108h43V91h51v52h42V59h67v84h39V99h48v44h48V75h58v68h44V46h65v97h38v-30h46v30h62"/></g></svg>','pravi-cityline'),footer.firstChild);
+  }
+
 })();

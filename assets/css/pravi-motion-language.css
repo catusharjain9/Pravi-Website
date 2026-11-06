@@ -44,3 +44,18 @@
  .pravi-contour-field *, .pravi-geometric-accent *, .pravi-cityline *{animation:none!important;transition:none!important}
  .pravi-geometric-accent path,.pravi-geometric-accent rect,.pravi-cityline .city-drawing{stroke-dashoffset:0}
 }
+
+/* Bind decorative motion to the actual homepage hero and shared footer. */
+.hero{isolation:isolate}
+.hero>.pravi-contour-field{inset:-7% -8% -5% 28%;z-index:0;opacity:.78}
+.hero>.hero-pattern{z-index:0}
+.hero>.hero-inner{z-index:2}
+.hero .pravi-contour-field .contour-line{stroke:#E7C98D;stroke-width:1.2;opacity:.31;stroke-dasharray:920 18;animation:pravi-contour-drift 28s linear infinite}
+.hero .pravi-contour-field .contour-line:nth-child(3n){opacity:.2;animation-duration:39s}
+.hero .pravi-contour-field .contour-core{stroke:#F2DDAF;opacity:.45}
+.section-heading .pravi-geometric-accent{z-index:0}
+.site-footer>.pravi-cityline{width:100%;height:clamp(100px,13vw,170px);margin-bottom:0}
+.site-footer>.pravi-cityline svg{display:block}
+@media(max-width:820px){.hero>.pravi-contour-field{inset:0 -22% 0 12%;opacity:.48}.hero>.hero-inner{z-index:2}.site-footer>.pravi-cityline{height:90px}}
+@media(max-width:560px){.hero>.pravi-contour-field{inset:4% -48% 0 0;opacity:.34}.site-footer>.pravi-cityline{height:66px}}
+@media(prefers-reduced-motion:reduce){.hero>.pravi-contour-field .contour-line{animation:none;stroke-dasharray:none}}
