@@ -1,7 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap');
-@import url("pravi-motion-doodles.css?v=20261107-kinetic-doodles-1");
-@import url("pravi-ink-motion.css?v=20261107-ink-2");
-@import url("pravi-motion-language.css?v=20261107-motion-3");
 /* PRAVI BUSINESS ADVISORS LLP — design system */
 :root{
   color-scheme:light;
@@ -2901,4 +2898,15 @@ body>main,body> #main,main#main{min-height:0}
 @media(prefers-reduced-motion:reduce){
   .site-footer .footer-cta-button{transition:none!important}
   .site-footer .footer-cta-button:hover{transform:none!important}
+}
+
+/* PRAVI editorial motion: content-first, no ornamental overlays. */
+.hero-copy>*{will-change:transform,opacity}
+.hero-dashboard{transform-origin:center}
+.dashboard-bars i{transform-origin:bottom}
+@media(hover:hover) and (pointer:fine){
+ .btn,.footer-cta-button{transition:transform .22s cubic-bezier(.2,.7,.2,1),box-shadow .22s ease}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero-copy>*,.hero-dashboard,.dashboard-bars i{animation:none!important;transition:none!important;transform:none!important;opacity:1!important}
 }
