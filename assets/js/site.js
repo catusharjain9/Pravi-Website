@@ -131,4 +131,45 @@
     });
   });
 
+
+  // Warm editorial footer CTA: shared across all pages using the site shell.
+  const siteFooter = document.querySelector('.site-footer');
+  if (siteFooter) {
+    const footerMain = siteFooter.querySelector('.footer-main');
+    if (footerMain && !siteFooter.querySelector('.footer-cta')) {
+      const cta = document.createElement('section');
+      cta.className = 'container footer-cta';
+      cta.setAttribute('aria-label', 'Contact PRAVI Business Advisors');
+
+      const copy = document.createElement('div');
+      copy.className = 'footer-cta-copy';
+      const eyebrow = document.createElement('p');
+      eyebrow.className = 'footer-cta-eyebrow';
+      eyebrow.textContent = 'LET’S BUILD WITH CLARITY';
+      const heading = document.createElement('h2');
+      heading.textContent = 'Better financial clarity starts with a conversation.';
+      const description = document.createElement('p');
+      description.textContent = 'Tell us where your business is today. We’ll help you identify a practical next step.';
+      copy.append(eyebrow, heading, description);
+
+      const action = document.createElement('a');
+      action.className = 'footer-cta-button';
+      action.href = 'contact.html';
+      action.textContent = 'Discuss your requirement';
+      action.setAttribute('aria-label', 'Discuss your requirement with PRAVI Business Advisors');
+      const arrow = document.createElement('span');
+      arrow.setAttribute('aria-hidden', 'true');
+      arrow.textContent = '↗';
+      action.append(' ', arrow);
+
+      cta.append(copy, action);
+      siteFooter.insertBefore(cta, footerMain);
+    }
+
+    const footerDescription = siteFooter.querySelector('.footer-description');
+    if (footerDescription && !footerDescription.textContent.trim()) {
+      footerDescription.textContent = 'Practical finance, tax and compliance support for startups and growing businesses.';
+    }
+  }
+
 })();
