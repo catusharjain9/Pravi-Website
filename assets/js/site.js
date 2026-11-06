@@ -89,49 +89,6 @@
 
   document.querySelectorAll('[data-print-button]').forEach(button => button.addEventListener('click', () => window.print()));
 
-  // Site-wide motion system: progressive reveal, staggered groups, and accessible fallbacks.
-  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const revealSelector = [
-    '.hero-copy > *', '.hero-photo-panel', '.hero-photo-panel img', '.hero-stat', '.hero-metric',
-    '.value-point', '.quick-start-heading', '.quick-start-card', '.service-layer', '.section-heading',
-    '.process-node', '.process-step', '.audience-card', '.journey-card', '.case-card', '.case-line',
-    '.tool-card', '.resource-card', '.service-card', '.service-photo-card', '.split-grid > *',
-    '.deliverable', '.cta-band > *', '.resource-feature', '.guide-card', '.insight-card',
-    '.checklist-item', '.tool-panel', '.calculator-card', '.faq-item', '.content-card',
-    '.stat-card', '.metric-card', '.timeline-item', '.page-hero > *', '.page-hero-inner > *', '.breadcrumb', '.service-intro', '.service-detail', '.about-callout', '.contact-method', '.article-card', '.article-note', '.tool-panel', '.tax-card', '.section > .container > *', '.section-heading + *'
-  ].join(',');
-  const revealTargets = [...document.querySelectorAll(revealSelector)];
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    revealTargets.forEach(el => el.classList.add('motion-in'));
-  } else {
-    const groups = new Map();
-    revealTargets.forEach(el => {
-      el.classList.add('motion-ready');
-      const group = el.parentElement || document.body;
-      const position = groups.get(group) || 0;
-      groups.set(group, position + 1);
-      el.style.setProperty('--motion-delay', `${Math.min(position, 3) * 10}ms`);
-    });
-    const revealObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('motion-in');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.02, rootMargin: '0px 0px 0px 0px' });
-    revealTargets.forEach(el => revealObserver.observe(el));
-  }
-
-  // Small interactive cues on controls and navigation; no animation is required to use the site.
-  document.querySelectorAll('.btn, button, [role="button"], .site-nav a').forEach(el => {
-    el.addEventListener('pointerdown', () => { if (!reduceMotion) el.classList.add('motion-pressed'); });
-    ['pointerup', 'pointercancel', 'pointerleave', 'blur'].forEach(eventName => {
-      el.addEventListener(eventName, () => el.classList.remove('motion-pressed'));
-    });
-  });
-
-
   // Warm editorial footer CTA: shared across all pages using the site shell.
   const siteFooter = document.querySelector('.site-footer');
   if (siteFooter) {
