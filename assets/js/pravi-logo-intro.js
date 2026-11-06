@@ -1,70 +1,45 @@
-/* PRAVI extended full-screen identity film. Original SVG motion inspired by the supplied visual references. */
+/* PRAVI brand reveal — actual wordmark rebuilt inline so its own elements can animate */
 (() => {
-  const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-  if (reduce || document.querySelector('.pravi-intro')) return;
-  const brand = document.querySelector('.site-header .brand-logo');
-  const headerBrand = document.querySelector('.site-header .brand');
-  if (!brand || !headerBrand) return;
-  const contourPaths = Array.from({length:13},(_,i)=>{
-    const y=90+i*43, amp=28+(i%4)*9;
-    return '<path d="M-100 '+y+' C 120 '+(y-amp)+', 230 '+(y+amp)+', 430 '+y+' S 760 '+(y-amp)+', 980 '+y+' S 1290 '+(y+amp)+', 1640 '+(y-12)+'"/>';
+  if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+  const brand=document.querySelector('.site-header .brand-logo');
+  if(!brand || document.querySelector('.pravi-intro')) return;
+  const paths=Array.from({length:17},(_,i)=>{
+    const y=70+i*39, a=24+(i%4)*11;
+    return '<path d="M-80 '+y+' C 140 '+(y-a)+', 230 '+(y+a)+', 440 '+y+' S 770 '+(y-a)+', 1010 '+y+' S 1320 '+(y+a)+', 1530 '+(y-8)+'"/>';
   }).join('');
-  const skyline = '<svg class="pravi-intro__skyline" viewBox="0 0 1440 360" preserveAspectRatio="xMidYMax slice" aria-hidden="true">'+
-    '<path d="M0 330H1440 M0 350H1440"/>'+
-    '<path d="M90 330V220H150V330 M102 220V190H138V220 M110 190V175H130V190 M104 250H136 M104 275H136"/>'+
-    '<path d="M220 330V140H310V330 M235 140V105H295V140 M248 105V84H282V105 M235 175H295 M235 210H295 M235 245H295"/>'+
-    '<path d="M370 330V245L430 190L490 245V330 M390 225V170H470V225 M405 170V140H455V170 M430 140V115"/>'+
-    '<path d="M560 330V95H650V330 M575 95V65H635V95 M590 65V42H620V65 M575 145H635 M575 190H635 M575 235H635"/>'+
-    '<path d="M730 330V205H820V330 M748 205V160H802V205 M760 160V130H790V160 M748 245H802"/>'+
-    '<path d="M900 330V130H990V330 M915 130V95H975V130 M930 95V68H960V95 M915 180H975 M915 225H975"/>'+
-    '<path d="M1080 330V225L1140 175L1200 225V330 M1098 208V155H1182V208 M1115 155V125H1165V155"/>'+
-    '<path d="M1270 330V165H1350V330 M1285 165V130H1335V165 M1300 130V105H1320V130 M1285 210H1335 M1285 255H1335"/>'+
-    '<path d="M0 300C180 275 250 320 420 292S700 280 860 300S1190 270 1440 298" stroke="#b88719" stroke-opacity=".35"/>'+
-    '</svg>';
-  const overlay = document.createElement('div');
-  overlay.className = 'pravi-intro';
-  overlay.setAttribute('role','presentation');
-  overlay.innerHTML = '<div class="pravi-intro__wash"></div><div class="pravi-intro__grid"></div>'+
-    '<svg class="pravi-intro__contours" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'+contourPaths+'</svg>'+
-    skyline+'<div class="pravi-intro__orbit"></div>'+
-    '<svg class="pravi-intro__doodle" viewBox="0 0 800 420" aria-hidden="true"><circle cx="400" cy="210" r="178"/><circle cx="400" cy="210" r="155"/><path d="M160 210c42-92 112-143 240-148M520 62l-8 24 25-7M640 210c-42 92-112 143-240 148M280 350l8-24-25 7"/></svg>'+
-    '<div class="pravi-intro__brush"></div><i class="pravi-intro__spark" style="left:22%;top:31%"></i>'+
-    '<i class="pravi-intro__spark" style="right:19%;top:62%;animation-delay:3.1s"></i>'+
-    '<p class="pravi-intro__caption">BUSINESS ADVISORS <span>·</span> FINANCE <span>·</span> GROWTH</p>';
-  const logo = brand.cloneNode(true);
-  logo.className = 'pravi-intro__logo';
-  logo.removeAttribute('id');
-  logo.setAttribute('alt','');
-  logo.setAttribute('aria-hidden','true');
-  overlay.appendChild(logo);
+  const overlay=document.createElement('div');
+  overlay.className='pravi-intro';
+  overlay.innerHTML='<svg class="pravi-intro__field" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'+paths+'</svg>'+
+    '<div class="pravi-intro__glow"></div>'+
+    '<svg class="pravi-intro__goldline" viewBox="0 0 900 360" aria-hidden="true"><path d="M72 185 C180 30 330 20 450 28 C650 38 790 100 830 178 C780 270 650 320 450 326 C260 330 120 270 72 185Z"/></svg>'+
+    '<svg class="pravi-intro__mark" viewBox="0 0 640 225" role="img" aria-label="PRAVI Business Advisors LLP">'+
+    '<defs><clipPath id="praviWordReveal"><rect x="0" y="0" width="640" height="115"/></clipPath></defs>'+
+    '<text class="word" x="8" y="99" fill="#1F2A2E" font-family="Poppins,Arial,sans-serif" font-size="92" font-weight="700" letter-spacing="-5">pravı</text>'+
+    '<circle class="dot" cx="194" cy="29" r="10.5" fill="#F6D365"/>'+
+    '<text class="tag" x="9" y="166" fill="#1F2A2E" font-family="Poppins,Arial,sans-serif" font-size="15" font-weight="600" letter-spacing="3.1">BUSINESS ADVISORS LLP</text>'+
+    '<path class="rule" d="M9 190h55" stroke="#F6D365" stroke-width="2.5"/>'+
+    '<text class="tag" x="78" y="200" fill="#B88719" font-family="Poppins,Arial,sans-serif" font-size="22" font-weight="600">लेखा  |  अर्थ  |  वृद्धि</text>'+
+    '<path class="rule" d="M260 190h55" stroke="#F6D365" stroke-width="2.5"/></svg>'+
+    '<p class="pravi-intro__signature">BUSINESS ADVISORS <span>·</span> FINANCE <span>·</span> GROWTH</p>';
   document.body.appendChild(overlay);
-  const oldVisibility = brand.style.visibility;
-  brand.style.visibility = 'hidden';
-  let finished = false;
-  const finish = () => {
-    if (finished) return;
-    finished = true;
-    brand.style.visibility = oldVisibility;
-    overlay.remove();
-  };
-  const start = async () => {
-    try { if (logo.decode) await logo.decode(); } catch (_) {}
-    if (!document.body.contains(overlay)) return;
-    const target = brand.getBoundingClientRect();
-    const initialWidth = Math.min(window.innerWidth * (window.innerWidth < 600 ? .94 : .88),760);
-    const initialHeight = initialWidth * 225 / 640;
-    const centerTop = window.innerHeight * (window.innerWidth < 600 ? .42 : .43);
+  const previous=brand.style.visibility;
+  brand.style.visibility='hidden';
+  let done=false;
+  const finish=()=>{if(done)return;done=true;brand.style.visibility=previous;overlay.remove()};
+  const run=()=>{
+    if(!document.body.contains(overlay))return;
+    const rect=brand.getBoundingClientRect();
+    const w=Math.min(innerWidth*(innerWidth<600?.88:.78),680);
+    const mark=overlay.querySelector('.pravi-intro__mark');
     overlay.classList.add('is-playing');
-    logo.animate([
-      {left:'50%',top:centerTop+'px',width:initialWidth+'px',height:initialHeight+'px',transform:'translate(-50%,-50%) scale(.52)',opacity:0,offset:0},
-      {left:'50%',top:centerTop+'px',width:initialWidth+'px',height:initialHeight+'px',transform:'translate(-50%,-50%) scale(1.06)',opacity:1,offset:.22},
-      {left:'50%',top:centerTop+'px',width:initialWidth+'px',height:initialHeight+'px',transform:'translate(-50%,-50%) scale(.98)',opacity:1,offset:.67},
-      {left:(target.left+target.width/2)+'px',top:(target.top+target.height/2)+'px',width:target.width+'px',height:(target.width*225/640)+'px',transform:'translate(-50%,-50%) scale(1)',opacity:1,offset:1}
-    ],{duration:5700,easing:'cubic-bezier(.2,.72,.18,1)',fill:'forwards'});
-    window.setTimeout(()=>{
-      overlay.animate([{opacity:1},{opacity:0}],{duration:650,easing:'ease-out',fill:'forwards'}).onfinish=finish;
-    },5350);
-    window.setTimeout(finish,6200);
+    const anim=mark.animate([
+      {left:'50%',top:(innerHeight*(innerWidth<600?.42:.44))+'px',width:w+'px',transform:'translate(-50%,-50%) scale(.82)',opacity:0,offset:0},
+      {left:'50%',top:(innerHeight*(innerWidth<600?.42:.44))+'px',width:w+'px',transform:'translate(-50%,-50%) scale(1)',opacity:1,offset:.24},
+      {left:'50%',top:(innerHeight*(innerWidth<600?.42:.44))+'px',width:w+'px',transform:'translate(-50%,-50%) scale(1)',opacity:1,offset:.72},
+      {left:(rect.left+rect.width/2)+'px',top:(rect.top+rect.height/2)+'px',width:rect.width+'px',transform:'translate(-50%,-50%) scale(1)',opacity:1,offset:1}
+    ],{duration:4750,easing:'cubic-bezier(.2,.75,.18,1)',fill:'forwards'});
+    anim.onfinish=()=>{overlay.animate([{opacity:1},{opacity:0}],{duration:450,easing:'ease-out',fill:'forwards'}).onfinish=finish};
+    window.setTimeout(finish,5400);
   };
-  requestAnimationFrame(()=>requestAnimationFrame(start));
+  requestAnimationFrame(()=>requestAnimationFrame(run));
 })();
