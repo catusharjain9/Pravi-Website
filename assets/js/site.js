@@ -218,4 +218,33 @@
     card.appendChild(mark);
   });
 
+
+  // PRAVI ink-brush signature motion: a restrained, brand-coloured interpretation
+  // of hand-painted sweeps, splatter and curved particle trails from the supplied reference.
+  // Inline SVG keeps the effect crisp at every viewport and avoids third-party media.
+  const inkSceneMarkup = '<svg viewBox="0 0 760 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">' +
+    '<path class="ink-orbit" d="M170 360C245 82 525 48 650 220c80 110 7 230-100 245" />' +
+    '<path class="ink-brush ink-brush--wide ink-brush--one" pathLength="1" d="M120 335C215 290 242 215 325 205c82-10 116 45 188 4 45-26 73-66 115-98" />' +
+    '<path class="ink-brush ink-brush--mid ink-brush--two" pathLength="1" d="M210 405c88-85 126-95 196-83 57 10 103 46 176 3 35-21 58-51 91-80" />' +
+    '<path class="ink-brush ink-brush--fine ink-brush--three" pathLength="1" d="M160 270c74-70 132-108 209-105 68 3 107 38 161 8 40-22 63-55 92-82" />' +
+    '<g>' +
+      '<circle class="ink-splatter" cx="318" cy="194" r="5" style="--dx:-24px;--dy:-27px"/><circle class="ink-splatter" cx="350" cy="174" r="3" style="--dx:16px;--dy:-32px"/>' +
+      '<circle class="ink-splatter" cx="382" cy="190" r="2.5" style="--dx:28px;--dy:-18px"/><circle class="ink-splatter" cx="405" cy="210" r="4" style="--dx:38px;--dy:12px"/>' +
+      '<circle class="ink-splatter" cx="452" cy="164" r="2" style="--dx:32px;--dy:-26px"/><circle class="ink-splatter" cx="490" cy="151" r="3" style="--dx:40px;--dy:-8px"/>' +
+      '<circle class="ink-splatter" cx="530" cy="120" r="2" style="--dx:26px;--dy:-24px"/><circle class="ink-splatter" cx="270" cy="230" r="2.5" style="--dx:-35px;--dy:12px"/>' +
+      '<circle class="ink-splatter" cx="235" cy="258" r="2" style="--dx:-26px;--dy:28px"/><circle class="ink-splatter" cx="565" cy="245" r="3" style="--dx:24px;--dy:24px"/>' +
+      '<circle class="ink-splatter" cx="610" cy="215" r="2" style="--dx:35px;--dy:8px"/><circle class="ink-splatter" cx="430" cy="330" r="2" style="--dx:12px;--dy:34px"/>' +
+    '</g>' +
+    '<g class="ink-grain"><path d="m570 300 3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="#F5E7C5"/><path d="m180 150 2 6 6 2-6 2-2 6-2-6-6-2 6-2z" fill="#D9B66E"/></g>' +
+  '</svg>';
+  document.querySelectorAll('.hero, .page-hero, .cta-band').forEach((host, index) => {
+    if (host.querySelector(':scope > .pravi-ink-scene')) return;
+    const scene = document.createElement('div');
+    scene.className = 'pravi-ink-scene';
+    scene.setAttribute('aria-hidden', 'true');
+    scene.innerHTML = inkSceneMarkup;
+    scene.style.setProperty('--ink-sequence', String(index));
+    host.insertBefore(scene, host.firstChild);
+  });
+
 })();

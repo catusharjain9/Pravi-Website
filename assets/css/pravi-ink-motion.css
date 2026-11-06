@@ -1,0 +1,52 @@
+/* PRAVI ink-brush motion system — SVG-driven, no external assets or runtime dependencies. */
+.hero,.page-hero,.cta-band{isolation:isolate}
+.pravi-ink-scene{position:absolute;z-index:0;inset:0;overflow:hidden;pointer-events:none;opacity:.82}
+.pravi-ink-scene svg{position:absolute;width:min(72%,900px);height:100%;right:-2%;top:0;overflow:visible}
+.pravi-ink-scene .ink-brush{fill:none;stroke:#D9B66E;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;opacity:0}
+.pravi-ink-scene .ink-brush--wide{stroke-width:17;filter:drop-shadow(0 4px 8px rgba(217,182,110,.18))}
+.pravi-ink-scene .ink-brush--mid{stroke-width:7}
+.pravi-ink-scene .ink-brush--fine{stroke-width:2.2;stroke:#F5E7C5}
+.pravi-ink-scene .ink-splatter{fill:#D9B66E;opacity:0;transform-box:fill-box;transform-origin:center}
+.pravi-ink-scene .ink-orbit{fill:none;stroke:#D9B66E;stroke-width:1.1;stroke-dasharray:2 11;opacity:0}
+.pravi-ink-scene .ink-grain{fill:#F8EEDB;opacity:0}
+.pravi-ink-scene .ink-brush--one{animation:pravi-ink-draw 7.8s cubic-bezier(.55,.08,.28,.98) infinite}
+.pravi-ink-scene .ink-brush--two{animation:pravi-ink-draw 7.8s cubic-bezier(.55,.08,.28,.98) 1.05s infinite}
+.pravi-ink-scene .ink-brush--three{animation:pravi-ink-draw 7.8s cubic-bezier(.55,.08,.28,.98) 2.05s infinite}
+.pravi-ink-scene .ink-orbit{animation:pravi-ink-orbit 7.8s ease-in-out 1.6s infinite}
+.pravi-ink-scene .ink-splatter{animation:pravi-ink-particle 7.8s ease-out infinite}
+.pravi-ink-scene .ink-splatter:nth-of-type(2n){animation-delay:.22s}
+.pravi-ink-scene .ink-splatter:nth-of-type(3n){animation-delay:.48s}
+.pravi-ink-scene .ink-grain{animation:pravi-ink-grain 7.8s ease-in-out 2.4s infinite}
+@keyframes pravi-ink-draw{
+  0%,4%{stroke-dashoffset:1;opacity:0}
+  12%{opacity:.82}
+  31%{stroke-dashoffset:0;opacity:.72}
+  46%{opacity:.26}
+  58%,100%{stroke-dashoffset:0;opacity:0}
+}
+@keyframes pravi-ink-orbit{
+  0%,18%{opacity:0;transform:rotate(-18deg) scale(.88)}
+  35%{opacity:.52}
+  62%{opacity:.24;transform:rotate(22deg) scale(1.04)}
+  78%,100%{opacity:0;transform:rotate(35deg) scale(1.1)}
+}
+@keyframes pravi-ink-particle{
+  0%,12%{opacity:0;transform:translate3d(0,0,0) scale(.35)}
+  24%{opacity:.85}
+  42%{opacity:.55;transform:translate3d(var(--dx,18px),var(--dy,-20px),0) scale(1)}
+  63%,100%{opacity:0;transform:translate3d(calc(var(--dx,18px)*1.6),calc(var(--dy,-20px)*1.6),0) scale(.2)}
+}
+@keyframes pravi-ink-grain{
+  0%,25%{opacity:0;transform:translateX(-18px)}
+  40%{opacity:.45}
+  65%,100%{opacity:0;transform:translateX(22px)}
+}
+@media(max-width:760px){
+  .pravi-ink-scene{opacity:.52}
+  .pravi-ink-scene svg{width:112%;right:-35%;height:100%}
+  .hero .pravi-ink-scene{opacity:.4}
+}
+@media(prefers-reduced-motion:reduce){
+  .pravi-ink-scene{opacity:.18}
+  .pravi-ink-scene .ink-brush,.pravi-ink-scene .ink-splatter,.pravi-ink-scene .ink-orbit,.pravi-ink-scene .ink-grain{animation:none!important;opacity:.45;stroke-dashoffset:0}
+}
