@@ -8,6 +8,7 @@
 .hero-art{isolation:isolate}
 .hero-art>.pravi-contour-field{inset:-8% -12%;z-index:0;opacity:.9}
 .hero-art>.art-window,.hero-art>.hero-dashboard,.hero-art>*:not(.pravi-contour-field){position:relative;z-index:1}
+.section-heading{position:relative}
 .pravi-geometric-accent{position:absolute;right:0;top:-17px;width:86px;height:54px;pointer-events:none;opacity:.48;color:#9A793F}
 .pravi-geometric-accent svg{width:100%;height:100%;overflow:visible}
 .pravi-geometric-accent path,.pravi-geometric-accent rect{fill:none;stroke:currentColor;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:110;stroke-dashoffset:110}
@@ -19,7 +20,7 @@
 .service-layer:hover::before,.journey-card:hover::before,.audience-card:hover::before,.resource-card:hover::before,.insight-card:hover::before{transform:scaleX(1)}
 .pravi-cityline{position:relative;z-index:0;height:clamp(92px,14vw,170px);margin:0 auto -1px;overflow:hidden;pointer-events:none;opacity:.72;color:#B69A68}
 .pravi-cityline svg{position:absolute;inset:auto 0 0;width:100%;height:100%;max-width:none}
-.pravi-cityline .city-drawing{fill:none;stroke:currentColor;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:900;stroke-dashoffset:900;animation:pravi-city-draw 5.5s cubic-bezier(.2,.7,.2,1) .25s forwards}
+.pravi-cityline .city-drawing{fill:none;stroke:currentColor;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:4000;stroke-dashoffset:4000;animation:pravi-city-draw 5.5s cubic-bezier(.2,.7,.2,1) .25s forwards}
 .pravi-cityline .city-hill{fill:rgba(217,182,110,.09);stroke:#C6A66F;stroke-width:1}
 .site-footer{position:relative;overflow:hidden}
 .site-footer>.pravi-cityline{margin-top:0}
