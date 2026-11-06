@@ -39,6 +39,8 @@ jobs:
         run: node --check assets/js/depreciation-calculator.js
       - name: Check currency converter JavaScript syntax
         run: node --check assets/js/currency-converter.js
+      - name: Check shared site JavaScript syntax
+        run: node --check assets/js/site.js
       - name: Test depreciation calculation engine
         run: node scripts/test-depreciation-engine.mjs
       - name: Test currency conversion engine
