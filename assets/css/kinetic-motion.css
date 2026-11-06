@@ -1,0 +1,95 @@
+/* PRAVI homepage kinetic motion graphic — editorial, lightweight and accessible. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-dashboard {
+    position: relative;
+    isolation: isolate;
+    animation: pravi-dashboard-drift 8s ease-in-out infinite;
+    transform-origin: 50% 55%;
+  }
+
+  .hero-dashboard::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -13px;
+    border: 1px solid rgba(117, 90, 18, .24);
+    border-radius: 12px;
+    pointer-events: none;
+    animation: pravi-dashboard-orbit 18s linear infinite;
+  }
+
+  .hero-dashboard::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 150px;
+    height: 150px;
+    right: -38px;
+    top: -42px;
+    border: 1px solid rgba(198, 154, 59, .22);
+    border-radius: 50%;
+    box-shadow: 0 0 0 15px rgba(198, 154, 59, .035), 0 0 0 31px rgba(198, 154, 59, .025);
+    pointer-events: none;
+    animation: pravi-orbit-pulse 6s ease-in-out infinite;
+  }
+
+  .hero-dashboard .dashboard-bars i {
+    transform: scaleY(.22);
+    transform-origin: bottom;
+    animation: pravi-chart-rise 1.15s cubic-bezier(.2, .75, .25, 1) forwards,
+               pravi-chart-breathe 5.8s ease-in-out 1.2s infinite;
+  }
+  .hero-dashboard .dashboard-bars i:nth-child(2) { animation-delay: .10s, 1.3s; }
+  .hero-dashboard .dashboard-bars i:nth-child(3) { animation-delay: .18s, 1.4s; }
+  .hero-dashboard .dashboard-bars i:nth-child(4) { animation-delay: .26s, 1.5s; }
+  .hero-dashboard .dashboard-bars i:nth-child(5) { animation-delay: .34s, 1.6s; }
+  .hero-dashboard .dashboard-bars i:nth-child(6) { animation-delay: .42s, 1.7s; }
+  .hero-dashboard .dashboard-bars i:nth-child(7) { animation-delay: .50s, 1.8s; }
+  .hero-dashboard .dashboard-bars i:nth-child(8) { animation-delay: .58s, 1.9s; }
+
+  .hero-dashboard .dashboard-kpi i {
+    animation: pravi-status-glow 3.2s ease-in-out infinite;
+  }
+  .hero-dashboard .dashboard-kpi:nth-child(2) i { animation-delay: .6s; }
+  .hero-dashboard .dashboard-kpi:nth-child(3) i { animation-delay: 1.2s; }
+}
+
+@keyframes pravi-dashboard-drift {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-7px) rotate(-.25deg); }
+}
+@keyframes pravi-dashboard-orbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes pravi-orbit-pulse {
+  0%, 100% { opacity: .35; transform: scale(.94); }
+  50% { opacity: .8; transform: scale(1.04); }
+}
+@keyframes pravi-chart-rise {
+  to { transform: scaleY(1); }
+}
+@keyframes pravi-chart-breathe {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.16); }
+}
+@keyframes pravi-status-glow {
+  0%, 100% { opacity: .55; box-shadow: 0 0 0 0 rgba(198, 154, 59, 0); }
+  50% { opacity: 1; box-shadow: 0 0 0 5px rgba(198, 154, 59, .12); }
+}
+
+@media (max-width: 760px) {
+  .hero-dashboard { animation-duration: 10s; }
+  .hero-dashboard::after { width: 104px; height: 104px; right: -20px; top: -26px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-dashboard,
+  .hero-dashboard::before,
+  .hero-dashboard::after,
+  .hero-dashboard .dashboard-bars i,
+  .hero-dashboard .dashboard-kpi i {
+    animation: none !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
