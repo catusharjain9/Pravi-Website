@@ -1,6 +1,6 @@
 /* PRAVI ink-brush motion system — SVG-driven, no external assets or runtime dependencies. */
 .hero,.page-hero,.cta-band{isolation:isolate}
-.pravi-ink-scene{position:absolute;z-index:0;inset:0;overflow:hidden;pointer-events:none;opacity:.82}
+.pravi-ink-scene{position:absolute;z-index:2;inset:0;overflow:hidden;pointer-events:none;opacity:.94}
 .pravi-ink-scene svg{position:absolute;width:min(72%,900px);height:100%;right:-2%;top:0;overflow:visible}
 .pravi-ink-scene .ink-brush{fill:none;stroke:#D9B66E;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;opacity:0}
 .pravi-ink-scene .ink-brush--wide{stroke-width:17;filter:drop-shadow(0 4px 8px rgba(217,182,110,.18))}
@@ -41,10 +41,11 @@
   40%{opacity:.45}
   65%,100%{opacity:0;transform:translateX(22px)}
 }
+.hero-inner,.page-hero-inner,.cta-inner{position:relative;z-index:3}
 @media(max-width:760px){
-  .pravi-ink-scene{opacity:.52}
+  .pravi-ink-scene{opacity:.72}
   .pravi-ink-scene svg{width:112%;right:-35%;height:100%}
-  .hero .pravi-ink-scene{opacity:.4}
+  .hero .pravi-ink-scene{opacity:.62}
 }
 @media(prefers-reduced-motion:reduce){
   .pravi-ink-scene{opacity:.18}
