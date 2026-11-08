@@ -1,5 +1,6 @@
 /* PRAVI warm paper texture — subtle, repeatable and shared across every page. */
 @import url("brand-audit-refinement.css");
+@import url("pravi-nextgen.css?v=20261108-hybrid-1");
 html,body{background-color:#FCF9F1}
 body{background-image:url("../img/pravi-paper-texture.svg");background-repeat:repeat;background-size:91px 144px}
 /* Paper texture belongs on neutral editorial surfaces, never on the yellow page masthead. */
