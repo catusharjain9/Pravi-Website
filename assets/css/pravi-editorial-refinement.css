@@ -1,0 +1,161 @@
+/* PRAVI editorial refinement — scoped to the homepage and resources library. */
+.pravi-resources-page .page-hero{
+  position:relative!important;overflow:hidden!important;
+  padding:58px 0 76px!important;
+  background:linear-gradient(112deg,#fff3bd 0%,#fff9e6 58%,#fffdf5 100%)!important;
+}
+.pravi-resources-page .page-hero::after{
+  content:"";position:absolute;width:430px;height:430px;border:1px solid rgba(23,60,51,.12);
+  border-radius:50%;right:-135px;top:-205px;box-shadow:0 0 0 34px rgba(255,255,255,.22),0 0 0 68px rgba(255,255,255,.16);
+  pointer-events:none;
+}
+.pravi-resources-page .page-hero-inner{
+  position:relative;z-index:1;display:grid!important;grid-template-columns:minmax(0,1.18fr) minmax(290px,.82fr);
+  align-items:center;gap:26px 7%;max-width:1180px;
+}
+.pravi-resources-page .breadcrumb{grid-column:1/-1;margin-bottom:12px!important}
+.pravi-resources-page .resources-hero-copy{max-width:720px}
+.pravi-resources-page .resources-hero-copy .eyebrow{margin-bottom:18px!important}
+.pravi-resources-page .resources-hero-copy h1{
+  max-width:760px!important;font-size:clamp(3rem,5.5vw,5.3rem)!important;
+  line-height:.99!important;letter-spacing:-.075em!important;margin:0 0 22px!important;
+}
+.pravi-resources-page .resources-hero-copy>p:last-child{
+  max-width:630px!important;font-size:1rem!important;line-height:1.8!important;color:#5f7167!important;
+}
+.pravi-resources-page .resources-hero-panel{
+  padding:28px 30px 24px;background:rgba(255,255,255,.78);border:1px solid #eadfae;border-radius:4px 22px 22px 22px;
+  box-shadow:0 18px 45px rgba(80,67,25,.07);
+}
+.pravi-resources-page .resources-hero-panel .panel-kicker{font-size:.65rem;letter-spacing:.15em;font-weight:800;color:#927c2d;margin:0 0 12px}
+.pravi-resources-page .resources-hero-panel h2{font-size:1.45rem;line-height:1.12;letter-spacing:-.045em;color:#173c33;margin:0 0 15px}
+.pravi-resources-page .resources-hero-panel a{
+  display:flex;justify-content:space-between;gap:16px;align-items:center;padding:13px 0;
+  border-top:1px solid #eee5c5;color:#285a46;text-decoration:none;font-size:.84rem;font-weight:700;
+}
+.pravi-resources-page .resources-hero-panel a span{color:#9a842f}
+.pravi-resources-page .resources-library{padding-top:82px!important}
+.pravi-resources-page .resources-library>.container{max-width:1180px}
+.pravi-resources-page .resources-library .section-heading{margin-bottom:28px!important}
+.pravi-resources-page .resources-library .section-heading h2{max-width:560px}
+.pravi-resources-page .resources-card-grid{
+  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important;
+  background:none!important;border:0!important;align-items:stretch;
+}
+.pravi-resources-page .resources-card-grid .guide-card{
+  min-height:0!important;padding:25px 25px 24px!important;border:1px solid #e9e2cf!important;
+  border-radius:3px 18px 18px 18px!important;background:#fff!important;
+  box-shadow:0 8px 24px rgba(23,60,51,.035)!important;display:flex!important;flex-direction:column!important;
+}
+.pravi-resources-page .resources-card-grid .guide-card:first-child{
+  grid-column:span 2;grid-row:span 3;min-height:350px!important;padding:34px!important;
+  justify-content:flex-end;background:#fff1b0!important;border-color:#ead88d!important;
+}
+.pravi-resources-page .resources-card-grid .guide-card:first-child h3{
+  max-width:540px;font-size:clamp(1.8rem,3vw,2.65rem)!important;line-height:1.05!important;letter-spacing:-.06em!important;
+}
+.pravi-resources-page .resources-card-grid .guide-card h3,
+.pravi-resources-page .resources-article-grid .insight-card h3{
+  color:#173c33!important;font-weight:750!important;letter-spacing:-.045em!important;
+}
+.pravi-resources-page .resources-card-grid .guide-card p,
+.pravi-resources-page .resources-article-grid .insight-card p{
+  color:#68776b!important;font-size:.87rem!important;line-height:1.7!important;
+}
+.pravi-resources-page .resource-tag{color:#8a792d!important;font-size:.63rem!important;letter-spacing:.13em!important;font-weight:800!important}
+.pravi-resources-page .resources-card-grid .guide-card .text-link{margin-top:auto;padding-top:18px}
+.pravi-resources-page .resources-insights-heading{margin-top:94px!important}
+.pravi-resources-page .resources-article-grid{
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:0 44px!important;
+  border-top:1px solid #e9e2cf!important;background:transparent!important;
+}
+.pravi-resources-page .resources-article-grid .insight-card{
+  min-height:0!important;padding:25px 0 27px!important;border:0!important;border-bottom:1px solid #e9e2cf!important;
+  border-radius:0!important;background:transparent!important;box-shadow:none!important;
+  display:grid!important;grid-template-columns:1fr auto;align-content:start;gap:8px 18px;
+}
+.pravi-resources-page .resources-article-grid .insight-card .resource-tag{grid-column:1/-1}
+.pravi-resources-page .resources-article-grid .insight-card h3{font-size:1.35rem!important;line-height:1.16!important;margin:0!important}
+.pravi-resources-page .resources-article-grid .insight-card p{grid-column:1/-1;margin:2px 0 6px!important}
+.pravi-resources-page .resources-article-grid .insight-card .text-link{grid-column:1/-1}
+.pravi-resources-page .resources-tools-callout{
+  margin-top:72px!important;padding:35px 38px!important;border:1px solid #eadfae!important;border-radius:4px 22px 22px 22px!important;
+  background:#fff5cb!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:30px!important;
+}
+.pravi-resources-page .resources-tools-callout h2{font-size:clamp(1.8rem,3vw,2.65rem)!important;letter-spacing:-.06em!important;color:#173c33!important}
+.pravi-resources-page .resources-tools-callout p:not(.section-kicker){max-width:600px!important;color:#627268!important;line-height:1.7!important}
+.pravi-resources-page .cta-band{margin-top:0!important;border-radius:0!important}
+
+/* Homepage: replace the repeated equal-card rhythm with a more editorial bento layout. */
+.brego-home .brego-service-grid{grid-template-columns:repeat(12,minmax(0,1fr))!important;gap:16px!important}
+.brego-home .brego-service-card{min-height:330px!important;padding:28px!important;border-radius:4px 22px 22px 22px!important}
+.brego-home .brego-service-card:nth-child(1),
+.brego-home .brego-service-card:nth-child(4){grid-column:span 7}
+.brego-home .brego-service-card:nth-child(2),
+.brego-home .brego-service-card:nth-child(3){grid-column:span 5}
+.brego-home .brego-service-card:nth-child(1){background:#fff1b0!important;border-color:#ead88d!important}
+.brego-home .brego-service-card:nth-child(3){background:#f7f6eb!important}
+.brego-home .brego-service-card>i{font-size:2.8rem!important;margin:38px 0 20px!important}
+.brego-home .brego-service-card h3{font-size:clamp(1.7rem,2.5vw,2.25rem)!important;max-width:460px}
+.brego-home .brego-service-card p{max-width:470px!important;font-size:.9rem!important}
+.brego-home .brego-audience-grid{gap:0!important;border-top:1px solid #e8dca9;border-bottom:1px solid #e8dca9}
+.brego-home .brego-audience-grid article{
+  min-height:0!important;padding:26px 28px 28px!important;border:0!important;border-right:1px solid #e8dca9!important;
+  border-radius:0!important;background:transparent!important;overflow:visible!important;
+}
+.brego-home .brego-audience-grid article:first-child{padding-left:0!important}
+.brego-home .brego-audience-grid article:last-child{border-right:0!important;padding-right:0!important}
+.brego-home .brego-audience-grid article img{height:118px!important;object-position:left center!important;margin:8px 0 17px!important}
+.brego-home .brego-audience-grid h3{font-size:1.55rem!important;line-height:1.1!important;letter-spacing:-.05em!important}
+.brego-home .brego-difference-art{border-radius:4px 28px 28px 28px!important}
+.brego-home .brego-process-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;border:0!important;border-top:1px solid #e8dca9!important;border-bottom:1px solid #e8dca9!important;border-radius:0!important;background:transparent!important;gap:0!important}
+.brego-home .brego-process-grid article{padding:28px 30px!important;min-height:180px!important;background:transparent!important;border-right:1px solid #e8dca9!important}
+.brego-home .brego-process-grid article:first-child{padding-left:0!important}
+.brego-home .brego-process-grid article:last-child{border-right:0!important;padding-right:0!important}
+.brego-home .brego-insight-links{grid-template-columns:1fr!important;gap:0!important;border-top:1px solid #e9e2cf!important}
+.brego-home .brego-insight-links a{
+  min-height:0!important;display:grid!important;grid-template-columns:minmax(130px,.38fr) 1fr auto!important;align-items:center!important;
+  gap:22px!important;padding:22px 4px!important;border:0!important;border-bottom:1px solid #e9e2cf!important;
+  border-radius:0!important;background:transparent!important;
+}
+.brego-home .brego-insight-links strong{font-size:1.2rem!important}
+.brego-home .brego-insight-links b{margin:0!important;white-space:nowrap}
+.brego-home .brego-final-cta{background:#fff0a8!important}
+@media(max-width:1000px){
+  .brego-home .brego-service-card:nth-child(n){grid-column:span 6}
+  .pravi-resources-page .resources-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .pravi-resources-page .resources-card-grid .guide-card:first-child{grid-column:span 2;grid-row:auto;min-height:260px!important}
+}
+@media(max-width:720px){
+  .pravi-resources-page .page-hero{padding:35px 0 48px!important}
+  .pravi-resources-page .page-hero-inner{grid-template-columns:1fr!important;gap:22px!important}
+  .pravi-resources-page .breadcrumb{grid-column:1!important}
+  .pravi-resources-page .resources-hero-copy h1{font-size:clamp(2.8rem,12vw,4rem)!important}
+  .pravi-resources-page .resources-hero-panel{padding:23px!important}
+  .pravi-resources-page .resources-library{padding-top:56px!important}
+  .pravi-resources-page .resources-card-grid{grid-template-columns:1fr!important}
+  .pravi-resources-page .resources-card-grid .guide-card:first-child{grid-column:auto;min-height:0!important;padding:26px!important}
+  .pravi-resources-page .resources-insights-heading{margin-top:62px!important}
+  .pravi-resources-page .resources-article-grid{grid-template-columns:1fr!important;gap:0!important}
+  .pravi-resources-page .resources-tools-callout{align-items:flex-start!important;flex-direction:column!important;padding:25px!important;margin-top:48px!important}
+  .pravi-resources-page .resources-tools-callout .btn{width:100%!important}
+  .brego-home .brego-service-grid{grid-template-columns:1fr!important}
+  .brego-home .brego-service-card:nth-child(n){grid-column:auto;min-height:0!important;padding:25px!important}
+  .brego-home .brego-service-card>i{margin:24px 0 16px!important}
+  .brego-home .brego-audience-grid{grid-template-columns:1fr!important}
+  .brego-home .brego-audience-grid article,
+  .brego-home .brego-audience-grid article:first-child,
+  .brego-home .brego-audience-grid article:last-child{padding:24px 0!important;border-right:0!important;border-bottom:1px solid #e8dca9!important}
+  .brego-home .brego-audience-grid article:last-child{border-bottom:0!important}
+  .brego-home .brego-process-grid{grid-template-columns:1fr!important}
+  .brego-home .brego-process-grid article,
+  .brego-home .brego-process-grid article:first-child,
+  .brego-home .brego-process-grid article:last-child{padding:23px 0!important;border-right:0!important;border-bottom:1px solid #e8dca9!important;min-height:0!important}
+  .brego-home .brego-process-grid article:last-child{border-bottom:0!important}
+  .brego-home .brego-insight-links a{grid-template-columns:1fr auto!important;gap:8px 16px!important}
+  .brego-home .brego-insight-links small{grid-column:1/-1}
+  .brego-home .brego-insight-links strong{font-size:1.08rem!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .brego-home .brego-service-card{transition:none!important}
+}
