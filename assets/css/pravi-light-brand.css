@@ -115,3 +115,17 @@ body{background:var(--pravi-cream)!important;color:var(--pravi-ink)!important}
  .cta-band{margin:16px 10px!important;border-radius:18px!important}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}.hero-dashboard,.quick-start-card,.btn{transition:none!important;transform:none!important}}
+
+/* Tools hub: align its shell with the light brand while leaving calculators and controls intact. */
+.hero-tools{background:#fff0a8!important;color:#173c33!important;border-bottom:1px solid #f0df91!important}
+.hero-tools h1{color:#173c33!important;font-weight:750!important;letter-spacing:-.065em!important}
+.hero-tools p{color:#5e7067!important}
+.tool-card{border:1px solid #eee7cf!important;border-radius:18px!important;box-shadow:0 8px 24px rgba(23,60,51,.045)!important}
+.tool-card:hover{border-color:#e5d48b!important;box-shadow:0 14px 30px rgba(23,60,51,.08)!important}
+.tool-icon{background:#fff4c5!important;color:#6e6128!important}
+.tool-label{color:#8a792d!important}
+.card-link{color:#285a46!important}
+.utility-section{background:#fff8dc!important;border:1px solid #efe4b7!important;border-radius:18px!important}
+.utility-links button{border-color:#eee4bf!important;border-radius:12px!important;color:#285a46!important}
+.panel{border-color:#eee7cf!important;border-radius:16px!important}
+.site-footer{background:#fffdf5!important;border-top:1px solid #eee7cf!important}
