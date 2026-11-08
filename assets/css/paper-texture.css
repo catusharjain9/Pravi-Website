@@ -3,9 +3,8 @@
 @import url("pravi-nextgen.css?v=20261108-hybrid-1");
 @import url("pravi-boutique.css?v=20261108-boutique-1");
 @import url("pravi-light-brand.css?v=20261108-light-yellow-1");
-@import url("pravi-editorial-refinement.css?v=20261108-editorial-1");
+@import url("pravi-editorial-refinement.css?v=20261108-editorial-2");
 html,body{background-color:#FCF9F1}
 body{background-image:url("../img/pravi-paper-texture.svg");background-repeat:repeat;background-size:91px 144px}
-/* Paper texture belongs on neutral editorial surfaces, never on the yellow page masthead. */
 .about-process,.audience-item{background-color:#FCF9F1;background-image:url("../img/pravi-paper-texture.svg");background-repeat:repeat;background-size:91px 144px}
 .site-header{background-color:rgba(252,249,241,.96)}

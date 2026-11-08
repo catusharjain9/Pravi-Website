@@ -159,3 +159,5 @@
 @media(prefers-reduced-motion:reduce){
   .brego-home .brego-service-card{transition:none!important}
 }
+
+@media(max-width:720px){.pravi-resources-page .resources-card-grid .guide-card:first-child{grid-row:auto!important}}
