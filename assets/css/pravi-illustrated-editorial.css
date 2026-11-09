@@ -1,0 +1,26 @@
+/* Illustrated editorial direction — PRAVI visual storytelling system */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+:root{--pravi-editorial-ink:#173c35;--pravi-editorial-gold:#f2cb68;--pravi-editorial-rust:#b94c32}
+.brego-home .brego-hero{background:#fbf5e7!important}
+.brego-home .brego-hero h1,.brego-home .brego-section-head h2,.brego-home .brego-final-cta h2{font-family:'DM Serif Display',Georgia,serif!important;font-weight:400!important;letter-spacing:-.035em!important}
+.brego-home .brego-hero h1{font-size:clamp(3.2rem,6.5vw,6.4rem)!important;line-height:.98!important}
+.brego-home .brego-eyebrow{letter-spacing:.17em!important}
+.pravi-story-feature{position:relative;isolation:isolate;overflow:hidden;background:#103c35;color:#fff8e8;min-height:590px;display:grid;grid-template-columns:minmax(300px,.78fr) minmax(0,1.22fr)}
+.pravi-story-copy{padding:clamp(38px,6vw,92px) clamp(26px,6vw,90px);display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
+.pravi-story-kicker{font-size:.72rem;letter-spacing:.2em;font-weight:800;color:#f2cb68}
+.pravi-story-copy h2{font:400 clamp(2.8rem,5.5vw,5.8rem)/.98 'DM Serif Display',Georgia,serif;color:#fff4d8;letter-spacing:-.035em;margin:22px 0}
+.pravi-story-copy p{max-width:430px;color:#e5e0cf;font-size:1rem;line-height:1.85}
+.pravi-story-copy a{display:inline-flex;align-items:center;gap:12px;color:#f4d477;font-weight:800;margin-top:20px}
+.pravi-story-art{min-height:590px;background:#123d35}
+.pravi-story-art img{width:100%;height:100%;min-height:590px;object-fit:cover;display:block}
+.pravi-story-index{position:absolute;right:26px;top:24px;color:#f5d16e;font:italic 1.1rem Georgia,serif;z-index:3}
+.brego-service-card{border-radius:2px!important;position:relative;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease}
+.brego-service-card:hover{transform:translateY(-5px);box-shadow:0 22px 45px #173c351c}
+.brego-service-card h3{font-family:'DM Serif Display',Georgia,serif!important;font-weight:400!important;font-size:clamp(1.8rem,2.8vw,2.55rem)!important;line-height:1.03!important}
+.brego-audience article{border-top:3px solid #d6ad47!important;padding-top:24px!important}
+.brego-audience article img{width:100%;height:220px;object-fit:cover;background:#f0dfb1}
+.brego-insight-links>a{border-radius:0!important;border-top:4px solid #173c35!important;background:#f8edcf!important;min-height:260px}
+.brego-insight-links>a strong{font:400 clamp(1.7rem,2.5vw,2.35rem)/1.08 'DM Serif Display',Georgia,serif!important}
+.brego-final-cta{background:#f1d477!important}
+@media(max-width:800px){.pravi-story-feature{grid-template-columns:1fr;min-height:unset}.pravi-story-copy{padding:42px 26px 30px}.pravi-story-copy h2{font-size:clamp(2.7rem,12vw,4.3rem)}.pravi-story-art,.pravi-story-art img{min-height:320px;height:320px}.pravi-story-index{top:auto;bottom:335px}.brego-home .brego-hero h1{font-size:clamp(3rem,13vw,4.4rem)!important}.brego-audience article img{height:190px}}
+@media(prefers-reduced-motion:reduce){.brego-service-card{transition:none!important}.brego-service-card:hover{transform:none}}
