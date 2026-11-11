@@ -447,7 +447,7 @@ body .tool-card .tool-icon{display:grid!important;place-items:center!important;w
 
 
 /* Pin the hero overlay card to the exact white token, overriding old card-fill rules. */
-html body.brego-home.pravi-homepage .brego-hero .brego-hero-grid .brego-hero-visual .brego-float-card{
+html body .brego-home.pravi-homepage .brego-hero .brego-hero-grid .brego-hero-visual .brego-float-card{
   background:#FFFFFF!important;
   background-color:#FFFFFF!important;
   background-image:none!important;
