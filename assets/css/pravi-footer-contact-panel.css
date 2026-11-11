@@ -1,86 +1,17 @@
-/* PRAVI footer contact panel — warm orange reference treatment */
-.site-footer .footer-main>div:last-child{
-  position:relative!important;
-  isolation:isolate!important;
-  overflow:hidden!important;
-  align-self:stretch!important;
-  padding:28px 25px 25px!important;
-  margin-top:-10px!important;
-  background:#E77B08!important;
-  color:#FFF8E9!important;
-  border:1px solid rgba(119,63,7,.18)!important;
-  box-shadow:0 12px 28px rgba(110,66,14,.09)!important;
-}
-.site-footer .footer-main>div:last-child::before{
-  content:"PRAVI"!important;
-  position:absolute!important;
-  z-index:-1!important;
-  top:-13px!important;
-  right:-7px!important;
-  color:rgba(255,248,233,.14)!important;
-  font-family:'DM Serif Display',Georgia,serif!important;
-  font-size:clamp(3.5rem,6vw,5.5rem)!important;
-  line-height:1!important;
-  letter-spacing:-.07em!important;
-  pointer-events:none!important;
-}
-.site-footer .footer-main>div:last-child .footer-title{
-  margin:0 0 23px!important;
-  color:#FFF8E9!important;
-  font-family:'DM Serif Display',Georgia,serif!important;
-  font-size:1.65rem!important;
-  font-weight:400!important;
-  letter-spacing:-.02em!important;
-  line-height:1.1!important;
-  text-transform:none!important;
-}
+/* PRAVI footer contact panel — reference layout, PRAVI brand palette */
+.site-footer .footer-main>div:last-child{position:relative!important;isolation:isolate!important;overflow:hidden!important;align-self:stretch!important;padding:28px 25px 25px!important;margin-top:-10px!important;background:#FFF1D0!important;color:#173C35!important;border:1px solid #E6D7AA!important;box-shadow:0 12px 28px rgba(31,42,46,.055)!important}
+.site-footer .footer-main>div:last-child::before{content:""!important;position:absolute!important;z-index:-1!important;top:18px!important;right:18px!important;width:72px!important;height:72px!important;border:1px solid rgba(23,60,53,.12)!important;border-radius:50%!important;box-shadow:0 0 0 9px rgba(23,60,53,.035),0 0 0 18px rgba(23,60,53,.025)!important;pointer-events:none!important}
+.site-footer .footer-main>div:last-child .footer-title{margin:0 0 23px!important;color:#173C35!important;font-family:'DM Serif Display',Georgia,serif!important;font-size:1.65rem!important;font-weight:400!important;letter-spacing:-.02em!important;line-height:1.1!important;text-transform:none!important}
 .site-footer .footer-main>div:last-child .footer-links{gap:15px!important}
 .site-footer .footer-main>div:last-child .footer-links li{min-width:0!important}
-.site-footer .footer-main>div:last-child .footer-links a{
-  display:flex!important;
-  align-items:center!important;
-  gap:13px!important;
-  min-width:0!important;
-  color:#FFF8E9!important;
-  font-size:.88rem!important;
-  font-weight:600!important;
-  line-height:1.5!important;
-  overflow-wrap:anywhere!important;
-  text-decoration:none!important;
-}
-.site-footer .footer-main>div:last-child .footer-links a::before{
-  display:grid!important;
-  flex:0 0 34px!important;
-  width:34px!important;
-  height:34px!important;
-  place-items:center!important;
-  border-radius:50%!important;
-  background:rgba(255,248,233,.17)!important;
-  color:#FFF8E9!important;
-  font-family:Arial,sans-serif!important;
-  font-size:1.05rem!important;
-  font-weight:700!important;
-  line-height:1!important;
-}
+.site-footer .footer-main>div:last-child .footer-links a{display:flex!important;align-items:center!important;gap:13px!important;min-width:0!important;color:#29483F!important;font-size:.88rem!important;font-weight:600!important;line-height:1.5!important;overflow-wrap:anywhere!important;text-decoration:none!important}
+.site-footer .footer-main>div:last-child .footer-links a::before{display:grid!important;flex:0 0 34px!important;width:34px!important;height:34px!important;place-items:center!important;border-radius:50%!important;background:#173C35!important;color:#FFF8E9!important;font-family:Arial,sans-serif!important;font-size:1.05rem!important;font-weight:700!important;line-height:1!important}
 .site-footer .footer-main>div:last-child .footer-links a[href^="mailto:"]::before{content:"✉"!important}
 .site-footer .footer-main>div:last-child .footer-links a[href^="tel:"]::before{content:"☎"!important}
 .site-footer .footer-main>div:last-child .footer-links a[href*="wa.me"]::before{content:"◉"!important}
 .site-footer .footer-main>div:last-child .footer-links a[href*="contact.html"]::before{content:"↗"!important}
 .site-footer .footer-main>div:last-child .footer-links a[href*="instagram.com"]::before{content:"◎"!important}
 .site-footer .footer-main>div:last-child .footer-links a[href*="linkedin.com"]::before{content:"in"!important;font-size:.9rem!important}
-.site-footer .footer-main>div:last-child .footer-links a:hover{
-  color:#FFFFFF!important;
-  text-decoration:underline!important;
-  text-decoration-color:rgba(255,248,233,.8)!important;
-  text-underline-offset:4px!important;
-}
-@media(max-width:820px){
-  .site-footer .footer-main>div:last-child{margin-top:0!important;padding:24px 20px!important}
-}
-@media(max-width:520px){
-  .site-footer .footer-main>div:last-child{padding:21px 16px!important}
-  .site-footer .footer-main>div:last-child .footer-title{font-size:1.45rem!important;margin-bottom:18px!important}
-  .site-footer .footer-main>div:last-child .footer-links{gap:13px!important}
-  .site-footer .footer-main>div:last-child .footer-links a{font-size:.78rem!important;gap:9px!important}
-  .site-footer .footer-main>div:last-child .footer-links a::before{flex-basis:30px!important;width:30px!important;height:30px!important}
-}
+.site-footer .footer-main>div:last-child .footer-links a:hover{color:#80631F!important;text-decoration:underline!important;text-decoration-color:#C69A3B!important;text-underline-offset:4px!important}
+@media(max-width:820px){.site-footer .footer-main>div:last-child{margin-top:0!important;padding:24px 20px!important}}
+@media(max-width:520px){.site-footer .footer-main>div:last-child{padding:21px 16px!important}.site-footer .footer-main>div:last-child .footer-title{font-size:1.45rem!important;margin-bottom:18px!important}.site-footer .footer-main>div:last-child .footer-links{gap:13px!important}.site-footer .footer-main>div:last-child .footer-links a{font-size:.78rem!important;gap:9px!important}.site-footer .footer-main>div:last-child .footer-links a::before{flex-basis:30px!important;width:30px!important;height:30px!important}}
