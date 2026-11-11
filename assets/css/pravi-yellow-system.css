@@ -417,3 +417,30 @@ body .tool-card .tool-icon{display:grid!important;place-items:center!important;w
   .site-header .menu-toggle{display:none!important}
   .site-header .primary-nav{display:flex!important;position:static!important}
 }
+
+/* High-specificity fixes for legacy nested components that used their own colour rules. */
+.site-header,.site-header .header-inner,.site-header .brand,.site-header .nav-actions,
+.site-header .primary-nav,.site-header .primary-nav .nav-link,
+.site-header .primary-nav .nav-link[aria-current=page],
+.site-header .primary-nav .nav-link:hover{color:#303030!important}
+.site-header .primary-nav .nav-link::after{background:#FFE000!important}
+.site-footer,.site-footer .footer-main,.site-footer .footer-brand,
+.site-footer .footer-description,.site-footer .footer-title,.site-footer .footer-links,
+.site-footer .footer-links a,.site-footer .footer-bottom,.site-footer .footer-bottom *{color:#303030!important}
+.site-footer .footer-cta,.site-footer .footer-cta *{color:#303030!important}
+.site-footer .footer-cta .footer-cta-button,
+.site-footer .footer-cta .footer-cta-button *{background:#303030!important;color:#FFFFFF!important;border-color:#303030!important}
+.brego-home.pravi-homepage .brego-float-card{background:#FFFFFF!important;color:#303030!important;border-color:rgba(48,48,48,.18)!important}
+.brego-home.pravi-homepage .brego-float-card *{color:#303030!important}
+.brego-home.pravi-homepage .brego-service-grid .brego-service-card{
+ background:#FFFFFF!important;color:#303030!important;border-color:rgba(48,48,48,.18)!important;
+}
+.brego-home.pravi-homepage .brego-service-grid .brego-service-card *{color:#303030!important}
+.brego-home.pravi-homepage .brego-service-grid .brego-service-card i,
+.brego-home.pravi-homepage .brego-service-grid .brego-service-card .icon{
+ background:#FFE000!important;color:#303030!important}
+.brego-home.pravi-homepage .pravi-discovery-card{background:#FFFFFF!important;color:#303030!important}
+.brego-home.pravi-homepage .pravi-discovery-card *{color:#303030!important}
+.brego-home.pravi-homepage .pravi-discovery-card.pravi-discovery-yellow{background:#FFE000!important;border-color:#FFE000!important}
+.brego-home.pravi-homepage .pravi-discovery-card .btn-dark,
+.brego-home.pravi-homepage .pravi-discovery-card .btn-dark *{background:#303030!important;color:#FFFFFF!important;border-color:#303030!important}
