@@ -20,7 +20,7 @@
     });
     nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
     document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeMenu(); toggle.focus(); } });
-    window.addEventListener('resize', () => { if (window.innerWidth > 820) closeMenu(); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 1100) closeMenu(); });
   }
   document.querySelectorAll('[data-year]').forEach(node => node.textContent = String(new Date().getFullYear()));
 
