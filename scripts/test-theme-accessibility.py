@@ -33,6 +33,8 @@ if "prefers-reduced-motion" not in style and "prefers-reduced-motion" not in the
     fail("reduced-motion support is missing")
 if "max-width:1100px" not in style and "max-width:1100px" not in theme:
     fail("tablet navigation breakpoint is missing")
+if "window.innerWidth > 1100" not in (ROOT / "assets/js/site.js").read_text(encoding="utf-8"):
+    fail("responsive menu close behavior must match the 1100px breakpoint")
 
 def luminance(hex_color):
     rgb = [int(hex_color[i:i+2], 16) / 255 for i in (1, 3, 5)]
@@ -58,12 +60,30 @@ if len(pages) < 30:
     fail(f"expected at least 30 root HTML pages, found {len(pages)}")
 for page in pages:
     html = page.read_text(encoding="utf-8")
+    head = html.split("</head>", 1)[0]
     for ref in ("assets/css/style.css", "assets/css/paper-texture.css", "assets/css/pravi-yellow-system.css", "assets/img/pravi-logo.svg"):
         if ref not in html:
             fail(f"{page.name} does not load required site asset: {ref}")
     if "<title>" not in html.lower():
         fail(f"{page.name} is missing a document title")
-    if 'name="theme-color"' in html and 'content="#FFFFFF"' not in html:
-        fail(f"{page.name} browser theme colour is not pure white")
+
+    # The three-colour layer must be the final stylesheet, after page-local CSS.
+    links = []
+    for match in re.finditer(r"<link\\b[^>]*>", head, re.I):
+        tag = match.group(0)
+        if re.search(r'rel=["\\']stylesheet["\\']', tag, re.I) and ".css" in tag.lower():
+            links.append((match.start(), tag))
+    if not links or "pravi-yellow-system.css" not in links[-1][1]:
+        fail(f"{page.name} does not load the final three-colour stylesheet last")
+    theme_position = links[-1][0]
+    if any(match.start() > theme_position for match in re.finditer(r"<style\\b", head, re.I)):
+        fail(f"{page.name} contains inline CSS after the final three-colour stylesheet")
+
+    for match in re.finditer(r"<meta\\b[^>]*>", head, re.I):
+        tag = match.group(0)
+        name = re.search(r'name=["\\']theme-color["\\']', tag, re.I)
+        content = re.search(r'content=["\\']([^"\\']+)["\\']', tag, re.I)
+        if name and content and content.group(1).upper() != "#FFFFFF":
+            fail(f"{page.name} browser theme colour must be pure white")
 print(f"PASS: {len(pages)} pages load shared stylesheets and approved logo.")
 print("PASS: three approved colours, Poppins, focus, responsive and reduced-motion rules.")
