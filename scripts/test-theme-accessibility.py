@@ -1,46 +1,47 @@
 #!/usr/bin/env python3
-"""Regression checks for PRAVI's white / bright-yellow / charcoal design system."""
+"""Regression checks for PRAVI's pure white, bright yellow and charcoal visual system."""
 from pathlib import Path
 import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-CSS_PATH = ROOT / "assets" / "css" / "style.css"
+STYLE = ROOT / "assets/css/style.css"
+THEME = ROOT / "assets/css/pravi-yellow-system.css"
+PAPER = ROOT / "assets/css/paper-texture.css"
 PALETTE = {"white": "#FFFFFF", "yellow": "#FFE000", "charcoal": "#303030"}
 
-def luminance(hex_color: str) -> float:
-    rgb = [int(hex_color[i:i+2], 16) / 255 for i in (1, 3, 5)]
-    linear = [v / 12.92 if v <= 0.04045 else ((v + 0.055) / 1.055) ** 2.4 for v in rgb]
-    return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2]
-
-def contrast(a: str, b: str) -> float:
-    x, y = luminance(a), luminance(b)
-    return (max(x, y) + .05) / (min(x, y) + .05)
-
-def fail(message: str) -> None:
+def fail(message):
     print(f"FAIL: {message}", file=sys.stderr)
     raise SystemExit(1)
 
-if not CSS_PATH.is_file():
-    fail("shared stylesheet is missing")
-css = CSS_PATH.read_text(encoding="utf-8")
-marker = "/* PRAVI three-colour redesign"
-if marker not in css:
-    fail("three-colour redesign layer is missing")
-theme = css[css.index(marker):]
+for file in (STYLE, THEME, PAPER):
+    if not file.is_file():
+        fail(f"missing stylesheet: {file.relative_to(ROOT)}")
 
+style = STYLE.read_text(encoding="utf-8")
+theme = THEME.read_text(encoding="utf-8")
+if "PRAVI three-colour redesign" not in style:
+    fail("shared style marker missing")
 for name, colour in PALETTE.items():
     if colour not in theme:
-        fail(f"approved {name} colour {colour} is missing")
-if not re.search(r'--font:"Poppins"', theme) or not re.search(r'--display:"Poppins"', theme):
-    fail("Poppins must remain the shared body and display font")
-if "assets/img/pravi-logo.svg" not in (ROOT / "index.html").read_text(encoding="utf-8"):
-    fail("approved PRAVI logo asset is missing from the homepage")
-paper_css = (ROOT / "assets/css/paper-texture.css").read_text(encoding="utf-8")
-if "pravi-yellow-system.css" not in paper_css:
-    fail("paper-texture.css must load the three-colour theme after legacy design layers")
-if not (ROOT / "assets/img/pravi-launch-growth.svg").is_file():
-    fail("new brand-aligned homepage illustration is missing")
+        fail(f"approved {name} token missing: {colour}")
+if '"Poppins"' not in theme:
+    fail("Poppins must remain the site display and UI font")
+if ":focus-visible" not in style and ":focus-visible" not in theme:
+    fail("visible keyboard focus styling is missing")
+if "prefers-reduced-motion" not in style and "prefers-reduced-motion" not in theme:
+    fail("reduced-motion support is missing")
+if "max-width:1100px" not in style and "max-width:1100px" not in theme:
+    fail("tablet navigation breakpoint is missing")
+
+def luminance(hex_color):
+    rgb = [int(hex_color[i:i+2], 16) / 255 for i in (1, 3, 5)]
+    vals = [v / 12.92 if v <= .04045 else ((v + .055) / 1.055) ** 2.4 for v in rgb]
+    return .2126 * vals[0] + .7152 * vals[1] + .0722 * vals[2]
+
+def contrast(a, b):
+    x, y = luminance(a), luminance(b)
+    return (max(x, y) + .05) / (min(x, y) + .05)
 
 for foreground, background, label in [
     (PALETTE["charcoal"], PALETTE["white"], "charcoal on white"),
@@ -53,11 +54,16 @@ for foreground, background, label in [
     print(f"PASS: {label} contrast {ratio:.2f}:1")
 
 pages = sorted(ROOT.glob("*.html"))
-if not pages:
-    fail("no HTML pages found")
+if len(pages) < 30:
+    fail(f"expected at least 30 root HTML pages, found {len(pages)}")
 for page in pages:
     html = page.read_text(encoding="utf-8")
-    if not re.search(r'<link\b[^>]*href="assets/css/style\.css(?:\?[^" ]*)?"[^>]*>', html, re.I):
-        fail(f"{page.name} does not load the shared stylesheet")
-print(f"PASS: {len(pages)} HTML pages continue to load the shared design system.")
-print("PASS: Poppins, approved PRAVI logo and three-colour palette are retained.")
+    for ref in ("assets/css/style.css", "assets/css/paper-texture.css", "assets/css/pravi-yellow-system.css", "assets/img/pravi-logo.svg"):
+        if ref not in html:
+            fail(f"{page.name} does not load required site asset: {ref}")
+    if "<title>" not in html.lower():
+        fail(f"{page.name} is missing a document title")
+    if 'name="theme-color"' in html and 'content="#FFFFFF"' not in html:
+        fail(f"{page.name} browser theme colour is not pure white")
+print(f"PASS: {len(pages)} pages load shared stylesheets and approved logo.")
+print("PASS: three approved colours, Poppins, focus, responsive and reduced-motion rules.")
