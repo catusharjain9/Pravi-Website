@@ -9,7 +9,3 @@
 @import url("pravi-light-brand.css?v=20261108-light-yellow-1");
 @import url("pravi-editorial-refinement.css?v=20261108-editorial-2");
 @import url("pravi-yellow-system.css?v=20261111-three-colour-redesign-1");
-html,body{background-color:#FCF9F1}
-body{background-image:url("../img/pravi-paper-texture.svg");background-repeat:repeat;background-size:91px 144px}
-.about-process,.audience-item{background-color:#FCF9F1;background-image:url("../img/pravi-paper-texture.svg");background-repeat:repeat;background-size:91px 144px}
-.site-header{background-color:rgba(252,249,241,.96)}
