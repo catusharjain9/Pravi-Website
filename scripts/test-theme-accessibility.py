@@ -40,10 +40,7 @@ if "max-width:1100px" not in theme:
 if "window.innerWidth > 1100" not in site_js:
     fail("responsive menu close behavior must match the 1100px breakpoint")
 
-imports = re.findall(r"^\s*@import\s+url\([^)]+\)\s*;", paper, re.I | re.M)
-if not imports or "pravi-yellow-system.css" not in imports[-1]:
-    fail("paper-texture.css must import the three-colour theme after every legacy layer")
-
+# The final theme is linked directly and last by every page; verify that below.
 def luminance(hex_color):
     rgb = [int(hex_color[i:i+2], 16) / 255 for i in (1, 3, 5)]
     vals = [v / 12.92 if v <= .04045 else ((v + .055) / 1.055) ** 2.4 for v in rgb]
