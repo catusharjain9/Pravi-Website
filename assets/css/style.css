@@ -9,6 +9,16 @@
   --shadow:0 18px 55px rgba(16,37,61,.09); --shadow-lg:0 28px 78px rgba(5,19,34,.22);
   --radius:4px; --font:"Poppins",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
   --display:"Poppins",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+
+  --pravi-ink:#303030;--pravi-muted:#303030;--pravi-yellow:#FFE000;--pravi-yellow-strong:#FFE000;
+  --pravi-cream:#FFFFFF;--pravi-white:#FFFFFF;--pravi-line:rgba(48,48,48,.16);--pravi-green:#303030;
+  --pravi-ivory:#FFFFFF;--pravi-beige:#FFFFFF;--pravi-charcoal:#303030;--pravi-stone:rgba(48,48,48,.16);
+  --pravi-accent-ink:#303030;--pravi-focus:#303030;--pravi-content-width:1240px;
+  --bh-ink:#303030;--bh-muted:#303030;--bh-yellow:#FFE000;--bh-pale:#FFFFFF;--bh-line:rgba(48,48,48,.16);--bh-green:#303030;
+  --ed-ink:#303030;--ed-paper:#FFFFFF;--ed-red:#303030;--ed-gold:#FFE000;
+  --boutique-ink:#303030;--boutique-muted:#303030;--boutique-paper:#FFFFFF;--boutique-yellow:#FFE000;
+  --boutique-line:rgba(48,48,48,.16);--boutique-dark:#303030;
+  --pravi-editorial-ink:#303030;--pravi-editorial-gold:#FFE000;--pravi-editorial-rust:#303030;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:100px}
@@ -3124,4 +3134,109 @@ hr,.divider{border-color:rgba(48,48,48,.18)!important}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+
+/* Final overrides for imported editorial modules and page-specific workspaces. */
+.container{width:min(1240px,calc(100% - 56px))!important}
+body .brego-home .brego-hero{background:#FFFFFF!important}
+body .brego-home .brego-hero h1,
+body .brego-home .brego-section-head h2,
+body .brego-home .brego-final-cta h2{font-family:"Poppins",ui-sans-serif,system-ui,sans-serif!important;font-weight:700!important;letter-spacing:-.055em!important}
+body .pravi-resources-page .page-hero{background:#FFFFFF!important;background-image:none!important;color:#303030!important}
+body .pravi-resources-page .page-hero::after{border-color:rgba(48,48,48,.16)!important;box-shadow:0 0 0 34px rgba(48,48,48,.035),0 0 0 68px rgba(48,48,48,.02)!important}
+.pravi-resources-page .resources-hero-panel{background:#FFE000!important;border:1px solid #FFE000!important;color:#303030!important}
+.pravi-resources-page .resources-hero-panel h2,.pravi-resources-page .resources-hero-panel a,.pravi-resources-page .resources-hero-panel p{color:#303030!important}
+.pravi-editorial-feature,.pravi-editorial-feature.reverse{background:#FFFFFF!important;color:#303030!important}
+.pravi-editorial-feature-copy,.pravi-story-copy{background:#FFFFFF!important;color:#303030!important}
+.pravi-editorial-feature-copy h2,.pravi-editorial-feature-copy p,.pravi-editorial-feature-copy .feature-index,
+.pravi-story-copy h2,.pravi-story-copy p,.pravi-story-copy .pravi-story-kicker{color:#303030!important}
+.pravi-service-story{background:#FFE000!important;color:#303030!important}
+.pravi-service-story .story-copy,.pravi-service-story .story-art{background:#FFE000!important;color:#303030!important}
+.pravi-service-story .story-copy small,.pravi-service-story .story-copy h2,
+.pravi-service-story .story-copy p,.pravi-service-story .story-copy a{color:#303030!important}
+.pravi-service-story .story-copy a{border-color:#303030!important}
+.pravi-service-story .story-art{background:#FFFFFF!important}
+.pravi-story-feature{background:#FFFFFF!important;color:#303030!important;border-color:rgba(48,48,48,.16)!important}
+.pravi-story-feature h2,.pravi-story-feature p,.pravi-story-feature a{color:#303030!important}
+.about-process,.audience-item{background:#FFFFFF!important;background-image:none!important}
+.pravi-resources-page .resources-library,.pravi-resources-page .resources-hero-copy{background:#FFFFFF!important}
+.pravi-homepage .pravi-hero-specialisms{display:flex;flex-wrap:wrap;gap:8px 12px;margin:0 0 22px;color:#303030!important;font-size:.92rem;font-weight:650}
+.pravi-homepage .pravi-hero-specialisms span{color:#303030!important}
+.pravi-homepage .brego-hero .brego-actions{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 18px}
+.pravi-homepage .brego-hero .brego-actions .btn{min-width:168px}
+.pravi-homepage .brego-trustline{display:flex;align-items:center;gap:9px;font-size:.78rem;letter-spacing:.01em;color:#303030!important}
+.pravi-homepage .brego-trustline>span{width:8px;height:8px;border-radius:50%;background:#FFE000!important;box-shadow:0 0 0 4px rgba(255,224,0,.25)}
+.pravi-homepage .brego-service-grid{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+.pravi-homepage .brego-service-card{min-height:310px!important;padding:24px!important}
+.pravi-homepage .brego-service-card>span{font-size:.66rem!important;letter-spacing:.1em!important}
+.pravi-homepage .brego-service-card h3{font-size:1.22rem!important}
+.pravi-homepage .brego-service-card p{font-size:.88rem!important;line-height:1.65!important}
+.pravi-homepage .brego-audience-grid article{padding:26px!important}
+.pravi-homepage .brego-audience-grid article img{width:100%;max-width:180px;height:135px;object-fit:contain;margin:5px 0 16px}
+.pravi-homepage .pravi-discovery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:28px}
+.pravi-homepage .pravi-discovery-card{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(120px,.85fr);align-items:center;gap:12px;min-height:260px;padding:clamp(22px,3vw,34px);border:1px solid rgba(48,48,48,.18);border-radius:20px;background:#FFFFFF;overflow:hidden}
+.pravi-homepage .pravi-discovery-card.pravi-discovery-yellow{background:#FFE000;border-color:#FFE000}
+.pravi-homepage .pravi-discovery-card .pravi-discovery-copy{min-width:0}
+.pravi-homepage .pravi-discovery-card .pravi-discovery-copy h3{font-size:clamp(1.2rem,1.8vw,1.65rem);line-height:1.18;color:#303030!important;margin:8px 0 10px}
+.pravi-homepage .pravi-discovery-card .pravi-discovery-copy p{color:#303030!important;font-size:.91rem;line-height:1.65}
+.pravi-homepage .pravi-discovery-card .pravi-discovery-copy .brego-eyebrow{font-size:.68rem}
+.pravi-homepage .pravi-discovery-card img{width:100%;max-height:190px;object-fit:contain}
+.pravi-homepage .pravi-insights-more{margin:24px 0 0;text-align:right}
+.pravi-homepage .pravi-insights-more a{color:#303030!important;font-weight:750;text-decoration:underline;text-decoration-color:#FFE000;text-decoration-thickness:3px;text-underline-offset:5px}
+.pravi-homepage .brego-proof-grid>div{padding:16px 14px}
+.pravi-homepage .brego-proof-grid strong{font-size:.93rem}
+.pravi-homepage .brego-proof-grid span{font-size:.78rem;line-height:1.5}
+.pravi-homepage .brego-insight-links{gap:14px}
+.pravi-homepage .brego-insight-links a{padding:24px}
+.pravi-homepage .brego-insight-links a strong{font-size:1.04rem;line-height:1.4}
+.pravi-homepage .brego-final-cta{padding-block:clamp(54px,7vw,82px)}
+.pravi-homepage .brego-final-cta .container{align-items:center}
+.pravi-homepage .brego-final-cta h2{max-width:760px}
+
+/* Financial calculators, trackers and PDF workspace: legibility before decoration. */
+.fx-hero,.dep-hero{background:#FFE000!important;color:#303030!important}
+.fx-hero h1,.fx-hero p,.dep-hero h1,.dep-hero p{color:#303030!important}
+.fx-shell,.dep-shell{background:#FFFFFF!important;border:1px solid rgba(48,48,48,.18)!important;box-shadow:0 8px 24px rgba(48,48,48,.045)!important;border-radius:16px!important}
+.fx-field,.dep-field,.dep-shell h2,.dep-shell h3,.fx-amount,.fx-result-label,.fx-rate,.dep-kpi strong{color:#303030!important}
+.fx-field input,.fx-field select,.dep-field input,.dep-field select,.dep-inline input{background:#FFFFFF!important;border-color:rgba(48,48,48,.24)!important;color:#303030!important}
+.fx-result,.dep-kpi,.dep-note,.dep-warn,.fx-note,.fx-meta span{background:#FFE000!important;border-color:rgba(48,48,48,.18)!important;color:#303030!important}
+.fx-result-label,.fx-amount,.fx-rate,.fx-meta,.fx-note strong,.fx-credit,.fx-credit a,.fx-disclaimer,.fx-disclaimer h2,
+.dep-kpi span,.dep-kpi strong,.dep-status,.dep-small{color:#303030!important}
+.fx-swap,.fx-btn,.dep-btn,.dep-tab[aria-selected=true]{background:#303030!important;border-color:#303030!important;color:#FFFFFF!important}
+.fx-btn.alt,.dep-btn.alt,.dep-tab{background:#FFFFFF!important;border-color:rgba(48,48,48,.22)!important;color:#303030!important}
+.fx-btn:disabled,.dep-btn:disabled{opacity:.55}
+.dep-table th,.dep-table tfoot td,.total-row,.sub-total{background:#FFE000!important;color:#303030!important}
+.dep-table td,.dep-table td input,.dep-table td select{background:#FFFFFF!important;color:#303030!important;border-color:rgba(48,48,48,.16)!important}
+.dep-status.error,.negative,.positive,.status-pill.bad,.status-pill.review{background:#FFE000!important;color:#303030!important}
+.status-pill,.badge,.pill{background:#FFE000!important;color:#303030!important;border:1px solid rgba(48,48,48,.16)!important}
+.status,.alert-box,.ok-box,.warning,.good,.warning-panel,.success-panel{background:#FFE000!important;border:1px solid rgba(48,48,48,.16)!important;color:#303030!important}
+.cms-header{background:#FFE000!important;color:#303030!important;border-color:#303030!important}
+.cms-header a,.cms-header .cms-admin-label{color:#303030!important}
+.cms-button-primary,.btn-work,.btn-work.secondary,.btn-work.tertiary,.btn-work.danger{background:#303030!important;border-color:#303030!important;color:#FFFFFF!important}
+.cms-button,.row-actions button,.official-links a{background:#FFFFFF!important;border-color:rgba(48,48,48,.22)!important;color:#303030!important}
+.metric,.metric strong,.metric span{background:#FFFFFF!important;color:#303030!important}
+.tax-tab[aria-selected=true],.tax-btn,.pdf-btn,.pdf-action{background:#303030!important;border-color:#303030!important;color:#FFFFFF!important}
+.tax-tab,.pdf-tool,.pdf-workspace,.pdf-option,.pdf-dropzone{background:#FFFFFF!important;border-color:rgba(48,48,48,.18)!important;color:#303030!important}
+.pdf-hero{background:#FFE000!important;color:#303030!important}
+.pdf-hero h1,.pdf-hero p,.pdf-hero .eyebrow{color:#303030!important}
+
+/* Responsive layouts for the new homepage modules. */
+@media(max-width:1050px){
+  .pravi-homepage .brego-service-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  .pravi-homepage .pravi-discovery-card{grid-template-columns:1fr;min-height:0}
+  .pravi-homepage .pravi-discovery-card img{max-width:180px;justify-self:end}
+}
+@media(max-width:760px){
+  .pravi-homepage .pravi-discovery-grid{grid-template-columns:1fr}
+  .pravi-homepage .brego-service-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:520px){
+  .container{width:calc(100% - 36px)!important}
+  .pravi-homepage .brego-service-grid{grid-template-columns:1fr!important}
+  .pravi-homepage .brego-service-card{min-height:0!important}
+  .pravi-homepage .pravi-discovery-card{grid-template-columns:1fr!important;padding:23px!important}
+  .pravi-homepage .pravi-discovery-card img{max-width:155px;max-height:125px;justify-self:end}
+  .pravi-homepage .brego-proof-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .pravi-homepage .brego-final-cta .container{align-items:flex-start!important;gap:20px}
 }
