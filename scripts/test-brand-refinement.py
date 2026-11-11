@@ -25,13 +25,12 @@ if len(pages)<30: fail(f"expected at least 30 HTML pages, found {len(pages)}")
 for page in pages:
  html=page.read_text(encoding="utf-8")
  if 'assets/css/paper-texture.css' not in html: fail(f"{page.name}: shared brand stylesheet missing")
+ if 'assets/css/pravi-yellow-system.css' not in html: fail(f"{page.name}: final three-colour stylesheet missing")
  if 'assets/img/pravi-logo.svg' not in html: fail(f"{page.name}: approved logo missing")
  if '<title>' not in html.lower(): fail(f"{page.name}: page title missing")
 for selector in (".btn-main",".btn-work",".run",".pdf-process",".pdf-filter[aria-pressed=\"true\"]",".workspace",".pane",".table-scroll"):
  if selector not in css: fail(f"legacy tool palette override missing: {selector}")
 if ".status,.alert-box,.ok-box,.warning,.good,.warning-panel,.success-panel" not in combined: fail("tool workspaces must retain visible status and alert components")
-imports=[line for line in paper.splitlines() if line.strip().startswith("@import")]
-if not imports or "pravi-yellow-system.css" not in imports[-1]: fail("three-colour theme must load after every legacy design import")
 print(f"PASS: {len(pages)} HTML pages load shared brand CSS and the approved logo.")
 print("PASS: hero mastheads are protected from paper-texture overrides.")
 print("PASS: approved palette, keyboard focus, responsive navigation, table and reduced-motion rules.")
