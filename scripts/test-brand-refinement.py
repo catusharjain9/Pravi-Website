@@ -6,14 +6,16 @@ ROOT=Path(__file__).resolve().parents[1]
 CSS=ROOT/"assets/css/brand-audit-refinement.css"
 PAPER=ROOT/"assets/css/paper-texture.css"
 STYLE=ROOT/"assets/css/style.css"
+YELLOW=ROOT/"assets/css/pravi-yellow-system.css"
 PALETTE=("#FFFFFF","#FFE000","#303030")
 def fail(message):
  print("FAIL:",message,file=sys.stderr); raise SystemExit(1)
-for path in (CSS,PAPER,STYLE):
+for path in (CSS,PAPER,STYLE,YELLOW):
  if not path.is_file(): fail(f"missing required stylesheet: {path.relative_to(ROOT)}")
-css=CSS.read_text(encoding="utf-8"); paper=PAPER.read_text(encoding="utf-8"); style=STYLE.read_text(encoding="utf-8")
+css=CSS.read_text(encoding="utf-8"); paper=PAPER.read_text(encoding="utf-8"); style=STYLE.read_text(encoding="utf-8"); yellow=YELLOW.read_text(encoding="utf-8")
+combined=style+"\\n"+yellow
 for colour in PALETTE:
- if colour.lower() not in css.lower() and colour.lower() not in style.lower(): fail(f"approved palette token missing: {colour}")
+ if colour.lower() not in css.lower() and colour.lower() not in combined.lower(): fail(f"approved palette token missing: {colour}")
 if 'brand-audit-refinement.css' not in paper: fail("paper-texture.css must load the shared refinement layer")
 if '.page-hero' in paper and 'background-image' in paper: fail("paper texture must not overwrite page-hero mastheads")
 for rule in (':focus-visible','prefers-reduced-motion','max-width:1100px','.table-wrap','.site-footer','Noto Sans Devanagari'):
@@ -27,7 +29,9 @@ for page in pages:
  if '<title>' not in html.lower(): fail(f"{page.name}: page title missing")
 for selector in (".btn-main",".btn-work",".run",".pdf-process",".pdf-filter[aria-pressed=\"true\"]",".workspace",".pane",".table-scroll"):
  if selector not in css: fail(f"legacy tool palette override missing: {selector}")
-if ".status,.alert-box,.ok-box,.warning,.good,.warning-panel,.success-panel" not in css: fail("tool workspaces must retain visible status and alert components")
+if ".status,.alert-box,.ok-box,.warning,.good,.warning-panel,.success-panel" not in combined: fail("tool workspaces must retain visible status and alert components")
+imports=[line for line in paper.splitlines() if line.strip().startswith("@import")]
+if not imports or "pravi-yellow-system.css" not in imports[-1]: fail("three-colour theme must load after every legacy design import")
 print(f"PASS: {len(pages)} HTML pages load shared brand CSS and the approved logo.")
 print("PASS: hero mastheads are protected from paper-texture overrides.")
 print("PASS: approved palette, keyboard focus, responsive navigation, table and reduced-motion rules.")
