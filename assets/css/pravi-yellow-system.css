@@ -386,3 +386,34 @@ body .tool-card .tool-icon{display:grid!important;place-items:center!important;w
 @media(max-width:520px){
   .pravi-homepage .brego-hero h1{font-size:clamp(2.35rem,10vw,3rem)!important}
 }
+
+
+/* Tablet navigation: collapse before the six-link header becomes crowded. */
+@media(max-width:1100px){
+  .site-header .header-inner{position:relative!important}
+  .site-header .menu-toggle{display:grid!important;place-items:center!important}
+  .site-header .primary-nav{
+    display:none!important;
+    position:absolute!important;
+    top:calc(100% + 1px)!important;
+    left:0!important;
+    right:0!important;
+    z-index:120!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    gap:4px!important;
+    padding:16px 22px 22px!important;
+    background:#FFFFFF!important;
+    border:1px solid rgba(48,48,48,.16)!important;
+    box-shadow:0 18px 35px rgba(48,48,48,.13)!important;
+  }
+  .site-header .primary-nav.is-open{display:flex!important}
+  .site-header .primary-nav .nav-link{padding:12px 4px!important;color:#303030!important}
+  .site-header .primary-nav .nav-link::after{bottom:4px!important}
+  .site-header .primary-nav .nav-actions{margin-top:10px!important}
+  .site-header .primary-nav .nav-actions .btn{width:100%!important;justify-content:center!important}
+}
+@media(min-width:1101px){
+  .site-header .menu-toggle{display:none!important}
+  .site-header .primary-nav{display:flex!important;position:static!important}
+}
