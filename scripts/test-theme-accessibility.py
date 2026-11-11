@@ -1,99 +1,105 @@
 #!/usr/bin/env python3
-"""Static regression checks for PRAVI's approved warm-light visual identity."""
+"""Regression checks for PRAVI's pure white, bright yellow and charcoal visual system."""
 from pathlib import Path
 import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-CSS_PATH = ROOT / "assets" / "css" / "style.css"
-PALETTE = {
-    "charcoal": "#1F2A2E",
-    "ivory": "#FCF9F1",
-    "white": "#FFFDF9",
-    "beige": "#FFF7E1",
-    "stone": "#D9D2C6",
-    "muted": "#59615F",
-    "accent": "#755A12",
-}
-LEGACY_HERO_CLASSES = (
-    ".tool-hero", ".tax-hero", ".hero-tools", ".pdf-hero",
-    ".notice-hero", ".cms-header", ".page-hero", ".section-dark", ".cta-band",
-)
+STYLE = ROOT / "assets/css/style.css"
+THEME = ROOT / "assets/css/pravi-yellow-system.css"
+PAPER = ROOT / "assets/css/paper-texture.css"
+SITE_JS = ROOT / "assets/js/site.js"
+PALETTE = {"white": "#FFFFFF", "yellow": "#FFE000", "charcoal": "#303030"}
 
-def luminance(hex_color: str) -> float:
-    rgb = [int(hex_color[i:i + 2], 16) / 255 for i in (1, 3, 5)]
-    linear = [v / 12.92 if v <= 0.04045 else ((v + 0.055) / 1.055) ** 2.4 for v in rgb]
-    return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2]
-
-def contrast_ratio(foreground: str, background: str) -> float:
-    a, b = luminance(foreground), luminance(background)
-    return (max(a, b) + 0.05) / (min(a, b) + 0.05)
-
-def fail(message: str) -> None:
+def fail(message):
     print(f"FAIL: {message}", file=sys.stderr)
     raise SystemExit(1)
 
-if not CSS_PATH.is_file():
-    fail("assets/css/style.css is missing")
-css = CSS_PATH.read_text(encoding="utf-8")
+for file in (STYLE, THEME, PAPER, SITE_JS):
+    if not file.is_file():
+        fail(f"missing required design asset: {file.relative_to(ROOT)}")
 
-for colour_name, colour in PALETTE.items():
-    if colour.lower() not in css.lower():
-        fail(f"approved palette colour {colour_name} ({colour}) is missing from the stylesheet")
-if '--font:"Poppins",ui-sans-serif' not in css or '--display:"Poppins",ui-sans-serif' not in css:
-    fail("Poppins is not configured as the common body/display font")
+style = STYLE.read_text(encoding="utf-8")
+theme = THEME.read_text(encoding="utf-8")
+paper = PAPER.read_text(encoding="utf-8")
+site_js = SITE_JS.read_text(encoding="utf-8")
 
-if ".brand" not in css or "pravi-logo.svg" not in css:
-    fail("shared approved PRAVI logo lockup is missing")
+if "PRAVI three-colour redesign" not in style:
+    fail("shared style marker missing")
+for name, colour in PALETTE.items():
+    if colour not in theme:
+        fail(f"approved {name} token missing: {colour}")
+if '"Poppins"' not in theme:
+    fail("Poppins must remain the site display and UI font")
+if ":focus-visible" not in style and ":focus-visible" not in theme:
+    fail("visible keyboard focus styling is missing")
+if "prefers-reduced-motion" not in style and "prefers-reduced-motion" not in theme:
+    fail("reduced-motion support is missing")
+if "max-width:1100px" not in theme:
+    fail("tablet navigation breakpoint is missing")
+if "window.innerWidth > 1100" not in site_js:
+    fail("responsive menu close behavior must match the 1100px breakpoint")
 
-if "PRAVI editorial redesign" not in css:
-    fail("editorial design layer is missing")
-for selector in (".quick-start-grid{", ".service-layer-grid{", ".insights-grid{", ".tool-grid,.grid.tool-grid{"):
-    if selector not in css:
-        fail(f"editorial layout rule {selector} is missing")
-if "border-radius:0!important" not in css or "box-shadow:none!important" not in css:
-    fail("decorative card radius/shadow removal is missing")
+# The final theme is linked directly and last by every page; verify that below.
+def luminance(hex_color):
+    rgb = [int(hex_color[i:i+2], 16) / 255 for i in (1, 3, 5)]
+    vals = [v / 12.92 if v <= .04045 else ((v + .055) / 1.055) ** 2.4 for v in rgb]
+    return .2126 * vals[0] + .7152 * vals[1] + .0722 * vals[2]
 
-for selector in LEGACY_HERO_CLASSES:
-    if selector not in css:
-        fail(f"legacy banner selector {selector} has no shared theme override")
-if "background:#FFF7E1!important;color:#1F2A2E!important" not in css:
-    fail("legacy hero/banner overrides must force a warm-light surface and charcoal text")
+def contrast(a, b):
+    x, y = luminance(a), luminance(b)
+    return (max(x, y) + .05) / (min(x, y) + .05)
+
+for foreground, background, label in [
+    (PALETTE["charcoal"], PALETTE["white"], "charcoal on white"),
+    (PALETTE["charcoal"], PALETTE["yellow"], "charcoal on yellow"),
+    (PALETTE["white"], PALETTE["charcoal"], "white on charcoal"),
+]:
+    ratio = contrast(foreground, background)
+    if ratio < 4.5:
+        fail(f"{label} contrast is {ratio:.2f}:1")
+    print(f"PASS: {label} contrast {ratio:.2f}:1")
 
 pages = sorted(ROOT.glob("*.html"))
-if not pages:
-    fail("no root HTML pages were found")
+if len(pages) < 30:
+    fail(f"expected at least 30 root HTML pages, found {len(pages)}")
 
-missing_stylesheet = []
-missing_brand_lockup = []
 for page in pages:
     html = page.read_text(encoding="utf-8")
-    # Accept any versioned shared stylesheet URL; cache-busting values change per release.
-    if not re.search(r'<link\b[^>]*href="assets/css/style\.css(?:\?[^" ]*)?"[^>]*>', html, re.I):
-        missing_stylesheet.append(page.name)
-if missing_stylesheet:
-    fail("pages not linked to shared stylesheet: " + ", ".join(missing_stylesheet))
-for page in pages:
-    html = page.read_text(encoding="utf-8")
-    if 'class="brand-logo"' not in html or 'assets/img/pravi-logo.svg' not in html:
-        missing_brand_lockup.append(page.name)
-if missing_brand_lockup:
-    fail("pages missing the approved PRAVI logo asset: " + ", ".join(missing_brand_lockup))
+    head = html.split("</head>", 1)[0]
 
-checks = [
-    ("body text on ivory", PALETTE["charcoal"], PALETTE["ivory"]),
-    ("body text on beige", PALETTE["charcoal"], PALETTE["beige"]),
-    ("muted text on white", PALETTE["muted"], PALETTE["white"]),
-    ("muted text on beige", PALETTE["muted"], PALETTE["beige"]),
-    ("accent text on beige", PALETTE["accent"], PALETTE["beige"]),
-    ("white button text on charcoal", PALETTE["ivory"], PALETTE["charcoal"]),
-]
-for label, foreground, background in checks:
-    ratio = contrast_ratio(foreground, background)
-    if ratio < 4.5:
-        fail(f"{label} contrast is {ratio:.2f}:1; minimum required here is 4.5:1")
+    for ref in (
+        "assets/css/style.css",
+        "assets/css/paper-texture.css",
+        "assets/css/pravi-yellow-system.css",
+    ):
+        if ref not in head:
+            fail(f"{page.name} does not load required stylesheet in its head: {ref}")
+    if "assets/img/pravi-logo.svg" not in html:
+        fail(f"{page.name} does not load the approved PRAVI logo: assets/img/pravi-logo.svg")
 
-print(f"PASS: {len(pages)} HTML pages use the shared stylesheet.")
-print(f"PASS: all {len(LEGACY_HERO_CLASSES)} legacy banner classes have shared-theme overrides.")
-for label, foreground, background in checks:
-    print(f"PASS: {label}: {contrast_ratio(foreground, background):.2f}:1")
+    if "<title>" not in html.lower():
+        fail(f"{page.name} is missing a document title")
+
+    # The final palette stylesheet must be the last stylesheet in every page head.
+    stylesheet_links = []
+    for match in re.finditer(r"<link\b[^>]*>", head, re.I):
+        tag = match.group(0)
+        if re.search(r"""rel=["']stylesheet["']""", tag, re.I) and ".css" in tag.lower():
+            stylesheet_links.append((match.start(), tag))
+    if not stylesheet_links or "pravi-yellow-system.css" not in stylesheet_links[-1][1]:
+        fail(f"{page.name} does not load the final three-colour stylesheet last")
+
+    theme_position = stylesheet_links[-1][0]
+    if any(match.start() > theme_position for match in re.finditer(r"<style\b", head, re.I)):
+        fail(f"{page.name} contains inline CSS after the final three-colour stylesheet")
+
+    for match in re.finditer(r"<meta\b[^>]*>", head, re.I):
+        tag = match.group(0)
+        name = re.search(r"""name=["']theme-color["']""", tag, re.I)
+        content = re.search(r"""content=["']([^"']+)["']""", tag, re.I)
+        if name and content and content.group(1).upper() != "#FFFFFF":
+            fail(f"{page.name} browser theme colour must be pure white")
+
+print(f"PASS: {len(pages)} pages load the approved logo and final palette stylesheet.")
+print("PASS: three-colour palette, Poppins, focus, responsive navigation and reduced-motion rules.")

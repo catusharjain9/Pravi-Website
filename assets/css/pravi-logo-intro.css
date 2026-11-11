@@ -1,19 +1,19 @@
 /* PRAVI art-directed brand reveal: one continuous contour-to-wordmark movement */
-.pravi-intro{position:fixed;inset:0;z-index:99999;overflow:hidden;display:grid;place-items:center;background:#fcf9f1;color:#1f2a2e;isolation:isolate;opacity:1}
+.pravi-intro{position:fixed;inset:0;z-index:99999;overflow:hidden;display:grid;place-items:center;background:#FFFFFF;color:#303030;isolation:isolate;opacity:1}
 .pravi-intro[hidden]{display:none}
 .pravi-intro__field{position:absolute;inset:-10%;width:120%;height:120%;z-index:-1;opacity:0;transform:scale(1.08)}
-.pravi-intro__field path{fill:none;stroke:#26343a;stroke-width:1.1;stroke-opacity:.19;vector-effect:non-scaling-stroke;stroke-dasharray:1500;stroke-dashoffset:1500}
-.pravi-intro__field path:nth-child(3n){stroke:#b88719;stroke-opacity:.3;stroke-width:1.35}
-.pravi-intro__glow{position:absolute;width:min(76vw,760px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(226,203,151,.28),rgba(252,249,241,0) 68%);opacity:0;transform:scale(.6)}
+.pravi-intro__field path{fill:none;stroke:#303030;stroke-width:1.1;stroke-opacity:.19;vector-effect:non-scaling-stroke;stroke-dasharray:1500;stroke-dashoffset:1500}
+.pravi-intro__field path:nth-child(3n){stroke:#FFE000;stroke-opacity:.3;stroke-width:1.35}
+.pravi-intro__glow{position:absolute;width:min(76vw,760px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(255,224,0,.15),rgba(255,255,255,0) 68%);opacity:0;transform:scale(.6)}
 .pravi-intro__goldline{position:absolute;width:min(82vw,850px);height:auto;left:50%;top:44%;transform:translate(-50%,-50%);overflow:visible;opacity:0}
-.pravi-intro__goldline path{fill:none;stroke:#bd9137;stroke-width:1.8;stroke-linecap:round;stroke-dasharray:1800;stroke-dashoffset:1800}
+.pravi-intro__goldline path{fill:none;stroke:#FFE000;stroke-width:1.8;stroke-linecap:round;stroke-dasharray:1800;stroke-dashoffset:1800}
 .pravi-intro__mark{position:absolute;left:50%;top:44%;width:min(78vw,680px);height:auto;transform:translate(-50%,-50%) scale(.94);transform-origin:center;opacity:0;filter:drop-shadow(0 16px 24px rgba(31,42,46,.08));will-change:left,top,width,transform,opacity;z-index:2}
 .pravi-intro__mark .word{clip-path:inset(0 100% 0 0);animation:none}
 .pravi-intro__mark .dot{transform-box:fill-box;transform-origin:center;opacity:0}
 .pravi-intro__mark .tag{opacity:0}
 .pravi-intro__mark .rule{stroke-dasharray:55;stroke-dashoffset:55}
-.pravi-intro__signature{position:absolute;left:50%;top:calc(44% + min(18vw,130px));transform:translate(-50%,12px);font:500 clamp(10px,1.15vw,13px)/1.4 Poppins,Arial,sans-serif;letter-spacing:.34em;text-transform:uppercase;color:#69716d;white-space:nowrap;opacity:0}
-.pravi-intro__signature span{color:#b88719}
+.pravi-intro__signature{position:absolute;left:50%;top:calc(44% + min(18vw,130px));transform:translate(-50%,12px);font:500 clamp(10px,1.15vw,13px)/1.4 Poppins,Arial,sans-serif;letter-spacing:.34em;text-transform:uppercase;color:#303030;white-space:nowrap;opacity:0}
+.pravi-intro__signature span{color:#FFE000}
 .pravi-intro.is-playing .pravi-intro__field{animation:pravi-field-enter 4.9s ease-out both}
 .pravi-intro.is-playing .pravi-intro__field path{animation:pravi-lines-draw 3.4s cubic-bezier(.2,.65,.25,1) both,pravi-lines-drift 5.1s ease-in-out both}
 .pravi-intro.is-playing .pravi-intro__glow{animation:pravi-glow 4.8s ease-out both}

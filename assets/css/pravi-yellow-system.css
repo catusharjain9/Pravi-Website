@@ -1,0 +1,459 @@
+/* PRAVI three-colour redesign — white, bright yellow and charcoal only.
+   Shared by every page; preserves existing layout hooks and all tool behaviour. */
+:root{
+  color-scheme:light;
+  --navy:#303030;--navy-2:#303030;--navy-3:#303030;--ink:#303030;
+  --muted:#303030;--soft-muted:#303030;--gold:#FFE000;--gold-light:#FFE000;
+  --paper:#FFFFFF;--white:#FFFFFF;--sand:rgba(48,48,48,.16);--line:rgba(48,48,48,.16);
+  --green:#303030;--green-soft:#FFE000;--red:#303030;
+  --shadow:0 16px 42px rgba(48,48,48,.08);--shadow-lg:0 24px 60px rgba(48,48,48,.14);
+  --radius:14px;--font:"Poppins",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --display:"Poppins",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+
+  --pravi-ink:#303030;--pravi-muted:#303030;--pravi-yellow:#FFE000;--pravi-yellow-strong:#FFE000;
+  --pravi-cream:#FFFFFF;--pravi-white:#FFFFFF;--pravi-line:rgba(48,48,48,.16);--pravi-green:#303030;
+  --pravi-ivory:#FFFFFF;--pravi-beige:#FFFFFF;--pravi-charcoal:#303030;--pravi-stone:rgba(48,48,48,.16);
+  --pravi-accent-ink:#303030;--pravi-focus:#303030;--pravi-content-width:1240px;
+  --bh-ink:#303030;--bh-muted:#303030;--bh-yellow:#FFE000;--bh-pale:#FFFFFF;--bh-line:rgba(48,48,48,.16);--bh-green:#303030;
+  --ed-ink:#303030;--ed-paper:#FFFFFF;--ed-red:#303030;--ed-gold:#FFE000;
+  --boutique-ink:#303030;--boutique-muted:#303030;--boutique-paper:#FFFFFF;--boutique-yellow:#FFE000;
+  --boutique-line:rgba(48,48,48,.16);--boutique-dark:#303030;
+  --pravi-editorial-ink:#303030;--pravi-editorial-gold:#FFE000;--pravi-editorial-rust:#303030;
+}
+html{background:#FFFFFF!important;color:#303030!important}
+body{background:#FFFFFF!important;background-image:none!important;color:#303030!important}
+body::before,body::after{background-image:none!important}
+h1,h2,h3,h4,h5,h6,.section-heading h2,.section-heading h3{color:#303030!important}
+p,li,label,small,dt,dd{color:inherit}
+a{color:inherit}
+:focus-visible{outline:3px solid #FFE000!important;outline-offset:4px}
+::selection{background:#FFE000!important;color:#303030!important}
+
+/* Shared navigation */
+.site-header{background:rgba(255,255,255,.97)!important;background-image:none!important;border-bottom:1px solid rgba(48,48,48,.13)!important;box-shadow:0 4px 18px rgba(48,48,48,.035)!important;backdrop-filter:blur(14px)}
+.header-inner{min-height:82px!important}
+.brand{background-color:transparent!important}
+.brand-logo{filter:none!important}
+.primary-nav{gap:clamp(16px,2.1vw,30px)!important}
+.nav-link{color:#303030!important;font-weight:600!important}
+.nav-link:hover,.nav-link[aria-current=page]{color:#303030!important}
+.nav-link[aria-current=page]::after{height:3px!important;background:#FFE000!important}
+.menu-toggle{border-color:rgba(48,48,48,.28)!important;border-radius:10px!important;background:#FFFFFF!important;color:#303030!important}
+.menu-toggle:hover{background:#FFE000!important}
+.nav-actions .btn,.site-header .nav-actions .btn{background:#FFE000!important;border-color:#FFE000!important;color:#303030!important;box-shadow:0 5px 0 rgba(48,48,48,.10)!important}
+.nav-actions .btn:hover,.site-header .nav-actions .btn:hover{background:#FFE000!important;border-color:#303030!important;color:#303030!important;transform:translateY(-2px)!important}
+
+/* Shared actions and form controls */
+.btn{border-radius:10px!important;font-weight:700!important}
+.btn-primary,.btn-yellow,.button-primary{background:#FFE000!important;border-color:#FFE000!important;color:#303030!important}
+.btn-primary:hover,.btn-yellow:hover,.button-primary:hover{background:#FFE000!important;border-color:#303030!important;color:#303030!important}
+.btn-dark,.btn-secondary-dark{background:#303030!important;border-color:#303030!important;color:#FFFFFF!important}
+.btn-dark:hover,.btn-secondary-dark:hover{background:#303030!important;border-color:#FFE000!important;color:#FFFFFF!important}
+.btn-outline,.btn-outline-light{background:#FFFFFF!important;border-color:#303030!important;color:#303030!important}
+.btn-outline:hover,.btn-outline-light:hover{background:#FFE000!important;border-color:#FFE000!important;color:#303030!important}
+button,input,select,textarea{accent-color:#FFE000}
+input,select,textarea,.form-control{background:#FFFFFF!important;border-color:rgba(48,48,48,.28)!important;color:#303030!important}
+input::placeholder,textarea::placeholder{color:rgba(48,48,48,.62)!important}
+input:focus,select:focus,textarea:focus{border-color:#303030!important;box-shadow:0 0 0 3px rgba(255,224,0,.42)!important;outline:0!important}
+.form-field label,.form-grid label,.contact-form-card label{color:#303030!important}
+.form-error,[data-invalid=true] .form-error{color:#303030!important}
+.form-error::before{color:#303030!important}
+
+/* Replace legacy dark/green/cream hero bands with the three-colour system. */
+.page-hero,.brego-hero,.hero,.hero-home,.hero-section,.service-hero,.contact-hero,
+.pravi-page-hero,.pravi-editorial-hero{background:#FFFFFF!important;background-image:none!important;color:#303030!important}
+.page-hero h1,.page-hero h2,.page-hero p,.page-hero .eyebrow,
+.hero h1,.hero h2,.hero p,.hero .eyebrow{color:#303030!important}
+.tool-hero,.tax-hero,.hero-tools,.pdf-hero,.notice-hero,.cms-header,
+.section-dark,.cta-band,.dark-band{background:#FFE000!important;background-image:none!important;color:#303030!important}
+.tool-hero h1,.tool-hero h2,.tool-hero p,.tool-hero .eyebrow,
+.tax-hero h1,.tax-hero h2,.tax-hero p,.hero-tools h1,.hero-tools h2,.hero-tools p,
+.pdf-hero h1,.pdf-hero h2,.pdf-hero p,.notice-hero h1,.notice-hero p,
+.cms-header h1,.cms-header p,.section-dark h1,.section-dark h2,.section-dark p,
+.cta-band h1,.cta-band h2,.cta-band p{color:#303030!important}
+.eyebrow,.section-kicker,.section-label,.panel-kicker,.feature-index,.feature-label{
+  color:#303030!important;letter-spacing:.14em!important;font-weight:750!important
+}
+.eyebrow::before,.section-kicker::before{background:#FFE000!important}
+.breadcrumb,.breadcrumb a,.breadcrumb span{color:#303030!important}
+
+/* Editorial pages and content cards */
+.pravi-editorial-page,.pravi-resources-page{background:#FFFFFF!important;color:#303030!important}
+.pravi-editorial-feature,.pravi-editorial-feature.reverse,.pravi-story-feature{
+  background:#FFFFFF!important;border:1px solid rgba(48,48,48,.16)!important;
+  border-radius:20px!important;box-shadow:0 12px 32px rgba(48,48,48,.055)!important
+}
+.pravi-editorial-feature-copy h2,.pravi-story-copy h2{color:#303030!important}
+.pravi-editorial-feature-copy p,.pravi-story-copy p{color:#303030!important}
+.pravi-editorial-feature-copy a,.pravi-story-copy a{color:#303030!important;text-decoration-color:#FFE000!important}
+.feature-index,.pravi-story-kicker,.pravi-story-index{color:#303030!important}
+.service-intro,.service-card,.content-card,.resource-card,.insight-card,.article-card,
+.quick-start-card,.service-layer-card,.tool-card,.tool-review-card,.panel,.contact-form-card,
+.contact-info-card,.card,.feature-card{background:#FFFFFF!important;color:#303030!important;
+ border:1px solid rgba(48,48,48,.17)!important;box-shadow:0 8px 24px rgba(48,48,48,.045)!important}
+.service-intro h3,.service-card h3,.content-card h3,.resource-card h3,.insight-card h3,
+.article-card h3,.quick-start-card h3,.service-layer-card h3,.tool-card h3,
+.tool-review-card h3,.card h3,.feature-card h3{color:#303030!important}
+.service-intro p,.service-card p,.content-card p,.resource-card p,.insight-card p,
+.article-card p,.tool-card p,.tool-review-card p{color:#303030!important;opacity:.92}
+.service-card:hover,.content-card:hover,.resource-card:hover,.insight-card:hover,
+.article-card:hover,.tool-card:hover{border-color:#303030!important;box-shadow:0 16px 34px rgba(48,48,48,.11)!important}
+.service-yellow,.service-yellow-soft,.quick-start-card.is-featured,.featured-card,
+.tool-highlight,.highlight-panel{background:#FFE000!important;color:#303030!important}
+.service-yellow h3,.service-yellow p,.service-yellow span,.service-yellow b,
+.service-yellow-soft h3,.service-yellow-soft p,.featured-card h3,.featured-card p{color:#303030!important}
+.icon,.tool-icon,.service-icon,.card-icon,.tool-review-number{background:#FFE000!important;color:#303030!important;border-radius:12px!important}
+.section-heading h2,.section-heading p{color:#303030!important}
+.section-heading .muted,.muted,.fine-print,.fineprint{color:#303030!important;opacity:.78}
+
+/* Home sections */
+.brego-home{background:#FFFFFF!important;color:#303030!important}
+.brego-hero{padding:clamp(50px,7vw,92px) 0!important}
+.brego-hero-grid{gap:clamp(36px,5vw,72px)!important;align-items:center!important}
+.brego-eyebrow{color:#303030!important}
+.brego-hero h1{color:#303030!important;max-width:720px!important;font-size:clamp(2.8rem,5.8vw,5.1rem)!important;line-height:1.04!important;letter-spacing:-.065em!important}
+.brego-hero h1 span{color:#303030!important;background:linear-gradient(transparent 66%,#FFE000 66%)!important}
+.brego-intro{color:#303030!important;max-width:620px!important;font-size:1.06rem!important}
+.brego-text-link,.brego-text-link:hover{color:#303030!important}
+.brego-trustline{color:#303030!important}
+.brego-trustline span{background:#FFE000!important}
+.brego-hero-visual{background:#FFFFFF!important;border-radius:26px!important}
+.brego-float-card{background:#FFFFFF!important;border:1px solid rgba(48,48,48,.2)!important;color:#303030!important;box-shadow:0 10px 28px rgba(48,48,48,.09)!important}
+.brego-float-card small,.brego-float-card strong,.brego-float-card span{color:#303030!important}
+.brego-proof{background:#FFFFFF!important;border-block:1px solid rgba(48,48,48,.15)!important}
+.brego-proof-grid>div{border-color:rgba(48,48,48,.18)!important}
+.brego-proof strong,.brego-proof span{color:#303030!important}
+.brego-proof strong{font-weight:750!important}
+.brego-section,.brego-audience,.brego-difference,.brego-process,.brego-insights{background:#FFFFFF!important;color:#303030!important}
+.brego-section-head h2,.brego-section-head>p,.brego-section-head p{color:#303030!important}
+.brego-service-grid{gap:16px!important}
+.brego-service-card{background:#FFFFFF!important;border:1px solid rgba(48,48,48,.18)!important;border-radius:16px!important;box-shadow:0 8px 22px rgba(48,48,48,.04)!important}
+.brego-service-card.service-yellow,.brego-service-card.service-yellow-soft{background:#FFE000!important;border-color:#FFE000!important}
+.brego-service-card>span,.brego-service-card i,.brego-service-card h3,.brego-service-card p,.brego-service-card b{color:#303030!important}
+.brego-service-card i{background:#FFE000!important;border-radius:12px!important}
+.brego-service-card:hover{transform:translateY(-4px)!important;border-color:#303030!important;box-shadow:0 16px 34px rgba(48,48,48,.11)!important}
+.brego-section-foot,.brego-section-foot a{color:#303030!important}
+.brego-audience-grid article{background:#FFFFFF!important;border:1px solid rgba(48,48,48,.16)!important;border-radius:16px!important}
+.brego-audience-grid article>span,.brego-audience-grid article h3,.brego-audience-grid article p,.brego-audience-grid article a{color:#303030!important}
+.brego-audience-grid article>span{background:#FFE000!important}
+.brego-difference-grid,.brego-difference-points article{background:#FFFFFF!important}
+.brego-difference-art{background:#FFE000!important;border-radius:20px!important}
+.brego-difference-art div,.brego-difference-art small{color:#303030!important}
+.brego-difference-points article{border-bottom:1px solid rgba(48,48,48,.17)!important}
+.brego-difference-points article>b{background:#FFE000!important;color:#303030!important}
+.brego-difference-points strong,.brego-difference-points small{color:#303030!important}
+.brego-process-grid article{background:#FFFFFF!important;border:1px solid rgba(48,48,48,.17)!important;border-radius:16px!important}
+.brego-process-grid article>b{background:#FFE000!important;color:#303030!important}
+.brego-process-grid h3,.brego-process-grid p{color:#303030!important}
+.brego-tools{background:#FFFFFF!important}
+.brego-tools-grid>div:first-child{background:#FFE000!important;border-radius:20px!important;padding:clamp(26px,4vw,48px)!important}
+.brego-tools-grid h2,.brego-tools-grid p,.brego-tools-grid .brego-eyebrow{color:#303030!important}
+.brego-tool-list{background:#FFFFFF!important;border:1px solid rgba(48,48,48,.17)!important;border-radius:18px!important;padding:12px!important}
+.brego-tool-list a{border-bottom:1px solid rgba(48,48,48,.15)!important;color:#303030!important}
+.brego-tool-list a span{background:#FFE000!important;color:#303030!important}
+.brego-tool-list a strong,.brego-tool-list a:hover{color:#303030!important}
+.brego-insight-links a{background:#FFFFFF!important;border:1px solid rgba(48,48,48,.17)!important;border-radius:16px!important}
+.brego-insight-links a small,.brego-insight-links a strong,.brego-insight-links a b{color:#303030!important}
+.brego-insight-links a small{background:#FFE000!important}
+.brego-final-cta{background:#FFE000!important;color:#303030!important}
+.brego-final-cta h2,.brego-final-cta p,.brego-final-cta .brego-eyebrow{color:#303030!important}
+.brego-final-cta .btn{background:#303030!important;border-color:#303030!important;color:#FFFFFF!important}
+
+/* Tool catalogue and every interactive tool surface */
+.hero-tools{background:#FFE000!important;color:#303030!important}
+.hero-tools h1,.hero-tools p{color:#303030!important}
+.tool-card{border-radius:16px!important}
+.tool-label,.card-link,.utility-section h2,.utility-section p{color:#303030!important}
+.utility-section,.tool-review-strip{background:#FFE000!important;border:1px solid #FFE000!important;border-radius:18px!important}
+.utility-links button{background:#FFFFFF!important;border:1px solid rgba(48,48,48,.22)!important;color:#303030!important}
+.utility-links button:hover{border-color:#303030!important;background:#FFE000!important}
+.panel{background:#FFFFFF!important;border-color:rgba(48,48,48,.18)!important;border-radius:16px!important}
+.panel h2,.panel p,.fields label,.panel>label{color:#303030!important}
+.result{background:#FFE000!important;color:#303030!important;border:1px solid rgba(48,48,48,.16)!important;border-radius:12px!important}
+.run{background:#303030!important;color:#FFFFFF!important;border:1px solid #303030!important;border-radius:9px!important}
+.run.secondary,.secondary{background:#FFE000!important;color:#303030!important;border:1px solid #FFE000!important}
+.tool-cta{background:#FFFFFF!important;border:1px solid rgba(48,48,48,.18)!important;border-radius:16px!important}
+.tool-cta p,.tool-cta strong{color:#303030!important}
+.tool-review-card{background:#FFFFFF!important;border-color:rgba(48,48,48,.18)!important}
+.tool-review-number{background:#FFE000!important;color:#303030!important}
+.tool-review-card h3,.tool-review-card p{color:#303030!important}
+
+/* Contact forms, tables and technical content */
+.contact-layout{align-items:start!important}
+.contact-form-card,.contact-info-card{border-radius:18px!important;background:#FFFFFF!important}
+.contact-form-card h2,.contact-form-card p,.contact-info-card h2,.contact-info-card p{color:#303030!important}
+.contact-info-card .icon,.contact-info-card [class*="icon"]{background:#FFE000!important;color:#303030!important}
+table{border-color:rgba(48,48,48,.2)!important}
+th{background:#FFE000!important;color:#303030!important}
+td{background:#FFFFFF!important;color:#303030!important;border-color:rgba(48,48,48,.16)!important}
+.notice,.callout,.info-panel,.warning-panel,.success-panel{background:#FFE000!important;border:1px solid rgba(48,48,48,.2)!important;color:#303030!important}
+.notice p,.callout p,.info-panel p,.warning-panel p,.success-panel p{color:#303030!important}
+hr,.divider{border-color:rgba(48,48,48,.18)!important}
+
+/* Shared footer is deliberately light; the CTA is the yellow focal point. */
+.site-footer{background:#FFFFFF!important;background-image:none!important;color:#303030!important;border-top:1px solid rgba(48,48,48,.18)!important}
+.site-footer::before,.site-footer::after{display:none!important;content:none!important}
+.site-footer .footer-cta{background:#FFE000!important;border:1px solid #FFE000!important;border-radius:18px!important;box-shadow:none!important}
+.site-footer .footer-cta-eyebrow,.site-footer .footer-cta h2,.site-footer .footer-cta-copy>p:last-child{color:#303030!important}
+.site-footer .footer-cta-button{background:#303030!important;border-color:#303030!important;color:#FFFFFF!important;border-radius:10px!important}
+.site-footer .footer-cta-button:hover{background:#303030!important;border-color:#303030!important;color:#FFFFFF!important}
+.site-footer .footer-title,.site-footer .footer-links a,.site-footer .footer-description,.site-footer .footer-bottom{color:#303030!important}
+.site-footer .footer-title{font-weight:800!important}
+.site-footer .footer-links a:hover{color:#303030!important;text-decoration-color:#FFE000!important}
+.site-footer .footer-bottom{border-color:rgba(48,48,48,.18)!important}
+.site-footer .footer-main>div:last-child .footer-links a::before{background:#FFE000!important;color:#303030!important}
+
+/* Mobile rhythm and accessibility */
+@media(max-width:820px){
+  .primary-nav{background:#FFFFFF!important;border-color:rgba(48,48,48,.18)!important;box-shadow:0 18px 35px rgba(48,48,48,.13)!important}
+  .primary-nav .nav-link{color:#303030!important}
+  .brego-hero{padding:44px 0 50px!important}
+  .brego-proof-grid{gap:14px!important}
+  .site-footer .footer-cta{background:#FFE000!important}
+}
+@media(max-width:600px){
+  .container{width:min(100% - 36px,1160px)!important}
+  .brego-hero h1{font-size:clamp(2.35rem,10vw,3.55rem)!important}
+  .brego-hero-grid{gap:30px!important}
+  .brego-tools-grid>div:first-child{padding:24px!important}
+  .site-footer .footer-main{gap:24px 16px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+
+/* Final overrides for imported editorial modules and page-specific workspaces. */
+.container{width:min(1240px,calc(100% - 56px))!important}
+body .brego-home .brego-hero{background:#FFFFFF!important}
+body .brego-home .brego-hero h1,
+body .brego-home .brego-section-head h2,
+body .brego-home .brego-final-cta h2{font-family:"Poppins",ui-sans-serif,system-ui,sans-serif!important;font-weight:700!important;letter-spacing:-.055em!important}
+body .pravi-resources-page .page-hero{background:#FFFFFF!important;background-image:none!important;color:#303030!important}
+body .pravi-resources-page .page-hero::after{border-color:rgba(48,48,48,.16)!important;box-shadow:0 0 0 34px rgba(48,48,48,.035),0 0 0 68px rgba(48,48,48,.02)!important}
+.pravi-resources-page .resources-hero-panel{background:#FFE000!important;border:1px solid #FFE000!important;color:#303030!important}
+.pravi-resources-page .resources-hero-panel h2,.pravi-resources-page .resources-hero-panel a,.pravi-resources-page .resources-hero-panel p{color:#303030!important}
+.pravi-editorial-feature,.pravi-editorial-feature.reverse{background:#FFFFFF!important;color:#303030!important}
+.pravi-editorial-feature-copy,.pravi-story-copy{background:#FFFFFF!important;color:#303030!important}
+.pravi-editorial-feature-copy h2,.pravi-editorial-feature-copy p,.pravi-editorial-feature-copy .feature-index,
+.pravi-story-copy h2,.pravi-story-copy p,.pravi-story-copy .pravi-story-kicker{color:#303030!important}
+.pravi-service-story{background:#FFE000!important;color:#303030!important}
+.pravi-service-story .story-copy,.pravi-service-story .story-art{background:#FFE000!important;color:#303030!important}
+.pravi-service-story .story-copy small,.pravi-service-story .story-copy h2,
+.pravi-service-story .story-copy p,.pravi-service-story .story-copy a{color:#303030!important}
+.pravi-service-story .story-copy a{border-color:#303030!important}
+.pravi-service-story .story-art{background:#FFFFFF!important}
+.pravi-story-feature{background:#FFFFFF!important;color:#303030!important;border-color:rgba(48,48,48,.16)!important}
+.pravi-story-feature h2,.pravi-story-feature p,.pravi-story-feature a{color:#303030!important}
+.about-process,.audience-item{background:#FFFFFF!important;background-image:none!important}
+.pravi-resources-page .resources-library,.pravi-resources-page .resources-hero-copy{background:#FFFFFF!important}
+.pravi-homepage .pravi-hero-specialisms{display:flex;flex-wrap:wrap;gap:8px 12px;margin:0 0 22px;color:#303030!important;font-size:.92rem;font-weight:650}
+.pravi-homepage .pravi-hero-specialisms span{color:#303030!important}
+.pravi-homepage .brego-hero .brego-actions{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 18px}
+.pravi-homepage .brego-hero .brego-actions .btn{min-width:168px}
+.pravi-homepage .brego-trustline{display:flex;align-items:center;gap:9px;font-size:.78rem;letter-spacing:.01em;color:#303030!important}
+.pravi-homepage .brego-trustline>span{width:8px;height:8px;border-radius:50%;background:#FFE000!important;box-shadow:0 0 0 4px rgba(255,224,0,.25)}
+.pravi-homepage .brego-service-grid{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+.pravi-homepage .brego-service-card{min-height:310px!important;padding:24px!important}
+.pravi-homepage .brego-service-card>span{font-size:.66rem!important;letter-spacing:.1em!important}
+.pravi-homepage .brego-service-card h3{font-size:1.22rem!important}
+.pravi-homepage .brego-service-card p{font-size:.88rem!important;line-height:1.65!important}
+.pravi-homepage .brego-audience-grid article{padding:26px!important}
+.pravi-homepage .brego-audience-grid article img{width:100%;max-width:180px;height:135px;object-fit:contain;margin:5px 0 16px}
+.pravi-homepage .pravi-discovery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:28px}
+.pravi-homepage .pravi-discovery-card{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(120px,.85fr);align-items:center;gap:12px;min-height:260px;padding:clamp(22px,3vw,34px);border:1px solid rgba(48,48,48,.18);border-radius:20px;background:#FFFFFF;overflow:hidden}
+.pravi-homepage .pravi-discovery-card.pravi-discovery-yellow{background:#FFE000;border-color:#FFE000}
+.pravi-homepage .pravi-discovery-card .pravi-discovery-copy{min-width:0}
+.pravi-homepage .pravi-discovery-card .pravi-discovery-copy h3{font-size:clamp(1.2rem,1.8vw,1.65rem);line-height:1.18;color:#303030!important;margin:8px 0 10px}
+.pravi-homepage .pravi-discovery-card .pravi-discovery-copy p{color:#303030!important;font-size:.91rem;line-height:1.65}
+.pravi-homepage .pravi-discovery-card .pravi-discovery-copy .brego-eyebrow{font-size:.68rem}
+.pravi-homepage .pravi-discovery-card img{width:100%;max-height:190px;object-fit:contain}
+.pravi-homepage .pravi-insights-more{margin:24px 0 0;text-align:right}
+.pravi-homepage .pravi-insights-more a{color:#303030!important;font-weight:750;text-decoration:underline;text-decoration-color:#FFE000;text-decoration-thickness:3px;text-underline-offset:5px}
+.pravi-homepage .brego-proof-grid>div{padding:16px 14px}
+.pravi-homepage .brego-proof-grid strong{font-size:.93rem}
+.pravi-homepage .brego-proof-grid span{font-size:.78rem;line-height:1.5}
+.pravi-homepage .brego-insight-links{gap:14px}
+.pravi-homepage .brego-insight-links a{padding:24px}
+.pravi-homepage .brego-insight-links a strong{font-size:1.04rem;line-height:1.4}
+.pravi-homepage .brego-final-cta{padding-block:clamp(54px,7vw,82px)}
+.pravi-homepage .brego-final-cta .container{align-items:center}
+.pravi-homepage .brego-final-cta h2{max-width:760px}
+
+/* Financial calculators, trackers and PDF workspace: legibility before decoration. */
+.fx-hero,.dep-hero{background:#FFE000!important;color:#303030!important}
+.fx-hero h1,.fx-hero p,.dep-hero h1,.dep-hero p{color:#303030!important}
+.fx-shell,.dep-shell{background:#FFFFFF!important;border:1px solid rgba(48,48,48,.18)!important;box-shadow:0 8px 24px rgba(48,48,48,.045)!important;border-radius:16px!important}
+.fx-field,.dep-field,.dep-shell h2,.dep-shell h3,.fx-amount,.fx-result-label,.fx-rate,.dep-kpi strong{color:#303030!important}
+.fx-field input,.fx-field select,.dep-field input,.dep-field select,.dep-inline input{background:#FFFFFF!important;border-color:rgba(48,48,48,.24)!important;color:#303030!important}
+.fx-result,.dep-kpi,.dep-note,.dep-warn,.fx-note,.fx-meta span{background:#FFE000!important;border-color:rgba(48,48,48,.18)!important;color:#303030!important}
+.fx-result-label,.fx-amount,.fx-rate,.fx-meta,.fx-note strong,.fx-credit,.fx-credit a,.fx-disclaimer,.fx-disclaimer h2,
+.dep-kpi span,.dep-kpi strong,.dep-status,.dep-small{color:#303030!important}
+.fx-swap,.fx-btn,.dep-btn,.dep-tab[aria-selected=true]{background:#303030!important;border-color:#303030!important;color:#FFFFFF!important}
+.fx-btn.alt,.dep-btn.alt,.dep-tab{background:#FFFFFF!important;border-color:rgba(48,48,48,.22)!important;color:#303030!important}
+.fx-btn:disabled,.dep-btn:disabled{opacity:.55}
+.dep-table th,.dep-table tfoot td,.total-row,.sub-total{background:#FFE000!important;color:#303030!important}
+.dep-table td,.dep-table td input,.dep-table td select{background:#FFFFFF!important;color:#303030!important;border-color:rgba(48,48,48,.16)!important}
+.dep-status.error,.negative,.positive,.status-pill.bad,.status-pill.review{background:#FFE000!important;color:#303030!important}
+.status-pill,.badge,.pill{background:#FFE000!important;color:#303030!important;border:1px solid rgba(48,48,48,.16)!important}
+.status,.alert-box,.ok-box,.warning,.good,.warning-panel,.success-panel{background:#FFE000!important;border:1px solid rgba(48,48,48,.16)!important;color:#303030!important}
+.cms-header{background:#FFE000!important;color:#303030!important;border-color:#303030!important}
+.cms-header a,.cms-header .cms-admin-label{color:#303030!important}
+.cms-button-primary,.btn-work,.btn-work.secondary,.btn-work.tertiary,.btn-work.danger{background:#303030!important;border-color:#303030!important;color:#FFFFFF!important}
+.cms-button,.row-actions button,.official-links a{background:#FFFFFF!important;border-color:rgba(48,48,48,.22)!important;color:#303030!important}
+.metric,.metric strong,.metric span{background:#FFFFFF!important;color:#303030!important}
+.tax-tab[aria-selected=true],.tax-btn,.pdf-btn,.pdf-action{background:#303030!important;border-color:#303030!important;color:#FFFFFF!important}
+.tax-tab,.pdf-tool,.pdf-workspace,.pdf-option,.pdf-dropzone{background:#FFFFFF!important;border-color:rgba(48,48,48,.18)!important;color:#303030!important}
+.pdf-hero{background:#FFE000!important;color:#303030!important}
+.pdf-hero h1,.pdf-hero p,.pdf-hero .eyebrow{color:#303030!important}
+
+/* Responsive layouts for the new homepage modules. */
+@media(max-width:1050px){
+  .pravi-homepage .brego-service-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  .pravi-homepage .pravi-discovery-card{grid-template-columns:1fr;min-height:0}
+  .pravi-homepage .pravi-discovery-card img{max-width:180px;justify-self:end}
+}
+@media(max-width:760px){
+  .pravi-homepage .pravi-discovery-grid{grid-template-columns:1fr}
+  .pravi-homepage .brego-service-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:520px){
+  .container{width:calc(100% - 36px)!important}
+  .pravi-homepage .brego-service-grid{grid-template-columns:1fr!important}
+  .pravi-homepage .brego-service-card{min-height:0!important}
+  .pravi-homepage .pravi-discovery-card{grid-template-columns:1fr!important;padding:23px!important}
+  .pravi-homepage .pravi-discovery-card img{max-width:155px;max-height:125px;justify-self:end}
+  .pravi-homepage .brego-proof-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .pravi-homepage .brego-final-cta .container{align-items:flex-start!important;gap:20px}
+}
+
+/* The main homepage action is the bright-yellow focal button, matching the approved preview. */
+.pravi-homepage .brego-actions .btn-dark{background:#FFE000!important;border-color:#FFE000!important;color:#303030!important;box-shadow:0 5px 0 rgba(48,48,48,.10)!important}
+.pravi-homepage .brego-actions .btn-dark:hover{background:#FFE000!important;border-color:#303030!important;color:#303030!important}
+
+/* Final homepage and shared design-system polish. */
+html,body{background:#FFFFFF!important;color:#303030!important}
+body,h1,h2,h3,h4,h5,h6,.eyebrow,.btn,.nav-link,button,input,select,textarea,
+.section-heading,.section-kicker,.footer-title{font-family:"Poppins",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif!important}
+[lang="hi"],[lang="sa"],.sanskrit-tagline,.brand-tagline{font-family:"Noto Sans Devanagari","Nirmala UI","Mangal",sans-serif!important}
+.pravi-intro{background:#FFFFFF!important;color:#303030!important}
+.pravi-intro__field path{stroke:#303030!important}
+.pravi-intro__field path:nth-child(3n){stroke:#FFE000!important}
+.pravi-intro__glow{background:radial-gradient(circle,rgba(255,224,0,.15),rgba(255,255,255,0) 68%)!important}
+.pravi-intro__goldline path{stroke:#FFE000!important}
+.pravi-intro__signature{color:#303030!important}
+.pravi-intro__signature span{color:#303030!important}
+
+
+/* Higher-specificity compatibility fixes for legacy tool-page selectors. */
+body .tool-card .tool-icon,
+body .tool-review-card .tool-review-number,
+body .brego-audience-grid article>span{
+  background:#FFE000!important;
+  color:#303030!important;
+  border:1px solid rgba(48,48,48,.16)!important;
+  border-radius:12px!important;
+}
+body :is(.btn-main,.btn-work,.run,.cms-button-primary,.tax-btn.primary,.tax-tab[aria-selected="true"],.pdf-filter[aria-pressed="true"]){
+  background:#303030!important;
+  color:#FFFFFF!important;
+  border-color:#303030!important;
+}
+body :is(.btn-main.secondary,.btn-work.secondary,.run.secondary,.tax-tab,.pdf-filter,.btn-lite){
+  background:#FFE000!important;
+  color:#303030!important;
+  border-color:#FFE000!important;
+}
+body .tool-card .tool-icon{display:grid!important;place-items:center!important;width:42px!important;height:42px!important;padding:0!important}
+
+/* Desktop hero matches the approved side-by-side copy and growth illustration composition. */
+.pravi-homepage .brego-hero-grid{
+  display:grid!important;
+  grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr)!important;
+  gap:clamp(28px,4vw,62px)!important;
+  align-items:center!important;
+}
+.pravi-homepage .brego-hero-copy,.pravi-homepage .brego-hero-visual{width:100%!important;min-width:0!important}
+.pravi-homepage .pravi-launch-art{display:flex!important;align-items:center!important;justify-content:center!important}
+.pravi-homepage .pravi-launch-art img{display:block!important;width:100%!important;max-width:100%!important;height:auto!important;max-height:490px!important;object-fit:contain!important}
+.pravi-homepage .brego-hero h1{font-size:clamp(2.35rem,4vw,3.7rem)!important;line-height:1.04!important;letter-spacing:-.06em!important}
+.site-header .primary-nav,.site-header .primary-nav.is-open{background:#FFFFFF!important}
+@media(max-width:980px){
+  .pravi-homepage .brego-hero-grid{grid-template-columns:minmax(0,1fr)!important;gap:32px!important}
+  .pravi-homepage .brego-hero-copy{max-width:760px!important}
+  .pravi-homepage .pravi-launch-art img{max-height:390px!important}
+}
+@media(max-width:520px){
+  .pravi-homepage .brego-hero h1{font-size:clamp(2.35rem,10vw,3rem)!important}
+}
+
+
+/* Tablet navigation: collapse before the six-link header becomes crowded. */
+@media(max-width:1100px){
+  .site-header .header-inner{position:relative!important}
+  .site-header .menu-toggle{display:grid!important;place-items:center!important}
+  .site-header .primary-nav{
+    display:none!important;
+    position:absolute!important;
+    top:calc(100% + 1px)!important;
+    left:0!important;
+    right:0!important;
+    z-index:120!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    gap:4px!important;
+    padding:16px 22px 22px!important;
+    background:#FFFFFF!important;
+    border:1px solid rgba(48,48,48,.16)!important;
+    box-shadow:0 18px 35px rgba(48,48,48,.13)!important;
+  }
+  .site-header .primary-nav.is-open{display:flex!important}
+  .site-header .primary-nav .nav-link{padding:12px 4px!important;color:#303030!important}
+  .site-header .primary-nav .nav-link::after{bottom:4px!important}
+  .site-header .primary-nav .nav-actions{margin-top:10px!important}
+  .site-header .primary-nav .nav-actions .btn{width:100%!important;justify-content:center!important}
+}
+@media(min-width:1101px){
+  .site-header .menu-toggle{display:none!important}
+  .site-header .primary-nav{display:flex!important;position:static!important}
+}
+
+/* High-specificity fixes for legacy nested components that used their own colour rules. */
+.site-header,.site-header .header-inner,.site-header .brand,.site-header .nav-actions,
+.site-header .primary-nav,.site-header .primary-nav .nav-link,
+.site-header .primary-nav .nav-link[aria-current=page],
+.site-header .primary-nav .nav-link:hover{color:#303030!important}
+.site-header .primary-nav .nav-link::after{background:#FFE000!important}
+.site-footer,.site-footer .footer-main,.site-footer .footer-brand,
+.site-footer .footer-description,.site-footer .footer-title,.site-footer .footer-links,
+.site-footer .footer-links a,.site-footer .footer-bottom,.site-footer .footer-bottom *{color:#303030!important}
+.site-footer .footer-cta,.site-footer .footer-cta *{color:#303030!important}
+.site-footer .footer-cta .footer-cta-button,
+.site-footer .footer-cta .footer-cta-button *{background:#303030!important;color:#FFFFFF!important;border-color:#303030!important}
+.brego-home.pravi-homepage .brego-float-card{background:#FFFFFF!important;color:#303030!important;border-color:rgba(48,48,48,.18)!important}
+.brego-home.pravi-homepage .brego-float-card *{color:#303030!important}
+.brego-home.pravi-homepage .brego-service-grid .brego-service-card{
+ background:#FFFFFF!important;color:#303030!important;border-color:rgba(48,48,48,.18)!important;
+}
+.brego-home.pravi-homepage .brego-service-grid .brego-service-card *{color:#303030!important}
+.brego-home.pravi-homepage .brego-service-grid .brego-service-card i,
+.brego-home.pravi-homepage .brego-service-grid .brego-service-card .icon{
+ background:#FFE000!important;color:#303030!important}
+.brego-home.pravi-homepage .pravi-discovery-card{background:#FFFFFF!important;color:#303030!important}
+.brego-home.pravi-homepage .pravi-discovery-card *{color:#303030!important}
+.brego-home.pravi-homepage .pravi-discovery-card.pravi-discovery-yellow{background:#FFE000!important;border-color:#FFE000!important}
+.brego-home.pravi-homepage .pravi-discovery-card .btn-dark,
+.brego-home.pravi-homepage .pravi-discovery-card .btn-dark *{background:#303030!important;color:#FFFFFF!important;border-color:#303030!important}
+
+
+/* Pin the hero overlay card to the exact white token, overriding old card-fill rules. */
+html body .brego-home.pravi-homepage .brego-hero .brego-hero-grid .brego-hero-visual .brego-float-card{
+  background:#FFFFFF!important;
+  background-color:#FFFFFF!important;
+  background-image:none!important;
+  color:#303030!important;
+  border-color:rgba(48,48,48,.18)!important;
+}
+html body.brego-home.pravi-homepage .brego-hero .brego-hero-grid .brego-hero-visual .brego-float-card *{
+  color:#303030!important;
+}
