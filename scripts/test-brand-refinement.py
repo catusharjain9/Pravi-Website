@@ -6,7 +6,7 @@ ROOT=Path(__file__).resolve().parents[1]
 CSS=ROOT/"assets/css/brand-audit-refinement.css"
 PAPER=ROOT/"assets/css/paper-texture.css"
 STYLE=ROOT/"assets/css/style.css"
-PALETTE=("#FCF9F1","#FFF7E1","#1F2A2E","#D9D2C6","#F6D365")
+PALETTE=("#FFFFFF","#FFE000","#303030")
 def fail(message):
  print("FAIL:",message,file=sys.stderr); raise SystemExit(1)
 for path in (CSS,PAPER,STYLE):
@@ -27,7 +27,7 @@ for page in pages:
  if '<title>' not in html.lower(): fail(f"{page.name}: page title missing")
 for selector in (".btn-main",".btn-work",".run",".pdf-process",".pdf-filter[aria-pressed=\"true\"]",".workspace",".pane",".table-scroll"):
  if selector not in css: fail(f"legacy tool palette override missing: {selector}")
-if "success, warning and error remain semantic" not in css: fail("tool palette overrides must preserve semantic status colours")
+if ".status,.alert-box,.ok-box,.warning,.good,.warning-panel,.success-panel" not in css: fail("tool workspaces must retain visible status and alert components")
 print(f"PASS: {len(pages)} HTML pages load shared brand CSS and the approved logo.")
 print("PASS: hero mastheads are protected from paper-texture overrides.")
 print("PASS: approved palette, keyboard focus, responsive navigation, table and reduced-motion rules.")
@@ -40,6 +40,6 @@ if resources.count('class="insight-card"') < 4:
  fail("Resources page must display at least four further-reading article cards")
 for target in ("guide-startup-compliance.html","guide-virtual-cfo.html","guide-monthly-mis.html","guide-gst-reconciliation.html","article-13-week-cashflow.html","article-first-90-days-accounting.html","article-gst-purchase-reconciliation.html","article-monthly-mis-review.html"):
  if not (ROOT/target).is_file(): fail(f"Resources card target missing: {target}")
-if 'content="#FCF9F1" name="theme-color"' not in resources:
- fail("Resources page browser theme colour must match the ivory brand canvas")
+if 'content="#FFFFFF" name="theme-color"' not in resources:
+ fail("Resources page browser theme colour must match the pure white brand canvas")
 print("PASS: Resources page contains four working guide cards and four article cards.")
