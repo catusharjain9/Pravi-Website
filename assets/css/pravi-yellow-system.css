@@ -326,3 +326,7 @@ body .pravi-resources-page .page-hero::after{border-color:rgba(48,48,48,.16)!imp
   .pravi-homepage .brego-proof-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
   .pravi-homepage .brego-final-cta .container{align-items:flex-start!important;gap:20px}
 }
+
+/* The main homepage action is the bright-yellow focal button, matching the approved preview. */
+.pravi-homepage .brego-actions .btn-dark{background:#FFE000!important;border-color:#FFE000!important;color:#303030!important;box-shadow:0 5px 0 rgba(48,48,48,.10)!important}
+.pravi-homepage .brego-actions .btn-dark:hover{background:#FFE000!important;border-color:#303030!important;color:#303030!important}
