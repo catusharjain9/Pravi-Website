@@ -343,3 +343,25 @@ body,h1,h2,h3,h4,h5,h6,.eyebrow,.btn,.nav-link,button,input,select,textarea,
 .pravi-intro__goldline path{stroke:#FFE000!important}
 .pravi-intro__signature{color:#303030!important}
 .pravi-intro__signature span{color:#303030!important}
+
+
+/* Higher-specificity compatibility fixes for legacy tool-page selectors. */
+body .tool-card .tool-icon,
+body .tool-review-card .tool-review-number,
+body .brego-audience-grid article>span{
+  background:#FFE000!important;
+  color:#303030!important;
+  border:1px solid rgba(48,48,48,.16)!important;
+  border-radius:12px!important;
+}
+body :is(.btn-main,.btn-work,.run,.cms-button-primary,.tax-btn.primary,.tax-tab[aria-selected="true"],.pdf-filter[aria-pressed="true"]){
+  background:#303030!important;
+  color:#FFFFFF!important;
+  border-color:#303030!important;
+}
+body :is(.btn-main.secondary,.btn-work.secondary,.run.secondary,.tax-tab,.pdf-filter,.btn-lite){
+  background:#FFE000!important;
+  color:#303030!important;
+  border-color:#FFE000!important;
+}
+body .tool-card .tool-icon{display:grid!important;place-items:center!important;width:42px!important;height:42px!important;padding:0!important}
