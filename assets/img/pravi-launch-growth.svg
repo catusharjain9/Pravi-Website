@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 520" role="img" aria-labelledby="title desc">
+<title id="title">PRAVI startup growth illustration</title>
+<desc id="desc">A charcoal outlined rocket rises from a bright yellow circle beside a simple growth chart.</desc>
+<circle cx="380" cy="250" r="190" fill="#FFE000"/>
+<path d="M82 427h594" fill="none" stroke="#303030" stroke-width="4" stroke-linecap="round"/>
+<path d="M412 418V326h70v92M504 418V267h70v151M596 418V206h70v212" fill="#FFFFFF" stroke="#303030" stroke-width="5" stroke-linejoin="round"/>
+<path d="m405 305 79-54 69-42 92-72" fill="none" stroke="#303030" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="m617 135 29-4-7 28" fill="none" stroke="#303030" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<g transform="translate(300 54) rotate(28 90 150)">
+  <path d="M90 8C45 58 28 118 28 198l62 36 62-36c0-80-17-140-62-190Z" fill="#FFFFFF" stroke="#303030" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M90 8c-17 19-31 43-41 70h82C121 51 107 27 90 8Z" fill="#FFE000" stroke="#303030" stroke-width="7" stroke-linejoin="round"/>
+  <circle cx="90" cy="118" r="25" fill="#FFFFFF" stroke="#303030" stroke-width="8"/>
+  <circle cx="90" cy="118" r="14" fill="#FFE000"/>
+  <path d="M29 154 4 194l28-3M151 154l25 40-28-3" fill="#FFE000" stroke="#303030" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M68 230 90 313l22-83" fill="#FFE000" stroke="#303030" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M78 248 90 292l12-44" fill="#303030"/>
+</g>
+<path d="M265 402c-30-29-80-20-91 15-39-3-55 22-55 43h197c3-35-18-58-51-58Z" fill="#FFFFFF" stroke="#303030" stroke-width="5" stroke-linejoin="round"/>
+<path d="M204 106 182 86m46 7-5-28m-43 83-31-2" stroke="#303030" stroke-width="7" stroke-linecap="round"/>
+<path d="M570 82 590 60m-5 51 30-3" stroke="#303030" stroke-width="7" stroke-linecap="round"/>
+</svg>
