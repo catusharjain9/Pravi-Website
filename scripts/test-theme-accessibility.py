@@ -72,10 +72,11 @@ for page in pages:
         "assets/css/style.css",
         "assets/css/paper-texture.css",
         "assets/css/pravi-yellow-system.css",
-        "assets/img/pravi-logo.svg",
     ):
         if ref not in head:
-            fail(f"{page.name} does not load required site asset in its head: {ref}")
+            fail(f"{page.name} does not load required stylesheet in its head: {ref}")
+    if "assets/img/pravi-logo.svg" not in html:
+        fail(f"{page.name} does not load the approved PRAVI logo: assets/img/pravi-logo.svg")
 
     if "<title>" not in html.lower():
         fail(f"{page.name} is missing a document title")
