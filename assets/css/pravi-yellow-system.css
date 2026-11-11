@@ -365,3 +365,24 @@ body :is(.btn-main.secondary,.btn-work.secondary,.run.secondary,.tax-tab,.pdf-fi
   border-color:#FFE000!important;
 }
 body .tool-card .tool-icon{display:grid!important;place-items:center!important;width:42px!important;height:42px!important;padding:0!important}
+
+/* Desktop hero matches the approved side-by-side copy and growth illustration composition. */
+.pravi-homepage .brego-hero-grid{
+  display:grid!important;
+  grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr)!important;
+  gap:clamp(28px,4vw,62px)!important;
+  align-items:center!important;
+}
+.pravi-homepage .brego-hero-copy,.pravi-homepage .brego-hero-visual{width:100%!important;min-width:0!important}
+.pravi-homepage .pravi-launch-art{display:flex!important;align-items:center!important;justify-content:center!important}
+.pravi-homepage .pravi-launch-art img{display:block!important;width:100%!important;max-width:100%!important;height:auto!important;max-height:490px!important;object-fit:contain!important}
+.pravi-homepage .brego-hero h1{font-size:clamp(2.35rem,4vw,3.7rem)!important;line-height:1.04!important;letter-spacing:-.06em!important}
+.site-header .primary-nav,.site-header .primary-nav.is-open{background:#FFFFFF!important}
+@media(max-width:980px){
+  .pravi-homepage .brego-hero-grid{grid-template-columns:minmax(0,1fr)!important;gap:32px!important}
+  .pravi-homepage .brego-hero-copy{max-width:760px!important}
+  .pravi-homepage .pravi-launch-art img{max-height:390px!important}
+}
+@media(max-width:520px){
+  .pravi-homepage .brego-hero h1{font-size:clamp(2.35rem,10vw,3rem)!important}
+}
