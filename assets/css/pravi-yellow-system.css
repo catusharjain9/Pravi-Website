@@ -330,3 +330,16 @@ body .pravi-resources-page .page-hero::after{border-color:rgba(48,48,48,.16)!imp
 /* The main homepage action is the bright-yellow focal button, matching the approved preview. */
 .pravi-homepage .brego-actions .btn-dark{background:#FFE000!important;border-color:#FFE000!important;color:#303030!important;box-shadow:0 5px 0 rgba(48,48,48,.10)!important}
 .pravi-homepage .brego-actions .btn-dark:hover{background:#FFE000!important;border-color:#303030!important;color:#303030!important}
+
+/* Final homepage and shared design-system polish. */
+html,body{background:#FFFFFF!important;color:#303030!important}
+body,h1,h2,h3,h4,h5,h6,.eyebrow,.btn,.nav-link,button,input,select,textarea,
+.section-heading,.section-kicker,.footer-title{font-family:"Poppins",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif!important}
+[lang="hi"],[lang="sa"],.sanskrit-tagline,.brand-tagline{font-family:"Noto Sans Devanagari","Nirmala UI","Mangal",sans-serif!important}
+.pravi-intro{background:#FFFFFF!important;color:#303030!important}
+.pravi-intro__field path{stroke:#303030!important}
+.pravi-intro__field path:nth-child(3n){stroke:#FFE000!important}
+.pravi-intro__glow{background:radial-gradient(circle,rgba(255,224,0,.15),rgba(255,255,255,0) 68%)!important}
+.pravi-intro__goldline path{stroke:#FFE000!important}
+.pravi-intro__signature{color:#303030!important}
+.pravi-intro__signature span{color:#303030!important}
