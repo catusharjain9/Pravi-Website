@@ -36,6 +36,9 @@ if not re.search(r'--font:"Poppins"', theme) or not re.search(r'--display:"Poppi
     fail("Poppins must remain the shared body and display font")
 if "assets/img/pravi-logo.svg" not in (ROOT / "index.html").read_text(encoding="utf-8"):
     fail("approved PRAVI logo asset is missing from the homepage")
+paper_css = (ROOT / "assets/css/paper-texture.css").read_text(encoding="utf-8")
+if "pravi-yellow-system.css" not in paper_css:
+    fail("paper-texture.css must load the three-colour theme after legacy design layers")
 if not (ROOT / "assets/img/pravi-launch-growth.svg").is_file():
     fail("new brand-aligned homepage illustration is missing")
 
