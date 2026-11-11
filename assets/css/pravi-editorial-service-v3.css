@@ -1,0 +1,33 @@
+/* PRAVI editorial system v3 — service narratives and functional workpaper index */
+.pravi-service-story{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:440px;background:#173c35;color:#fff3d5;overflow:hidden}
+.pravi-service-story .story-copy{padding:clamp(32px,5vw,76px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.pravi-service-story .story-copy small{font-size:.68rem;font-weight:800;letter-spacing:.2em;color:#f0ca68}
+.pravi-service-story .story-copy h2{font:400 clamp(2.4rem,4vw,4.3rem)/.98 'DM Serif Display',Georgia,serif!important;color:#fff3d5!important;letter-spacing:-.03em!important;margin:18px 0!important}
+.pravi-service-story .story-copy p{max-width:470px;color:#e8dfc7;line-height:1.8}
+.pravi-service-story .story-art{min-height:440px;background:#c45135}
+.pravi-service-story .story-art img{display:block;width:100%;height:100%;min-height:440px;object-fit:cover}
+.pravi-service-story.alt{background:#c45135;color:#fff3d5}
+.pravi-service-story.alt .story-copy small{color:#ffe08a}
+.pravi-service-story.alt .story-art{order:-1}
+.pravi-service-story.alt .story-copy h2{color:#fff3d5!important}
+.pravi-service-story a{margin-top:14px;color:#f0ca68;font-weight:800;border-bottom:1px solid currentColor;padding-bottom:7px}
+.pravi-editorial-page .service-landing-hero{background:#f1d477!important}
+.pravi-editorial-page .service-landing-hero h1{font:400 clamp(3rem,5.5vw,5.6rem)/.97 'DM Serif Display',Georgia,serif!important;max-width:920px!important;letter-spacing:-.035em!important}
+.pravi-editorial-page .service-landing-intro h2,.pravi-editorial-page .section-heading h2{font:400 clamp(2rem,3.5vw,3.6rem)/1.02 'DM Serif Display',Georgia,serif!important}
+.pravi-editorial-page .scope-grid{gap:0!important;border-top:1px solid #d9c58b;border-left:1px solid #d9c58b}
+.pravi-editorial-page .scope-item{padding:25px!important;border:0!important;border-right:1px solid #d9c58b!important;border-bottom:1px solid #d9c58b!important;border-radius:0!important;background:#fff8e7!important}
+.pravi-editorial-page .scope-item h3{font:400 1.5rem/1.1 'DM Serif Display',Georgia,serif!important}
+.pravi-editorial-page .tool-grid{gap:18px!important}
+.pravi-editorial-page .tool-card{border-radius:0!important;border:0!important;border-top:5px solid #173c35!important;background:#fff1d0!important;box-shadow:none!important;min-height:400px}
+.pravi-editorial-page .tool-card.featured-tool:first-child{background:#c45135!important;color:#fff3d5!important}
+.pravi-editorial-page .tool-card.featured-tool:first-child h3,.pravi-editorial-page .tool-card.featured-tool:first-child p{color:#fff3d5!important}
+.pravi-editorial-page .tool-card h3{font:400 2rem/1.03 'DM Serif Display',Georgia,serif!important}
+.pravi-editorial-page .hero-tools{background:#f1d477!important;position:relative;overflow:hidden}
+.pravi-editorial-page .hero-tools h1{font:400 clamp(3rem,6vw,6rem)/.97 'DM Serif Display',Georgia,serif!important;max-width:850px}
+.pravi-tools-feature{display:grid;grid-template-columns:1fr 1fr;background:#173c35;min-height:420px;color:#fff3d5;overflow:hidden}
+.pravi-tools-feature>div:first-child{padding:clamp(30px,5vw,75px);display:flex;flex-direction:column;justify-content:center}
+.pravi-tools-feature h2{font:400 clamp(2.4rem,4vw,4.2rem)/.98 'DM Serif Display',Georgia,serif!important;color:#fff3d5!important}
+.pravi-tools-feature img{width:100%;height:100%;min-height:420px;object-fit:cover}
+.pravi-article-cover{margin:0 auto 42px;max-width:1180px;overflow:hidden;background:#c45135}
+.pravi-article-cover img{display:block;width:100%;max-height:430px;object-fit:cover}
+@media(max-width:760px){.pravi-service-story,.pravi-tools-feature{grid-template-columns:1fr}.pravi-service-story .story-copy{padding:36px 25px}.pravi-service-story .story-copy h2{font-size:clamp(2.6rem,11vw,4rem)!important}.pravi-service-story .story-art,.pravi-service-story .story-art img{height:290px;min-height:290px}.pravi-service-story.alt .story-art{order:0}.pravi-tools-feature img{height:280px;min-height:280px}.pravi-editorial-page .scope-grid{grid-template-columns:1fr!important}}
