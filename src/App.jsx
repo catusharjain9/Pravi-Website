@@ -10,4 +10,35 @@ function ContourField(){const reduce=useReducedMotion();return <div className="c
 function Home(){const reduce=useReducedMotion();const cards=[["01 / FINANCE LEADERSHIP","Virtual CFO & cash-flow planning","Budgets, cash forecasts, financial performance reviews and decision-useful management reporting.","/virtual-cfo.html"],["02 / FINANCE OPERATIONS","Accounting & monthly MIS","Books, reconciliations and structured monthly reporting that explain business performance.","/accounting-mis.html"],["03 / TAX & COMPLIANCE","GST, direct tax & regulatory support","Applicability review, compliance coordination and documented tax workflows.","/gst-compliance.html"],["04 / FOUNDER JOURNEY","Startup & entity support","Structured support for incorporation pathways, governance and recurring obligations.","/startup-support.html"],["05 / BUSINESS DECISIONS","Business advisory","Planning, budgeting, working capital and commercial analysis.","/business-advisory.html"],["06 / PRACTICAL WORKPAPERS","Digital tools & resources","Purpose-built calculators, trackers and reconciliation workpapers.","/tools.html"]];return <main><section className="hero"><div className="wrap hero-grid"><motion.div className="hero-copy" initial={reduce?false:{opacity:0,y:24}} animate={{opacity:1,y:0}} transition={{duration:.7}}><p className="eyebrow">STARTUP FINANCE · TAX · COMPLIANCE · BUSINESS ADVISORY</p><h1>Make the numbers work.<br/><em>Make growth deliberate.</em></h1><p className="intro">A practical finance and compliance partner for founders and growing businesses. Bring accounting, cash flow, tax, statutory responsibilities and business decisions into one clearer operating picture.</p><p className="specialisms">Virtual CFO <b>·</b> Regulatory &amp; Legal <b>·</b> Financial Strategy</p><div className="actions"><a className="button dark" href={legacyHref("/contact.html")}>Work with PRAVI ↗</a><Link className="button outline" to="/services.html">Explore services</Link></div><p className="trust">CA-led perspective <i/> Defined scope <i/> Practical execution</p></motion.div><ContourField/></div></section><section className="proof"><div className="wrap proof-grid"><div><b>Startup-focused</b><span>Support built around the founder journey</span></div><div><b>CFO-led advisory</b><span>Finance, cash flow and management insight</span></div><div><b>Compliance, organised</b><span>Entity, tax and recurring obligations</span></div><div><b>Growth-aligned</b><span>Systems that support better decisions</span></div></div></section><section className="section wrap"><div className="section-head"><div><p className="eyebrow">HOW PRAVI SUPPORTS YOUR BUSINESS</p><h2>One finance partner.<br/>Connected areas of work.</h2></div><p>Choose support that addresses your current requirement. Scope, applicable obligations, inputs and responsibilities are established for each engagement.</p></div><div className="service-grid">{cards.map(([k,t,d,h],i)=><motion.article className={i===0?"service-card featured":"service-card"} key={k} whileHover={reduce?{}:{y:-7}}><span>{k}</span><h3>{t}</h3><p>{d}</p><a href={legacyHref(h)}>Explore service ↗</a></motion.article>)}</div></section><section className="closing"><div className="wrap"><p className="eyebrow">A CLEARER VIEW OF THE BUSINESS</p><h2>Better information.<br/><em>Better decisions.</em></h2><a className="button dark" href={legacyHref("/contact.html")}>Start a conversation ↗</a></div></section></main>}
 
 function NotFound(){return <main className="wrap legacy"><p className="eyebrow">PRAVI BUSINESS ADVISORS LLP</p><h1>Page not found</h1><p>The page may have moved. Return to the homepage or use the navigation to continue.</p><Link to="/">Return home ↗</Link></main>}
-export default function App(){return <><Header/><Routes><Route path="/" element={<Home/>}/><Route path="/about.html" element={<AboutPage/>}/><Route path="/services.html" element={<ServicesPage/>}/><Route path="/virtual-cfo.html" element={<VirtualCfoPage/>}/><Route path="/startup-support.html" element={<StartupSupportPage/>}/><Route path="/direct-tax.html" element={<DirectTaxPage/>}/><Route path="/gst-compliance.html" element={<GstCompliancePage/>}/><Route path="/accounting-mis.html" element={<AccountingMisPage/>}/><Route path="/business-advisory.html" element={<BusinessAdvisoryPage/>}/><Route path="*" element={<NotFound/>}/></Routes><footer className="footer"><div className="wrap footer-row"><Brand/><p>Clarity Today. Stronger Businesses Tomorrow.</p><span>© {new Date().getFullYear()} PRAVI Business Advisors LLP</span></div></footer></>}
+export default function App(){return <><Header/><Routes><Route path="/" element={<Home/>}/><Route path="/about.html" element={<AboutPage/>}/><Route path="/services.html" element={<ServicesPage/>}/><Route path="/virtual-cfo.html" element={<VirtualCfoPage/>}/><Route path="/startup-support.html" element={<StartupSupportPage/>}/><Route path="/direct-tax.html" element={<DirectTaxPage/>}/><Route path="/gst-compliance.html" element={<GstCompliancePage/>}/><Route path="/accounting-mis.html" element={<AccountingMisPage/>}/><Route path="/business-advisory.html" element={<BusinessAdvisoryPage/>}/><Route path="*" element={<NotFound/>}/></Routes><footer className="footer-editorial">
+  <div className="wrap footer-editorial-top">
+    <div className="footer-editorial-brand">
+      <Brand/>
+      <p>Finance clarity for founders and growing businesses.</p>
+      <span className="footer-tagline">Clarity Today. Stronger Businesses Tomorrow.</span>
+    </div>
+    <div className="footer-column">
+      <h2>Explore</h2>
+      <a href={legacyHref("/services.html")}>Services</a>
+      <a href={legacyHref("/about.html")}>About PRAVI</a>
+      <a href={legacyHref("/tools.html")}>Business tools</a>
+      <a href={legacyHref("/resources.html")}>Founder resources</a>
+    </div>
+    <div className="footer-column">
+      <h2>Connect</h2>
+      <a href="mailto:info@praviba.com">info@praviba.com</a>
+      <a href="tel:+919173121611">+91 91731 21611</a>
+      <a href="https://www.linkedin.com/company/145352736/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+      <a href="https://www.instagram.com/pravi.ba/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+    </div>
+    <div className="footer-editorial-cta">
+      <span>HAVE A BUSINESS QUESTION?</span>
+      <h2>Make the next decision with a clearer picture.</h2>
+      <a href={legacyHref("/contact.html")}>Start a conversation <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+  <div className="wrap footer-editorial-bottom">
+    <span>© {new Date().getFullYear()} PRAVI Business Advisors LLP. All rights reserved.</span>
+    <a href={legacyHref("/privacy.html")}>Privacy notice</a>
+  </div>
+</footer></>}
