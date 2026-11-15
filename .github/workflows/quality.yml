@@ -35,6 +35,8 @@ jobs:
         run: npm run build
       - name: Audit HTML structure and local references
         run: python scripts/quality-audit.py
+      - name: Verify React migration and preserve all nine tools
+        run: npm run test:react-migration
       - name: Test PRAVI theme contrast and page overrides
         run: python scripts/test-theme-accessibility.py
       - name: Test approved PRAVI brand refinement layer
