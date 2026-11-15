@@ -29,6 +29,10 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Install frontend dependencies
+        run: npm install
+      - name: Build React application and stage legacy routes
+        run: npm run build
       - name: Audit HTML structure and local references
         run: python scripts/quality-audit.py
       - name: Test PRAVI theme contrast and page overrides
