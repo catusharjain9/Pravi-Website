@@ -15,7 +15,8 @@
     "test:depreciation": "node scripts/test-depreciation-engine.mjs",
     "test:currency": "node scripts/test-currency-engine.mjs",
     "test:brand": "python scripts/test-brand-refinement.py",
-    "test:theme": "python scripts/test-theme-accessibility.py"
+    "test:theme": "python scripts/test-theme-accessibility.py",
+    "test:react-migration": "node scripts/test-react-migration.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^5.0.0",
