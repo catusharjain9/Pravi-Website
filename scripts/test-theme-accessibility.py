@@ -66,6 +66,10 @@ if len(pages) < 30:
 
 for page in pages:
     html = page.read_text(encoding="utf-8")
+    if page.name == "index.html":
+        if 'id="root"' not in html or "src/main.jsx" not in html:
+            fail("React homepage entry point is missing its root mount or module script")
+        continue
     head = html.split("</head>", 1)[0]
 
     for ref in (
@@ -101,5 +105,5 @@ for page in pages:
         if name and content and content.group(1).upper() != "#FFFFFF":
             fail(f"{page.name} browser theme colour must be pure white")
 
-print(f"PASS: {len(pages)} pages load the approved logo and final palette stylesheet.")
+print(f"PASS: {len(pages) - 1} legacy pages load the approved logo and final palette stylesheet; React homepage entry point verified.")
 print("PASS: three-colour palette, Poppins, focus, responsive navigation and reduced-motion rules.")
