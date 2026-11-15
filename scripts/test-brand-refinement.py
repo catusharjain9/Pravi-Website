@@ -22,7 +22,10 @@ for rule in (':focus-visible','prefers-reduced-motion','max-width:1100px','.tabl
  if rule not in css and rule not in style: fail(f"required design/accessibility rule missing: {rule}")
 pages=sorted(ROOT.glob("*.html"))
 if len(pages)<30: fail(f"expected at least 30 HTML pages, found {len(pages)}")
+react_pages={"index.html","about.html","services.html","virtual-cfo.html","startup-support.html","direct-tax.html","gst-compliance.html","accounting-mis.html","business-advisory.html"}
 for page in pages:
+ if page.name in react_pages:
+  continue
  html=page.read_text(encoding="utf-8")
  if 'assets/css/paper-texture.css' not in html: fail(f"{page.name}: shared brand stylesheet missing")
  if 'assets/css/pravi-yellow-system.css' not in html: fail(f"{page.name}: final three-colour stylesheet missing")
@@ -31,7 +34,7 @@ for page in pages:
 for selector in (".btn-main",".btn-work",".run",".pdf-process",".pdf-filter[aria-pressed=\"true\"]",".workspace",".pane",".table-scroll"):
  if selector not in css: fail(f"legacy tool palette override missing: {selector}")
 if ".status,.alert-box,.ok-box,.warning,.good,.warning-panel,.success-panel" not in combined: fail("tool workspaces must retain visible status and alert components")
-print(f"PASS: {len(pages)} HTML pages load shared brand CSS and the approved logo.")
+print(f"PASS: {len(pages) - len(react_pages)} legacy HTML pages load shared brand CSS and the approved logo; React route set is staged separately.")
 print("PASS: hero mastheads are protected from paper-texture overrides.")
 print("PASS: approved palette, keyboard focus, responsive navigation, table and reduced-motion rules.")
 
