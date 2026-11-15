@@ -49,6 +49,12 @@ The GitHub Actions quality workflow runs the Vite build, static HTML and asset a
 
 A source-level check is not a substitute for a completed CI run or browser/device QA. Record the actual Actions result and browser test evidence before release.
 
+## GitHub Pages deployment
+
+The repository currently has a branch-based Pages build that runs Jekyll. That process does not run the Vite build and therefore must not be used to publish the React source entry point. A manual GitHub Actions deployment workflow has been added at `.github/workflows/deploy-pages.yml`; it builds the Vite app, stages legacy pages into `dist` and deploys that artifact.
+
+Before using the workflow, change **Repository Settings → Pages → Build and deployment → Source** to **GitHub Actions**. Then run **Actions → Deploy PRAVI website to GitHub Pages → Run workflow**. This workflow is intentionally manual so it cannot publish until the Pages source has been switched and the release is approved.
+
 ## Local verification
 
 ```bash
