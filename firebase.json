@@ -1,28 +1,10 @@
 {
   "hosting": {
-    "public": ".",
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**",
-      "README.md",
-      "PRE-LAUNCH-CHECKLIST.md",
-      "AI_INTEGRATION_PLAN.md",
-      "FIREBASE_CMS_SETUP.md",
-      "firebase-config.js.example",
-      "firestore.rules",
-      "package.json",
-      "package-lock.json",
-      "CONTENT-DEDUPLICATION-REPORT.md",
-      "CONTENT_REVIEW_POLICY.md",
-      "WEBSITE_IMPROVEMENT_REPORT.md",
-      "TOOLS_README.md",
-      "scripts/**",
-      ".gitignore",
-      ".firebaserc.example",
-      "SOURCE_CODE_AUDIT_REPORT.md",
-      "TESTING_REPORT.md",
-      "sitemap.xml.template"
+      "**/node_modules/**"
     ],
     "headers": [
       {
