@@ -1,19 +1,6 @@
 {
-  "name": "pravi-business-advisors-website",
-  "private": true,
-  "scripts": {
-    "serve": "firebase emulators:start --only hosting,auth,firestore",
-    "deploy": "firebase deploy --only hosting,firestore:rules",
-    "audit": "python scripts/quality-audit.py",
-    "sitemap": "node scripts/generate-sitemap.mjs",
-    "test:csv": "node scripts/test-csv-safety.mjs",
-    "test:csp": "node scripts/test-csp-hashes.mjs",
-    "test:depreciation": "node scripts/test-depreciation-engine.mjs",
-    "test:currency": "node scripts/test-currency-engine.mjs",
-    "test:brand": "python scripts/test-brand-refinement.py"
-  },
-  "devDependencies": {
-    "firebase-tools": "14.0.0"
-  },
-  "type": "module"
+  "name":"pravi-business-advisors","private":true,"version":"2.0.0","type":"module",
+  "scripts":{"dev":"vite","build":"vite build","preview":"vite preview","audit":"python scripts/quality-audit.py","test:csv":"node scripts/test-csv-safety.mjs","test:csp":"node scripts/test-csp-hashes.mjs","test:depreciation":"node scripts/test-depreciation-engine.mjs","test:currency":"node scripts/test-currency-engine.mjs","test:brand":"python scripts/test-brand-refinement.py"},
+  "dependencies":{"@vitejs/plugin-react":"latest","vite":"latest","react":"latest","react-dom":"latest","motion":"latest","react-router-dom":"latest"},
+  "devDependencies":{}
 }
