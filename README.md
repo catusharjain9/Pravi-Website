@@ -1,8 +1,8 @@
 # PRAVI BUSINESS ADVISORS LLP — Website
 
-A responsive, framework-free static website built with HTML, CSS, JavaScript and SVG. No npm install, build step, database or paid site builder is required to open it locally. The currency converter requires an internet connection for timestamped exchange-rate data.
+A staged React + Vite website migration. The homepage and core service/about pages are React components with Motion-based interaction; remaining legacy pages and tools are retained as static routes during the migration so existing workflows are not discarded. Run `npm install` and `npm run dev` for local development, or `npm run build` to create the production bundle and stage legacy routes. The currency converter requires an internet connection for timestamped exchange-rate data.
 
-## Main pages
+## React migration status\n- React routes currently include the homepage, About, Services, Virtual CFO, Startup Support, Direct Tax, GST Compliance, Accounting & MIS, and Business Advisory.\n- Other pages and the nine interactive workpaper tools remain available as legacy static routes while their React replacements are built and tested.\n- `scripts/stage-legacy.mjs` copies legacy pages/assets into `dist` and emits direct-load `.html` entry points for migrated React routes.\n- Production deployment must use the Vite build output (`dist`). For GitHub Pages, the default base is `/Pravi-Website/`; root hosting can build with `VITE_BASE_PATH=/`.\n\n## Main pages
 - `index.html` — founder-led homepage focused on startup foundations, monthly numbers and cash planning, with stage-based pathways, clear engagement principles and FAQs.
 - `services.html` — full eight-area portfolio, professional scope boundaries and links into focused service pages.
 - `about.html` — firm approach, mission/vision themes and working principles without invented firm history, qualifications or testimonials.
