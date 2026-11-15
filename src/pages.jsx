@@ -52,3 +52,36 @@ export function StartupSupportPage(){return <ServiceDetail layer="SERVICE LAYER 
 ["FEMA coordination","Identify potential FEMA questions around foreign investment, remittances or cross-border transactions and coordinate specialist review where required."],
 ["MSME compliance support","Review relevant MSME registration and payment-related compliance questions based on entity, supplier/customer facts and applicable rules."]
 ]}/>;}
+
+export function DirectTaxPage(){return <ServiceDetail layer="SERVICE LAYER 01 · COMPLIANCE & TAX" title="Direct tax support, organised around the facts and the deadline." lead="Bring returns, TDS, information requests and tax questions into a defined workflow: identify the facts, map the outstanding items and agree the work that is appropriate for your situation." story="Start with the facts. Then map the tax position." prep="Information that helps define the work." items={[
+["Return preparation support","Organise income, expense, deduction and supporting schedules needed for preparation and review."],
+["TDS compliance support","Map applicable information, reconcile records and prepare the agreed periodic compliance work."],
+["Tax issue analysis","Identify the specific question, applicable facts, relevant documents and points that require research."],
+["Assessment documentation","Help structure factual responses, reconciliations and supporting evidence, subject to the proceeding and authority to act."],
+["Applications and registrations","Support documentation for relevant tax onboarding or applications, where applicable and accepted."],
+["Deadline and document map","Set out the immediate due dates, missing inputs, responsible people and review steps."]
+]}/>;}
+export function GstCompliancePage(){return <ServiceDetail layer="SERVICE LAYER 01 · COMPLIANCE & TAX" title="GST compliance with the reconciliation behind the return." lead="Use a clear workflow for outward supplies, input tax credit, books-to-portal differences, return preparation and supporting documents—based on the records and scope agreed." story="A return is only as reliable as the reconciliation behind it." prep="Information that helps define the work." items={[
+["Registration and profile support","Document coordination for relevant GST registration, amendment or profile requirements."],
+["Return preparation support","Prepare or coordinate the agreed GSTR-1, GSTR-3B or related return information, subject to review and authorisation."],
+["Books-to-portal reconciliation","Compare accounting records with available GSTR-2A / GSTR-2B and identify differences requiring investigation."],
+["Input tax credit review support","Prepare exception lists and supporting schedules for consideration against the applicable facts and rules."],
+["Refund documentation","Organise transaction details and supporting evidence for a scoped refund application."],
+["Notice / query preparation","Map the issue, information required and response timeline; representation is separately scoped where applicable."]
+]}/>;}
+export function AccountingMisPage(){return <ServiceDetail layer="SERVICE LAYER 02 · ACCOUNTING & REPORTING" title="Accounting that gives the business a clearer monthly picture." lead="Organise the books, close the period, reconcile the balances and prepare a reporting pack that explains the current position and the items needing attention." story="The month-end close is where clarity begins." prep="Information that helps define the work." items={[
+["Bookkeeping and classification","Record and organise transactions using the agreed source documents and accounting policies."],
+["Bank and ledger reconciliation","Compare records, investigate outstanding entries and maintain an exception list for review."],
+["Period-end close","Coordinate schedules, cut-off matters and ledger checks required for the agreed close process."],
+["Financial statement preparation support","Prepare agreed financial statement schedules or drafts based on the records and review responsibilities defined."],
+["Monthly MIS pack","Structure revenue, cost, margin, working-capital, cash and open-action views relevant to the business."],
+["Process and system workflows","Document recurring tasks, access responsibilities, approvals and hand-offs between business and accounts teams."]
+]}/>;}
+export function BusinessAdvisoryPage(){return <ServiceDetail layer="SERVICE LAYER 03 · PLANNING & FINANCE LEADERSHIP" title="Make the assumptions visible before making the plan." lead="Structure business questions around assumptions, options, resource needs, working capital and an implementation path—not only around a spreadsheet." story="A plan is only as strong as its assumptions." prep="Information that helps define the work." items={[
+["Business plan structure","Clarify the model, customer/market assumptions, cost base, resource needs and milestones."],
+["Budgets and forecasts","Build the agreed period view and document assumptions that materially influence results."],
+["Working-capital review","Map receivables, inventory, payables, cash conversion and near-term funding pressure."],
+["Feasibility and scenario analysis","Compare scenarios, key sensitivities, required investment and operational dependencies."],
+["Financial ratios and management review","Prepare a coherent view of selected metrics with definitions and limitations."],
+["Policies, procedures and accounting manuals","Document recurring responsibilities, approvals, workflows and review points."]
+]}/>;}
