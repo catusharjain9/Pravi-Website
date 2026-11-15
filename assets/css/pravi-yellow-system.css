@@ -457,3 +457,31 @@ html body .brego-home.pravi-homepage .brego-hero .brego-hero-grid .brego-hero-vi
 html body.brego-home.pravi-homepage .brego-hero .brego-hero-grid .brego-hero-visual .brego-float-card *{
   color:#303030!important;
 }
+
+
+/* ReactDrops-inspired interaction layer — lightweight CSS, no framework dependency. */
+:root{--pravi-motion-ease:cubic-bezier(.2,.75,.25,1)}
+@media(prefers-reduced-motion:no-preference){
+  .brego-hero{position:relative;isolation:isolate;overflow:hidden}
+  .brego-hero:before{content:"";position:absolute;z-index:-1;width:min(54vw,690px);aspect-ratio:1;border:1px solid rgba(48,48,48,.09);border-radius:50%;right:-12%;top:-48%;box-shadow:0 0 0 34px rgba(255,224,0,.09),0 0 0 78px rgba(48,48,48,.035);animation:pravi-orbit-drift 18s ease-in-out infinite alternate}
+  .brego-hero:after{content:"";position:absolute;z-index:-1;width:10px;height:10px;border-radius:50%;background:#FFE000;right:11%;top:18%;box-shadow:0 0 0 9px rgba(255,224,0,.2),0 0 34px rgba(255,224,0,.55);animation:pravi-orbit-pulse 4s ease-in-out infinite}
+  .pravi-launch-art img{transform:translate3d(0,0,0);animation:pravi-art-float 7s ease-in-out infinite;filter:drop-shadow(0 22px 20px rgba(48,48,48,.09))}
+  .brego-service-card,.brego-audience-grid article,.pravi-discovery-card,.brego-insight-links>a{transition:transform .38s var(--pravi-motion-ease),box-shadow .38s var(--pravi-motion-ease),border-color .38s var(--pravi-motion-ease)!important;will-change:transform}
+  .brego-service-card:hover,.brego-audience-grid article:hover,.pravi-discovery-card:hover,.brego-insight-links>a:hover{transform:translateY(-7px)!important;box-shadow:0 22px 48px rgba(48,48,48,.12)!important}
+  .brego-service-card:after,.btn:after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:linear-gradient(115deg,transparent 28%,rgba(255,255,255,.38) 48%,transparent 68%);transform:translateX(-120%);transition:transform .7s var(--pravi-motion-ease)}
+  .brego-service-card{position:relative;overflow:hidden}
+  .brego-service-card:hover:after,.btn:hover:after{transform:translateX(120%)}
+  .btn{position:relative;overflow:hidden;transition:transform .25s var(--pravi-motion-ease),box-shadow .25s var(--pravi-motion-ease)!important}
+  .btn:hover{transform:translateY(-3px)!important;box-shadow:0 10px 22px rgba(48,48,48,.13)}
+  .pravi-home .brego-section-head h2{text-wrap:balance}
+}
+@keyframes pravi-art-float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-11px) rotate(.4deg)}}
+@keyframes pravi-orbit-drift{from{transform:translate3d(0,0,0) rotate(0)}to{transform:translate3d(-26px,18px,0) rotate(8deg)}}
+@keyframes pravi-orbit-pulse{0%,100%{transform:scale(.8);opacity:.7}50%{transform:scale(1.25);opacity:1}}
+@media(prefers-reduced-motion:reduce){
+  .brego-hero:before,.brego-hero:after,.pravi-launch-art img{animation:none!important}
+  .brego-service-card,.brego-audience-grid article,.pravi-discovery-card,.brego-insight-links>a,.btn{transition:none!important}
+}
+.brand{width:228px!important;height:72px!important;background-size:contain!important}
+.brand-logo{width:228px!important;height:72px!important;object-fit:contain!important}
+@media(max-width:520px){.brand{width:190px!important;height:62px!important}.brand-logo{width:190px!important;height:62px!important}}
