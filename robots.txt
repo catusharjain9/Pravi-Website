@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-# Add the Sitemap directive after the verified production domain and sitemap are configured.
+
+Sitemap: https://catusharjain9.github.io/Pravi-Website/sitemap.xml
