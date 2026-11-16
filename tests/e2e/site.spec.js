@@ -16,9 +16,10 @@ test.describe("React public routes", () => {
       await page.goto(route === "/" ? "./" : route);
       await expect(page.locator("main")).toBeVisible();
       await expect(page.locator("main h1").first()).not.toBeEmpty();
+      if (route !== "/") await expect(page).not.toHaveTitle("PRAVI Business Advisors LLP | Startup Finance & Virtual CFO");
       const title = await page.title();
       expect(title.length).toBeGreaterThan(15);
-      if (route !== "/") expect(title).not.toBe("PRAVI Business Advisors LLP | Startup Finance & Virtual CFO");
+      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", /Pravi-Website/);
       const canonical = await page.locator('link[rel="canonical"]').getAttribute("href");
       expect(canonical).toContain(route === "/" ? "/Pravi-Website/" : route);
     });
