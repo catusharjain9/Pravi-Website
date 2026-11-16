@@ -89,7 +89,7 @@ test.describe("Responsive mobile behaviour", () => {
 test.describe("Legacy tools remain reachable", () => {
   const tools = [
     "tools.html", "gst-reconciliation.html", "tax-calculators.html",
-    "depreciation-calculator.html", "currency-converter.html",
+    "depreciation-calculator.html", "depreciation-register.html", "currency-converter.html",
     "cashflow-planner.html", "mis-generator.html", "compliance-tracker.html", "pdf-tools.html"
   ];
   for (const route of tools) {
