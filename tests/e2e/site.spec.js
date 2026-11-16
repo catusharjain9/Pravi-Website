@@ -27,6 +27,21 @@ test.describe("React public routes", () => {
   }
 });
 
+test.describe("PRAVI motion and accessibility", () => {
+  test("logo intro appears and clears after refresh", async ({ page }) => {
+    await page.goto("./");
+    const intro = page.locator(".logo-intro-react");
+    await expect(intro).toBeVisible();
+    await expect(intro).toHaveCount(0, { timeout: 3000 });
+  });
+
+  test("reduced-motion preference suppresses the logo intro", async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("./");
+    await expect(page.locator(".logo-intro-react")).toHaveCount(0);
+  });
+});
+
 test.describe("Responsive mobile behaviour", () => {
   test.use({ viewport: { width: 375, height: 812 } });
 
