@@ -56,3 +56,8 @@
 .contact-aside-react a{font-size:13px;color:#826900}
 .contact-aside-react p{font-size:11px;line-height:1.7;color:#6e695d;margin-top:12px}
 @media(max-width:700px){.editorial-grid-react{grid-template-columns:1fr}.contact-grid-react{grid-template-columns:1fr}.editorial-detail-react>section{grid-template-columns:36px 1fr;gap:12px}.resource-card-react{min-height:unset}}
+
+.logo-intro-react{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;overflow:hidden;background:#fffbed;pointer-events:none}
+.logo-intro-react img{position:relative;z-index:2;width:min(72vw,510px);height:auto;filter:drop-shadow(0 12px 28px rgba(40,35,20,.08))}
+.logo-intro-contours{position:absolute;inset:0;width:100%;height:100%;opacity:.8}
+@media(prefers-reduced-motion:reduce){.logo-intro-react{display:none}}
