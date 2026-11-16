@@ -13,10 +13,12 @@ const reactRoutes = [
 test.describe("React public routes", () => {
   for (const route of reactRoutes) {
     test(`renders ${route}`, async ({ page }) => {
-      await page.goto(route);
+      await page.goto(route === "/" ? "./" : route);
       await expect(page.locator("main")).toBeVisible();
       await expect(page.locator("main h1").first()).not.toBeEmpty();
-      await expect(page).not.toHaveTitle("PRAVI Business Advisors LLP | Startup Finance & Virtual CFO", { timeout: 1500 }).catch(() => {});
+      const title = await page.title();
+      expect(title.length).toBeGreaterThan(15);
+      if (route !== "/") expect(title).not.toBe("PRAVI Business Advisors LLP | Startup Finance & Virtual CFO");
       const canonical = await page.locator('link[rel="canonical"]').getAttribute("href");
       expect(canonical).toContain(route === "/" ? "/Pravi-Website/" : route);
     });
@@ -27,7 +29,7 @@ test.describe("Responsive mobile behaviour", () => {
   test.use({ viewport: { width: 375, height: 812 } });
 
   test("mobile navigation opens and closes", async ({ page }) => {
-    await page.goto("/");
+    await page.goto("./");
     const menu = page.getByRole("button", { name: "Toggle navigation" });
     await expect(menu).toBeVisible();
     await menu.click();
@@ -37,9 +39,9 @@ test.describe("Responsive mobile behaviour", () => {
     await expect(page.locator("nav.nav.open")).toHaveCount(0);
   });
 
-  for (const route of ["/", "resources.html", "contact.html"]) {
+  for (const route of ["./", "resources.html", "contact.html"]) {
     test(`no horizontal overflow on ${route}`, async ({ page }) => {
-      await page.goto(route);
+      await page.goto(route === "/" ? "./" : route);
       const metrics = await page.evaluate(() => ({
         viewport: window.innerWidth,
         document: document.documentElement.scrollWidth,
@@ -75,10 +77,12 @@ test.describe("Legacy tools remain reachable", () => {
   ];
   for (const route of tools) {
     test(`loads preserved tool ${route}`, async ({ page }) => {
-      await page.goto(route);
+      await page.goto(route === "/" ? "./" : route);
       await expect(page.locator("body")).toBeVisible();
       await expect(page.locator("body")).not.toBeEmpty();
       await expect(page.locator('link[href*="pravi-yellow-system.css"]')).toHaveCount(1);
+      const footerColor = await page.locator(".site-footer").evaluate(el => getComputedStyle(el).backgroundColor);
+      expect(footerColor).toBe("rgb(255, 251, 237)");
     });
   }
 });
