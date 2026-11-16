@@ -59,3 +59,7 @@ jobs:
         run: node scripts/test-csv-safety.mjs
       - name: Test Content Security Policy JSON-LD hashes
         run: node scripts/test-csp-hashes.mjs
+      - name: Install Chromium for responsive browser tests
+        run: npx playwright install --with-deps chromium
+      - name: Run responsive and route browser tests
+        run: npm run test:e2e
