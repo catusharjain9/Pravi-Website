@@ -485,3 +485,30 @@ html body.brego-home.pravi-homepage .brego-hero .brego-hero-grid .brego-hero-vis
 .brand{width:228px!important;height:72px!important;background-size:contain!important}
 .brand-logo{width:228px!important;height:72px!important;object-fit:contain!important}
 @media(max-width:520px){.brand{width:190px!important;height:62px!important}.brand-logo{width:190px!important;height:62px!important}}
+
+/* Unified warm-ivory editorial footer across retained legacy pages and tools. */
+.site-footer{
+  background:#FFFBED!important;
+  background-color:#FFFBED!important;
+  background-image:none!important;
+  color:#303030!important;
+  border-top:1px solid #EEE7D5!important;
+  padding-top:54px!important;
+}
+.site-footer .footer-cta{
+  background:#FFF5C4!important;
+  background-color:#FFF5C4!important;
+  border:1px solid #F0DFA0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+.site-footer .footer-cta-eyebrow,.site-footer .footer-cta h2,
+.site-footer .footer-cta-copy>p:last-child,.site-footer .footer-cta *{
+  color:#303030!important;
+}
+.site-footer .footer-cta-button,.site-footer .footer-cta-button *{
+  background:#303030!important;
+  border-color:#303030!important;
+  color:#FFFFFF!important;
+}
+.site-footer .footer-bottom{border-color:#E9E1D0!important}
