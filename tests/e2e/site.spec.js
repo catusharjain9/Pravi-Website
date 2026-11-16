@@ -17,6 +17,7 @@ test.describe("React public routes", () => {
       await expect(page.locator("main")).toBeVisible();
       await expect(page.locator("main h1").first()).not.toBeEmpty();
       if (route !== "/") await expect(page).not.toHaveTitle("PRAVI Business Advisors LLP | Startup Finance & Virtual CFO");
+      if (route === "privacy.html") await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", "noindex,follow");
       const title = await page.title();
       expect(title.length).toBeGreaterThan(15);
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", /Pravi-Website/);
