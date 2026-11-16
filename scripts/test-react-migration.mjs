@@ -24,7 +24,7 @@ for (const path of ["gst-reconciliation.html","tax-calculators.html","depreciati
 assert.ok(tools.includes('id="gstcalc"'), "Embedded GST calculator panel missing");
 assert.ok(app.includes('className="footer-editorial"'), "Editorial footer missing from React shell");
 assert.ok(app.includes('assets/img/pravi-logo.svg'), "Approved PRAVI logo asset reference missing");
-const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\\/loc>/g)].map(match => match[1]);
+const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1]);
 assert.ok(sitemapUrls.length >= 30, "Production sitemap is missing public routes/tools");
 assert.equal(new Set(sitemapUrls).size, sitemapUrls.length, "Sitemap contains duplicate URLs");
 assert.ok(sitemapUrls.every(url => url.startsWith("https://catusharjain9.github.io/Pravi-Website/")), "Sitemap contains an unverified or off-site URL");
