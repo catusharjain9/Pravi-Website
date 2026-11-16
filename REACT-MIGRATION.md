@@ -2,7 +2,7 @@
 
 **Current state: staged migration; not yet production-ready.**
 
-The production repository now contains a React + Vite + React Router + Motion application. The homepage and eight core information/service routes are React-rendered. The shared React shell uses the approved PRAVI SVG logo reference and a responsive warm-ivory editorial footer.
+The production repository now contains a React + Vite + React Router + Motion application. The homepage, core service pages, resources and insights hubs, enquiry/privacy pages, four practical guides and four editorial articles are React-rendered (21 routes including the homepage). The shared React shell uses the approved PRAVI SVG logo reference and a responsive warm-ivory editorial footer.
 
 ## Migrated React routes
 
@@ -15,6 +15,9 @@ The production repository now contains a React + Vite + React Router + Motion ap
 - `/gst-compliance.html`
 - `/accounting-mis.html`
 - `/business-advisory.html`
+- `/resources.html`, `/insights.html`, `/contact.html`, `/privacy.html`
+- Four guides: startup compliance, Virtual CFO, GST reconciliation and monthly MIS
+- Four articles: 13-week cash flow, first 90 days of accounting, GST purchase reconciliation and monthly MIS review
 
 The Vite build stages legacy HTML pages and assets so existing public URLs continue to work while migration proceeds.
 
@@ -36,7 +39,7 @@ These remain legacy HTML/JavaScript implementations for now. They have not been 
 
 ## Remaining migration work
 
-- Migrate the remaining public content pages (resources, insights, contact, guides and articles) to React while preserving their current URLs and metadata.
+- Migrate the dynamic article CMS template and review remaining utility/admin pages that are intentionally retained as legacy.
 - Migrate each tool individually only after documenting and regression-testing its calculations, file handling, validation, exports and browser-local persistence.
 - Review all logo placements across legacy pages and confirm the approved artwork is consistently used.
 - Complete keyboard, screen-reader, reduced-motion, responsive and cross-browser testing.

@@ -9,7 +9,10 @@ mkdirSync(out, { recursive: true });
 // preserves direct navigation and refresh behaviour on static hosts such as Pages.
 const reactRoutes = [
   "about.html", "services.html", "virtual-cfo.html", "startup-support.html",
-  "direct-tax.html", "gst-compliance.html", "accounting-mis.html", "business-advisory.html"
+  "direct-tax.html", "gst-compliance.html", "accounting-mis.html", "business-advisory.html",
+  "resources.html", "insights.html", "contact.html", "privacy.html",
+  "guide-startup-compliance.html", "guide-virtual-cfo.html", "guide-gst-reconciliation.html", "guide-monthly-mis.html",
+  "article-13-week-cashflow.html", "article-first-90-days-accounting.html", "article-gst-purchase-reconciliation.html", "article-monthly-mis-review.html"
 ];
 
 for (const name of readdirSync(root)) {
