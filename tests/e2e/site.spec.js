@@ -152,4 +152,21 @@ test.describe("Legacy tools remain reachable", () => {
       expect(hiddenLegacyArt).toBe(true);
     });
   }
+
+  test("retained tool pages use the approved logo and current PRAVI navigation", async ({ page }) => {
+    await page.goto("tools.html");
+    const headerBrand = page.locator("header.site-header .brand").first();
+    const headerLogo = headerBrand.locator("img");
+    await expect(headerBrand).toHaveAttribute("href", "./");
+    await expect(headerLogo).toHaveAttribute("src", /pravi-approved-lockup\.webp/);
+    await expect.poll(() => headerLogo.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
+    const footerLogo = page.locator("footer.site-footer .footer-brand .brand img");
+    await expect(footerLogo).toHaveAttribute("src", /pravi-approved-lockup\.webp/);
+    await expect.poll(() => footerLogo.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
+    await expect(page.locator("header.site-header .primary-nav .nav-link")).toHaveText(["About", "Services", "Tools", "Resources", "Insights"]);
+    await expect(page.locator("header.site-header .nav-actions a")).toContainText("Get in touch");
+    await headerBrand.click();
+    await expect(page).toHaveURL(/\/Pravi-Website\/$/);
+    await expect(page.getByRole("heading", { name: "Build the business. Stay in control." })).toBeVisible();
+  });
 });

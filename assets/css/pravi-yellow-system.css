@@ -689,3 +689,16 @@ html body main.pravi-editorial-page .hero-tools{
 html body main.pravi-editorial-page .hero-tools :is(h1,h2,p,.eyebrow){
   color:#1A2325!important;
 }
+
+
+/* Legacy workpaper shells: match the approved PRAVI lockup and header proportions. */
+html body .site-header .header-inner{min-height:93px!important}
+html body .site-header .brand{display:flex!important;align-items:center!important;flex:0 0 204px!important;width:204px!important;height:72px!important}
+html body .site-header .brand-logo{display:block!important;width:204px!important;height:68px!important;object-fit:contain!important;object-position:center!important}
+html body .site-footer .footer-brand .brand{display:flex!important;align-items:center!important;width:172px!important;height:62px!important}
+html body .site-footer .footer-brand .brand-logo{display:block!important;width:172px!important;height:58px!important;object-fit:contain!important;object-position:center!important}
+@media(max-width:1100px){
+ html body .site-header .header-inner{min-height:79px!important}
+ html body .site-header .brand{flex-basis:172px!important;width:172px!important;height:62px!important}
+ html body .site-header .brand-logo{width:172px!important;height:58px!important}
+}
