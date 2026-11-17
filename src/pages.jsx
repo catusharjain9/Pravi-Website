@@ -1,12 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { motion, useReducedMotion } from "motion/react";
 const legacyHref=(path)=>`${import.meta.env.BASE_URL.replace(/\/$/,"")}${path}`;
 
+function doodleFor(value=""){
+ const v=value.toLowerCase();
+ if(/gst|tax|compliance|roc|legal|filing/.test(v))return "pravi-doodle-compliance.svg";
+ if(/cash|cfo|finance|account|mis|forecast/.test(v))return "pravi-doodle-cashflow.svg";
+ if(/startup|founder|entity|incorpor/.test(v))return "pravi-doodle-founder.svg";
+ return "pravi-doodle-growth.svg";
+}
 function PageHero({kicker,title,lead}) {
-  return <section className="page-hero-react"><div className="wrap"><p className="eyebrow">{kicker}</p><h1>{title}</h1><p>{lead}</p></div></section>;
+ const reduce=useReducedMotion();
+ const art=doodleFor(kicker+" "+title);
+ return <section className="page-hero-react"><div className="wrap page-hero-grid"><div className="page-hero-copy"><p className="eyebrow"><span className="eyebrow-spark"/> {kicker}</p><h1>{title}</h1><p>{lead}</p><span className="page-hero-index">PRAVI / FIELD NOTES <b>↗</b></span></div><motion.div className="page-hero-art" initial={reduce?false:{opacity:0,scale:.88,rotate:3}} animate={{opacity:1,scale:1,rotate:0}} transition={{duration:.8,ease:[.2,.8,.2,1]}}><span className="page-hero-art-stamp">P / {String(kicker).split(" ")[0]}</span><img src={`${import.meta.env.BASE_URL}assets/img/${art}`} alt=""/><svg viewBox="0 0 440 330" aria-hidden="true"><motion.path d="M20 255C86 255 98 192 160 192S248 238 302 165 364 60 416 72" fill="none" stroke="#D78A49" strokeWidth="2" strokeDasharray="5 7" initial={{pathLength:0}} animate={{pathLength:1}} transition={{duration:2.1,delay:.3}}/><motion.circle cx="302" cy="165" r="7" fill="#FFE000" stroke="#303030" strokeWidth="2" animate={reduce?{}:{scale:[1,1.45,1]}} transition={{duration:3.2,repeat:Infinity}}/></svg><span className="page-hero-art-note">CLARITY → CONTROL → GROWTH</span></motion.div></div><div className="page-hero-scribble" aria-hidden="true"/></section>;
 }
 function Story({index,title,body,href="/services.html",label="Explore how we work"}) {
-  return <section className="story-react wrap"><div><small>{index}</small><h2>{title}</h2><p>{body}</p>{["/services.html"].includes(href)?<Link to={href}>{label} ↗</Link>:<a href={legacyHref(href)}>{label} ↗</a>}</div><div className="story-visual"><span>PRAVI</span><b>CLARITY</b><i>→</i><b>CONTROL</b><i>→</i><b>GROWTH</b></div></section>;
+ const reduce=useReducedMotion();const art=doodleFor(title+" "+body);
+ return <section className="story-react wrap"><div><small>{index}</small><h2>{title}</h2><p>{body}</p>{["/services.html"].includes(href)?<Link to={href}>{label} ↗</Link>:<a href={legacyHref(href)}>{label} ↗</a>}</div><motion.div className="story-visual story-visual-illustrated" whileHover={reduce?{}:{rotate:-1,scale:1.015}}><span className="story-visual-label">THE PRAVI METHOD</span><img src={`${import.meta.env.BASE_URL}assets/img/${art}`} alt=""/><div className="story-visual-flow"><b>CLARITY</b><i>↗</i><b>CONTROL</b><i>↗</i><b>GROWTH</b></div></motion.div></section>;
 }
 function SectionTitle({kicker,title,copy}) {
   return <div className="section-head"><div><p className="eyebrow">{kicker}</p><h2>{title}</h2></div>{copy&&<p>{copy}</p>}</div>;
@@ -100,8 +111,8 @@ const articles = [
  ["ACCOUNTING & MIS","Monthly MIS: what a business owner should review","A decision-focused review of profitability, cash, working capital and balance-sheet quality.","/article-monthly-mis-review.html"]
 ];
 function EditorialCard({item,article=false}) {
- const [kicker,title,copy,href,label]=item;
- return <article className="resource-card-react"><span>{kicker}</span><h3>{title}</h3><p>{copy}</p><a href={legacyHref(href)}>{label||"Read more"} ↗</a></article>;
+ const [kicker,title,copy,href,label]=item;const reduce=useReducedMotion();const art=doodleFor(kicker+" "+title);
+ return <motion.article className="resource-card-react has-doodle-corner" whileHover={reduce?{}:{y:-5,rotate:.35}} transition={{duration:.24}}><div className="resource-card-topline"><span>{kicker}</span><img src={`${import.meta.env.BASE_URL}assets/img/${art}`} alt=""/></div><h3>{title}</h3><p>{copy}</p><a href={legacyHref(href)}>{label||"Read more"} ↗</a><span className="resource-card-index" aria-hidden="true">PRAVI / {article?"INSIGHT":"GUIDE"}</span></motion.article>;
 }
 export function ResourcesPage(){
  return <main><PageHero kicker="FOUNDER RESOURCES" title="Practical resources for building and running a business." lead="Use clear checklists and working guides to organise startup compliance, finance operations, GST reconciliation and management reporting. Each resource is a starting point; applicability depends on the entity and facts."/>

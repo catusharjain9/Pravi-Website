@@ -1,45 +1,38 @@
-/* PRAVI brand reveal — actual wordmark rebuilt inline so its own elements can animate */
+/* The intro animates the actual approved logo artwork used by the page header. */
 (() => {
-  if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
-  const brand=document.querySelector('.site-header .brand-logo');
-  if(!brand || document.querySelector('.pravi-intro')) return;
-  const paths=Array.from({length:17},(_,i)=>{
-    const y=70+i*39, a=24+(i%4)*11;
-    return '<path d="M-80 '+y+' C 140 '+(y-a)+', 230 '+(y+a)+', 440 '+y+' S 770 '+(y-a)+', 1010 '+y+' S 1320 '+(y+a)+', 1530 '+(y-8)+'"/>';
-  }).join('');
-  const overlay=document.createElement('div');
-  overlay.className='pravi-intro';
-  overlay.innerHTML='<svg class="pravi-intro__field" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'+paths+'</svg>'+
-    '<div class="pravi-intro__glow"></div>'+
-    '<svg class="pravi-intro__goldline" viewBox="0 0 900 360" aria-hidden="true"><path d="M72 185 C180 30 330 20 450 28 C650 38 790 100 830 178 C780 270 650 320 450 326 C260 330 120 270 72 185Z"/></svg>'+
-    '<svg class="pravi-intro__mark" viewBox="0 0 640 225" role="img" aria-label="PRAVI Business Advisors LLP">'+
-    '<defs><clipPath id="praviWordReveal"><rect x="0" y="0" width="640" height="115"/></clipPath></defs>'+
-    '<text class="word" x="8" y="99" fill="#1F2A2E" font-family="Poppins,Arial,sans-serif" font-size="92" font-weight="700" letter-spacing="-5">pravı</text>'+
-    '<circle class="dot" cx="194" cy="29" r="10.5" fill="#F6D365"/>'+
-    '<text class="tag" x="9" y="166" fill="#1F2A2E" font-family="Poppins,Arial,sans-serif" font-size="15" font-weight="600" letter-spacing="3.1">BUSINESS ADVISORS LLP</text>'+
-    '<path class="rule" d="M9 190h55" stroke="#F6D365" stroke-width="2.5"/>'+
-    '<text class="tag" x="78" y="200" fill="#B88719" font-family="Poppins,Arial,sans-serif" font-size="22" font-weight="600">लेखा  |  अर्थ  |  वृद्धि</text>'+
-    '<path class="rule" d="M260 190h55" stroke="#F6D365" stroke-width="2.5"/></svg>'+
-    '<p class="pravi-intro__signature">BUSINESS ADVISORS <span>·</span> FINANCE <span>·</span> GROWTH</p>';
+  const motionPreference = window.matchMedia?.("(prefers-reduced-motion: reduce)");
+  if (motionPreference?.matches) return;
+  const source = document.querySelector(".site-header .brand-logo, .header .brand img, .brand img");
+  if (!source || document.querySelector(".pravi-intro")) return;
+  const brand = source.tagName === "IMG" ? source : source.querySelector("img");
+  if (!brand) return;
+  const previousVisibility = brand.style.visibility;
+  const overlay = document.createElement("div");
+  overlay.className = "pravi-intro";
+  overlay.setAttribute("aria-hidden", "true");
+  overlay.innerHTML = `
+    <svg class="pravi-intro__field" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMid slice">
+      ${Array.from({length:18},(_,i)=>{const y=52+i*38,lift=18+(i%5)*13;return `<path d="M-100 ${y} C190 ${y-lift},340 ${y+lift},620 ${y} S1040 ${y-lift},1540 ${y+12}"/>`;}).join("")}
+    </svg>
+    <svg class="pravi-intro__orbit" viewBox="0 0 900 420" aria-hidden="true"><path d="M70 215C165 38 340 20 450 28S735 98 830 210C740 333 576 394 450 392S160 352 70 215Z"/></svg>
+    <span class="pravi-intro__signature">CLARITY <i>·</i> CONTROL <i>·</i> GROWTH</span>`;
+  const logo = brand.cloneNode(true);
+  logo.className = "pravi-intro__mark";
+  logo.alt = "";\n  logo.removeAttribute("width");\n  logo.removeAttribute("height");\n  logo.style.height = "auto";
+  overlay.appendChild(logo);
+  overlay.classList.add("is-playing");
   document.body.appendChild(overlay);
-  const previous=brand.style.visibility;
-  brand.style.visibility='hidden';
-  let done=false;
-  const finish=()=>{if(done)return;done=true;brand.style.visibility=previous;overlay.remove()};
-  const run=()=>{
-    if(!document.body.contains(overlay))return;
-    const rect=brand.getBoundingClientRect();
-    const w=Math.min(innerWidth*(innerWidth<600?.88:.78),680);
-    const mark=overlay.querySelector('.pravi-intro__mark');
-    overlay.classList.add('is-playing');
-    const anim=mark.animate([
-      {left:'50%',top:(innerHeight*(innerWidth<600?.42:.44))+'px',width:w+'px',transform:'translate(-50%,-50%) scale(.82)',opacity:0,offset:0},
-      {left:'50%',top:(innerHeight*(innerWidth<600?.42:.44))+'px',width:w+'px',transform:'translate(-50%,-50%) scale(1)',opacity:1,offset:.24},
-      {left:'50%',top:(innerHeight*(innerWidth<600?.42:.44))+'px',width:w+'px',transform:'translate(-50%,-50%) scale(1)',opacity:1,offset:.72},
-      {left:(rect.left+rect.width/2)+'px',top:(rect.top+rect.height/2)+'px',width:rect.width+'px',transform:'translate(-50%,-50%) scale(1)',opacity:1,offset:1}
-    ],{duration:4750,easing:'cubic-bezier(.2,.75,.18,1)',fill:'forwards'});
-    anim.onfinish=()=>{overlay.animate([{opacity:1},{opacity:0}],{duration:450,easing:'ease-out',fill:'forwards'}).onfinish=finish};
-    window.setTimeout(finish,5400);
-  };
-  requestAnimationFrame(()=>requestAnimationFrame(run));
+  brand.style.visibility = "hidden";
+  const finish = () => { brand.style.visibility = previousVisibility; overlay.remove(); };
+  const target = brand.getBoundingClientRect();
+  const width = Math.min(window.innerWidth * .82, 520);
+  const mid = window.innerWidth < 600 ? .39 : .43;
+  const animation = logo.animate([
+    {left:"50%",top:(innerHeight*mid)+"px",width:width+"px",transform:"translate(-50%,-50%) scale(.72) rotate(-3deg)",opacity:0},
+    {left:"50%",top:(innerHeight*mid)+"px",width:width+"px",transform:"translate(-50%,-50%) scale(1.03) rotate(1deg)",opacity:1,offset:.35},
+    {left:"50%",top:(innerHeight*mid)+"px",width:width+"px",transform:"translate(-50%,-50%) scale(1) rotate(0)",opacity:1,offset:.72},
+    {left:(target.left+target.width/2)+"px",top:(target.top+target.height/2)+"px",width:target.width+"px",transform:"translate(-50%,-50%) scale(1)",opacity:1}
+  ],{duration:4300,easing:"cubic-bezier(.2,.75,.18,1)",fill:"forwards"});
+  animation.onfinish=()=>overlay.animate([{opacity:1},{opacity:0}],{duration:420,easing:"ease-out",fill:"forwards"}).onfinish=finish;
+  window.setTimeout(finish,5000);
 })();

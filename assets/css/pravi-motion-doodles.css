@@ -1,8 +1,8 @@
 /* PRAVI signature motion + hand-drawn doodle system: cash flow, ledgers, compliance and growth. */
 .pravi-doodle-scene{position:absolute;z-index:0;pointer-events:none;overflow:visible;color:#9a793f;opacity:.78}
 .pravi-doodle-scene svg{display:block;width:100%;height:auto;overflow:visible}
-.hero,.page-hero,.cta-band{isolation:isolate}
-.hero>.pravi-doodle-scene,.page-hero>.pravi-doodle-scene,.cta-band>.pravi-doodle-scene{right:clamp(12px,5vw,76px);top:50%;width:clamp(220px,31vw,430px);transform:translateY(-50%);z-index:0}
+.hero,.page-hero,.cta-band,.page-hero-react,.resource-cta-react{isolation:isolate}
+.hero>.pravi-doodle-scene,.page-hero>.pravi-doodle-scene,.cta-band>.pravi-doodle-scene,.page-hero-react>.pravi-doodle-scene,.resource-cta-react>.pravi-doodle-scene{right:clamp(12px,5vw,76px);top:50%;width:clamp(220px,31vw,430px);transform:translateY(-50%);z-index:0}
 .hero>.pravi-doodle-scene{right:clamp(18px,5vw,86px);top:48%;width:clamp(270px,34vw,470px);opacity:.58}
 .page-hero>.pravi-doodle-scene{right:3.5%;top:52%;width:clamp(190px,25vw,330px);opacity:.38}
 .cta-band>.pravi-doodle-scene{right:4%;top:50%;width:clamp(180px,22vw,300px);opacity:.34}
