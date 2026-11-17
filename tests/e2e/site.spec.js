@@ -28,48 +28,44 @@ test.describe("React public routes", () => {
 });
 
 
-test.describe("Approved PRAVI identity and illustration system", () => {
-  test("header and footer use the approved PRAVI lock-ups", async ({ page }) => {
+test.describe("Approved PRAVI identity and founder-first homepage", () => {
+  test("header and footer use the exact approved full logo artwork", async ({ page }) => {
     await page.goto("./");
     const headerLogo = page.locator("header .brand img");
-    await expect(headerLogo).toHaveAttribute("src", /pravi-logo\.svg/);
+    await expect(headerLogo).toHaveAttribute("src", /pravi-approved-lockup\.webp/);
     await expect.poll(() => headerLogo.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
     const footerLogo = page.locator("footer .brand-full img");
-    await expect(footerLogo).toHaveAttribute("src", /pravi-logo-full\.svg/);
+    await expect(footerLogo).toHaveAttribute("src", /pravi-approved-lockup\.webp/);
     await expect.poll(() => footerLogo.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
   });
 
-  test("homepage finance illustration and content-page doodles load", async ({ page }) => {
+  test("homepage presents the finance and compliance control panel without decorative doodles", async ({ page }) => {
     await page.goto("./");
-    const founder = page.locator(".finance-doodle-paper img");
-    await expect(founder).toHaveAttribute("src", /pravi-doodle-founder\.svg/);
-    await expect.poll(() => founder.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
+    await expect(page.getByRole("heading", { name: "Build the business. Stay in control." })).toBeVisible();
+    await expect(page.locator(".pr-finance-board")).toBeVisible();
+    await expect(page.locator(".pr-chart-svg")).toBeVisible();
+    await expect(page.locator(".pr-board-metric")).toHaveCount(2);
+    await expect(page.locator(".finance-doodle-scene, .service-card-doodle, .closing-doodle")).toHaveCount(0);
     await page.goto("resources.html");
-    const pageDoodle = page.locator(".page-hero-art img");
-    await expect(pageDoodle).toBeVisible();
-    await expect.poll(() => pageDoodle.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
+    const pageArtwork = page.locator(".page-hero-art img");
+    await expect(pageArtwork).toBeVisible();
+    await expect.poll(() => pageArtwork.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
     await expect(page.locator(".resource-card-topline img").first()).toBeVisible();
   });
 
-  test("logo intro animates the approved full logo lock-up", async ({ page }) => {
+  test("homepage does not show a blocking logo splash", async ({ page }) => {
     await page.goto("./");
-    const intro = page.locator(".logo-intro-react img");
-    await expect(intro).toHaveAttribute("src", /pravi-logo-full\.svg/);
-    await expect(intro).toBeVisible();
+    await expect(page.locator(".logo-intro-react")).toHaveCount(0);
+    await expect(page.locator("header .brand img")).toBeVisible();
   });
 });
 
 test.describe("PRAVI motion and accessibility", () => {
-  test("logo intro appears and clears after refresh", async ({ page }) => {
-    await page.goto("./");
-    const intro = page.locator(".logo-intro-react");
-    await expect(intro).toBeVisible();
-    await expect(intro).toHaveCount(0, { timeout: 3000 });
-  });
-
-  test("reduced-motion preference suppresses the logo intro", async ({ page }) => {
+  test("reduced-motion preference keeps the dashboard readable", async ({ page }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("./");
+    await expect(page.locator(".pr-finance-board")).toBeVisible();
+    await expect(page.locator(".pr-chart-svg")).toBeVisible();
     await expect(page.locator(".logo-intro-react")).toHaveCount(0);
   });
 });
