@@ -64,6 +64,8 @@ pages = sorted(ROOT.glob("*.html"))
 if len(pages) < 30:
     fail(f"expected at least 30 root HTML pages, found {len(pages)}")
 
+approved_lockup_pages = {"tools.html", "gst-reconciliation.html", "tax-calculators.html", "depreciation-calculator.html", "depreciation-register.html", "currency-converter.html", "cashflow-planner.html", "mis-generator.html", "compliance-tracker.html", "pdf-tools.html"}
+
 for page in pages:
     html = page.read_text(encoding="utf-8")
     if page.name == "index.html":
@@ -79,7 +81,12 @@ for page in pages:
     ):
         if ref not in head:
             fail(f"{page.name} does not load required stylesheet in its head: {ref}")
-    if "assets/img/pravi-logo.svg" not in html:
+    if page.name in approved_lockup_pages:
+        if html.count("assets/img/pravi-approved-lockup.webp") < 2:
+            fail(f"{page.name} must load the approved full PRAVI lockup in its header and footer")
+        if 'href="index.html"' in html or 'href="index.html#who-we-help"' in html:
+            fail(f"{page.name} contains an obsolete homepage link")
+    elif "assets/img/pravi-logo.svg" not in html:
         fail(f"{page.name} does not load the approved PRAVI logo: assets/img/pravi-logo.svg")
 
     if "<title>" not in html.lower():

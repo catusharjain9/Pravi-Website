@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Regression checks for PRAVI's approved visual identity and shared design layer."""
 from pathlib import Path
+import re
 import sys
 ROOT=Path(__file__).resolve().parents[1]
 CSS=ROOT/"assets/css/brand-audit-refinement.css"
@@ -30,13 +31,22 @@ for rule in (':focus-visible','prefers-reduced-motion','max-width:1100px','.tabl
 pages=sorted(ROOT.glob("*.html"))
 if len(pages)<30: fail(f"expected at least 30 HTML pages, found {len(pages)}")
 react_pages={"index.html","about.html","services.html","virtual-cfo.html","startup-support.html","direct-tax.html","gst-compliance.html","accounting-mis.html","business-advisory.html"}
+tool_shell_pages={"tools.html","gst-reconciliation.html","tax-calculators.html","depreciation-calculator.html","depreciation-register.html","currency-converter.html","cashflow-planner.html","mis-generator.html","compliance-tracker.html","pdf-tools.html"}
 for page in pages:
  if page.name in react_pages:
   continue
  html=page.read_text(encoding="utf-8")
  if 'assets/css/paper-texture.css' not in html: fail(f"{page.name}: shared brand stylesheet missing")
  if 'assets/css/pravi-yellow-system.css' not in html: fail(f"{page.name}: final three-colour stylesheet missing")
- if 'assets/img/pravi-logo.svg' not in html: fail(f"{page.name}: approved logo missing")
+ if page.name in tool_shell_pages:
+  if html.count('assets/img/pravi-approved-lockup.webp') < 2: fail(f"{page.name}: header and footer must use the approved full logo lockup")
+  if 'href="index.html"' in html or 'href="index.html#who-we-help"' in html: fail(f"{page.name}: legacy homepage route must not point to index.html")
+  nav=re.search(r'<nav\b(?=[^>]*\bclass="primary-nav")[^>]*>(.*?)</nav>',html,re.I|re.S)
+  if not nav: fail(f"{page.name}: primary navigation missing")
+  for href in ('about.html','services.html','tools.html','resources.html','insights.html','contact.html'):
+   if f'href="{href}"' not in nav.group(1): fail(f"{page.name}: current primary navigation link missing: {href}")
+ else:
+  if 'assets/img/pravi-logo.svg' not in html: fail(f"{page.name}: approved legacy logo missing")
  if '<title>' not in html.lower(): fail(f"{page.name}: page title missing")
 for selector in (".btn-main",".btn-work",".run",".pdf-process",".pdf-filter[aria-pressed=\"true\"]",".workspace",".pane",".table-scroll"):
  if selector not in css: fail(f"legacy tool palette override missing: {selector}")
