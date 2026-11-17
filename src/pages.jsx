@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";\nimport { motion, useReducedMotion } from "motion/react";
+import { Link } from "react-router-dom";
+import { motion, useReducedMotion } from "motion/react";
 const legacyHref=(path)=>`${import.meta.env.BASE_URL.replace(/\/$/,"")}${path}`;
 
 function doodleFor(value=""){
