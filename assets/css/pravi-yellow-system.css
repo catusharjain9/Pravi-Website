@@ -668,3 +668,14 @@ tbody tr:nth-child(even){background:#FFFCF7!important}
 .pravi-doodle-scene,.doodle-corner,.doodle-card-mark,
 .pravi-launch-art,.pravi-animated-hero-art{display:none!important;animation:none!important;transform:none!important}
 .pravi-intro *,.pravi-doodle-scene *,.doodle-corner *,.doodle-card-mark *{animation:none!important;transition:none!important}
+
+/* Specificity guard: the Tools hub had a retained product-theme selector. */
+html body .hero-tools{
+  background:#FFF0C8!important;
+  background-color:#FFF0C8!important;
+  background-image:none!important;
+  color:#1A2325!important;
+}
+html body .hero-tools h1,html body .hero-tools h2,html body .hero-tools p{
+  color:#1A2325!important;
+}
