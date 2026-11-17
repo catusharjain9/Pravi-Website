@@ -679,3 +679,13 @@ html body .hero-tools{
 html body .hero-tools h1,html body .hero-tools h2,html body .hero-tools p{
   color:#1A2325!important;
 }
+
+/* Outrank retained page-scoped hero declarations on the Tools hub. */
+html body main.pravi-editorial-page .hero-tools{
+  background:#FFF0C8!important;
+  background-color:#FFF0C8!important;
+  background-image:none!important;
+}
+html body main.pravi-editorial-page .hero-tools :is(h1,h2,p,.eyebrow){
+  color:#1A2325!important;
+}
