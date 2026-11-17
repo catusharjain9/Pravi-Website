@@ -27,6 +27,38 @@ test.describe("React public routes", () => {
   }
 });
 
+
+test.describe("Approved PRAVI identity and illustration system", () => {
+  test("header and footer use the approved PRAVI lock-ups", async ({ page }) => {
+    await page.goto("./");
+    const headerLogo = page.locator("header .brand img");
+    await expect(headerLogo).toHaveAttribute("src", /pravi-logo\.svg/);
+    await expect.poll(() => headerLogo.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
+    const footerLogo = page.locator("footer .brand-full img");
+    await expect(footerLogo).toHaveAttribute("src", /pravi-logo-full\.svg/);
+    await expect.poll(() => footerLogo.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
+  });
+
+  test("homepage finance illustration and content-page doodles load", async ({ page }) => {
+    await page.goto("./");
+    const founder = page.locator(".finance-doodle-paper img");
+    await expect(founder).toHaveAttribute("src", /pravi-doodle-founder\.svg/);
+    await expect.poll(() => founder.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
+    await page.goto("resources.html");
+    const pageDoodle = page.locator(".page-hero-art img");
+    await expect(pageDoodle).toBeVisible();
+    await expect.poll(() => pageDoodle.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
+    await expect(page.locator(".resource-card-topline img").first()).toBeVisible();
+  });
+
+  test("logo intro animates the approved full logo lock-up", async ({ page }) => {
+    await page.goto("./");
+    const intro = page.locator(".logo-intro-react img");
+    await expect(intro).toHaveAttribute("src", /pravi-logo-full\.svg/);
+    await expect(intro).toBeVisible();
+  });
+});
+
 test.describe("PRAVI motion and accessibility", () => {
   test("logo intro appears and clears after refresh", async ({ page }) => {
     await page.goto("./");
