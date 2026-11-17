@@ -8,6 +8,7 @@ PAPER=ROOT/"assets/css/paper-texture.css"
 STYLE=ROOT/"assets/css/style.css"
 YELLOW=ROOT/"assets/css/pravi-yellow-system.css"
 PALETTE=("#FFFFFF","#FFE000","#303030")
+MODERN_PALETTE=("#FFFBF3","#FFF0C8","#F2C653","#1A2325")
 def fail(message):
  print("FAIL:",message,file=sys.stderr); raise SystemExit(1)
 for path in (CSS,PAPER,STYLE,YELLOW):
@@ -16,6 +17,8 @@ css=CSS.read_text(encoding="utf-8"); paper=PAPER.read_text(encoding="utf-8"); st
 combined=style+"\\n"+yellow
 for colour in PALETTE:
  if colour.lower() not in css.lower() and colour.lower() not in combined.lower(): fail(f"approved palette token missing: {colour}")
+for colour in MODERN_PALETTE:
+ if colour.lower() not in yellow.lower(): fail(f"warm editorial legacy-tool palette token missing: {colour}")
 if 'brand-audit-refinement.css' not in paper: fail("paper-texture.css must load the shared refinement layer")
 if '.page-hero' in paper and 'background-image' in paper: fail("paper texture must not overwrite page-hero mastheads")
 for rule in (':focus-visible','prefers-reduced-motion','max-width:1100px','.table-wrap','.site-footer','Noto Sans Devanagari'):
@@ -36,7 +39,7 @@ for selector in (".btn-main",".btn-work",".run",".pdf-process",".pdf-filter[aria
 if ".status,.alert-box,.ok-box,.warning,.good,.warning-panel,.success-panel" not in combined: fail("tool workspaces must retain visible status and alert components")
 print(f"PASS: {len(pages) - len(react_pages)} legacy HTML pages load shared brand CSS and the approved logo; React route set is staged separately.")
 print("PASS: hero mastheads are protected from paper-texture overrides.")
-print("PASS: approved palette, keyboard focus, responsive navigation, table and reduced-motion rules.")
+print("PASS: approved palette, warm ivory/butter-yellow legacy tool palette, keyboard focus, responsive navigation, table and reduced-motion rules.")
 
 # The public Resources page must contain actual guide and article cards.
 resources=(ROOT/"resources.html").read_text(encoding="utf-8")
