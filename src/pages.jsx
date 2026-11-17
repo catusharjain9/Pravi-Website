@@ -16,7 +16,7 @@ const heroProfiles = [
     footer: "PROFESSIONAL RIGOUR / CLEAR COMMUNICATION"
   },
   {
-    test: /service/,
+    test: /service areas/,
     eyebrow: "PRAVI SERVICE PORTFOLIO",
     title: "Connect recurring obligations with financial control.",
     rows: [
