@@ -512,3 +512,8 @@ html body.brego-home.pravi-homepage .brego-hero .brego-hero-grid .brego-hero-vis
   color:#FFFFFF!important;
 }
 .site-footer .footer-bottom{border-color:#E9E1D0!important}
+
+/* Approved lowercase wordmark and exact-artwork fit for legacy templates. */
+.site-header,.site-header .header-inner{background-color:#FCF9F1!important}
+.brand-logo{object-fit:contain!important;object-position:left center!important;background:transparent!important;filter:none!important}
+.site-footer .footer-brand .brand-logo{max-height:92px!important;width:auto!important;max-width:260px!important}
