@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Regression checks for PRAVI's approved visual identity and shared design layer."""
 from pathlib import Path
+import re
 import sys
 ROOT=Path(__file__).resolve().parents[1]
 CSS=ROOT/"assets/css/brand-audit-refinement.css"
