@@ -23,9 +23,11 @@ for (const path of ["gst-reconciliation.html","tax-calculators.html","depreciati
 }
 assert.ok(tools.includes('id="gstcalc"'), "Embedded GST calculator panel missing");
 assert.ok(app.includes('className="footer-editorial"'), "Editorial footer missing from React shell");
-assert.ok(app.includes('pravi-logo.svg') && app.includes('pravi-logo-full.svg'), "Approved PRAVI header and full logo lock-ups must both be referenced");
-assert.ok(existsSync(new URL("../assets/img/pravi-approved-header.webp", import.meta.url)), "Approved PRAVI wordmark artwork missing");
-assert.ok(existsSync(new URL("../assets/img/pravi-logo-full.svg", import.meta.url)), "Approved PRAVI full lock-up missing");
+assert.ok(app.includes("pravi-approved-lockup.webp"), "The exact approved PRAVI logo lock-up must be used in the shared shell");
+assert.ok(existsSync(new URL("../assets/img/pravi-approved-lockup.webp", import.meta.url)), "Exact approved PRAVI logo lock-up artwork missing");
+assert.ok(existsSync(new URL("../src/HomeRedesign.jsx", import.meta.url)), "Founder-first homepage component missing");
+const homeSource = read("../src/HomeRedesign.jsx");
+assert.ok(!homeSource.includes("pravi-doodle-") && !homeSource.includes("doodle"), "Founder-first homepage must not reintroduce decorative doodle assets");
 assert.ok(existsSync(new URL("../assets/img/favicon.svg", import.meta.url)), "Approved PRAVI favicon missing");
 const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1]);
 assert.ok(sitemapUrls.length >= 30, "Production sitemap is missing public routes/tools");
@@ -35,4 +37,4 @@ assert.ok(!sitemap.includes("privacy.html"), "Draft privacy notice must not be i
 assert.ok(robots.includes("Sitemap: https://catusharjain9.github.io/Pravi-Website/sitemap.xml"), "robots.txt sitemap directive missing");
 assert.ok(app.includes('robots:"noindex,follow"'), "Draft privacy route must be noindex");
 assert.equal(packageJson.scripts["test:react-migration"], "node scripts/test-react-migration.mjs");
-console.log("React routes, PRAVI brand/footer, 9 tools, sitemap and privacy indexing checks passed.");
+console.log("React routes, approved PRAVI lock-up, founder-first homepage, 9 tools, sitemap and privacy indexing checks passed.");
