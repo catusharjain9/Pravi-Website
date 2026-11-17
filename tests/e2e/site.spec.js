@@ -147,6 +147,9 @@ test.describe("Legacy tools remain reachable", () => {
       await expect(page.locator('link[href*="pravi-yellow-system.css"]')).toHaveCount(1);
       const footerColor = await page.locator(".site-footer").evaluate(el => getComputedStyle(el).backgroundColor);
       expect(footerColor).toBe("rgb(255, 251, 237)");
+      await expect(page.locator(".pravi-intro")).toHaveCount(0);
+      const hiddenLegacyArt = await page.locator(".pravi-doodle-scene, .doodle-corner, .doodle-card-mark").evaluateAll(nodes => nodes.every(node => getComputedStyle(node).display === "none"));
+      expect(hiddenLegacyArt).toBe(true);
     });
   }
 });

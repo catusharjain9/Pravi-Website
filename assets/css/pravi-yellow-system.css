@@ -660,3 +660,11 @@ tbody tr:nth-child(even){background:#FFFCF7!important}
 @media(prefers-reduced-motion:reduce){
   .tool-card,.run,.btn,.nav-actions .btn{transition:none!important;transform:none!important}
 }
+
+
+/* Legacy decorative illustrations and splash choreography are retired.
+   The current React experience owns a smaller, content-led motion system. */
+.pravi-intro,.pravi-intro__field,.pravi-intro__orbit,
+.pravi-doodle-scene,.doodle-corner,.doodle-card-mark,
+.pravi-launch-art,.pravi-animated-hero-art{display:none!important;animation:none!important;transform:none!important}
+.pravi-intro *,.pravi-doodle-scene *,.doodle-corner *,.doodle-card-mark *{animation:none!important;transition:none!important}

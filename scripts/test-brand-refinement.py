@@ -19,6 +19,10 @@ for colour in PALETTE:
  if colour.lower() not in css.lower() and colour.lower() not in combined.lower(): fail(f"approved palette token missing: {colour}")
 for colour in MODERN_PALETTE:
  if colour.lower() not in yellow.lower(): fail(f"warm editorial legacy-tool palette token missing: {colour}")
+if ".pravi-intro,.pravi-intro__field,.pravi-intro__orbit" not in yellow: fail("legacy logo splash must remain disabled")
+if ".pravi-doodle-scene,.doodle-corner,.doodle-card-mark" not in yellow: fail("legacy doodle overlays must remain disabled")
+if "Retired" not in (ROOT/"assets/js/pravi-logo-intro.js").read_text(encoding="utf-8"): fail("legacy logo intro must be retired")
+if "Retired" not in (ROOT/"assets/js/pravi-motion.js").read_text(encoding="utf-8"): fail("legacy motion script must be retired")
 if 'brand-audit-refinement.css' not in paper: fail("paper-texture.css must load the shared refinement layer")
 if '.page-hero' in paper and 'background-image' in paper: fail("paper texture must not overwrite page-hero mastheads")
 for rule in (':focus-visible','prefers-reduced-motion','max-width:1100px','.table-wrap','.site-footer','Noto Sans Devanagari'):
