@@ -517,3 +517,175 @@ html body.brego-home.pravi-homepage .brego-hero .brego-hero-grid .brego-hero-vis
 .site-header,.site-header .header-inner{background-color:#FCF9F1!important}
 .brand-logo{object-fit:contain!important;object-position:left center!important;background:transparent!important;filter:none!important}
 .site-footer .footer-brand .brand-logo{max-height:92px!important;width:auto!important;max-width:260px!important}
+
+
+/* PRAVI final design alignment — warm ivory, butter yellow and charcoal.
+   Added after all retained legacy styles so tool layouts and calculations remain untouched. */
+:root{
+  --navy:#1A2325;--navy-2:#1A2325;--navy-3:#1A2325;--ink:#1A2325;
+  --muted:#64706D;--soft-muted:#64706D;--gold:#F2C653;--gold-light:#FFF0C8;
+  --paper:#FFFBF3;--white:#FFFFFF;--sand:#E8E1D5;--line:#E8E1D5;
+  --green:#486C63;--green-soft:#EAF0EB;--red:#A84A43;
+  --pravi-ink:#1A2325;--pravi-muted:#64706D;--pravi-yellow:#F2C653;--pravi-yellow-strong:#E7B947;
+  --pravi-cream:#FFFBF3;--pravi-white:#FFFFFF;--pravi-line:#E8E1D5;--pravi-green:#486C63;
+  --pravi-ivory:#FFFBF3;--pravi-beige:#F8F2E7;--pravi-charcoal:#1A2325;--pravi-stone:#E8E1D5;
+  --pravi-accent-ink:#1A2325;--pravi-focus:#B78325;
+}
+html,body{background:#FFFBF3!important;color:#1A2325!important}
+body::before,body::after{background-image:none!important}
+h1,h2,h3,h4,h5,h6,.section-heading h2,.section-heading h3{color:#1A2325!important}
+p,li,label,small,dt,dd{color:inherit}
+a{color:inherit}
+:focus-visible{outline:3px solid #DDB64B!important;outline-offset:3px}
+::selection{background:#F2C653!important;color:#1A2325!important}
+
+/* Retained site navigation */
+.site-header,.site-header .header-inner{background:rgba(255,251,243,.97)!important;border-color:#E8E1D5!important;box-shadow:0 3px 16px rgba(26,35,37,.035)!important}
+.nav-link{color:#283330!important}
+.nav-link:hover,.nav-link[aria-current=page]{color:#486C63!important}
+.nav-link[aria-current=page]::after{background:#F2C653!important}
+.menu-toggle{border-color:#D8D8CF!important;border-radius:4px!important;background:#FFFFFF!important;color:#1A2325!important}
+.menu-toggle:hover{background:#FFF0C8!important}
+.nav-actions .btn,.site-header .nav-actions .btn{background:#F2C653!important;border-color:#F2C653!important;color:#1A2325!important;box-shadow:none!important}
+.nav-actions .btn:hover,.site-header .nav-actions .btn:hover{background:#E7B947!important;border-color:#E7B947!important;color:#1A2325!important;transform:translateY(-1px)!important}
+.brand,.brand-logo{background:transparent!important;filter:none!important}
+.brand-logo{object-position:left center!important;object-fit:contain!important}
+
+/* Shared action hierarchy */
+.btn{border-radius:3px!important;font-weight:700!important;box-shadow:none!important}
+.btn-primary,.btn-yellow,.button-primary,.btn-main,.btn-work{
+  background:#F2C653!important;border-color:#F2C653!important;color:#1A2325!important
+}
+.btn-primary:hover,.btn-yellow:hover,.button-primary:hover,.btn-main:hover,.btn-work:hover{
+  background:#E7B947!important;border-color:#E7B947!important;color:#1A2325!important
+}
+.btn-dark,.btn-secondary-dark,.run,.pdf-process{
+  background:#1A2325!important;border-color:#1A2325!important;color:#FFFFFF!important
+}
+.btn-dark:hover,.btn-secondary-dark:hover,.run:hover,.pdf-process:hover{
+  background:#486C63!important;border-color:#486C63!important;color:#FFFFFF!important
+}
+.btn-outline,.btn-outline-light{background:#FFFFFF!important;border-color:#D0D4CC!important;color:#1A2325!important}
+.btn-outline:hover,.btn-outline-light:hover{background:#FFF0C8!important;border-color:#E6C96F!important;color:#1A2325!important}
+.secondary,.run.secondary{background:#FFF0C8!important;border-color:#E8D59C!important;color:#29332F!important}
+button,input,select,textarea{accent-color:#B78325}
+input,select,textarea,.form-control{background:#FFFEFB!important;border-color:#D9DCD4!important;color:#1A2325!important}
+input::placeholder,textarea::placeholder{color:#929A92!important}
+input:focus,select:focus,textarea:focus{border-color:#B78325!important;box-shadow:0 0 0 3px rgba(242,198,83,.24)!important;outline:0!important}
+.form-field label,.form-grid label,.contact-form-card label{color:#35423C!important}
+
+/* All retained hero styles move to the same calm editorial canvas. */
+.page-hero,.brego-hero,.hero,.hero-home,.hero-section,.service-hero,.contact-hero,
+.pravi-page-hero,.pravi-editorial-hero{background:#FFFBF3!important;background-image:none!important;color:#1A2325!important}
+.page-hero h1,.page-hero h2,.page-hero p,.page-hero .eyebrow,
+.hero h1,.hero h2,.hero p,.hero .eyebrow{color:#1A2325!important}
+.tool-hero,.tax-hero,.hero-tools,.pdf-hero,.notice-hero,.cms-header,
+.section-dark,.cta-band,.dark-band{background:#FFF0C8!important;background-image:none!important;color:#1A2325!important}
+.tool-hero h1,.tool-hero h2,.tool-hero p,.tool-hero .eyebrow,
+.tax-hero h1,.tax-hero h2,.tax-hero p,.hero-tools h1,.hero-tools h2,.hero-tools p,
+.pdf-hero h1,.pdf-hero h2,.pdf-hero p,.notice-hero h1,.notice-hero p,
+.cms-header h1,.cms-header p,.section-dark h1,.section-dark h2,.section-dark p,
+.cta-band h1,.cta-band h2,.cta-band p{color:#1A2325!important}
+.eyebrow,.section-kicker,.section-label,.panel-kicker,.feature-index,.feature-label{
+  color:#8A6C29!important;letter-spacing:.14em!important;font-weight:750!important
+}
+.eyebrow::before,.section-kicker::before{background:#F2C653!important}
+.breadcrumb,.breadcrumb a,.breadcrumb span{color:#68736D!important}
+
+/* Shared cards and workspaces — keep domain status colours semantic. */
+.service-intro,.service-card,.content-card,.resource-card,.insight-card,.article-card,
+.quick-start-card,.service-layer-card,.tool-card,.tool-review-card,.panel,.contact-form-card,
+.contact-info-card,.card,.feature-card,.workspace,.pane,.table-wrap,.table-scroll{
+  background:#FFFFFF!important;color:#1A2325!important;border:1px solid #E8E1D5!important;
+  box-shadow:0 7px 22px rgba(26,35,37,.035)!important;border-radius:5px!important
+}
+.service-intro h3,.service-card h3,.content-card h3,.resource-card h3,.insight-card h3,
+.article-card h3,.quick-start-card h3,.service-layer-card h3,.tool-card h3,
+.tool-review-card h3,.card h3,.feature-card h3{color:#1A2325!important}
+.service-intro p,.service-card p,.content-card p,.resource-card p,.insight-card p,
+.article-card p,.tool-card p,.tool-review-card p{color:#66716B!important}
+.service-card:hover,.content-card:hover,.resource-card:hover,.insight-card:hover,
+.article-card:hover,.tool-card:hover{border-color:#D8C27C!important;box-shadow:0 12px 26px rgba(26,35,37,.06)!important}
+.service-yellow,.service-yellow-soft,.quick-start-card.is-featured,.featured-card,
+.tool-highlight,.highlight-panel{background:#FFF0C8!important;color:#1A2325!important;border-color:#E8D59C!important}
+.service-yellow h3,.service-yellow p,.service-yellow span,.service-yellow b,
+.service-yellow-soft h3,.service-yellow-soft p,.featured-card h3,.featured-card p{color:#1A2325!important}
+.icon,.tool-icon,.service-icon,.card-icon,.tool-review-number{background:#FFF0C8!important;color:#8A6C29!important;border-radius:4px!important}
+.section-heading h2,.section-heading p{color:#1A2325!important}
+.section-heading .muted,.muted,.fine-print,.fineprint{color:#68736D!important}
+
+/* Tools hub */
+.hero-tools{background:#FFF0C8!important;border-bottom:1px solid #E8D59C!important}
+.hero-tools h1{font-size:clamp(2.3rem,5vw,3.8rem)!important;line-height:1.08!important;letter-spacing:-.055em!important;font-weight:700!important}
+.hero-tools p{color:#64706D!important}
+.tool-area{background:#FFFBF3!important}
+.tool-card{border-radius:5px!important;padding:24px!important;min-height:220px!important}
+.tool-card:hover{transform:translateY(-3px)!important;border-color:#D8C27C!important}
+.tool-icon{background:#FFF0C8!important;color:#886A27!important;width:42px!important;height:42px!important;border-radius:4px!important}
+.tool-label{color:#8A6C29!important}
+.card-link{color:#486C63!important}
+.utility-section,.tool-review-strip{background:#FFF7E3!important;border:1px solid #E8E1D5!important;border-radius:5px!important}
+.utility-links button{background:#FFFFFF!important;border:1px solid #E8E1D5!important;border-radius:3px!important;color:#31423A!important}
+.utility-links button:hover{border-color:#D8C27C!important;background:#FFFCF5!important}
+.panel{background:#FFFFFF!important;border-color:#E8E1D5!important;border-radius:4px!important}
+.result{background:#FFF7E3!important;border:1px solid #E8E1D5!important;color:#34423B!important;border-radius:3px!important}
+.tool-cta{background:#FFF7E3!important;border:1px solid #E8E1D5!important;border-radius:4px!important}
+.tool-review-card{border-radius:4px!important}
+.tool-review-number{background:#FFF0C8!important;color:#8A6C29!important;border-radius:3px!important}
+
+/* Reading tables and workpaper grids retain their structure and controls. */
+table{border-color:#E8E1D5!important}
+th,thead th{background:#FFF0C8!important;color:#29342F!important;border-color:#E8E1D5!important}
+td,tbody td{border-color:#E8E1D5!important;color:#34423B!important}
+tbody tr:nth-child(even){background:#FFFCF7!important}
+.table-wrap,.table-scroll,.table-scroll-container{overflow:auto!important}
+.table-wrap table,.table-scroll table{min-width:100%}
+.site-footer{
+  background:#FFFBED!important;background-color:#FFFBED!important;background-image:none!important;
+  color:#1A2325!important;border-top:1px solid #E8E1D5!important
+}
+.site-footer .footer-cta{background:#FFF0C8!important;border-color:#E8D59C!important}
+.site-footer .footer-cta-eyebrow,.site-footer .footer-cta h2,
+.site-footer .footer-cta-copy>p:last-child,.site-footer .footer-cta *{color:#1A2325!important}
+.site-footer .footer-cta-button,.site-footer .footer-cta-button *{
+  background:#1A2325!important;border-color:#1A2325!important;color:#FFFFFF!important
+}
+.site-footer .footer-bottom{border-color:#E8E1D5!important}
+
+@media(max-width:760px){
+  .hero-tools{padding:40px 0 32px!important}
+  .tool-card{min-height:0!important;padding:20px!important}
+  .utility-section{padding:18px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .tool-card,.run,.btn,.nav-actions .btn{transition:none!important;transform:none!important}
+}
+
+
+/* Legacy decorative illustrations and splash choreography are retired.
+   The current React experience owns a smaller, content-led motion system. */
+.pravi-intro,.pravi-intro__field,.pravi-intro__orbit,
+.pravi-doodle-scene,.doodle-corner,.doodle-card-mark,
+.pravi-launch-art,.pravi-animated-hero-art{display:none!important;animation:none!important;transform:none!important}
+.pravi-intro *,.pravi-doodle-scene *,.doodle-corner *,.doodle-card-mark *{animation:none!important;transition:none!important}
+
+/* Specificity guard: the Tools hub had a retained product-theme selector. */
+html body .hero-tools{
+  background:#FFF0C8!important;
+  background-color:#FFF0C8!important;
+  background-image:none!important;
+  color:#1A2325!important;
+}
+html body .hero-tools h1,html body .hero-tools h2,html body .hero-tools p{
+  color:#1A2325!important;
+}
+
+/* Outrank retained page-scoped hero declarations on the Tools hub. */
+html body main.pravi-editorial-page .hero-tools{
+  background:#FFF0C8!important;
+  background-color:#FFF0C8!important;
+  background-image:none!important;
+}
+html body main.pravi-editorial-page .hero-tools :is(h1,h2,p,.eyebrow){
+  color:#1A2325!important;
+}

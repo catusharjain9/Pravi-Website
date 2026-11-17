@@ -94,7 +94,7 @@ test.describe("Responsive mobile behaviour", () => {
     await expect(page.locator("nav.nav.open")).toHaveCount(0);
   });
 
-  for (const route of ["./", "resources.html", "contact.html"]) {
+  for (const route of ["./", "resources.html", "contact.html", "tools.html"]) {
     test(`no horizontal overflow on ${route}`, async ({ page }) => {
       await page.goto(route === "/" ? "./" : route);
       const metrics = await page.evaluate(() => ({
@@ -106,6 +106,15 @@ test.describe("Responsive mobile behaviour", () => {
       expect(metrics.body, JSON.stringify(metrics)).toBeLessThanOrEqual(metrics.viewport + 1);
     });
   }
+
+  test("legacy tools use the warm ivory and butter-yellow visual system", async ({ page }) => {
+    await page.goto("tools.html");
+    const bodyBackground = await page.locator("body").evaluate(el => getComputedStyle(el).backgroundColor);
+    expect(bodyBackground).toBe("rgb(255, 251, 243)");
+    const heroBackground = await page.locator(".hero-tools").evaluate(el => getComputedStyle(el).backgroundColor);
+    expect(heroBackground).toBe("rgb(255, 240, 200)");
+    await expect(page.locator(".tool-card").first()).toBeVisible();
+  });
 
   test("resource cards stack in one column", async ({ page }) => {
     await page.goto("resources.html");
@@ -138,6 +147,9 @@ test.describe("Legacy tools remain reachable", () => {
       await expect(page.locator('link[href*="pravi-yellow-system.css"]')).toHaveCount(1);
       const footerColor = await page.locator(".site-footer").evaluate(el => getComputedStyle(el).backgroundColor);
       expect(footerColor).toBe("rgb(255, 251, 237)");
+      await expect(page.locator(".pravi-intro")).toHaveCount(0);
+      const hiddenLegacyArt = await page.locator(".pravi-doodle-scene, .doodle-corner, .doodle-card-mark").evaluateAll(nodes => nodes.every(node => getComputedStyle(node).display === "none"));
+      expect(hiddenLegacyArt).toBe(true);
     });
   }
 });
