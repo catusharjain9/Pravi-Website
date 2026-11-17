@@ -18,7 +18,7 @@
     <span class="pravi-intro__signature">CLARITY <i>·</i> CONTROL <i>·</i> GROWTH</span>`;
   const logo = brand.cloneNode(true);
   logo.className = "pravi-intro__mark";
-  logo.alt = "";
+  logo.alt = "";\n  logo.removeAttribute("width");\n  logo.removeAttribute("height");\n  logo.style.height = "auto";
   overlay.appendChild(logo);
   overlay.classList.add("is-playing");
   document.body.appendChild(overlay);
