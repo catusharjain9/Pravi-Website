@@ -19,7 +19,7 @@ const routeMeta={
  "/resources.html":{title:"Founder Resources & Finance Guides | PRAVI",description:"Practical founder guides for startup compliance, Virtual CFO, GST reconciliation, accounting and monthly MIS."},
  "/insights.html":{title:"Business Finance Insights & Articles | PRAVI",description:"Practical articles on startup accounting, cash-flow planning, GST reconciliation and management reporting."},
  "/contact.html":{title:"Contact PRAVI Business Advisors",description:"Contact PRAVI about startup compliance, GST, accounting, Virtual CFO, financial planning and business advisory requirements."},
- "/privacy.html":{title:"Privacy Notice | PRAVI Business Advisors",description:"Draft privacy information for the PRAVI Business Advisors website. Review status and data-handling details are disclosed.",robots:"noindex,follow"},
+ "/privacy.html":{title:"Privacy Information (Draft) | PRAVI Business Advisors LLP",description:"Draft website privacy information for PRAVI Business Advisors LLP. Hosting retention and the firm's privacy contact still require confirmation.",robots:"noindex,follow"},
  "/guide-startup-compliance.html":{title:"Startup Compliance Checklist | PRAVI",description:"A founder checklist for entity details, registrations, accounting records, compliance calendars and responsibility ownership."},
  "/guide-virtual-cfo.html":{title:"Virtual CFO Scope & Deliverables Guide | PRAVI",description:"Define Virtual CFO outputs, finance responsibilities, reporting cadence, cash-flow forecasts and management reviews."},
  "/guide-gst-reconciliation.html":{title:"GST Reconciliation Preparation Checklist | PRAVI",description:"Prepare GST purchase reconciliations with clean source data, exception categories, evidence and follow-up owners."},
@@ -82,6 +82,6 @@ export default function App(){const location=useLocation();const reduce=useReduc
   </div>
   <div className="wrap footer-editorial-bottom">
     <span>© {new Date().getFullYear()} PRAVI Business Advisors LLP. All rights reserved.</span>
-    <a href={legacyHref("/privacy.html")}>Privacy notice</a>
+    <a href={legacyHref("/privacy.html")} aria-label="Privacy information (draft; not approved for publication)">Privacy information (draft)</a>
   </div>
 </footer></>}

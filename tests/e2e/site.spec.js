@@ -131,6 +131,15 @@ test.describe("Responsive mobile behaviour", () => {
     await expect(form.locator('input[type="checkbox"][required]')).toHaveCount(1);
     await expect(form.locator('button[type="submit"]')).toContainText("Continue to WhatsApp");
   });
+
+  test("privacy information remains visibly marked as a draft and excluded from indexing", async ({ page }) => {
+    await page.goto("privacy.html");
+    await expect(page).toHaveTitle(/Privacy Information \(Draft\)/);
+    await expect(page.getByRole("heading", { name: "Website privacy information — publication review pending." })).toBeVisible();
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", "noindex,follow");
+    await expect(page.locator(".privacy-status-react")).toContainText("Draft — not approved for publication");
+    await expect(page.locator("footer .footer-editorial-bottom a")).toContainText("Privacy information (draft)");
+  });
 });
 
 test.describe("Legacy tools remain reachable", () => {
