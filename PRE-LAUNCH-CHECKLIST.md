@@ -1,58 +1,75 @@
-# PRAVI BUSINESS ADVISORS LLP — Pre-launch checklist
+# PRAVI Business Advisors LLP — release and operational readiness
 
-**Status: Not live.** This checklist is for the existing static website package; it does not implement AI or require a rebuild. Complete the items below before public launch.
+**Status: Technically deployed on GitHub Pages; final business, legal and operational sign-off remains open.**
 
-## A. Confirm before uploading
-- [ ] Confirm the purchased domain and hosting provider / hosting panel.
-- [ ] Verify the registered office address against the latest MCA master data; the current website notes it was transcribed from an extract dated 10 March 2024.
-- [ ] Confirm all client/ecosystem names shown on the site are approved for public identification; remove any unapproved name.
-- [ ] Finalise the privacy notice only after confirming the production host, server logs, backups, analytics, WhatsApp handoff and any third-party CDN/Firebase data flows. Keep `privacy.html` marked noindex and draft until this review is complete.
-- [ ] Confirm phone and WhatsApp number `+91 91731 21611` is correct and intended for publication in the footer/contact page. The number is intentionally absent from the site header.
-- [ ] Confirm all service descriptions and regulated-service caveats are appropriate to the firm's actual eligibility and authorisations.
-- [x] Confirmed official business email: `info@praviba.com`; it is displayed in the footer across all 33 HTML pages. Partner bios, credentials, testimonials, metrics and integrations still require verification before publication.
+Live site: https://catusharjain9.github.io/Pravi-Website/
 
-## B. Upload the website
-1. Extract the ZIP locally on your computer.
-2. Upload the **contents** of the extracted folder—not the ZIP itself and not the enclosing folder—to the host's public web root (commonly `public_html`).
-3. Ensure `index.html` is directly in that web root and the entire `assets` folder is uploaded with its subfolders.
-4. Keep `404.html`, `robots.txt`, `_headers`, and `.htaccess` where appropriate. Static hosts may ignore `_headers`; Apache/cPanel may use `.htaccess`. Do not assume host-specific configuration was applied.
-5. Configure the domain and HTTPS in the hosting panel. Follow the host's DNS instructions; do not change DNS records based on guesses.
+The site now builds with Vite and React and is published through GitHub Actions. This is a technical deployment, not a representation that every business fact, legal notice, service authorisation, CMS integration or third-party tool has been fully verified.
 
-## C. After the domain is connected
-- [ ] Open the homepage over HTTPS and confirm the certificate is valid.
-- [ ] Confirm both apex and `www` versions behave as intended and one canonical version is chosen.
-- [ ] Test several pages directly by URL, including a service page, `contact.html`, `tools.html`, `mis-generator.html` and `pdf-tools.html`.
-- [ ] Verify CSS and JavaScript requests return HTTP 200 and the CSS response has `Content-Type: text/css`. If the page is unstyled, check the deployed relative paths and whether the `assets` folder was uploaded.
-- [ ] Test mobile navigation at narrow widths and on a real phone.
-- [ ] Test `tel:` and WhatsApp links on a phone. Submit a **test enquiry** only with non-sensitive dummy details; verify the prepared WhatsApp draft, then cancel it rather than sending unless intended.
-- [ ] Verify the form makes it clear that it prepares a WhatsApp message, does not submit/store information on the website, and requires the visitor to press Send in WhatsApp.
-- [ ] Test each tool using sample/non-client data; check CSV downloads and print/export behaviour.
-- [ ] For PDF tools, verify the required CDN libraries load on the live domain and test with non-confidential sample PDFs. Do not use sensitive client documents during testing.
-- [ ] Check that the branded 404 page appears for an invalid URL.
+## A. Completed technical release work
 
-## D. Search indexing and metadata
-- [ ] Replace `YOUR-DOMAIN-HERE` in `sitemap.xml.template` with the final HTTPS domain and save as `sitemap.xml`.
-- [ ] Add a `Sitemap: https://YOUR-DOMAIN/sitemap.xml` line to `robots.txt`.
-- [ ] Review canonical and social-sharing metadata for the final domain.
-- [ ] Submit the verified sitemap in Google Search Console after the site is live.
-- [ ] Add analytics only if needed and update the privacy notice to disclose the actual implementation.
+- [x] GitHub Pages source changed from the legacy Jekyll branch build to GitHub Actions.
+- [x] Vite production build and dist artifact deployment completed successfully.
+- [x] 21 React routes render at their preserved public .html URLs.
+- [x] Route-specific page titles, descriptions, Open Graph metadata and canonical URLs are active.
+- [x] Responsive browser QA passes at 375 × 812 CSS pixels for the mobile navigation, homepage/resources/contact overflow, resource-card stacking and contact form layout.
+- [x] The logo refresh intro is tested; the reduced-motion preference suppresses it.
+- [x] Nine existing business-tool entry points remain present and reachable; the standalone depreciation register is also retained.
+- [x] Legacy tool pages use the warm-ivory footer and beige CTA styling.
+- [x] Depreciation and currency calculation engines, CSV safety, CSP hashes, theme and brand checks pass in CI.
+- [x] Production sitemap and robots.txt Sitemap directive are prepared for the GitHub Pages URL.
+- [x] Draft privacy page is marked noindex,follow and excluded from the sitemap until approved.
 
-## E. Important limitations to communicate
-- The contact form does not send email or store enquiries; it opens a WhatsApp draft.
+CI browser suite: 36 tests passed on the initial Playwright run; the current branch extends coverage for the sitemap, privacy indexing and depreciation register.
+
+## B. Business facts and legal approval still required
+
+- [ ] Verify the registered office address against current MCA master data. The older site content refers to an extract dated 10 March 2024; do not rely on it without reconfirmation.
+- [ ] Confirm all client/ecosystem names and any case studies shown publicly are approved for identification.
+- [ ] Confirm that the published phone and WhatsApp number +91 91731 21611 is correct and authorised for public use.
+- [ ] Review every service description, professional-scope statement and regulated-service caveat against PRAVI's actual eligibility, registrations and authorisations.
+- [ ] Verify partner bios, qualifications, credentials, testimonials, metrics and integrations before adding or retaining any such claims.
+- [ ] Finalise the privacy notice only after checking the actual hosting logs, backups, analytics, WhatsApp handoff, external CDNs, Firebase flows, retention periods and request-handling process. The current page is deliberately a draft and noindex.
+- [ ] Confirm the correct legal entity name and contact details for privacy requests and website enquiries.
+
+## C. Live-site checks and remaining operational tests
+
+- [x] Open the homepage and migrated React pages directly over HTTPS on GitHub Pages.
+- [x] Verify route-specific metadata and canonical URLs on the deployed pages.
+- [x] Verify the Resources, Insights, Contact and guide pages render with non-empty content.
+- [x] Test mobile navigation open/close, card stacking, contact form fit and horizontal overflow at 375px in Playwright.
+- [x] Verify the contact form requires consent and prepares a WhatsApp draft rather than submitting or storing an enquiry on the website.
+- [x] Verify legacy tool pages load the shared PRAVI theme stylesheet and warm-ivory footer in browser tests.
+- [ ] Test tel: and WhatsApp links on a real phone. Use dummy details only; review the WhatsApp draft and cancel it rather than sending unless a test message is intended.
+- [ ] Exercise each financial tool end-to-end with non-client sample data, including file import, validation, calculations, CSV download and print/export behaviour. Unit tests for the depreciation/currency engines and CSV safety pass, but do not replace full workflow testing.
+- [ ] Verify PDF workspace CDN libraries load on the live domain and test representative non-confidential sample PDFs. PDF processing relies on external CDN libraries; image-based compression may reduce searchable/selectable text quality.
+- [ ] Confirm the branded 404 page is returned for an invalid URL.
+- [ ] Review the live pages on a real iOS and Android device. Playwright emulation at 375px passes, but it is not a substitute for physical-device testing.
+
+## D. Search indexing and domain
+
+- [x] Publish sitemap.xml using the verified GitHub Pages base URL.
+- [x] Add the sitemap directive to robots.txt.
+- [x] Replace YOUR-DOMAIN-HERE placeholders in the sitemap template.
+- [x] Verify canonical and social-sharing metadata for the GitHub Pages URL.
+- [x] Keep the draft privacy page out of the sitemap and set noindex,follow.
+- [ ] Submit the sitemap in Google Search Console after confirming the property.
+- [ ] If PRAVI intends to use a custom domain, confirm the purchased domain, DNS ownership, canonical host and HTTPS certificate before changing GitHub Pages domain settings. No DNS changes have been made.
+
+## E. Tools, privacy and service limitations
+
+- The contact form does not send email or store enquiries. It prepares a WhatsApp message; the visitor must review and press Send in WhatsApp.
 - The compliance tracker stores entries in the visitor's browser and is not a shared multi-user database. Users should export and securely manage their own records.
 - Compliance due dates and applicability must be independently verified against current official sources.
-- Financial tools are workpapers/estimates; outputs require review before professional use.
-- PDF processing relies on external CDN libraries; test live behaviour and understand that image-based compression may reduce selectable text quality.
-- No AI feature, live backend, CRM, email delivery, or accounting-software integration is included in this package.
+- Financial tools are workpapers and estimates; outputs require review before professional use.
+- PDF processing relies on external CDN libraries. Image-based compression may reduce selectable/searchable text, vector quality, accessibility tags and metadata.
+- No AI feature, live CRM, email delivery, accounting-software integration or shared multi-user backend is included in the public website.
+- The article CMS/admin area remains disabled until a firm-controlled Firebase project is configured, Firestore rules are deployed and administrator/non-administrator access tests pass. Do not store client financial or tax documents in the article CMS.
 
-## F. CMS and content publishing gate
-- [ ] Replace Firebase placeholders only in a project controlled by the firm; never add service-account credentials to the website.
-- [ ] Deploy reviewed Firestore rules before enabling the admin interface.
-- [ ] Test anonymous visitor, authorised administrator and non-authorised Google account separately.
-- [ ] Confirm drafts cannot be read publicly and only published posts appear in Insights.
-- [ ] Test article create/edit/publish/unpublish/delete, slug uniqueness, HTML/script injection attempts, mobile layout and browser console errors.
-- [ ] For meaningful search visibility, test a published article with URL Inspection and consider generating static article HTML pages during publishing. Client-side metadata alone is not a guaranteed indexing strategy.
-- [ ] Keep the dashboard disabled until security tests pass. Do not store client financial/tax documents in the article CMS.
+## F. Remaining legacy pages
 
-## F. Release decision
-Do not treat the site as launched until the domain is connected, factual items are verified, HTTPS and page assets work, contact behaviour is tested, and the privacy notice is reviewed. Keep a copy of the exact ZIP that was deployed.
+The 21 core public pages now use React. Specialist financial tools and the dynamic article template remain legacy HTML/JavaScript deliberately, to avoid changing calculation, file-handling, browser-local storage and CMS behaviour without separate regression coverage. They remain staged at their existing URLs.
+
+## G. Release decision
+
+The technical GitHub Pages deployment is complete and automated checks pass. Do not describe the website as fully business/legal approved until the items in Section B are verified. Do not enable the CMS/admin area until Section E's Firebase security tests are complete. Keep the privacy notice in draft/noindex state until its actual data-handling practices are confirmed.

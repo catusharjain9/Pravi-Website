@@ -5,6 +5,8 @@ const read = (path) => readFileSync(new URL(path, import.meta.url), "utf8");
 const app = read("../src/App.jsx");
 const tools = read("../tools.html");
 const packageJson = JSON.parse(read("../package.json"));
+const sitemap = read("../sitemap.xml");
+const robots = read("../robots.txt");
 const routePaths = [
   "/", "/about.html", "/services.html", "/virtual-cfo.html",
   "/startup-support.html", "/direct-tax.html", "/gst-compliance.html",
@@ -22,5 +24,12 @@ for (const path of ["gst-reconciliation.html","tax-calculators.html","depreciati
 assert.ok(tools.includes('id="gstcalc"'), "Embedded GST calculator panel missing");
 assert.ok(app.includes('className="footer-editorial"'), "Editorial footer missing from React shell");
 assert.ok(app.includes('assets/img/pravi-logo.svg'), "Approved PRAVI logo asset reference missing");
+const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1]);
+assert.ok(sitemapUrls.length >= 30, "Production sitemap is missing public routes/tools");
+assert.equal(new Set(sitemapUrls).size, sitemapUrls.length, "Sitemap contains duplicate URLs");
+assert.ok(sitemapUrls.every(url => url.startsWith("https://catusharjain9.github.io/Pravi-Website/")), "Sitemap contains an unverified or off-site URL");
+assert.ok(!sitemap.includes("privacy.html"), "Draft privacy notice must not be indexed");
+assert.ok(robots.includes("Sitemap: https://catusharjain9.github.io/Pravi-Website/sitemap.xml"), "robots.txt sitemap directive missing");
+assert.ok(app.includes('robots:"noindex,follow"'), "Draft privacy route must be noindex");
 assert.equal(packageJson.scripts["test:react-migration"], "node scripts/test-react-migration.mjs");
-console.log("React route, PRAVI brand/footer and 9-tool preservation checks passed.");
+console.log("React routes, PRAVI brand/footer, 9 tools, sitemap and privacy indexing checks passed.");

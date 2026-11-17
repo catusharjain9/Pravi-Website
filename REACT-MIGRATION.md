@@ -48,7 +48,7 @@ These remain legacy HTML/JavaScript implementations for now. They have not been 
 
 ## Quality gates
 
-The GitHub Actions quality workflow runs the Vite build, static HTML and asset audit, theme/brand checks, depreciation and currency engine tests, CSV safety and CSP hash checks. A React migration regression test now also verifies the route map, logo/footer references and continued presence of all nine tool entry points.
+The GitHub Actions quality workflow runs the Vite build, static HTML and asset audit, theme/brand checks, depreciation and currency engine tests, CSV safety and CSP hash checks. A React migration regression test now also verifies the route map, logo/footer references, all nine tool entry points and the production sitemap. Playwright Chromium browser tests exercise all 21 React routes, the 375px mobile navigation and overflow behaviour, the contact form, logo intro/reduced-motion handling, and legacy tool page/footer availability.
 
 A source-level check is not a substitute for a completed CI run or browser/device QA. Record the actual Actions result and browser test evidence before release.
 

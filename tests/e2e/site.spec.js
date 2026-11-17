@@ -17,6 +17,7 @@ test.describe("React public routes", () => {
       await expect(page.locator("main")).toBeVisible();
       await expect(page.locator("main h1").first()).not.toBeEmpty();
       if (route !== "/") await expect(page).not.toHaveTitle("PRAVI Business Advisors LLP | Startup Finance & Virtual CFO");
+      if (route === "privacy.html") await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", "noindex,follow");
       const title = await page.title();
       expect(title.length).toBeGreaterThan(15);
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", /Pravi-Website/);
@@ -24,6 +25,21 @@ test.describe("React public routes", () => {
       expect(canonical).toContain(route === "/" ? "/Pravi-Website/" : route);
     });
   }
+});
+
+test.describe("PRAVI motion and accessibility", () => {
+  test("logo intro appears and clears after refresh", async ({ page }) => {
+    await page.goto("./");
+    const intro = page.locator(".logo-intro-react");
+    await expect(intro).toBeVisible();
+    await expect(intro).toHaveCount(0, { timeout: 3000 });
+  });
+
+  test("reduced-motion preference suppresses the logo intro", async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("./");
+    await expect(page.locator(".logo-intro-react")).toHaveCount(0);
+  });
 });
 
 test.describe("Responsive mobile behaviour", () => {
@@ -73,7 +89,7 @@ test.describe("Responsive mobile behaviour", () => {
 test.describe("Legacy tools remain reachable", () => {
   const tools = [
     "tools.html", "gst-reconciliation.html", "tax-calculators.html",
-    "depreciation-calculator.html", "currency-converter.html",
+    "depreciation-calculator.html", "depreciation-register.html", "currency-converter.html",
     "cashflow-planner.html", "mis-generator.html", "compliance-tracker.html", "pdf-tools.html"
   ];
   for (const route of tools) {
