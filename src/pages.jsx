@@ -3,21 +3,197 @@ import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "motion/react";
 const legacyHref=(path)=>`${import.meta.env.BASE_URL.replace(/\/$/,"")}${path}`;
 
-function doodleFor(value=""){
- const v=value.toLowerCase();
- if(/gst|tax|compliance|roc|legal|filing/.test(v))return "pravi-doodle-compliance.svg";
- if(/cash|cfo|finance|account|mis|forecast/.test(v))return "pravi-doodle-cashflow.svg";
- if(/startup|founder|entity|incorpor/.test(v))return "pravi-doodle-founder.svg";
- return "pravi-doodle-growth.svg";
+const heroProfiles = [
+  {
+    test: /about/,
+    eyebrow: "PROFESSIONAL WORKING MODEL",
+    title: "A disciplined process for work that needs to stand up to review.",
+    rows: [
+      ["CLARITY", "Understand the request, entity and constraints"],
+      ["EVIDENCE", "Work from records and identify what is missing"],
+      ["ACCOUNTABILITY", "Agree scope, reviewer and next action"]
+    ],
+    footer: "PROFESSIONAL RIGOUR / CLEAR COMMUNICATION"
+  },
+  {
+    test: /service/,
+    eyebrow: "PRAVI SERVICE PORTFOLIO",
+    title: "Connect recurring obligations with financial control.",
+    rows: [
+      ["STARTUP", "Entity setup, governance and ROC responsibilities"],
+      ["FINANCE", "Virtual CFO, cash flow and management reporting"],
+      ["OPERATIONS", "Accounting, tax workflows and reconciliations"]
+    ],
+    footer: "STARTUP / FINANCE / COMPLIANCE"
+  },
+  {
+    test: /startup|entity|roc|founder/,
+    eyebrow: "ENTITY SETUP & GOVERNANCE",
+    title: "A clear view of the entity, records and responsibilities.",
+    rows: [
+      ["ENTITY", "Structure, ownership and registration details"],
+      ["GOVERNANCE", "Minutes, resolutions and statutory registers"],
+      ["OWNERSHIP", "Filing trigger, information owner and reviewer"]
+    ],
+    footer: "STARTUP FOUNDATION / COMPLIANCE CONTROL"
+  },
+  {
+    test: /virtual cfo|finance leadership|cash flow|planning/,
+    eyebrow: "FINANCE LEADERSHIP",
+    title: "Connect the cash position to the decisions ahead.",
+    rows: [
+      ["CASH", "Opening position, receipts and planned payments"],
+      ["PERFORMANCE", "Revenue, margin and budget movement"],
+      ["ACTIONS", "Management questions, owners and due dates"]
+    ],
+    footer: "FORECAST / REVIEW / ACTION"
+  },
+  {
+    test: /gst|tax|tds|filing/,
+    eyebrow: "TAX & RETURN WORKFLOW",
+    title: "Reconcile the evidence before relying on the return.",
+    rows: [
+      ["BOOKS", "Accounting records and source documents"],
+      ["PORTAL", "Return data, statements and acknowledgements"],
+      ["EXCEPTIONS", "Differences, evidence and review decisions"]
+    ],
+    footer: "SOURCE DATA / RECONCILIATION / REVIEW"
+  },
+  {
+    test: /accounting|mis|reporting|month.end/,
+    eyebrow: "MONTH-END CONTROL",
+    title: "Turn transaction records into a reviewable picture.",
+    rows: [
+      ["CAPTURE", "Complete source documents and ledger entries"],
+      ["RECONCILE", "Bank, tax, control accounts and schedules"],
+      ["REPORT", "Variance notes, balance-sheet review and actions"]
+    ],
+    footer: "CLOSE / RECONCILE / REPORT"
+  },
+  {
+    test: /business advisory|feasibility|forecast|budget/,
+    eyebrow: "BUSINESS PLANNING",
+    title: "Make the assumptions visible before choosing a path.",
+    rows: [
+      ["MODEL", "Revenue, cost base and operating drivers"],
+      ["SENSITIVITY", "Scenarios, constraints and funding needs"],
+      ["DECISION", "Options, milestones and accountable owners"]
+    ],
+    footer: "ASSUMPTIONS / SCENARIOS / DECISIONS"
+  },
+  {
+    test: /resource|guide|insight|article/,
+    eyebrow: "FOUNDER KNOWLEDGE BASE",
+    title: "Practical guidance, organised around the work.",
+    rows: [
+      ["UNDERSTAND", "Get clear on the business question"],
+      ["ORGANISE", "Use a checklist or repeatable workflow"],
+      ["APPLY", "Verify the facts and current requirements"]
+    ],
+    footer: "GUIDES / EXPLAINERS / WORKPAPERS"
+  },
+  {
+    test: /contact|enquiry/,
+    eyebrow: "FIRST CONVERSATION",
+    title: "A useful engagement starts with the right context.",
+    rows: [
+      ["REQUIREMENT", "The business question and service area"],
+      ["CONTEXT", "Entity, stage, records and relevant timing"],
+      ["SCOPE", "Inputs, boundaries and practical next steps"]
+    ],
+    footer: "CONTEXT / SCOPE / NEXT STEP"
+  }
+];
+
+function getHeroProfile(value = "") {
+  const match = heroProfiles.find(profile => profile.test.test(value.toLowerCase()));
+  return match || {
+    eyebrow: "PRAVI BUSINESS ADVISORS LLP",
+    title: "Clear scope. Reliable information. Practical execution.",
+    rows: [
+      ["CONTEXT", "Understand the business and the question"],
+      ["EVIDENCE", "Review records, assumptions and dependencies"],
+      ["DELIVERY", "Agree outputs, owners and review points"]
+    ],
+    footer: "CLARITY / CONTROL / GROWTH"
+  };
 }
+
 function PageHero({kicker,title,lead}) {
- const reduce=useReducedMotion();
- const art=doodleFor(kicker+" "+title);
- return <section className="page-hero-react"><div className="wrap page-hero-grid"><div className="page-hero-copy"><p className="eyebrow"><span className="eyebrow-spark"/> {kicker}</p><h1>{title}</h1><p>{lead}</p><span className="page-hero-index">PRAVI / FIELD NOTES <b>↗</b></span></div><motion.div className="page-hero-art" initial={reduce?false:{opacity:0,scale:.88,rotate:3}} animate={{opacity:1,scale:1,rotate:0}} transition={{duration:.8,ease:[.2,.8,.2,1]}}><span className="page-hero-art-stamp">P / {String(kicker).split(" ")[0]}</span><img src={`${import.meta.env.BASE_URL}assets/img/${art}`} alt=""/><svg viewBox="0 0 440 330" aria-hidden="true"><motion.path d="M20 255C86 255 98 192 160 192S248 238 302 165 364 60 416 72" fill="none" stroke="#D78A49" strokeWidth="2" strokeDasharray="5 7" initial={{pathLength:0}} animate={{pathLength:1}} transition={{duration:2.1,delay:.3}}/><motion.circle cx="302" cy="165" r="7" fill="#FFE000" stroke="#303030" strokeWidth="2" animate={reduce?{}:{scale:[1,1.45,1]}} transition={{duration:3.2,repeat:Infinity}}/></svg><span className="page-hero-art-note">CLARITY → CONTROL → GROWTH</span></motion.div></div><div className="page-hero-scribble" aria-hidden="true"/></section>;
+  const reduce = useReducedMotion();
+  const profile = getHeroProfile(kicker + " " + title);
+  return (
+    <section className="page-hero-react pr-page-hero">
+      <div className="wrap pr-page-hero-grid">
+        <div className="pr-page-hero-copy">
+          <p className="eyebrow pr-page-eyebrow"><span className="pr-page-eyebrow-rule"/> {kicker}</p>
+          <h1>{title}</h1>
+          <p className="pr-page-lead">{lead}</p>
+          <span className="pr-page-index">PRAVI / {profile.footer}</span>
+        </div>
+        <motion.aside
+          className="pr-page-hero-panel"
+          aria-label={profile.eyebrow + " overview"}
+          initial={reduce ? false : {opacity:0,y:16}}
+          animate={{opacity:1,y:0}}
+          transition={{duration:0.55,ease:"easeOut"}}
+        >
+          <div className="pr-page-panel-head">
+            <span>{profile.eyebrow}</span>
+            <b>PRAVI / 01</b>
+          </div>
+          <h2>{profile.title}</h2>
+          <div className="pr-page-panel-rows">
+            {profile.rows.map(([label,copy],index)=>(
+              <div className="pr-page-panel-row" key={label}>
+                <span>{String(index+1).padStart(2,"0")}</span>
+                <div><strong>{label}</strong><small>{copy}</small></div>
+                <i aria-hidden="true">↗</i>
+              </div>
+            ))}
+          </div>
+          <div className="pr-page-panel-foot"><span>WORKING VIEW</span><span>CLARITY → CONTROL</span></div>
+        </motion.aside>
+      </div>
+    </section>
+  );
 }
+
 function Story({index,title,body,href="/services.html",label="Explore how we work"}) {
- const reduce=useReducedMotion();const art=doodleFor(title+" "+body);
- return <section className="story-react wrap"><div><small>{index}</small><h2>{title}</h2><p>{body}</p>{["/services.html"].includes(href)?<Link to={href}>{label} ↗</Link>:<a href={legacyHref(href)}>{label} ↗</a>}</div><motion.div className="story-visual story-visual-illustrated" whileHover={reduce?{}:{rotate:-1,scale:1.015}}><span className="story-visual-label">THE PRAVI METHOD</span><img src={`${import.meta.env.BASE_URL}assets/img/${art}`} alt=""/><div className="story-visual-flow"><b>CLARITY</b><i>↗</i><b>CONTROL</b><i>↗</i><b>GROWTH</b></div></motion.div></section>;
+  const reduce = useReducedMotion();
+  const stages = [
+    ["01","DEFINE","The question, objective and scope"],
+    ["02","DOCUMENT","The records, evidence and assumptions"],
+    ["03","REVIEW","The output, open points and next action"]
+  ];
+  return (
+    <section className="story-react pr-story wrap">
+      <div className="pr-story-copy">
+        <small>{index}</small>
+        <h2>{title}</h2>
+        <p>{body}</p>
+        {href === "/services.html" ? <Link to={href}>{label} ↗</Link> : <a href={legacyHref(href)}>{label} ↗</a>}
+      </div>
+      <motion.aside
+        className="pr-story-panel"
+        initial={reduce ? false : {opacity:0,y:12}}
+        whileInView={{opacity:1,y:0}}
+        viewport={{once:true,amount:0.2}}
+        transition={{duration:0.5,ease:"easeOut"}}
+        aria-label="The PRAVI working sequence"
+      >
+        <div className="pr-story-panel-head"><span>THE PRAVI WORKING SEQUENCE</span><b>03 STAGES</b></div>
+        <div className="pr-story-stages">
+          {stages.map(([num,name,copy])=>(
+            <div className="pr-story-stage" key={num}>
+              <span>{num}</span><div><strong>{name}</strong><small>{copy}</small></div>
+            </div>
+          ))}
+        </div>
+        <div className="pr-story-panel-foot"><span>DEFINED RESPONSIBILITIES</span><span>DOCUMENTED OUTPUTS</span></div>
+      </motion.aside>
+    </section>
+  );
 }
 function SectionTitle({kicker,title,copy}) {
   return <div className="section-head"><div><p className="eyebrow">{kicker}</p><h2>{title}</h2></div>{copy&&<p>{copy}</p>}</div>;
@@ -111,8 +287,26 @@ const articles = [
  ["ACCOUNTING & MIS","Monthly MIS: what a business owner should review","A decision-focused review of profitability, cash, working capital and balance-sheet quality.","/article-monthly-mis-review.html"]
 ];
 function EditorialCard({item,article=false}) {
- const [kicker,title,copy,href,label]=item;const reduce=useReducedMotion();const art=doodleFor(kicker+" "+title);
- return <motion.article className="resource-card-react has-doodle-corner" whileHover={reduce?{}:{y:-5,rotate:.35}} transition={{duration:.24}}><div className="resource-card-topline"><span>{kicker}</span><img src={`${import.meta.env.BASE_URL}assets/img/${art}`} alt=""/></div><h3>{title}</h3><p>{copy}</p><a href={legacyHref(href)}>{label||"Read more"} ↗</a><span className="resource-card-index" aria-hidden="true">PRAVI / {article?"INSIGHT":"GUIDE"}</span></motion.article>;
+ const [kicker,title,copy,href,label]=item;
+ const reduce=useReducedMotion();
+ return (
+  <motion.article
+   className="resource-card-react pr-resource-card"
+   initial={reduce?false:{opacity:0,y:12}}
+   whileInView={{opacity:1,y:0}}
+   viewport={{once:true,amount:0.15}}
+   whileHover={reduce?{}:{y:-4}}
+   transition={{duration:reduce?0:.28,ease:"easeOut"}}
+  >
+   <div className="resource-card-topline">
+    <span className="pr-resource-type">{kicker}</span>
+    <span className="pr-resource-index">{article?"INSIGHT":"GUIDE"} / PRAVI</span>
+   </div>
+   <h3>{title}</h3>
+   <p>{copy}</p>
+   <a href={legacyHref(href)}>{label||"Read more"} <b aria-hidden="true">↗</b></a>
+  </motion.article>
+ );
 }
 export function ResourcesPage(){
  return <main><PageHero kicker="FOUNDER RESOURCES" title="Practical resources for building and running a business." lead="Use clear checklists and working guides to organise startup compliance, finance operations, GST reconciliation and management reporting. Each resource is a starting point; applicability depends on the entity and facts."/>
