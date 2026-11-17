@@ -23,7 +23,10 @@ for (const path of ["gst-reconciliation.html","tax-calculators.html","depreciati
 }
 assert.ok(tools.includes('id="gstcalc"'), "Embedded GST calculator panel missing");
 assert.ok(app.includes('className="footer-editorial"'), "Editorial footer missing from React shell");
-assert.ok(app.includes('assets/img/pravi-logo.svg'), "Approved PRAVI logo asset reference missing");
+assert.ok(app.includes('pravi-logo.svg') && app.includes('pravi-logo-full.svg'), "Approved PRAVI header and full logo lock-ups must both be referenced");
+assert.ok(existsSync(new URL("../assets/img/pravi-approved-header.webp", import.meta.url)), "Approved PRAVI wordmark artwork missing");
+assert.ok(existsSync(new URL("../assets/img/pravi-logo-full.svg", import.meta.url)), "Approved PRAVI full lock-up missing");
+assert.ok(existsSync(new URL("../assets/img/favicon.svg", import.meta.url)), "Approved PRAVI favicon missing");
 const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1]);
 assert.ok(sitemapUrls.length >= 30, "Production sitemap is missing public routes/tools");
 assert.equal(new Set(sitemapUrls).size, sitemapUrls.length, "Sitemap contains duplicate URLs");
