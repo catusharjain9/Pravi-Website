@@ -20,6 +20,7 @@ test.describe("React public routes", () => {
       if (route === "privacy.html") await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", "noindex,follow");
       const title = await page.title();
       expect(title.length).toBeGreaterThan(15);
+      if (route !== "/") await expect(page.locator(".pr-page-hero-panel")).toBeVisible();
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", /Pravi-Website/);
       const canonical = await page.locator('link[rel="canonical"]').getAttribute("href");
       expect(canonical).toContain(route === "/" ? "/Pravi-Website/" : route);
@@ -47,10 +48,19 @@ test.describe("Approved PRAVI identity and founder-first homepage", () => {
     await expect(page.locator(".pr-board-metric")).toHaveCount(2);
     await expect(page.locator(".finance-doodle-scene, .service-card-doodle, .closing-doodle")).toHaveCount(0);
     await page.goto("resources.html");
-    const pageArtwork = page.locator(".page-hero-art img");
-    await expect(pageArtwork).toBeVisible();
-    await expect.poll(() => pageArtwork.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
-    await expect(page.locator(".resource-card-topline img").first()).toBeVisible();
+    await expect(page.locator(".pr-page-hero-panel")).toBeVisible();
+    await expect(page.locator(".pr-page-panel-row")).toHaveCount(3);
+    await expect(page.locator(".pr-resource-card")).toHaveCount(8);
+    await expect(page.locator(".pr-resource-card img")).toHaveCount(0);
+    await expect(page.locator(".resource-card-react")).toHaveCount(8);
+  });
+
+  test("inner pages use information-led panels and contain no decorative doodle assets", async ({ page }) => {
+    for (const route of ["about.html","services.html","startup-support.html","virtual-cfo.html","gst-compliance.html","resources.html","insights.html","contact.html"]) {
+      await page.goto(route);
+      await expect(page.locator(".pr-page-hero-panel")).toBeVisible();
+      await expect(page.locator(".page-hero-art, .story-visual img, .resource-card-react img")).toHaveCount(0);
+    }
   });
 
   test("homepage does not show a blocking logo splash", async ({ page }) => {

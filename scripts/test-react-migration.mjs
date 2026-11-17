@@ -26,8 +26,11 @@ assert.ok(app.includes('className="footer-editorial"'), "Editorial footer missin
 assert.ok(app.includes("pravi-approved-lockup.webp"), "The exact approved PRAVI logo lock-up must be used in the shared shell");
 assert.ok(existsSync(new URL("../assets/img/pravi-approved-lockup.webp", import.meta.url)), "Exact approved PRAVI logo lock-up artwork missing");
 assert.ok(existsSync(new URL("../src/HomeRedesign.jsx", import.meta.url)), "Founder-first homepage component missing");
+assert.ok(existsSync(new URL("../src/pravi-pages.css", import.meta.url)), "PRAVI inner-page design system missing");
 const homeSource = read("../src/HomeRedesign.jsx");
+const pagesSource = read("../src/pages.jsx");
 assert.ok(!homeSource.includes("pravi-doodle-") && !homeSource.includes("doodle"), "Founder-first homepage must not reintroduce decorative doodle assets");
+assert.ok(!pagesSource.includes("pravi-doodle-") && !pagesSource.includes("doodleFor"), "Inner pages must not reintroduce decorative doodle assets");
 assert.ok(existsSync(new URL("../assets/img/favicon.svg", import.meta.url)), "Approved PRAVI favicon missing");
 const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1]);
 assert.ok(sitemapUrls.length >= 30, "Production sitemap is missing public routes/tools");
