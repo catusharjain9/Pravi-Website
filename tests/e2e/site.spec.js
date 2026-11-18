@@ -63,6 +63,29 @@ test.describe("Approved PRAVI identity and founder-first homepage", () => {
     }
   });
 
+  test("founder journey tabs update the stage panel and support keyboard navigation", async ({ page }) => {
+    await page.goto("./");
+    const tabs = page.getByRole("tab");
+    await expect(tabs).toHaveCount(3);
+    await expect(tabs.nth(0)).toHaveAttribute("aria-selected", "true");
+    await expect(page.locator(".site-scroll-progress")).toHaveCount(1);
+
+    await tabs.nth(1).click();
+    await expect(tabs.nth(1)).toHaveAttribute("aria-selected", "true");
+    await expect(page.getByRole("tabpanel")).toContainText("Turn records into a useful view.");
+    await expect(page.getByRole("tabpanel")).toContainText("13-week cash-flow view");
+
+    await tabs.nth(2).click();
+    await expect(tabs.nth(2)).toHaveAttribute("aria-selected", "true");
+    await expect(page.getByRole("tabpanel")).toContainText("Give growth a stronger operating base.");
+    await expect(page.getByRole("tabpanel").getByRole("link")).toContainText("Explore business advisory");
+
+    await tabs.nth(0).focus();
+    await page.keyboard.press("ArrowRight");
+    await expect(tabs.nth(1)).toHaveAttribute("aria-selected", "true");
+    await expect(tabs.nth(1)).toBeFocused();
+  });
+
   test("homepage does not show a blocking logo splash", async ({ page }) => {
     await page.goto("./");
     await expect(page.locator(".logo-intro-react")).toHaveCount(0);
