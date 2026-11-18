@@ -145,9 +145,21 @@ export default function HomeRedesign() {
             <div className="pr-home-assurance"><span>Clearly scoped work</span><i /><span>Documented responsibilities</span><i /><span>Practical follow-through</span></div>
           </motion.div>
           <FinanceControlPanel />
+          <div className="pr-hero-stickers" aria-hidden="true">
+            <span className="pr-sticker pr-sticker-yellow"><b>LESS CHAOS.</b><i>MORE CLARITY.</i><em>✳</em></span>
+            <span className="pr-sticker pr-sticker-outline">FOUNDER<br/>FIRST <b>↗</b></span>
+            <span className="pr-hero-scribble">GOOD SYSTEMS<br/>MAKE ROOM TO GROW <b>〰</b></span>
+          </div>
         </div>
         <div className="pr-hero-footnote"><span>PRAVI BUSINESS ADVISORS LLP</span><span>CLARITY → CONTROL → GROWTH</span></div>
       </section>
+
+      <div className="pr-kinetic-ticker" aria-label="PRAVI services">
+        <div className="pr-ticker-track">
+          <span>STARTUP LEGAL</span><b>✳</b><span>VIRTUAL CFO</span><b>✳</b><span>CASH FLOW</span><b>✳</b><span>ROC COMPLIANCE</span><b>✳</b><span>FOUNDER FINANCE</span><b>✳</b><span>MONTHLY MIS</span><b>✳</b>
+          <span>STARTUP LEGAL</span><b>✳</b><span>VIRTUAL CFO</span><b>✳</b><span>CASH FLOW</span><b>✳</b><span>ROC COMPLIANCE</span><b>✳</b><span>FOUNDER FINANCE</span><b>✳</b><span>MONTHLY MIS</span><b>✳</b>
+        </div>
+      </div>
 
       <section className="pr-founder-priorities">
         <div className="pr-founder-priorities-inner">

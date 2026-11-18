@@ -94,3 +94,48 @@ html,body,#root{min-height:100%;background:var(--pr-paper);color:var(--pr-ink)}b
  .pr-journey-items article strong{font-size:10px}
  .pr-journey-items article p{font-size:9px;line-height:1.65}
 }
+
+/* Creative direction v2 — bold editorial, playful annotation and kinetic service language */
+.pr-home-hero{isolation:isolate}
+.pr-home-hero::before{content:"";position:absolute;inset:0 0 auto;height:100%;pointer-events:none;opacity:.26;background-image:radial-gradient(#C69A42 .7px,transparent .7px);background-size:18px 18px;mask-image:linear-gradient(90deg,transparent 0%,transparent 48%,#000 100%)}
+.pr-home-hero-inner{position:relative}
+.pr-home-copy{z-index:3}
+.pr-home-eyebrow{display:inline-flex;background:#FFF1C4;border:1px solid #E9D48F;padding:9px 12px;border-radius:2px;letter-spacing:.13em}
+.pr-home-copy h1{font-size:clamp(54px,6.6vw,86px);line-height:.99;letter-spacing:-.078em}
+.pr-home-copy h1 em{position:relative;display:inline-block;background:linear-gradient(transparent 62%,#FFE000 62%);padding-right:.09em}
+.pr-home-copy h1 em::after{content:"";position:absolute;right:-17px;top:-8px;width:14px;height:14px;border:2px solid #D78A49;border-radius:50%;box-shadow:0 0 0 5px rgba(215,138,73,.12)}
+.pr-home-intro{font-size:14px;max-width:455px}
+.pr-home-actions .pr-button{border-radius:2px;min-height:52px;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s ease}
+.pr-home-actions .pr-button:hover{transform:translateY(-4px) rotate(-.5deg);box-shadow:7px 7px 0 rgba(215,138,73,.22)}
+.pr-finance-board{position:relative;z-index:2;transform:rotate(-1.1deg);transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s ease}
+.pr-finance-board:hover{transform:rotate(0deg) translateY(-5px);box-shadow:0 30px 80px rgba(26,35,37,.16)}
+.pr-finance-board::after{content:"LIVE VIEW / 001";position:absolute;right:20px;top:-13px;padding:7px 10px;background:#FFE000;color:#202724;font-size:7px;letter-spacing:.15em;font-weight:800;transform:rotate(2deg);box-shadow:3px 3px 0 #D78A49}
+.pr-hero-stickers{position:absolute;z-index:4;inset:0;pointer-events:none}
+.pr-sticker{position:absolute;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;font-weight:800;letter-spacing:-.04em;line-height:1.05;box-shadow:5px 7px 0 rgba(26,35,37,.13)}
+.pr-sticker-yellow{right:43%;top:7%;width:104px;height:104px;padding:14px;background:#FFE000;color:#242B26;transform:rotate(9deg);border-radius:50% 48% 45% 52%}
+.pr-sticker-yellow b{font-size:12px}.pr-sticker-yellow i{font-size:10px;font-style:normal}.pr-sticker-yellow em{font-size:22px;font-style:normal;align-self:flex-end;color:#D0783F;margin-top:3px}
+.pr-sticker-outline{right:-9px;bottom:14%;width:86px;height:86px;border:1.5px solid #D78A49;background:#FCF9F1;color:#303030;border-radius:50%;align-items:center;text-align:center;font-size:11px;line-height:1.15;transform:rotate(-12deg)}
+.pr-sticker-outline b{font-size:17px;color:#C27B40}
+.pr-hero-scribble{position:absolute;right:4%;top:12%;font-size:8px;line-height:1.6;letter-spacing:.14em;font-weight:700;color:#A87535;transform:rotate(5deg);text-align:center}
+.pr-hero-scribble b{font-size:25px;display:block;line-height:.7;font-weight:400}
+.pr-kinetic-ticker{overflow:hidden;background:#FFE000;color:#242B26;border-block:1px solid #E2C52E;transform:rotate(-1deg) scale(1.02);position:relative;z-index:3;margin:0 0 5px;padding:14px 0}
+.pr-ticker-track{display:flex;align-items:center;gap:30px;width:max-content;white-space:nowrap;animation:pr-ticker-travel 36s linear infinite}
+.pr-ticker-track span{font-size:11px;font-weight:800;letter-spacing:.13em}
+.pr-ticker-track b{font-size:17px;color:#C4773D}
+@keyframes pr-ticker-travel{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.pr-service-card{position:relative;isolation:isolate;overflow:hidden;border-radius:3px;transition:transform .32s cubic-bezier(.2,.8,.2,1),box-shadow .32s ease,border-color .32s ease}
+.pr-service-card::before{content:"";position:absolute;z-index:-1;width:190px;height:190px;right:-90px;top:-100px;border:1px solid rgba(196,137,52,.25);border-radius:50%;box-shadow:0 0 0 18px rgba(242,198,83,.055),0 0 0 42px rgba(242,198,83,.035);transition:transform .5s ease}
+.pr-service-card:hover{transform:translateY(-8px) rotate(-.45deg);box-shadow:10px 13px 0 rgba(196,137,52,.15);border-color:#D6B65C}
+.pr-service-card:hover::before{transform:scale(1.28) translate(-10px,10px)}
+.pr-service-card-featured{background:linear-gradient(135deg,#FFF3C9 0%,#FFFBF3 75%)}
+.pr-service-number{display:inline-grid;place-items:center;width:29px;height:29px;background:#FFE000;border-radius:50%;color:#242B26}
+.pr-section-heading h2 em{background:linear-gradient(transparent 64%,#FFE000 64%)}
+.pr-operating-system{position:relative;overflow:hidden}
+.pr-operating-system::after{content:"✳";position:absolute;right:4%;top:-54px;font-size:220px;line-height:1;color:rgba(215,138,73,.10);pointer-events:none;transform:rotate(12deg)}
+.pr-operating-inner{position:relative;z-index:1}
+.pr-home-contact{position:relative;overflow:hidden}
+.pr-home-contact::after{content:"LET'S BUILD";position:absolute;right:-12px;top:2px;font-size:clamp(54px,10vw,130px);font-weight:800;letter-spacing:-.09em;color:rgba(215,138,73,.055);pointer-events:none;white-space:nowrap}
+@media(max-width:1100px){.pr-home-copy h1{font-size:clamp(52px,6.3vw,72px)}.pr-sticker-yellow{right:39%;top:4%}.pr-sticker-outline{right:-5px}}
+@media(max-width:820px){.pr-sticker-yellow{right:4%;top:-23px;width:80px;height:80px}.pr-sticker-yellow b{font-size:9px}.pr-sticker-yellow i{font-size:8px}.pr-sticker-yellow em{font-size:16px}.pr-sticker-outline{right:3px;bottom:7%;width:68px;height:68px;font-size:9px}.pr-hero-scribble{right:16%;top:2%;font-size:7px}}
+@media(max-width:560px){.pr-home-copy h1{font-size:clamp(43px,12.5vw,58px)}.pr-home-eyebrow{font-size:7px;padding:7px 9px}.pr-home-copy h1 em::after{width:9px;height:9px;right:-10px;top:-4px}.pr-finance-board{transform:none}.pr-finance-board:hover{transform:none}.pr-finance-board::after{right:10px;top:-10px;font-size:6px}.pr-sticker-yellow{right:-5px;top:-20px;width:65px;height:65px;padding:9px}.pr-sticker-yellow b{font-size:7px}.pr-sticker-yellow i{font-size:6px}.pr-sticker-yellow em{font-size:12px}.pr-sticker-outline{right:-7px;bottom:2%;width:57px;height:57px;font-size:7px}.pr-sticker-outline b{font-size:12px}.pr-hero-scribble{display:none}.pr-kinetic-ticker{padding:11px 0}.pr-ticker-track{gap:20px}.pr-ticker-track span{font-size:9px}.pr-ticker-track b{font-size:13px}.pr-service-card:hover{transform:translateY(-3px)}.pr-operating-system::after{font-size:120px;top:-25px;right:-8px}.pr-home-contact::after{font-size:58px;top:0}}
+@media(prefers-reduced-motion:reduce){.pr-ticker-track{animation:none!important}.pr-finance-board,.pr-service-card,.pr-home-actions .pr-button{transition:none!important}}
