@@ -96,6 +96,7 @@ function FounderJourney(){
   const [active,setActive]=React.useState(0);
   const reduce=useReducedMotion();
   const stage=founderStages[active];
+  const handleTabKey=(event,index)=>{let next=index;if(event.key==="ArrowRight")next=(index+1)%founderStages.length;else if(event.key==="ArrowLeft")next=(index-1+founderStages.length)%founderStages.length;else if(event.key==="Home")next=0;else if(event.key==="End")next=founderStages.length-1;else return;event.preventDefault();setActive(next);event.currentTarget.parentElement?.querySelectorAll('[role="tab"]')[next]?.focus();};
   return <section className="pr-founder-journey" aria-labelledby="pr-journey-title">
     <div className="pr-journey-inner">
       <div className="pr-journey-heading">
@@ -108,7 +109,7 @@ function FounderJourney(){
         <div className="pr-journey-console-head"><span>FOUNDER PATHWAY</span><span>SELECT A STAGE <i/></span></div>
         <div className="pr-journey-console-body">
           <div className="pr-journey-tabs" role="tablist" aria-label="Business development stages">
-            {founderStages.map((item,i)=><button key={item.index} type="button" role="tab" id={`pr-stage-tab-${i}`} aria-selected={active===i} aria-controls="pr-stage-panel" onClick={()=>setActive(i)}>
+            {founderStages.map((item,i)=><button key={item.index} type="button" role="tab" id={`pr-stage-tab-${i}`} aria-selected={active===i} aria-controls="pr-stage-panel" tabIndex={active===i?0:-1} onKeyDown={event=>handleTabKey(event,i)} onClick={()=>setActive(i)}>
               <span>{item.index}</span><strong>{item.tab}</strong><small>{item.caption}</small><b aria-hidden="true">↗</b>
             </button>)}
           </div>
