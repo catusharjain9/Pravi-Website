@@ -79,3 +79,18 @@ html,body,#root{min-height:100%;background:var(--pr-paper);color:var(--pr-ink)}b
 @media(max-width:900px){.pr-journey-inner{grid-template-columns:1fr;gap:28px}.pr-journey-heading>p:not(.pr-section-label){max-width:640px}.pr-journey-stamp{margin-top:22px}.pr-journey-console{box-shadow:12px 12px 0 rgba(242,198,83,.16)}}
 @media(max-width:560px){.pr-journey-inner{width:calc(100% - 36px);padding:58px 0}.pr-journey-heading h2{font-size:37px}.pr-journey-heading>p:not(.pr-section-label){font-size:10px}.pr-journey-console-head,.pr-journey-console-foot{padding:12px 13px;font-size:6px}.pr-journey-console-body{grid-template-columns:1fr;min-height:0}.pr-journey-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:10px;border-right:0;border-bottom:1px solid #E7E0D2;gap:5px}.pr-journey-tabs button{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:6px;min-width:0;min-height:74px;padding:9px 7px}.pr-journey-tabs button>span{font-size:7px}.pr-journey-tabs button>strong{font-size:8px;line-height:1.25}.pr-journey-tabs button>small{font-size:6px;line-height:1.3;margin:0}.pr-journey-tabs button>b{display:none}.pr-journey-panel{padding:18px 15px 20px}.pr-journey-panel h3{font-size:22px}.pr-journey-panel-intro{font-size:9px}.pr-journey-items article{padding:10px 0}.pr-journey-items article strong{font-size:9px}.pr-journey-items article p{font-size:8px}.pr-journey-console{box-shadow:8px 8px 0 rgba(242,198,83,.16)}}
 @media(prefers-reduced-motion:reduce){.pr-journey-tabs button,.pr-founder-journey *{transition:none!important;animation:none!important}}
+
+/* Readability and keyboard interaction refinement for the founder pathway */
+.pr-journey-tabs button>strong{font-size:12px}
+.pr-journey-tabs button>small{font-size:9px}
+.pr-journey-panel-intro{font-size:11px;line-height:1.8}
+.pr-journey-items article strong{font-size:11px}
+.pr-journey-items article p{font-size:10px;line-height:1.7}
+.pr-journey-link{font-size:10px}
+@media(max-width:560px){
+ .pr-journey-tabs button>strong{font-size:10px;line-height:1.3}
+ .pr-journey-tabs button>small{font-size:8px;line-height:1.4}
+ .pr-journey-panel-intro{font-size:10px;line-height:1.75}
+ .pr-journey-items article strong{font-size:10px}
+ .pr-journey-items article p{font-size:9px;line-height:1.65}
+}
