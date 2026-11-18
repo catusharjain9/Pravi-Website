@@ -30,6 +30,8 @@ const redesignSource = read("../src/HomeRedesign.jsx");
 assert.ok(redesignSource.includes("FounderJourney") && redesignSource.includes("role=\"tablist\""), "Interactive founder journey section missing");
 assert.ok(redesignSource.includes("Different stages.") && redesignSource.includes("ROC calendar"), "Founder pathway content is incomplete");
 assert.ok(redesignSource.includes("handleTabKey") && redesignSource.includes("ArrowRight") && redesignSource.includes("tabIndex={active===i?0:-1}"), "Founder pathway tabs are missing keyboard navigation");
+assert.ok(redesignSource.includes("pr-hero-orbit") && redesignSource.includes("pr-orbit-dot-a"), "Creative hero orbit treatment is missing");
+assert.ok(redesignSource.includes("pr-service-card-${item.number}") && redesignSource.includes('number:"04"'), "Expressive service bento variants are missing");
 const appSource = read("../src/App.jsx");
 assert.ok(appSource.includes("SiteScrollProgress") && appSource.includes("useScroll"), "Scroll progress indicator missing");
 assert.ok(existsSync(new URL("../src/pravi-pages.css", import.meta.url)), "PRAVI inner-page design system missing");
