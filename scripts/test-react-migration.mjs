@@ -26,6 +26,11 @@ assert.ok(app.includes('className="footer-editorial"'), "Editorial footer missin
 assert.ok(app.includes("pravi-approved-lockup.webp"), "The exact approved PRAVI logo lock-up must be used in the shared shell");
 assert.ok(existsSync(new URL("../assets/img/pravi-approved-lockup.webp", import.meta.url)), "Exact approved PRAVI logo lock-up artwork missing");
 assert.ok(existsSync(new URL("../src/HomeRedesign.jsx", import.meta.url)), "Founder-first homepage component missing");
+const redesignSource = read("../src/HomeRedesign.jsx");
+assert.ok(redesignSource.includes("FounderJourney") && redesignSource.includes("role=\"tablist\""), "Interactive founder journey section missing");
+assert.ok(redesignSource.includes("Different stages.") && redesignSource.includes("ROC calendar"), "Founder pathway content is incomplete");
+const appSource = read("../src/App.jsx");
+assert.ok(appSource.includes("SiteScrollProgress") && appSource.includes("useScroll"), "Scroll progress indicator missing");
 assert.ok(existsSync(new URL("../src/pravi-pages.css", import.meta.url)), "PRAVI inner-page design system missing");
 const homeSource = read("../src/HomeRedesign.jsx");
 const pagesSource = read("../src/pages.jsx");
