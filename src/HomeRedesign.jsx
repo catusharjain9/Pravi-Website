@@ -87,6 +87,45 @@ function ServiceCard({ item, index }) {
   );
 }
 
+const founderStages = [
+  {tab:"Set up",caption:"Establish the foundation",index:"01",phase:"STARTUP FOUNDATIONS",title:"Make the foundation dependable.",description:"The early decisions create the records and responsibilities that the business will rely on later.",items:[["Entity & ownership records","Clarify the chosen structure, ownership, decision rights and core corporate records."],["Registration applicability","Map registrations and permissions against the activity, location and actual facts."],["ROC calendar & governance","Set out recurring and event-based obligations, owners, reviewers and evidence."]],href:"/startup-support.html",link:"Explore startup support"},
+  {tab:"Build control",caption:"Make finance visible",index:"02",phase:"FINANCE OPERATIONS",title:"Turn records into a useful view.",description:"Bring reconciliations, cash visibility and monthly reporting into one dependable operating rhythm.",items:[["Month-end & reconciliations","Close the books with bank, ledger and balance-sheet checks."],["13-week cash-flow view","Track timing, expected receipts, committed payments and scenarios."],["Monthly MIS","Explain performance, working capital, exceptions and management actions."]],href:"/virtual-cfo.html",link:"Explore Virtual CFO support"},
+  {tab:"Prepare to scale",caption:"Plan the next stage",index:"03",phase:"GROWTH & READINESS",title:"Give growth a stronger operating base.",description:"Connect the growth plan to financial assumptions, evidence, governance and accountable decisions.",items:[["Budgets & scenarios","Connect growth plans to costs, headcount, margins and funding assumptions."],["Diligence-ready records","Keep schedules, reconciliations and supporting evidence organised."],["Governance & finance rhythm","Review recurring obligations, cash, reporting and open management actions."]],href:"/business-advisory.html",link:"Explore business advisory"}
+];
+function FounderJourney(){
+  const [active,setActive]=React.useState(0);
+  const reduce=useReducedMotion();
+  const stage=founderStages[active];
+  return <section className="pr-founder-journey" aria-labelledby="pr-journey-title">
+    <div className="pr-journey-inner">
+      <div className="pr-journey-heading">
+        <p className="pr-section-label">A MORE USEFUL WAY TO THINK ABOUT THE JOURNEY</p>
+        <h2 id="pr-journey-title">Different stages.<br/><em>Different controls.</em></h2>
+        <p>The priorities change as a business develops. Select a stage to see the work that may need attention — the actual scope depends on the entity, facts and agreed engagement.</p>
+        <div className="pr-journey-stamp"><span>PRAVI / FIELD GUIDE</span><b>01—03</b></div>
+      </div>
+      <div className="pr-journey-console">
+        <div className="pr-journey-console-head"><span>FOUNDER PATHWAY</span><span>SELECT A STAGE <i/></span></div>
+        <div className="pr-journey-console-body">
+          <div className="pr-journey-tabs" role="tablist" aria-label="Business development stages">
+            {founderStages.map((item,i)=><button key={item.index} type="button" role="tab" id={`pr-stage-tab-${i}`} aria-selected={active===i} aria-controls="pr-stage-panel" onClick={()=>setActive(i)}>
+              <span>{item.index}</span><strong>{item.tab}</strong><small>{item.caption}</small><b aria-hidden="true">↗</b>
+            </button>)}
+          </div>
+          <motion.div key={stage.index} id="pr-stage-panel" className="pr-journey-panel" role="tabpanel" aria-labelledby={`pr-stage-tab-${active}`} initial={reduce?false:{opacity:0,y:12}} animate={{opacity:1,y:0}} transition={{duration:reduce?0:.34,ease:"easeOut"}}>
+            <div className="pr-journey-panel-top"><span>{stage.index} / {stage.phase}</span><b>{stage.index}</b></div>
+            <h3>{stage.title}</h3>
+            <p className="pr-journey-panel-intro">{stage.description}</p>
+            <div className="pr-journey-items">{stage.items.map((item,i)=><article key={item[0]}><span>0{i+1}</span><div><strong>{item[0]}</strong><p>{item[1]}</p></div></article>)}</div>
+            <Link to={stage.href} className="pr-journey-link">{stage.link}<b>↗</b></Link>
+          </motion.div>
+        </div>
+        <div className="pr-journey-console-foot"><span>CLARITY → CONTROL → GROWTH</span><span>PRAVI BUSINESS ADVISORS LLP</span></div>
+      </div>
+    </div>
+  </section>;
+}
+
 export default function HomeRedesign() {
   const reduce = useReducedMotion();
   return (
@@ -133,6 +172,8 @@ export default function HomeRedesign() {
           <Link to="/resources.html">Founder resources <b>↗</b></Link>
         </div>
       </section>
+
+      <FounderJourney />
 
       <section className="pr-operating-system">
         <div className="pr-operating-inner">
