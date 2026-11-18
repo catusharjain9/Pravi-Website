@@ -77,7 +77,7 @@ const services = [
 function ServiceCard({ item, index }) {
   const reduce = useReducedMotion();
   return (
-    <motion.article className={item.featured ? "pr-service-card pr-service-card-featured" : "pr-service-card"}
+    <motion.article className={`pr-service-card pr-service-card-${item.number}${item.featured ? " pr-service-card-featured" : ""}`}
       variants={rise} initial="hidden" whileInView="visible" viewport={{ once:true, amount:0.18 }}
       transition={{ duration:reduce ? 0 : 0.48, delay:reduce ? 0 : index*0.07, ease:"easeOut" }}>
       <div className="pr-service-card-top"><span className="pr-service-number">{item.number}</span><span className="pr-service-category">{item.category}</span></div>
@@ -145,6 +145,20 @@ export default function HomeRedesign() {
             <div className="pr-home-assurance"><span>Clearly scoped work</span><i /><span>Documented responsibilities</span><i /><span>Practical follow-through</span></div>
           </motion.div>
           <FinanceControlPanel />
+          <div className="pr-hero-orbit" aria-hidden="true">
+            <svg viewBox="0 0 520 520" role="presentation">
+              <circle cx="260" cy="260" r="226" />
+              <circle cx="260" cy="260" r="184" />
+              <circle cx="260" cy="260" r="142" />
+              <path d="M260 12V508M12 260H508" />
+              <circle className="pr-orbit-dot pr-orbit-dot-a" cx="260" cy="34" r="7" />
+              <circle className="pr-orbit-dot pr-orbit-dot-b" cx="445" cy="260" r="5" />
+              <circle className="pr-orbit-dot pr-orbit-dot-c" cx="260" cy="402" r="4" />
+            </svg>
+            <span className="pr-orbit-label pr-orbit-label-a">01 / CASH FLOW</span>
+            <span className="pr-orbit-label pr-orbit-label-b">02 / COMPLIANCE</span>
+            <span className="pr-orbit-label pr-orbit-label-c">03 / CLARITY</span>
+          </div>
           <div className="pr-hero-stickers" aria-hidden="true">
             <span className="pr-sticker pr-sticker-yellow"><b>LESS CHAOS.</b><i>MORE CLARITY.</i><em>✳</em></span>
             <span className="pr-sticker pr-sticker-outline">FOUNDER<br/>FIRST <b>↗</b></span>
