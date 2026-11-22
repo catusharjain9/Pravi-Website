@@ -44,7 +44,6 @@ const appSource = read("../src/App.jsx");
 assert.ok(appSource.includes("SiteScrollProgress") && appSource.includes("useScroll"), "Scroll progress indicator missing");
 assert.ok(existsSync(new URL("../src/pravi-pages.css", import.meta.url)), "PRAVI inner-page design system missing");
 const homeSource = read("../src/HomeRedesign.jsx");
-const pagesSource = read("../src/pages.jsx");
 assert.ok(!homeSource.includes("pravi-doodle-") && !homeSource.includes("doodle"), "Founder-first homepage must not reintroduce decorative doodle assets");
 assert.ok(!pagesSource.includes("pravi-doodle-") && !pagesSource.includes("doodleFor"), "Inner pages must not reintroduce decorative doodle assets");
 assert.ok(existsSync(new URL("../assets/img/favicon.svg", import.meta.url)), "Approved PRAVI favicon missing");
@@ -52,6 +51,7 @@ const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => mat
 assert.ok(sitemapUrls.length >= 30, "Production sitemap is missing public routes/tools");
 assert.equal(new Set(sitemapUrls).size, sitemapUrls.length, "Sitemap contains duplicate URLs");
 assert.ok(sitemapUrls.every(url => url.startsWith("https://catusharjain9.github.io/Pravi-Website/")), "Sitemap contains an unverified or off-site URL");
+assert.ok(sitemapUrls.includes("https://catusharjain9.github.io/Pravi-Website/who-we-help.html"), "Sector pathway page missing from source sitemap");
 assert.ok(!sitemap.includes("privacy.html"), "Draft privacy notice must not be indexed");
 assert.ok(robots.includes("Sitemap: https://catusharjain9.github.io/Pravi-Website/sitemap.xml"), "robots.txt sitemap directive missing");
 assert.ok(app.includes('robots:"noindex,follow"'), "Draft privacy route must be noindex");
