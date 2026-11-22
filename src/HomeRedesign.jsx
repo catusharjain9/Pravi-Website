@@ -92,6 +92,88 @@ const founderStages = [
   {tab:"Build control",caption:"Make finance visible",index:"02",phase:"FINANCE OPERATIONS",title:"Turn records into a useful view.",description:"Bring reconciliations, cash visibility and monthly reporting into one dependable operating rhythm.",items:[["Month-end & reconciliations","Close the books with bank, ledger and balance-sheet checks."],["13-week cash-flow view","Track timing, expected receipts, committed payments and scenarios."],["Monthly MIS","Explain performance, working capital, exceptions and management actions."]],href:"/virtual-cfo.html",link:"Explore Virtual CFO support"},
   {tab:"Prepare to scale",caption:"Plan the next stage",index:"03",phase:"GROWTH & READINESS",title:"Give growth a stronger operating base.",description:"Connect the growth plan to financial assumptions, evidence, governance and accountable decisions.",items:[["Budgets & scenarios","Connect growth plans to costs, headcount, margins and funding assumptions."],["Diligence-ready records","Keep schedules, reconciliations and supporting evidence organised."],["Governance & finance rhythm","Review recurring obligations, cash, reporting and open management actions."]],href:"/business-advisory.html",link:"Explore business advisory"}
 ];
+const financeSetups = [
+  {
+    id:"founder", number:"01", title:"Founder-led", subtitle:"I manage finance myself",
+    resultTitle:"A founder needs timely numbers—not another admin burden.",
+    resultIntro:"When finance work competes with sales and operations, the business can lose a reliable view between filing deadlines.",
+    watch:["Books and reconciliations may fall behind during busy periods.","Cash decisions may rely on the bank balance rather than a forward view.","Compliance follow-ups can depend on the founder remembering every action."],
+    support:["Set a practical monthly close and reconciliation rhythm.","Build a 13-week cash-flow view from expected receipts and committed payments.","Map applicable obligations, evidence and owners in one working calendar."]
+  },
+  {
+    id:"inhouse", number:"02", title:"In-house accountant", subtitle:"One person handles the day-to-day work",
+    resultTitle:"A review layer protects continuity and quality.",
+    resultIntro:"An internal accountant can know the business well, but a single-person process may leave limited review capacity or backup.",
+    watch:["Key knowledge and month-end progress may sit with one person.","Unreviewed balances or old reconciling items can accumulate.","Management may receive reports without clear explanations or actions."],
+    support:["Introduce a documented month-end checklist and review points.","Review bank, ledger and control-account reconciliations with an exception log.","Turn recurring reports into a concise MIS review and action list."]
+  },
+  {
+    id:"ca", number:"03", title:"External CA firm", subtitle:"Year-end work and filings are handled externally",
+    resultTitle:"Year-end compliance and monthly management serve different needs.",
+    resultIntro:"An external CA relationship can remain valuable. The separate question is whether the business also receives timely operating information during the year.",
+    watch:["Management visibility may be limited between periodic or year-end work.","Clean-up and reconciliation can bunch up near statutory deadlines.","Cash, margins and working-capital movement may be reviewed too late."],
+    support:["Complement the existing professional relationship where the agreed scope allows.","Organise monthly books, reconciliations and a management reporting rhythm.","Prepare schedules and supporting records so year-end handover is more orderly."]
+  },
+  {
+    id:"split", number:"04", title:"Split across people or systems", subtitle:"Books, tax and reporting sit in different places",
+    resultTitle:"Disconnected responsibilities need one operating rhythm.",
+    resultIntro:"When data and ownership are spread across teams or providers, the hand-offs can become as important as the accounting entries.",
+    watch:["The same issue may be checked by several people—or missed by everyone.","Different spreadsheets and exports can create inconsistent versions of the numbers.","Open exceptions may have no clear owner or closure date."],
+    support:["Set a responsibility matrix for preparation, review and approval.","Standardise the close calendar, source files and reconciliation records.","Maintain a shared exception list and a consistent monthly MIS structure."]
+  }
+];
+
+function FinanceFitSelector(){
+  const [active,setActive]=React.useState("founder");
+  const setup=financeSetups.find(item=>item.id===active)||financeSetups[0];
+  return (
+    <section className="pr-finance-fit" aria-labelledby="pr-finance-fit-title">
+      <div className="pr-finance-fit-inner">
+        <div className="pr-finance-fit-heading">
+          <p className="pr-section-label">START WITH YOUR CURRENT SETUP</p>
+          <h2 id="pr-finance-fit-title">How is finance managed<br/><em>in your business today?</em></h2>
+          <p>The right support depends on how the work is organised now. Choose the closest description to see the pressure points worth reviewing and a practical control model.</p>
+        </div>
+        <fieldset className="pr-finance-fit-fieldset">
+          <legend>Choose the setup that sounds closest.</legend>
+          <div className="pr-finance-fit-options">
+            {financeSetups.map(item=>(
+              <label key={item.id} className={`pr-finance-fit-choice${active===item.id?" is-active":""}`}>
+                <input type="radio" name="pr-finance-setup" value={item.id} checked={active===item.id} onChange={()=>setActive(item.id)}/>
+                <span className="pr-fit-choice-number">{item.number}</span>
+                <strong>{item.title}</strong>
+                <small>{item.subtitle}</small>
+                <b aria-hidden="true">↗</b>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+        <div className="pr-finance-fit-result" aria-live="polite" aria-atomic="true">
+          <div className="pr-fit-result-topline">
+            <span>PRAVI / FINANCE CONTROL · {setup.number}</span>
+            <span>ILLUSTRATIVE GUIDANCE</span>
+          </div>
+          <div className="pr-fit-result-grid">
+            <article className="pr-fit-result-context">
+              <p className="pr-fit-result-label">PRESSURE POINTS TO WATCH</p>
+              <h3>{setup.resultTitle}</h3>
+              <p className="pr-fit-result-intro">{setup.resultIntro}</p>
+              <ul>{setup.watch.map(item=><li key={item}>{item}</li>)}</ul>
+            </article>
+            <article className="pr-fit-result-action">
+              <p className="pr-fit-result-label">HOW PRAVI CAN HELP STRUCTURE THE WORK</p>
+              <h3>Build a more dependable rhythm.</h3>
+              <ul>{setup.support.map(item=><li key={item}>{item}</li>)}</ul>
+              <Link to="/contact.html" className="pr-fit-result-link">Discuss your current setup <b aria-hidden="true">↗</b></Link>
+            </article>
+          </div>
+          <p className="pr-fit-result-note">Illustrative starting points, not a diagnosis or a fixed service package. Applicability, deliverables and professional responsibilities are confirmed after reviewing the entity, records and agreed scope.</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function FounderJourney(){
   const [active,setActive]=React.useState(0);
   const reduce=useReducedMotion();
@@ -199,6 +281,8 @@ export default function HomeRedesign() {
           <Link to="/resources.html">Founder resources <b>↗</b></Link>
         </div>
       </section>
+
+      <FinanceFitSelector />
 
       <FounderJourney />
 

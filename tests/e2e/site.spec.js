@@ -212,3 +212,23 @@ test.describe("Legacy tools remain reachable", () => {
     await expect(page.getByRole("heading", { name: "Build the business. Stay in control." })).toBeVisible();
   });
 });
+
+
+test("finance setup selector updates its pressure points and support pathway", async ({ page }) => {
+  await page.goto("./");
+  const section = page.locator(".pr-finance-fit");
+  await expect(section).toBeVisible();
+  await expect(section.getByRole("heading", { name: "How is finance managed in your business today?" })).toBeVisible();
+  const choices = section.getByRole("radio");
+  await expect(choices).toHaveCount(4);
+  await expect(section.getByRole("radio", { name: /Founder-led/ })).toBeChecked();
+
+  await section.getByText("One person handles the day-to-day work", { exact: true }).click();
+  await expect(section.getByRole("radio", { name: /In-house accountant/ })).toBeChecked();
+  await expect(section.locator(".pr-finance-fit-result")).toContainText("A review layer protects continuity and quality.");
+  await expect(section.locator(".pr-finance-fit-result")).toContainText("month-end checklist");
+
+  await section.getByText("Year-end work and filings are handled externally", { exact: true }).click();
+  await expect(section.locator(".pr-finance-fit-result")).toContainText("Year-end compliance and monthly management serve different needs.");
+  await expect(section.locator(".pr-finance-fit-result")).toContainText("existing professional relationship");
+});
