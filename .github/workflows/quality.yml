@@ -31,7 +31,9 @@ jobs:
           python-version: "3.12"
       - name: Install frontend dependencies
         run: npm install
-      - name: Build React application and stage legacy routes
+      - name: Install Chromium for prerendering and responsive browser tests
+        run: npx playwright install --with-deps chromium
+      - name: Build, generate sitemap and prerender React routes
         run: npm run build
       - name: Audit HTML structure and local references
         run: python scripts/quality-audit.py
@@ -59,7 +61,7 @@ jobs:
         run: node scripts/test-csv-safety.mjs
       - name: Test Content Security Policy JSON-LD hashes
         run: node scripts/test-csp-hashes.mjs
-      - name: Install Chromium for responsive browser tests
-        run: npx playwright install --with-deps chromium
+      - name: Verify static SEO output
+        run: npm run test:seo
       - name: Run responsive and route browser tests
         run: npm run test:e2e
