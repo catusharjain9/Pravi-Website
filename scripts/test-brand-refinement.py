@@ -44,7 +44,7 @@ for page in pages:
   if 'href="index.html"' in html or 'href="index.html#who-we-help"' in html: fail(f"{page.name}: legacy homepage route must not point to index.html")
   nav=re.search(r'<nav\b(?=[^>]*\bclass="primary-nav")[^>]*>(.*?)</nav>',html,re.I|re.S)
   if not nav: fail(f"{page.name}: primary navigation missing")
-  for href in ('about.html','services.html','tools.html','resources.html','insights.html','contact.html'):
+  for href in ('about.html','services.html','who-we-help.html','tools.html','resources.html','insights.html','contact.html'):
    if f'href="{href}"' not in nav.group(1): fail(f"{page.name}: current primary navigation link missing: {href}")
  elif page.name in branded_exception_pages:
   if html.count('assets/img/pravi-approved-lockup.webp') < 2: fail(f"{page.name}: must use the approved full logo lockup in header and footer")
