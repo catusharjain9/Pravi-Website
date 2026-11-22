@@ -20,7 +20,7 @@ The site now builds with Vite and React and is published through GitHub Actions.
 - [x] Production sitemap and robots.txt Sitemap directive are prepared for the GitHub Pages URL.
 - [x] Draft privacy page is marked noindex,follow and excluded from the sitemap until approved.
 
-Latest pull-request quality gate for this revision: 51 Playwright tests passed; 22 React routes were prerendered and 32 public sitemap URLs were generated. This verifies the PR branch, not yet the post-merge live deployment.
+Post-merge verification (22 November 2026): the main-branch quality run passed 51 Playwright tests, prerendered 22 React routes and generated 32 public sitemap URLs. The GitHub Pages deployment then completed successfully, and its post-deployment smoke test verified the homepage, Who we help route, tools hub, robots.txt, sitemap.xml and branded HTTP 404 response. [Main quality run](https://github.com/catusharjain9/Pravi-Website/actions/runs/45030765728) · [Pages deployment and smoke test](https://github.com/catusharjain9/Pravi-Website/actions/runs/45030931743).
 
 ## B. Business facts and legal approval still required
 
@@ -38,13 +38,14 @@ Latest pull-request quality gate for this revision: 51 Playwright tests passed; 
 - [x] Verify route-specific metadata and canonical URLs on the deployed pages.
 - [x] Verify the Resources, Insights, Contact and guide pages render with non-empty content.
 - [x] Verify the sector-specific Who we help route, four business-context choices, query-driven deep links, related service links and 390px no-overflow behaviour in Playwright.
+- [x] Run post-deployment smoke checks for the public homepage, sector page, legacy tools hub, robots.txt, sitemap.xml and branded HTTP 404 response.
 - [x] Test mobile navigation open/close, card stacking, contact form fit and horizontal overflow at 375px in Playwright.
 - [x] Verify the contact form requires consent and prepares a WhatsApp draft rather than submitting or storing an enquiry on the website.
 - [x] Verify legacy tool pages load the shared PRAVI theme stylesheet and warm-ivory footer in browser tests.
 - [ ] Test tel: and WhatsApp links on a real phone. Use dummy details only; review the WhatsApp draft and cancel it rather than sending unless a test message is intended.
 - [ ] Exercise each financial tool end-to-end with non-client sample data, including file import, validation, calculations, CSV download and print/export behaviour. Unit tests for the depreciation/currency engines and CSV safety pass, but do not replace full workflow testing.
 - [ ] Verify PDF workspace CDN libraries load on the live domain and test representative non-confidential sample PDFs. PDF processing relies on external CDN libraries; image-based compression may reduce searchable/selectable text quality.
-- [ ] Confirm the branded 404 page is returned for an invalid URL.
+- [x] Confirm the branded 404 page is returned with HTTP 404 for an invalid URL through the post-deployment smoke test.
 - [ ] Review the live pages on a real iOS and Android device. Playwright emulation at 375px passes, but it is not a substitute for physical-device testing.
 
 ## D. Search indexing and domain
