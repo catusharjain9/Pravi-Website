@@ -222,3 +222,10 @@ body{background:var(--pravi-paper);color:var(--pravi-ink)}
  .pravi-reveal{opacity:1!important;transform:none!important;transition:none!important}
  .logo-intro-react{display:none!important}
 }
+
+/* Accessible skip navigation and explicit menu focus treatment */
+.skip-link{position:absolute;z-index:1000;top:-100px;left:16px;padding:12px 16px;background:#303030;color:#fff;border:2px solid #FFE000;border-radius:4px;font-size:13px;font-weight:700}
+.skip-link:focus{top:12px;outline:3px solid #8a7100;outline-offset:3px}
+.menu{align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:8px;border:1px solid #d8d2c5;border-radius:6px;background:#fff;color:#303030;cursor:pointer}
+.menu:focus-visible{outline:3px solid #8a7100;outline-offset:3px}
+.menu svg{display:block}

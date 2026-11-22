@@ -64,7 +64,7 @@ pages = sorted(ROOT.glob("*.html"))
 if len(pages) < 30:
     fail(f"expected at least 30 root HTML pages, found {len(pages)}")
 
-approved_lockup_pages = {"tools.html", "gst-reconciliation.html", "tax-calculators.html", "depreciation-calculator.html", "depreciation-register.html", "currency-converter.html", "cashflow-planner.html", "mis-generator.html", "compliance-tracker.html", "pdf-tools.html"}
+approved_lockup_pages = {"404.html", "tools.html", "gst-reconciliation.html", "tax-calculators.html", "depreciation-calculator.html", "depreciation-register.html", "currency-converter.html", "cashflow-planner.html", "mis-generator.html", "compliance-tracker.html", "pdf-tools.html"}
 
 for page in pages:
     html = page.read_text(encoding="utf-8")

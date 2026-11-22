@@ -16,6 +16,12 @@ const configs = [
   ['_headers', fs.readFileSync(path.join(root, '_headers'), 'utf8')],
   ['.htaccess', fs.readFileSync(path.join(root, '.htaccess'), 'utf8')]
 ];
+for (const [name, content] of configs) {
+  if (!content.includes("https://cdn.sheetjs.com")) {
+    console.error(`${name}: missing pinned SheetJS CDN from script-src policy`);
+    process.exit(1);
+  }
+}
 const missing = [];
 for (const [name, content] of configs) {
   for (const hash of hashes) if (!content.includes(hash)) missing.push(`${name}: missing ${hash}`);
