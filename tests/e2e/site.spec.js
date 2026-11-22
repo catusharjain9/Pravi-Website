@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 const reactRoutes = [
   "/", "about.html", "services.html", "virtual-cfo.html", "startup-support.html",
   "direct-tax.html", "gst-compliance.html", "accounting-mis.html", "business-advisory.html",
-  "resources.html", "insights.html", "contact.html", "privacy.html",
+  "resources.html", "insights.html", "contact.html", "privacy.html", "who-we-help.html",
   "guide-startup-compliance.html", "guide-virtual-cfo.html", "guide-gst-reconciliation.html",
   "guide-monthly-mis.html", "article-13-week-cashflow.html",
   "article-first-90-days-accounting.html", "article-gst-purchase-reconciliation.html",
@@ -231,4 +231,32 @@ test("finance setup selector updates its pressure points and support pathway", a
   await section.getByText("Year-end work and filings are handled externally", { exact: true }).click();
   await expect(section.locator(".pr-finance-fit-result")).toContainText("Year-end compliance and monthly management serve different needs.");
   await expect(section.locator(".pr-finance-fit-result")).toContainText("existing professional relationship");
+});
+
+
+test("sector pathways tailor review themes and connect to relevant PRAVI services", async ({ page }) => {
+  await page.goto("./");
+  const preview = page.locator(".pr-sector-preview");
+  await expect(preview).toBeVisible();
+  await expect(preview.locator(".pr-sector-preview-card")).toHaveCount(4);
+  await preview.getByRole("link", { name: /Manufacturing & processing/ }).click();
+  await expect(page).toHaveURL(/who-we-help\.html\?sector=manufacturing/);
+
+  const section = page.locator(".sector-pathways-react");
+  const choices = section.getByRole("radio");
+  await expect(choices).toHaveCount(4);
+  await expect(section.getByRole("radio", { name: "Manufacturing & processing" })).toBeChecked();
+  await expect(section.getByRole("heading", { name: "Understand what is moving through production—and what it costs." })).toBeVisible();
+  await expect(section.locator(".sector-detail-grid")).toContainText("inventory");
+  await expect(section.getByRole("link", { name: /GST compliance/ })).toBeVisible();
+
+  await section.getByRole("radio", { name: "Trading, distribution & D2C" }).check();
+  await expect(section.getByRole("heading", { name: "Link product movement, channel economics and cash conversion." })).toBeVisible();
+  await expect(section.locator(".sector-detail-grid")).toContainText("marketplace");
+  await expect(section.locator(".sector-detail-note")).toContainText("not client case studies");
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(section).toBeVisible();
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+  expect(overflow).toBe(false);
 });
