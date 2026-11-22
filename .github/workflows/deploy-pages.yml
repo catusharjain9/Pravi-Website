@@ -1,6 +1,8 @@
 name: Deploy PRAVI website to GitHub Pages
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -26,7 +28,9 @@ jobs:
           node-version: 22
       - name: Install dependencies
         run: npm install
-      - name: Build React application and stage legacy pages
+      - name: Install Chromium for production prerendering
+        run: npx playwright install --with-deps chromium
+      - name: Build, generate sitemap and prerender React routes
         run: npm run build
       - name: Upload production site artifact
         uses: actions/upload-pages-artifact@v3
