@@ -54,7 +54,7 @@ function RouteMeta(){
    if(!node){node=document.createElement("meta");node.setAttribute(kind,key);document.head.appendChild(node);}
    node.setAttribute("content",value);
   };
-  const canonicalPath=path==="/"?"":path.replace(/^\\/+/, "");
+  const canonicalPath=path==="/"?"":path.replace(/^\/+/, "");
   const canonical=new URL(import.meta.env.BASE_URL+canonicalPath,window.location.origin).href;
   const socialImage=new URL("assets/img/social-card.svg",new URL(import.meta.env.BASE_URL,window.location.origin)).href;
   setMeta("description",meta.description);
