@@ -74,7 +74,7 @@ try {
       setMeta('meta[property="og:url"]', "property", "og:url", publicUrl);
       setMeta('meta[property="og:image"]', "property", "og:image", new URL("assets/img/social-card.svg", publicBase).href);
       setMeta('meta[name="twitter:image"]', "name", "twitter:image", new URL("assets/img/social-card.svg", publicBase).href);
-      return "<!doctype html>\\n" + document.documentElement.outerHTML + "\\n";
+      return "<!doctype html>\n" + document.documentElement.outerHTML + "\n";
     }, { publicUrl, publicBase });
 
     const output = path.join(dist, route === "/" ? "index.html" : route);
