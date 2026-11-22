@@ -1,4 +1,5 @@
 import { calculateBookAssetSchedule, calculateTaxBlockSchedule, calculateDeferredTax } from './depreciation-engine.js';
+import './csv-safety.js';
 (() => {
 'use strict';
 const $ = id => document.getElementById(id);
@@ -71,7 +72,7 @@ $('bookResults').innerHTML=bookSchedule.map(x=>'<tr><td>'+esc(x.name)+'</td><td>
 $('taxResults').innerHTML=taxSchedule.map(x=>'<tr><td>'+esc(x.name)+'</td><td>FY '+x.fy+'–'+String(x.fy+1).slice(-2)+'</td><td>'+money(x.opening)+'</td><td>'+money(x.full)+'</td><td>'+money(x.half)+'</td><td>'+(x.additionalEligible?'Yes':'No')+'</td><td>'+money(x.additionalFullBase)+'</td><td>'+money(x.additionalHalfBase)+'</td><td>'+money(x.additionalHalfCarryBase)+'</td><td>'+money(x.sale)+'</td><td>'+money(x.additional)+'</td><td>'+money(x.dep)+'</td><td>'+money(x.closing)+'</td></tr>').join('');
 $('depOutputCaption').textContent='FY '+fy+'–'+String(fy+1).slice(-2)+' onward · '+years+' year(s) · '+(fy>=2026?'Income-tax Act, 2025 / Rules 2026':'Income-tax Act, 1961 / Rules 1962')+' · deferred tax rate '+fmt(rate)+'%.';
 $('depOutput').hidden=false;$('exportDepCsv').disabled=false;$('exportAssetCsv').disabled=false;$('exportTaxCsv').disabled=false;say('Calculation completed. Review statutory assumptions, asset classifications, tax block WDV and DTA recognition before using this workpaper.');$('depOutput').scrollIntoView({behavior:'smooth',block:'start'});}
-function csvCell(v){const s=String(v??'');return '"'+s.replace(/"/g,'""')+'"';}
+function csvCell(v){return window.PraviCSV.cell(v);}
 function downloadCsv(rows,name){const csv='\ufeff'+rows.map(r=>r.map(csvCell).join(',')).join('\r\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);}
 function exportCombined(){if(!state.combined.length)return;downloadCsv([['FY','Book depreciation','Tax depreciation','Book closing NBV','Tax closing WDV','Temporary difference','DTA calculated','DTA recognised','DTA unrecognised','DTL','Net deferred tax','Movement'],...state.combined.map(x=>[x.fy,x.bookDep,x.taxDep,x.bookNBV,x.taxWDV,x.temp,x.dta,x.recognisedDta,x.dta-x.recognisedDta,x.dtl,x.net,x.movement])],'PRAVI_depreciation_deferred_tax_yearwise.csv');}
 function exportAssets(){if(!state.bookSchedule.length)return;downloadCsv([['Asset','FY','Opening NBV','Book depreciation','Accumulated depreciation','Closing NBV','Remaining life years','Planned disposal date','Planned disposal proceeds','Disposed this FY','Disposal proceeds in FY','Carrying amount at disposal','Gain / (loss) on disposal'],...state.bookSchedule.map(x=>[x.name,x.fy,x.opening,x.charge,x.acc,x.closing,x.remaining,dateCsv(x.plannedDisposalDate),x.plannedDisposalProceeds,x.disposed,x.disposalProceeds,x.carryingAtDisposal,x.disposalGainLoss])],'PRAVI_companies_act_assetwise_depreciation.csv');}
