@@ -123,6 +123,29 @@ const financeSetups = [
   }
 ];
 
+
+const sectorHighlights = [
+  ["01","Startups & founder-led","Entity foundations · runway · reporting","startup"],
+  ["02","Manufacturing & processing","Cost visibility · inventory · working capital","manufacturing"],
+  ["03","Trading, distribution & D2C","Product margins · stock · cash conversion","trading"],
+  ["04","Professional & knowledge services","Project economics · billing · collections","services"]
+];
+
+function SectorPathwayPreview(){
+  return <section className="pr-sector-preview" aria-labelledby="pr-sector-preview-title">
+    <div className="pr-sector-preview-head">
+      <div><p className="pr-section-label">WHO WE HELP · BY BUSINESS CONTEXT</p><h2 id="pr-sector-preview-title">Different models.<br/><em>Different control questions.</em></h2></div>
+      <div><p>Finance priorities shift with the way a business earns, delivers, holds stock and collects cash. Explore a pathway that reflects the operating model.</p><Link to="/who-we-help.html">Explore all sector pathways <b aria-hidden="true">↗</b></Link></div>
+    </div>
+    <div className="pr-sector-preview-grid">
+      {sectorHighlights.map(([number,title,copy,id])=><Link key={id} to={"/who-we-help.html?sector="+id} className="pr-sector-preview-card">
+        <span>{number}</span><strong>{title}</strong><small>{copy}</small><b aria-hidden="true">↗</b>
+      </Link>)}
+    </div>
+    <p className="pr-sector-preview-note">Illustrative business contexts—not client case studies or claims of prior sector assignments.</p>
+  </section>;
+}
+
 function FinanceFitSelector(){
   const [active,setActive]=React.useState("founder");
   const setup=financeSetups.find(item=>item.id===active)||financeSetups[0];
@@ -281,6 +304,8 @@ export default function HomeRedesign() {
           <Link to="/resources.html">Founder resources <b>↗</b></Link>
         </div>
       </section>
+
+      <SectorPathwayPreview />
 
       <FinanceFitSelector />
 
