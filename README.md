@@ -3,10 +3,12 @@
 A staged React + Vite website migration. The homepage and core service/about pages are React components with Motion-based interaction; remaining legacy pages and tools are retained as static routes during the migration so existing workflows are not discarded. Run `npm install` and `npm run dev` for local development, or `npm run build` to create the production bundle and stage legacy routes. The currency converter requires an internet connection for timestamped exchange-rate data.
 
 ## React migration status
-- The homepage and 22 direct-load `.html` routes use React, including About, Services, Who we help, Virtual CFO, Startup Support, Direct Tax, GST Compliance, Accounting & MIS, Business Advisory, Resources, Insights and Contact.
+- The homepage plus 21 direct-load `.html` routes use React (22 routes total), including About, Services, Who we help, Virtual CFO, Startup Support, Direct Tax, GST Compliance, Accounting & MIS, Business Advisory, Resources, Insights and Contact.
 - Specialist financial workpapers and browser-based tools remain legacy static routes so their existing calculation and file-handling workflows are preserved.
 - `scripts/stage-legacy.mjs` stages legacy pages/assets into `dist` and emits direct-load `.html` entry points for every migrated React route.
 - Production deployment uses the Vite build output (`dist`). For the current GitHub Pages project site, the default base is `/Pravi-Website/`; root hosting can build with `VITE_BASE_PATH=/` after the host and canonical origin are deliberately changed.
+
+## Main pages
 - `index.html` — founder-led homepage focused on startup foundations, monthly numbers and cash planning, with stage-based pathways, clear engagement principles and FAQs.
 - `services.html` — service portfolio, professional scope boundaries and links into focused service pages.
 - `who-we-help.html` — four illustrative business-context pathways for startups, manufacturing/processing, trading/distribution/D2C and professional/knowledge services, with tailored finance-control themes and connected service links.
