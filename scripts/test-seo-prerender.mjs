@@ -7,7 +7,7 @@ const base = "https://catusharjain9.github.io/Pravi-Website/";
 const routes = [
   "/", "about.html", "services.html", "virtual-cfo.html", "startup-support.html",
   "direct-tax.html", "gst-compliance.html", "accounting-mis.html", "business-advisory.html",
-  "resources.html", "insights.html", "contact.html", "privacy.html",
+  "resources.html", "insights.html", "contact.html", "privacy.html", "who-we-help.html",
   "guide-startup-compliance.html", "guide-virtual-cfo.html", "guide-gst-reconciliation.html",
   "guide-monthly-mis.html", "article-13-week-cashflow.html",
   "article-first-90-days-accounting.html", "article-gst-purchase-reconciliation.html",

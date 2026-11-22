@@ -14,7 +14,7 @@ const robots = read("../robots.txt");
 const routePaths = [
   "/", "/about.html", "/services.html", "/virtual-cfo.html",
   "/startup-support.html", "/direct-tax.html", "/gst-compliance.html",
-  "/accounting-mis.html", "/business-advisory.html", "/resources.html", "/insights.html", "/contact.html", "/privacy.html",
+  "/accounting-mis.html", "/business-advisory.html", "/who-we-help.html", "/resources.html", "/insights.html", "/contact.html", "/privacy.html",
   "/guide-startup-compliance.html", "/guide-virtual-cfo.html", "/guide-gst-reconciliation.html", "/guide-monthly-mis.html",
   "/article-13-week-cashflow.html", "/article-first-90-days-accounting.html", "/article-gst-purchase-reconciliation.html", "/article-monthly-mis-review.html"
 ];
@@ -32,6 +32,10 @@ assert.ok(existsSync(new URL("../assets/img/pravi-approved-lockup.webp", import.
 assert.ok(existsSync(new URL("../src/HomeRedesign.jsx", import.meta.url)), "Founder-first homepage component missing");
 const redesignSource = read("../src/HomeRedesign.jsx");
 assert.ok(redesignSource.includes("FounderJourney") && redesignSource.includes("role=\"tablist\""), "Interactive founder journey section missing");
+assert.ok(redesignSource.includes("SectorPathwayPreview") && redesignSource.includes("sectorHighlights"), "Homepage sector pathway discovery missing");
+const pagesSource = read("../src/pages.jsx");
+assert.ok(pagesSource.includes("export function WhoWeHelpPage") && pagesSource.includes("sectorPathways"), "Sector-specific service pathways missing");
+assert.ok(pagesSource.includes("client case studies") && pagesSource.includes("manufacturing"), "Sector page must state its illustrative scope and cover operating contexts");
 assert.ok(redesignSource.includes("Different stages.") && redesignSource.includes("ROC calendar"), "Founder pathway content is incomplete");
 assert.ok(redesignSource.includes("handleTabKey") && redesignSource.includes("ArrowRight") && redesignSource.includes("tabIndex={active===i?0:-1}"), "Founder pathway tabs are missing keyboard navigation");
 assert.ok(redesignSource.includes("pr-hero-orbit") && redesignSource.includes("pr-orbit-dot-a"), "Creative hero orbit treatment is missing");
@@ -40,7 +44,6 @@ const appSource = read("../src/App.jsx");
 assert.ok(appSource.includes("SiteScrollProgress") && appSource.includes("useScroll"), "Scroll progress indicator missing");
 assert.ok(existsSync(new URL("../src/pravi-pages.css", import.meta.url)), "PRAVI inner-page design system missing");
 const homeSource = read("../src/HomeRedesign.jsx");
-const pagesSource = read("../src/pages.jsx");
 assert.ok(!homeSource.includes("pravi-doodle-") && !homeSource.includes("doodle"), "Founder-first homepage must not reintroduce decorative doodle assets");
 assert.ok(!pagesSource.includes("pravi-doodle-") && !pagesSource.includes("doodleFor"), "Inner pages must not reintroduce decorative doodle assets");
 assert.ok(existsSync(new URL("../assets/img/favicon.svg", import.meta.url)), "Approved PRAVI favicon missing");
@@ -48,6 +51,7 @@ const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => mat
 assert.ok(sitemapUrls.length >= 30, "Production sitemap is missing public routes/tools");
 assert.equal(new Set(sitemapUrls).size, sitemapUrls.length, "Sitemap contains duplicate URLs");
 assert.ok(sitemapUrls.every(url => url.startsWith("https://catusharjain9.github.io/Pravi-Website/")), "Sitemap contains an unverified or off-site URL");
+assert.ok(sitemapUrls.includes("https://catusharjain9.github.io/Pravi-Website/who-we-help.html"), "Sector pathway page missing from source sitemap");
 assert.ok(!sitemap.includes("privacy.html"), "Draft privacy notice must not be indexed");
 assert.ok(robots.includes("Sitemap: https://catusharjain9.github.io/Pravi-Website/sitemap.xml"), "robots.txt sitemap directive missing");
 assert.ok(app.includes('robots:"noindex,follow"'), "Draft privacy route must be noindex");

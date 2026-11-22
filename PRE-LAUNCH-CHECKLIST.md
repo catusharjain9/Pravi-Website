@@ -10,7 +10,7 @@ The site now builds with Vite and React and is published through GitHub Actions.
 
 - [x] GitHub Pages source changed from the legacy Jekyll branch build to GitHub Actions.
 - [x] Vite production build and dist artifact deployment completed successfully.
-- [x] 21 React routes render at their preserved public .html URLs.
+- [x] 22 React routes render at their preserved public .html URLs, including the sector-specific Who we help pathway.
 - [x] Route-specific page titles, descriptions, Open Graph metadata and canonical URLs are active.
 - [x] Responsive browser QA passes at 375 × 812 CSS pixels for the mobile navigation, homepage/resources/contact overflow, resource-card stacking and contact form layout.
 - [x] The logo refresh intro is tested; the reduced-motion preference suppresses it.
@@ -20,7 +20,7 @@ The site now builds with Vite and React and is published through GitHub Actions.
 - [x] Production sitemap and robots.txt Sitemap directive are prepared for the GitHub Pages URL.
 - [x] Draft privacy page is marked noindex,follow and excluded from the sitemap until approved.
 
-CI browser suite: 36 tests passed on the initial Playwright run; the current branch extends coverage for the sitemap, privacy indexing and depreciation register.
+Latest pull-request quality gate for this revision: 51 Playwright tests passed; 22 React routes were prerendered and 32 public sitemap URLs were generated. This verifies the PR branch, not yet the post-merge live deployment.
 
 ## B. Business facts and legal approval still required
 
@@ -37,6 +37,7 @@ CI browser suite: 36 tests passed on the initial Playwright run; the current bra
 - [x] Open the homepage and migrated React pages directly over HTTPS on GitHub Pages.
 - [x] Verify route-specific metadata and canonical URLs on the deployed pages.
 - [x] Verify the Resources, Insights, Contact and guide pages render with non-empty content.
+- [x] Verify the sector-specific Who we help route, four business-context choices, query-driven deep links, related service links and 390px no-overflow behaviour in Playwright.
 - [x] Test mobile navigation open/close, card stacking, contact form fit and horizontal overflow at 375px in Playwright.
 - [x] Verify the contact form requires consent and prepares a WhatsApp draft rather than submitting or storing an enquiry on the website.
 - [x] Verify legacy tool pages load the shared PRAVI theme stylesheet and warm-ivory footer in browser tests.
@@ -50,7 +51,7 @@ CI browser suite: 36 tests passed on the initial Playwright run; the current bra
 
 - [x] Publish sitemap.xml using the verified GitHub Pages base URL.
 - [x] Add the sitemap directive to robots.txt.
-- [x] Replace YOUR-DOMAIN-HERE placeholders in the sitemap template.
+- [x] Keep the sitemap source aligned to the current GitHub Pages project URL; the production build regenerates canonical URLs and the sitemap from staged public pages.
 - [x] Verify canonical and social-sharing metadata for the GitHub Pages URL.
 - [x] Keep the draft privacy page out of the sitemap and set noindex,follow.
 - [ ] Submit the sitemap in Google Search Console after confirming the property.
@@ -60,15 +61,16 @@ CI browser suite: 36 tests passed on the initial Playwright run; the current bra
 
 - The contact form does not send email or store enquiries. It prepares a WhatsApp message; the visitor must review and press Send in WhatsApp.
 - The compliance tracker stores entries in the visitor's browser and is not a shared multi-user database. Users should export and securely manage their own records.
+- The Firebase Insights CMS is an article-only function. Its Web App configuration is present in `assets/js/firebase-config.js`, but Google sign-in, Firestore provisioning, authorised domains, deployed rules and the anonymous/admin access matrix have not been independently confirmed. Do not use it for publishing until tests pass; never store client financial/tax files in it.
 - Compliance due dates and applicability must be independently verified against current official sources.
 - Financial tools are workpapers and estimates; outputs require review before professional use.
 - PDF processing relies on external CDN libraries. Image-based compression may reduce selectable/searchable text, vector quality, accessibility tags and metadata.
-- No AI feature, live CRM, email delivery, accounting-software integration or shared multi-user backend is included in the public website.
-- The article CMS/admin area remains disabled until a firm-controlled Firebase project is configured, Firestore rules are deployed and administrator/non-administrator access tests pass. Do not store client financial or tax documents in the article CMS.
+- No AI feature, public CRM, email delivery, accounting-software integration, shared client-accounting backend or shared multi-user compliance-tracker database is included. The separate Firebase Insights CMS is for articles only and is not a secure client file repository.
+- The Firebase Insights admin page and Web App configuration are present, but the actual Google sign-in, Firestore, authorised-domain and rules configuration has not been independently validated. Keep publication disabled until anonymous published-only reads, draft denial, unauthorised read/write denial and authorised admin CRUD are tested with the Firebase Emulator or a non-production project. Do not store client financial or tax documents in the article CMS.
 
 ## F. Remaining legacy pages
 
-The 21 core public pages now use React. Specialist financial tools and the dynamic article template remain legacy HTML/JavaScript deliberately, to avoid changing calculation, file-handling, browser-local storage and CMS behaviour without separate regression coverage. They remain staged at their existing URLs.
+The 22 core public pages now use React. Specialist financial tools and the dynamic article template remain legacy HTML/JavaScript deliberately, to avoid changing calculation, file-handling, browser-local storage and CMS behaviour without separate regression coverage. They remain staged at their existing URLs.
 
 ## G. Release decision
 

@@ -30,7 +30,7 @@ for rule in (':focus-visible','prefers-reduced-motion','max-width:1100px','.tabl
  if rule not in css and rule not in style: fail(f"required design/accessibility rule missing: {rule}")
 pages=sorted(ROOT.glob("*.html"))
 if len(pages)<30: fail(f"expected at least 30 HTML pages, found {len(pages)}")
-react_pages={"index.html","about.html","services.html","virtual-cfo.html","startup-support.html","direct-tax.html","gst-compliance.html","accounting-mis.html","business-advisory.html"}
+react_pages={"index.html","about.html","services.html","who-we-help.html","virtual-cfo.html","startup-support.html","direct-tax.html","gst-compliance.html","accounting-mis.html","business-advisory.html"}
 tool_shell_pages={"tools.html","gst-reconciliation.html","tax-calculators.html","depreciation-calculator.html","depreciation-register.html","currency-converter.html","cashflow-planner.html","mis-generator.html","compliance-tracker.html","pdf-tools.html"}
 branded_exception_pages={"404.html"}
 for page in pages:
@@ -44,7 +44,7 @@ for page in pages:
   if 'href="index.html"' in html or 'href="index.html#who-we-help"' in html: fail(f"{page.name}: legacy homepage route must not point to index.html")
   nav=re.search(r'<nav\b(?=[^>]*\bclass="primary-nav")[^>]*>(.*?)</nav>',html,re.I|re.S)
   if not nav: fail(f"{page.name}: primary navigation missing")
-  for href in ('about.html','services.html','tools.html','resources.html','insights.html','contact.html'):
+  for href in ('about.html','services.html','who-we-help.html','tools.html','resources.html','insights.html','contact.html'):
    if f'href="{href}"' not in nav.group(1): fail(f"{page.name}: current primary navigation link missing: {href}")
  elif page.name in branded_exception_pages:
   if html.count('assets/img/pravi-approved-lockup.webp') < 2: fail(f"{page.name}: must use the approved full logo lockup in header and footer")

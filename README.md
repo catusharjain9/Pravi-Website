@@ -2,11 +2,18 @@
 
 A staged React + Vite website migration. The homepage and core service/about pages are React components with Motion-based interaction; remaining legacy pages and tools are retained as static routes during the migration so existing workflows are not discarded. Run `npm install` and `npm run dev` for local development, or `npm run build` to create the production bundle and stage legacy routes. The currency converter requires an internet connection for timestamped exchange-rate data.
 
-## React migration status\n- React routes currently include the homepage, About, Services, Virtual CFO, Startup Support, Direct Tax, GST Compliance, Accounting & MIS, and Business Advisory.\n- Other pages and the nine interactive workpaper tools remain available as legacy static routes while their React replacements are built and tested.\n- `scripts/stage-legacy.mjs` copies legacy pages/assets into `dist` and emits direct-load `.html` entry points for migrated React routes.\n- Production deployment must use the Vite build output (`dist`). For GitHub Pages, the default base is `/Pravi-Website/`; root hosting can build with `VITE_BASE_PATH=/`.\n\n## Main pages
+## React migration status
+- The homepage and 21 direct-load `.html` routes use React (22 rendered routes total), including About, Services, Who we help, Virtual CFO, Startup Support, Direct Tax, GST Compliance, Accounting & MIS, Business Advisory, Resources, Insights and Contact.
+- Specialist financial workpapers and browser-based tools remain legacy static routes so their existing calculation and file-handling workflows are preserved.
+- `scripts/stage-legacy.mjs` stages legacy pages/assets into `dist` and emits direct-load `.html` entry points for every migrated React route.
+- Production deployment uses the Vite build output (`dist`). For the current GitHub Pages project site, the default base is `/Pravi-Website/`; root hosting can build with `VITE_BASE_PATH=/` after the host and canonical origin are deliberately changed.
+
+## Main pages
 - `index.html` — founder-led homepage focused on startup foundations, monthly numbers and cash planning, with stage-based pathways, clear engagement principles and FAQs.
-- `services.html` — full eight-area portfolio, professional scope boundaries and links into focused service pages.
+- `services.html` — service portfolio, professional scope boundaries and links into focused service pages.
+- `who-we-help.html` — four illustrative business-context pathways for startups, manufacturing/processing, trading/distribution/D2C and professional/knowledge services, with tailored finance-control themes and connected service links.
 - `about.html` — firm approach, mission/vision themes and working principles without invented firm history, qualifications or testimonials.
-- `contact.html` — official email contact (`info@praviba.com`), WhatsApp and validated enquiry form with optional call-request preference and callback window.
+- `contact.html` — published contact email, WhatsApp and validated enquiry form with optional call-request preference and callback window.
 - `resources.html` — founder-focused workpaper hub linking to monthly MIS, cash-flow planning, GST reconciliation, compliance tracking and PDF tools; no interactive readiness checklist.
 - `tools.html` — business workpaper hub with a link to the dedicated PDF workspace.
 - `pdf-tools.html` — iLovePDF-inspired, PRAVI-branded PDF workspace for merge, split, browser-based compression, PDF-to-JPG, images-to-PDF, rotate, page numbers, watermark, remove pages and extract pages.
@@ -37,12 +44,12 @@ A staged React + Vite website migration. The homepage and core service/about pag
 These are general preparation guides, not legal opinions, tax opinions, audit reports, assurance opinions or confirmation that any rule applies to every business.
 
 ## Contact and enquiry behaviour
-Telephone / WhatsApp: `+91 91731 21611` (`tel:+919173121611`, `https://wa.me/919173121611`). No business email, office address, domain, hours, partner biography, professional credentials, experience metrics, client logos, client testimonials or results are invented.
+The current Contact page publishes `info@praviba.com` and telephone / WhatsApp `+91 91731 21611` (`tel:+919173121611`, `https://wa.me/919173121611`). Confirm that these details remain authorised before changing or reusing them. No office address, opening hours, partner biography, professional credentials, experience metrics, client testimonials or measured results are published as verified claims.
 
 The enquiry form validates in the visitor's browser. On consent it opens WhatsApp with a prefilled message, including a preferred contact method/window if supplied. The visitor must review and press Send. A phone-call preference is a request only, not a confirmed appointment. The website does not submit/store the form or deliver email. Avoid requesting passwords, bank credentials, tax IDs or sensitive records in an initial WhatsApp message.
 
 ## Launch readiness
-See `PRE-LAUNCH-CHECKLIST.md` for the deployment sequence and mandatory checks. This package is not yet live: the domain and hosting provider have not been supplied, the registered office address must be reverified against current MCA records, and the privacy notice must be reviewed against the actual host and data flows. The enquiry form opens a WhatsApp draft; it does not deliver email or store submissions. No AI integration is included.
+See `PRE-LAUNCH-CHECKLIST.md` for the remaining release gates. The public site is deployed on GitHub Pages at `https://catusharjain9.github.io/Pravi-Website/`; a custom domain is not configured. Technical hosting does not equal legal or business approval: reverify the registered office against current MCA records, confirm published contact and service details, and review the privacy notice against actual data flows. The privacy page remains a visible draft/noindex. The enquiry form prepares a WhatsApp draft; it does not deliver email or store submissions. No AI integration, public CRM, shared accounting backend or shared multi-user compliance-tracker backend is included. The Firebase Insights CMS is a separate article-only publishing function and is not a client-document repository.
 
 ## Run / test locally
 1. Extract the ZIP or open the directory.
@@ -50,20 +57,16 @@ See `PRE-LAUNCH-CHECKLIST.md` for the deployment sequence and mandatory checks. 
 3. Visit `http://localhost:8000`.
 4. Test nav/menu on mobile, validate required form fields, select “Request a phone call”, and verify that the WhatsApp draft contains the preference and callback window. Do not send a real message unless intended.
 
-## Deploy to hosting
-Upload the **contents** of this folder to the public web root (for example `public_html`); ensure `index.html` sits directly at the root. Configure your purchased domain in the hosting panel and follow that provider's DNS instructions. The domain and hosting provider have not been supplied, so canonical URLs, absolute social-sharing URLs and the production sitemap are intentionally not set.
+## Current hosting and deployment
+The public site is deployed on GitHub Pages at `https://catusharjain9.github.io/Pravi-Website/`. GitHub Actions builds `dist`, stages retained tools, generates `sitemap.xml` and `robots.txt`, prerenders the React `.html` routes and publishes the validated artifact. Do not upload the repository root directly as a substitute for the build.
 
-After the final domain is known:
-1. Replace `YOUR-DOMAIN-HERE` in `sitemap.xml.template`, save it as `sitemap.xml`, and add the Sitemap directive to `robots.txt`.
-2. Set canonical links and absolute Open Graph URL/image metadata across the pages if required.
-3. Verify HTTPS, redirects (`www` or apex), static host handling of `.htaccess` / `_headers`, and real mobile WhatsApp handoff.
-4. Update the privacy notice to reflect the real hosting, server logs, backups, analytics and any future integrations.
+GitHub Pages does not activate the repository's `_headers`, `.htaccess` or Firebase Hosting response-header rules. To enforce CSP and other HTTP security headers, a supported hosting provider or edge proxy must be selected and the actual production responses tested. No DNS, custom-domain or hosting migration has been made. If a custom domain or different host is later approved, set `VITE_SITE_ORIGIN` and `VITE_BASE_PATH` correctly, rebuild the canonical metadata and sitemap, verify HTTPS/redirects, test all tools and update the privacy notice to match the new host and data flows.
 
 ## Professional and factual boundaries
 The uploaded profile belongs to Jain Ashwin & Co and has been used as a service-portfolio reference only. Its team, names, CA credentials, experience claims, contacts, associate network, client sectors and results are not attributed to PRAVI. Reserved audit/assurance, certification, legal, transaction, tax-representation and other regulated work must be accepted only where professional eligibility, appointment, independence and authorisation requirements are met. Tally/Zoho and other software appear only as possible workflows; no integration or partner status is claimed.
 
 ## Technical quality checks
-The website includes GSTR-2B reconciliation, a multi-regime depreciation and deferred-tax workpaper, a major-currency converter, a 13-week cash-flow planner, a monthly MIS generator, a browser-local compliance tracker and a PDF workspace with ten operations. The latest test report is `TESTING_REPORT.md`; it records the browser/functional tests completed, changes made and production gates still open. Tests covered all 31 HTML pages at 320, 390, 768 and 1365 CSS-pixel widths, calculator and workpaper fixtures, CSV safety, tracker persistence failures, GST reconciliation exceptions, PDF workspace UI/range validation, sitemap generation and CSP hashes for inline JSON-LD. The actual PDF processing libraries, real Excel exports, Firebase authentication/rules and production CSP still require tests with external services enabled. The site has not been deployed.
+The website includes GSTR-2B reconciliation, depreciation and deferred-tax workpapers, a currency converter, 13-week cash-flow planner, monthly MIS generator, browser-local compliance tracker and PDF workspace with ten operations. `TESTING_REPORT.md` records the earlier browser/functional baseline; current changes are additionally gated by the GitHub Actions suite, including route, SEO, responsive browser and CSV/CSP checks. Previous automated runs covered the retained tools and 31 legacy HTML pages at multiple viewport widths. Real PDF-library processing, real Excel exports, Firebase authentication/rules, production response headers, cross-browser and physical-device testing still require external-service or device access. The site is currently deployed on GitHub Pages; deployment does not close the remaining operational and legal approval gates.
 
 ## Peer-informed design principles
 The site now emphasises problem-led positioning, four comprehensible service layers, explicit outputs, a five-stage onboarding path, specific service landing pages and plain-language guides. These are common public-facing patterns seen in Indian finance and advisory websites; PRAVI's content remains original and does not adopt peers' credentials, metrics or outcome guarantees.
@@ -74,7 +77,7 @@ The site now emphasises problem-led positioning, four comprehensible service lay
 - Incorporation: 7 March 2024
 - ROC: Ahmedabad
 - Designated partner names are intentionally omitted from the public website at the user’s request.
-- Registered office is transcribed from a 10 March 2024 MCA extract; reverify against current MCA records before launch. The email is masked in that extract and has not been published.
+- The registered office was transcribed from a 10 March 2024 MCA extract and must be reverified against current MCA records before publication. The email in that extract was masked; it does not verify the separately published `info@praviba.com` contact address. Verify the contact email independently.
 
 
 ## Brand identity
@@ -104,7 +107,7 @@ Added `insights.html` and three individual educational article pages covering st
 
 ## Private Insights dashboard
 
-A Firebase-backed article management dashboard scaffold is included at `admin.html`. The first authorised admin is `catusharjain9@gmail.com`. Before use, follow `FIREBASE_CMS_SETUP.md`, configure `firebase-config.js`, enable Google sign-in, create Firestore and deploy `firestore.rules`. Until those steps are complete, the dashboard is not connected or secure and article publishing will not work. The second admin can be added later to both the client allowlist and Firestore rules.
+A Firebase-backed article management dashboard is included at `admin.html`; the Firebase Web App configuration is populated in `assets/js/firebase-config.js`. The first intended administrator is `catusharjain9@gmail.com`. Google sign-in, Firestore provisioning, authorized domains, rule deployment and the authorised/unauthorised access matrix have not been independently confirmed. Do not use the dashboard for publishing until the steps in `FIREBASE_CMS_SETUP.md` have been completed and tested. The second administrator can be added later to both the client allowlist and Firestore rules.
 
 
 ## Comprehensive improvement revision (19 October 2026)
@@ -112,7 +115,7 @@ See `WEBSITE_IMPROVEMENT_REPORT.md` for a precise change log and remaining relea
 
 ### Quality audit and sitemap
 - Run `python scripts/quality-audit.py` (or `npm run audit`) to check local HTML structure, duplicate IDs, page titles, language declarations and local links/assets.
-- After confirming the final HTTPS domain, run `node scripts/generate-sitemap.mjs https://your-real-domain.example`. This creates `sitemap.xml`; it intentionally refuses placeholder domains. Then add the matching Sitemap line to `robots.txt`.
+- The current build sets `VITE_SITE_ORIGIN` and `VITE_BASE_PATH`, then regenerates canonical metadata, `sitemap.xml` and `robots.txt` from the staged `dist` pages. GitHub Pages currently uses `https://catusharjain9.github.io` with `/Pravi-Website/` as its base path.
 - These checks are structural. They do not replace real-browser, accessibility, security, legal, PDF, production-host or search-indexing tests.
 
 
@@ -126,7 +129,7 @@ See `WEBSITE_IMPROVEMENT_REPORT.md` for a precise change log and remaining relea
 - CSV exports use `assets/js/csv-safety.js` to quote cells and neutralise formula-like text before spreadsheet use. Test with `npm run test:csv`.
 - Compliance tracker changes now roll back in-session when browser storage writes fail. This remains browser-local storage, not a shared database.
 - Before production, configure Firebase, test Firestore rules with authorised and unauthorised accounts, and verify the CSP against all required Firebase/CDN features.
-- After the real domain is confirmed, run `npm run sitemap -- https://your-verified-domain.example` to generate canonical tags, `sitemap.xml`, and `robots.txt`. This edits canonical tags in public HTML files.
+- For the current public build, `npm run build` regenerates canonical metadata, `sitemap.xml` and `robots.txt` for GitHub Pages. When a custom domain is formally selected, update `VITE_SITE_ORIGIN` and `VITE_BASE_PATH` in the deployment environment and review all generated URLs before deploying.
 - Run dependency installation in an internet-enabled build environment, then `npm run audit`, `npm run test:csv`, JavaScript syntax checks, and manual/browser tests for all tools before release.
 
 
@@ -134,4 +137,4 @@ See `WEBSITE_IMPROVEMENT_REPORT.md` for a precise change log and remaining relea
 - Reviewed all 33 root HTML pages and the shared stylesheet; 11 workpaper/CMS pages also include page-local CSS that had retained older teal/white hero treatments.
 - The shared theme now overrides those page-local banner classes and normalises the page title, body copy, action buttons, tables, inputs, footers, and contact controls to the approved warm-light palette.
 - Added `scripts/test-theme-accessibility.py` to check stylesheet coverage, required palette/hero overrides, and contrast ratios for the core text/background combinations. The test is included in the website quality workflow.
-- Source changes are committed to GitHub. Production visual verification/deployment is still unconfirmed: this repository has no `.firebaserc`, production domain, or hosting deploy workflow. Do not treat a source commit as proof that the live site changed.
+- The public site is deployed to GitHub Pages through `.github/workflows/deploy-pages.yml` after the quality-gate workflow succeeds. GitHub Pages does not enforce `_headers`, `.htaccess` or `firebase.json` response headers; use a compatible host or edge proxy if those headers are required, then inspect actual production responses. Do not treat a source commit or a passing PR check as proof that the change is already live.

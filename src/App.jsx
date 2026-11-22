@@ -5,6 +5,7 @@ import HomeRedesign from "./HomeRedesign.jsx";
 const loadPage=(name)=>React.lazy(()=>import("./pages.jsx").then((module)=>({default:module[name]})));
 const AboutPage=loadPage("AboutPage");
 const ServicesPage=loadPage("ServicesPage");
+const WhoWeHelpPage=loadPage("WhoWeHelpPage");
 const VirtualCfoPage=loadPage("VirtualCfoPage");
 const StartupSupportPage=loadPage("StartupSupportPage");
 const DirectTaxPage=loadPage("DirectTaxPage");
@@ -17,13 +18,14 @@ const GuidePage=loadPage("GuidePage");
 const ArticlePage=loadPage("ArticlePage");
 const ContactPage=loadPage("ContactPage");
 const PrivacyPage=loadPage("PrivacyPage");
-const nav=[["About","/about.html"],["Services","/services.html"],["Tools","/tools.html"],["Resources","/resources.html"],["Insights","/insights.html"]];
+const nav=[["About","/about.html"],["Services","/services.html"],["Who we help","/who-we-help.html"],["Tools","/tools.html"],["Resources","/resources.html"],["Insights","/insights.html"]];
 const legacyHref=(path)=>`${import.meta.env.BASE_URL.replace(/\/$/,"")}${path}`;
 
 const routeMeta={
  "/":{title:"PRAVI Business Advisors LLP | Startup Finance & Virtual CFO",description:"Startup finance, Virtual CFO, accounting, tax and compliance advisory for founders and growing businesses. PRAVI Business Advisors LLP."},
  "/about.html":{title:"About PRAVI | Business Advisors for Founders",description:"Learn about PRAVI Business Advisors LLP and its approach to startup finance, accounting, tax, compliance and business advisory."},
  "/services.html":{title:"Services | PRAVI Business Advisors LLP",description:"Explore startup support, Virtual CFO, accounting and MIS, GST, direct tax and business advisory services from PRAVI."},
+ "/who-we-help.html":{title:"Who We Help | Finance Pathways by Business Context | PRAVI",description:"Explore finance, accounting, working-capital and compliance control themes for startups, manufacturing, trading and professional services."},
  "/virtual-cfo.html":{title:"Virtual CFO & Finance Leadership | PRAVI",description:"Virtual CFO support for cash-flow forecasting, budgets, MIS, performance reviews and finance-function coordination."},
  "/startup-support.html":{title:"Startup Legal & Compliance Support | PRAVI",description:"Founder-focused startup support for entity setup pathways, ROC compliance mapping, registrations, records and finance foundations."},
  "/direct-tax.html":{title:"Direct Tax Support | PRAVI Business Advisors",description:"Structured direct-tax support for return preparation, TDS workflows, tax issue analysis and assessment documentation."},
@@ -131,6 +133,7 @@ export default function App(){
      <Route path="/index.html" element={<Navigate to="/" replace/>}/>
      <Route path="/about.html" element={<AboutPage/>}/>
      <Route path="/services.html" element={<ServicesPage/>}/>
+     <Route path="/who-we-help.html" element={<WhoWeHelpPage/>}/>
      <Route path="/virtual-cfo.html" element={<VirtualCfoPage/>}/>
      <Route path="/startup-support.html" element={<StartupSupportPage/>}/>
      <Route path="/direct-tax.html" element={<DirectTaxPage/>}/>
@@ -162,6 +165,7 @@ export default function App(){
     <div className="footer-column">
      <h2>Explore</h2>
      <a href={legacyHref("/services.html")}>Services</a>
+     <a href={legacyHref("/who-we-help.html")}>Who we help</a>
      <a href={legacyHref("/about.html")}>About PRAVI</a>
      <a href={legacyHref("/tools.html")}>Business tools</a>
      <a href={legacyHref("/resources.html")}>Founder resources</a>

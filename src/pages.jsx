@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion, useReducedMotion } from "motion/react";
 const legacyHref=(path)=>`${import.meta.env.BASE_URL.replace(/\/$/,"")}${path}`;
 
@@ -406,4 +406,137 @@ export function PrivacyPage(){
  ["7. Cookies and analytics","Do not assume analytics or non-essential cookies are active or inactive without checking the live configuration and third-party scripts. Update this notice to reflect the verified implementation."],
  ["8. Requests and contact","For a privacy-related query, use the published PRAVI contact channel at info@praviba.com and identify the request as privacy-related. PRAVI should document how it verifies, routes and responds to such requests before approving this notice."]
  ].map(([h,p])=><section key={h}><h2>{h}</h2><p>{p}</p></section>)}</article></section></main>;
+}
+
+
+const sectorPathways = [
+  {
+    id:"startup", number:"01", label:"Startups & founder-led businesses",
+    hint:"Entity foundations, runway and reporting",
+    headline:"Connect the company's foundations to its next milestone.",
+    context:"Early-stage businesses often move quickly while ownership records, accounting routines and financial visibility are still being established. The control model should be proportionate to the entity and its stage.",
+    focus:[
+      "Entity, ownership and governance records, with recurring and event-based responsibilities mapped to clear owners.",
+      "A monthly close routine covering bank, ledger, tax and key balance-sheet reconciliations.",
+      "A rolling cash runway view that links expected receipts, committed payments, hiring and funding assumptions.",
+      "Management information and supporting schedules that can be explained and traced when a lender or investor requests them."
+    ],
+    workstreams:[
+      ["Startup support","/startup-support.html","Entity records, compliance mapping and governance workflows."],
+      ["Virtual CFO","/virtual-cfo.html","Cash forecasts, budgets, monthly MIS and management review."],
+      ["Accounting & MIS","/accounting-mis.html","Books, reconciliations and a repeatable close process."]
+    ],
+    prepare:"Entity and ownership details, current trial balance, bank statements, existing compliance calendar and the latest cash forecast, where available."
+  },
+  {
+    id:"manufacturing", number:"02", label:"Manufacturing & processing",
+    hint:"Cost visibility, inventory and working capital",
+    headline:"Understand what is moving through production—and what it costs.",
+    context:"Manufacturing and processing businesses can have several layers between purchase, production, stock and sale. The accounting view is more useful when those movements and their assumptions can be reconciled.",
+    focus:[
+      "Product or process-level cost assumptions, including material, labour and production overhead allocation where reliable data exists.",
+      "Reconciliation of purchases, consumption, work-in-progress, finished goods and stock movement.",
+      "GST classification and input-tax-credit records supported by invoice, receipt and usage evidence, subject to the facts and law.",
+      "Working-capital and cash planning that considers inventory holding, supplier terms, customer collection and planned capital expenditure."
+    ],
+    workstreams:[
+      ["Accounting & MIS","/accounting-mis.html","Close routines, stock-related schedules and management reporting."],
+      ["GST compliance","/gst-compliance.html","Books-to-portal reconciliation, exception tracking and return preparation workflows."],
+      ["Business advisory","/business-advisory.html","Cost assumptions, budgets, working capital and feasibility inputs."]
+    ],
+    prepare:"A current trial balance, purchase and sales data, inventory/production records, bank statements, GST reports and any existing costing method or budget."
+  },
+  {
+    id:"trading", number:"03", label:"Trading, distribution & D2C",
+    hint:"Product margins, stock and cash conversion",
+    headline:"Link product movement, channel economics and cash conversion.",
+    context:"For trading, distribution and direct-to-consumer models, the headline sales number can hide differences in product margin, returns, discounts, inventory ageing, channel charges and collection timing.",
+    focus:[
+      "Product or channel-level revenue and margin analysis using consistently mapped sales, discounts, returns and direct costs.",
+      "Inventory ageing, slow-moving stock and reconciliation of purchase, sale, return and stock records.",
+      "Order-to-cash and purchase-to-payment controls, including marketplace or channel settlements where relevant.",
+      "GST and input-tax-credit reconciliation alongside receivable, payable and 13-week cash-flow review."
+    ],
+    workstreams:[
+      ["Accounting & MIS","/accounting-mis.html","Product/channel reporting, reconciliations and month-end close."],
+      ["GST compliance","/gst-compliance.html","Return preparation support and books-to-portal exception review."],
+      ["Virtual CFO","/virtual-cfo.html","Cash conversion, forecasts, budgets and periodic performance review."]
+    ],
+    prepare:"Sales and purchase registers, stock summary, channel/marketplace settlement statements, GST data, debtor/creditor ageing and bank statements."
+  },
+  {
+    id:"services", number:"04", label:"Professional & knowledge services",
+    hint:"Project economics, receivables and capacity",
+    headline:"Make service delivery, billing and collections visible together.",
+    context:"Professional and knowledge-led businesses may have limited inventory but still need a clear view of project economics, unbilled work, receivables, people costs and cash commitments.",
+    focus:[
+      "Client or project revenue and cost views where time, billing and cost records support a reliable allocation.",
+      "Unbilled work, contract milestones, invoicing discipline, receivable ageing and collection follow-up.",
+      "Consistent treatment and reconciliation of operating expenses, payroll-related records, TDS and GST workflows as applicable.",
+      "A monthly reporting and cash forecast that connects pipeline assumptions, capacity, collections and fixed commitments."
+    ],
+    workstreams:[
+      ["Accounting & MIS","/accounting-mis.html","Month-end close, expense mapping and management reporting."],
+      ["Direct tax","/direct-tax.html","Tax workflow and assessment documentation, within the accepted scope."],
+      ["GST compliance","/gst-compliance.html","GST data, return and reconciliation workflows, as applicable."],
+      ["Virtual CFO","/virtual-cfo.html","Budgets, cash planning and performance reviews."]
+    ],
+    prepare:"Client/project billing data, receivable ageing, expense records, payroll summaries where applicable, bank statements and the current accounting trial balance."
+  }
+];
+
+export function WhoWeHelpPage(){
+  const location = useLocation();
+  const requestedSector = new URLSearchParams(location.search).get("sector");
+  const [active,setActive] = React.useState(() => sectorPathways.some(item => item.id === requestedSector) ? requestedSector : "startup");
+  React.useEffect(() => {
+    if (sectorPathways.some(item => item.id === requestedSector)) setActive(requestedSector);
+  },[requestedSector]);
+  const sector = sectorPathways.find(item => item.id === active) || sectorPathways[0];
+  return <main>
+    <PageHero kicker="WHO WE HELP · BY BUSINESS CONTEXT" title="Different business models need different finance controls." lead="Explore the operating questions that tend to matter across four business contexts. Start with the closest fit, then connect the questions to a practical finance, accounting and compliance workstream."/>
+    <section className="section wrap sector-pathways-react">
+      <SectionTitle kicker="CHOOSE A BUSINESS CONTEXT" title="Start with the way the business operates." copy="The same accounting or compliance task can have a different control implication depending on how a business earns, spends, holds stock and collects cash."/>
+      <fieldset className="sector-selector-react">
+        <legend>Select the closest business context.</legend>
+        <div className="sector-selector-grid">
+          {sectorPathways.map(item=><label key={item.id} className={"sector-choice-react"+(active===item.id?" is-active":"")}>
+            <input type="radio" name="pravi-sector" value={item.id} checked={active===item.id} onChange={()=>setActive(item.id)} aria-label={item.label}/>
+            <span>{item.number}</span><strong>{item.label}</strong><small>{item.hint}</small><b aria-hidden="true">↗</b>
+          </label>)}
+        </div>
+      </fieldset>
+      <section className="sector-detail-react" aria-live="polite" aria-atomic="true" aria-labelledby="sector-detail-title">
+        <div className="sector-detail-top"><span>PRAVI / BUSINESS CONTEXT · {sector.number}</span><span>ILLUSTRATIVE REVIEW FRAMEWORK</span></div>
+        <div className="sector-detail-intro">
+          <p className="eyebrow">THE CONTROL QUESTION</p>
+          <h2 id="sector-detail-title">{sector.headline}</h2>
+          <p>{sector.context}</p>
+        </div>
+        <div className="sector-detail-grid">
+          <article>
+            <p className="sector-detail-label">AREAS TO EXAMINE</p>
+            <ul>{sector.focus.map(item=><li key={item}>{item}</li>)}</ul>
+          </article>
+          <aside>
+            <p className="sector-detail-label">CONNECTED PRAVI WORKSTREAMS</p>
+            <div className="sector-workstream-list">{sector.workstreams.map(([label,href,copy])=><Link key={href} to={href}><span><strong>{label}</strong><small>{copy}</small></span><b aria-hidden="true">↗</b></Link>)}</div>
+            <p className="sector-prepare"><strong>Useful starting information</strong>{sector.prepare}</p>
+          </aside>
+        </div>
+        <p className="sector-detail-note">These are illustrative review themes, not client case studies, evidence of prior sector assignments, a fixed package or a claim of specialist authorisation. Applicability, deliverables and professional responsibilities are assessed against the entity, records, current requirements and agreed engagement.</p>
+      </section>
+    </section>
+    <section className="section pale-react">
+      <div className="wrap">
+        <SectionTitle kicker="FROM CONTEXT TO SCOPE" title="A clear review before work is agreed." copy="The selected pathway helps organise the first discussion. It does not replace an assessment of the entity, transactions, available evidence or applicable professional requirements."/>
+        <div className="steps-react">
+          <article><b>01</b><h3>Understand the model</h3><p>Clarify the entity, how it earns and spends, its operating cycle and the business question.</p></article>
+          <article><b>02</b><h3>Review the information</h3><p>Identify available records, reconciliation gaps, assumptions and statutory dependencies.</p></article>
+          <article><b>03</b><h3>Agree the work</h3><p>Confirm deliverables, exclusions, responsibilities, timing and review points before commencement.</p></article>
+        </div>
+        <div className="resource-cta-react"><p className="eyebrow">DISCUSS YOUR BUSINESS CONTEXT</p><h2>Start with the question that matters now.</h2><p>Share the business model, current finance setup and immediate requirement. The engagement scope is confirmed separately.</p><Link to="/contact.html">Discuss your requirement ↗</Link></div>
+      </div>
+    </section>
+  </main>;
 }
