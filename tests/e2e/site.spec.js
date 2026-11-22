@@ -31,10 +31,10 @@ test.describe("React public routes", () => {
 
 test("legacy index.html URL redirects to the canonical homepage", async ({ page }) => {
   await page.goto("index.html");
-  await expect(page).toHaveURL(/\/Pravi-Website\/$/);
   await expect(page.getByRole("heading", { name: "Build the business. Stay in control." })).toBeVisible();
+  await expect(page).toHaveURL(/\\/Pravi-Website\\/?$/);
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", /\\/Pravi-Website\\/$/);
 });
-
 test.describe("Approved PRAVI identity and founder-first homepage", () => {
   test("header and footer use the exact approved full logo artwork", async ({ page }) => {
     await page.goto("./");
@@ -114,15 +114,19 @@ test.describe("Responsive mobile behaviour", () => {
 
   test("mobile navigation opens and closes", async ({ page }) => {
     await page.goto("./");
-    const menu = page.getByRole("button", { name: "Toggle navigation" });
+    const menu = page.locator("button.menu");
     await expect(menu).toBeVisible();
+    await expect(menu).toHaveAccessibleName("Open navigation");
+    await expect(menu).toHaveAttribute("aria-controls", "main-navigation");
     await menu.click();
+    await expect(menu).toHaveAttribute("aria-expanded", "true");
+    await expect(menu).toHaveAccessibleName("Close navigation");
     await expect(page.locator("nav.nav.open")).toBeVisible();
     await expect(page.locator("nav.nav.open a").first()).toBeVisible();
     await menu.click();
+    await expect(menu).toHaveAttribute("aria-expanded", "false");
     await expect(page.locator("nav.nav.open")).toHaveCount(0);
   });
-
   for (const route of ["./", "resources.html", "contact.html", "tools.html"]) {
     test(`no horizontal overflow on ${route}`, async ({ page }) => {
       await page.goto(route === "/" ? "./" : route);
