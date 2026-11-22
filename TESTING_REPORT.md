@@ -61,7 +61,7 @@ The browser suite used Chromium with local project resources served through a co
 7. Create and verify a dependency lockfile in an internet-enabled build environment.
 8. Only after the above checks, deploy and verify redirects, HTTPS, Search Console indexing and public contact behaviour.
 
-The website has not been deployed and this report does not claim production readiness.
+At the time of this 19 October 2026 report, the website had not yet been deployed; see the dated 22 November 2026 addendum below for the subsequent GitHub Pages deployment and current release gates.
 
 ---
 
