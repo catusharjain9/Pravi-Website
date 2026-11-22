@@ -62,3 +62,18 @@ The browser suite used Chromium with local project resources served through a co
 8. Only after the above checks, deploy and verify redirects, HTTPS, Search Console indexing and public contact behaviour.
 
 The website has not been deployed and this report does not claim production readiness.
+
+---
+
+## Addendum — 22 November 2026
+
+This addendum supersedes only the historical deployment-status statements above; the 19 October 2026 test table and test limitations remain an accurate record of the earlier test cycle.
+
+- The public website is now deployed at https://catusharjain9.github.io/Pravi-Website/. Deployment is through GitHub Actions and GitHub Pages; a custom domain is not configured.
+- The sector-pathway pull-request branch adds one React route, `who-we-help.html`, to the existing site and includes a homepage discovery section. Its latest completed quality gate at the time of this addendum passed 51 Playwright tests, prerendered 22 React routes and generated 32 public sitemap URLs. This is a branch-level result; it does not prove that the PR has merged or that the new page is live.
+- The new pathways are illustrative business-context guidance for startups, manufacturing/processing, trading/distribution/D2C and professional/knowledge services. They are not client case studies, credentials, experience claims or guaranteed outcomes.
+- The current GitHub Pages host does not apply the repository's `_headers`, `.htaccess` or Firebase Hosting response-header rules. Security response headers therefore remain an environment/hosting item, not a completed code-level control.
+- The Firebase Web App configuration is present at `assets/js/firebase-config.js`. Google Authentication, Firestore provisioning, authorised domains, deployed Firestore rules and the anonymous/admin access matrix remain to be confirmed in Firebase Console or a Firebase Emulator/test project.
+- Live processing of real PDF and XLSX files, cross-browser Firefox/WebKit testing, physical iOS/Android testing, screen-reader and formal WCAG review, actual production response-header inspection, Search Console submission, and final legal/business/privacy approval remain open.
+
+The current source branch's automated tests are not a substitute for these external-service, real-device or professional sign-off activities. Do not describe the website as fully business/legal approved until the corresponding evidence and approvals have been recorded.
