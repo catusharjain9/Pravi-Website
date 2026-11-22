@@ -29,6 +29,12 @@ test.describe("React public routes", () => {
 });
 
 
+test("legacy index.html URL redirects to the canonical homepage", async ({ page }) => {
+  await page.goto("index.html");
+  await expect(page).toHaveURL(/\\/Pravi-Website\\/$/);
+  await expect(page.getByRole("heading", { name: "Build the business. Stay in control." })).toBeVisible();
+});
+
 test.describe("Approved PRAVI identity and founder-first homepage", () => {
   test("header and footer use the exact approved full logo artwork", async ({ page }) => {
     await page.goto("./");
