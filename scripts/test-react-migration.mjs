@@ -14,7 +14,7 @@ const robots = read("../robots.txt");
 const routePaths = [
   "/", "/about.html", "/services.html", "/virtual-cfo.html",
   "/startup-support.html", "/direct-tax.html", "/gst-compliance.html",
-  "/accounting-mis.html", "/business-advisory.html", "/resources.html", "/insights.html", "/contact.html", "/privacy.html",
+  "/accounting-mis.html", "/business-advisory.html", "/who-we-help.html", "/resources.html", "/insights.html", "/contact.html", "/privacy.html",
   "/guide-startup-compliance.html", "/guide-virtual-cfo.html", "/guide-gst-reconciliation.html", "/guide-monthly-mis.html",
   "/article-13-week-cashflow.html", "/article-first-90-days-accounting.html", "/article-gst-purchase-reconciliation.html", "/article-monthly-mis-review.html"
 ];
@@ -32,6 +32,10 @@ assert.ok(existsSync(new URL("../assets/img/pravi-approved-lockup.webp", import.
 assert.ok(existsSync(new URL("../src/HomeRedesign.jsx", import.meta.url)), "Founder-first homepage component missing");
 const redesignSource = read("../src/HomeRedesign.jsx");
 assert.ok(redesignSource.includes("FounderJourney") && redesignSource.includes("role=\"tablist\""), "Interactive founder journey section missing");
+assert.ok(redesignSource.includes("SectorPathwayPreview") && redesignSource.includes("sectorHighlights"), "Homepage sector pathway discovery missing");
+const pagesSource = read("../src/pages.jsx");
+assert.ok(pagesSource.includes("export function WhoWeHelpPage") && pagesSource.includes("sectorPathways"), "Sector-specific service pathways missing");
+assert.ok(pagesSource.includes("client case studies") && pagesSource.includes("manufacturing"), "Sector page must state its illustrative scope and cover operating contexts");
 assert.ok(redesignSource.includes("Different stages.") && redesignSource.includes("ROC calendar"), "Founder pathway content is incomplete");
 assert.ok(redesignSource.includes("handleTabKey") && redesignSource.includes("ArrowRight") && redesignSource.includes("tabIndex={active===i?0:-1}"), "Founder pathway tabs are missing keyboard navigation");
 assert.ok(redesignSource.includes("pr-hero-orbit") && redesignSource.includes("pr-orbit-dot-a"), "Creative hero orbit treatment is missing");
