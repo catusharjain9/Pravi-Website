@@ -10,7 +10,7 @@ The site now builds with Vite and React and is published through GitHub Actions.
 
 - [x] GitHub Pages source changed from the legacy Jekyll branch build to GitHub Actions.
 - [x] Vite production build and dist artifact deployment completed successfully.
-- [x] 21 React routes render at their preserved public .html URLs.
+- [x] 22 React routes render at their preserved public .html URLs, including the sector-specific Who we help pathway.
 - [x] Route-specific page titles, descriptions, Open Graph metadata and canonical URLs are active.
 - [x] Responsive browser QA passes at 375 × 812 CSS pixels for the mobile navigation, homepage/resources/contact overflow, resource-card stacking and contact form layout.
 - [x] The logo refresh intro is tested; the reduced-motion preference suppresses it.
@@ -68,7 +68,7 @@ CI browser suite: 36 tests passed on the initial Playwright run; the current bra
 
 ## F. Remaining legacy pages
 
-The 21 core public pages now use React. Specialist financial tools and the dynamic article template remain legacy HTML/JavaScript deliberately, to avoid changing calculation, file-handling, browser-local storage and CMS behaviour without separate regression coverage. They remain staged at their existing URLs.
+The 22 core public pages now use React. Specialist financial tools and the dynamic article template remain legacy HTML/JavaScript deliberately, to avoid changing calculation, file-handling, browser-local storage and CMS behaviour without separate regression coverage. They remain staged at their existing URLs.
 
 ## G. Release decision
 
