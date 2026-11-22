@@ -21,7 +21,7 @@ test.describe("React public routes", () => {
       const title = await page.title();
       expect(title.length).toBeGreaterThan(15);
       if (route !== "/") await expect(page.locator(".pr-page-hero-panel")).toBeVisible();
-      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", /Pravi-Website/);
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", new RegExp("/Pravi-Website/$"));
       const canonical = await page.locator('link[rel="canonical"]').getAttribute("href");
       expect(canonical).toContain(route === "/" ? "/Pravi-Website/" : route);
     });
@@ -32,8 +32,8 @@ test.describe("React public routes", () => {
 test("legacy index.html URL redirects to the canonical homepage", async ({ page }) => {
   await page.goto("index.html");
   await expect(page.getByRole("heading", { name: "Build the business. Stay in control." })).toBeVisible();
-  await expect(page).toHaveURL(/\\/Pravi-Website\\/?$/);
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", /\\/Pravi-Website\\/$/);
+  await expect(page).toHaveURL(new RegExp("/Pravi-Website/?$"));
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", new RegExp("/Pravi-Website/$"));
 });
 test.describe("Approved PRAVI identity and founder-first homepage", () => {
   test("header and footer use the exact approved full logo artwork", async ({ page }) => {
@@ -208,7 +208,7 @@ test.describe("Legacy tools remain reachable", () => {
     await expect(page.locator("header.site-header .primary-nav .nav-link")).toHaveText(["About", "Services", "Tools", "Resources", "Insights"]);
     await expect(page.locator("header.site-header .nav-actions a")).toContainText("Get in touch");
     await headerBrand.click();
-    await expect(page).toHaveURL(/\/Pravi-Website\/$/);
+  await expect(page).toHaveURL(new RegExp("/Pravi-Website/?$"));
     await expect(page.getByRole("heading", { name: "Build the business. Stay in control." })).toBeVisible();
   });
 });
