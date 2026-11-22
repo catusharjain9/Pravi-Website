@@ -477,7 +477,8 @@ const sectorPathways = [
     ],
     workstreams:[
       ["Accounting & MIS","/accounting-mis.html","Month-end close, expense mapping and management reporting."],
-      ["Direct tax & GST","/direct-tax.html","Tax workflow coordination and documentation, according to the accepted scope."],
+      ["Direct tax","/direct-tax.html","Tax workflow and assessment documentation, within the accepted scope."],
+      ["GST compliance","/gst-compliance.html","GST data, return and reconciliation workflows, as applicable."],
       ["Virtual CFO","/virtual-cfo.html","Budgets, cash planning and performance reviews."]
     ],
     prepare:"Client/project billing data, receivable ageing, expense records, payroll summaries where applicable, bank statements and the current accounting trial balance."
