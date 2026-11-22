@@ -32,6 +32,7 @@ pages=sorted(ROOT.glob("*.html"))
 if len(pages)<30: fail(f"expected at least 30 HTML pages, found {len(pages)}")
 react_pages={"index.html","about.html","services.html","virtual-cfo.html","startup-support.html","direct-tax.html","gst-compliance.html","accounting-mis.html","business-advisory.html"}
 tool_shell_pages={"tools.html","gst-reconciliation.html","tax-calculators.html","depreciation-calculator.html","depreciation-register.html","currency-converter.html","cashflow-planner.html","mis-generator.html","compliance-tracker.html","pdf-tools.html"}
+branded_exception_pages={"404.html"}
 for page in pages:
  if page.name in react_pages:
   continue
@@ -45,6 +46,8 @@ for page in pages:
   if not nav: fail(f"{page.name}: primary navigation missing")
   for href in ('about.html','services.html','tools.html','resources.html','insights.html','contact.html'):
    if f'href="{href}"' not in nav.group(1): fail(f"{page.name}: current primary navigation link missing: {href}")
+ elif page.name in branded_exception_pages:
+  if html.count('assets/img/pravi-approved-lockup.webp') < 2: fail(f"{page.name}: must use the approved full logo lockup in header and footer")
  else:
   if 'assets/img/pravi-logo.svg' not in html: fail(f"{page.name}: approved legacy logo missing")
  if '<title>' not in html.lower(): fail(f"{page.name}: page title missing")
