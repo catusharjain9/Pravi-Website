@@ -33,7 +33,7 @@ const socialImage = new URL("assets/img/social-card.svg", siteRoot).href;
 const canonicalFor = (file) => new URL(file === "index.html" ? "" : file, siteRoot).href;
 const replaceOrInsertHeadTag = (html, pattern, tag) => {
   if (pattern.test(html)) return html.replace(pattern, tag);
-  return html.replace(/<\/head>/i, \`  \${tag}\n</head>\`);
+  return html.replace(/<\/head>/i, "  " + tag + "\n</head>");
 };
 for (const file of files) {
   const filePath = path.join(dist, file);
@@ -41,14 +41,14 @@ for (const file of files) {
   html = replaceOrInsertHeadTag(
     html,
     /<link\s+rel=["']canonical["'][^>]*>/i,
-    \`<link rel="canonical" href="\${canonicalFor(file)}"/>\`
+    '<link rel="canonical" href="' + canonicalFor(file) + '"/>'
   );
   const tags = [
-    [/<meta\b(?=[^>]*property=["']og:url["'])[^>]*>/i, \`<meta property="og:url" content="\${canonicalFor(file)}"/>\`],
-    [/<meta\b(?=[^>]*property=["']og:image["'])[^>]*>/i, \`<meta property="og:image" content="\${socialImage}"/>\`],
-    [/<meta\b(?=[^>]*property=["']og:image:alt["'])[^>]*>/i, '<meta property="og:image:alt" content="PRAVI Business Advisors LLP — finance, compliance and business advisory"/>' ],
-    [/<meta\b(?=[^>]*name=["']twitter:card["'])[^>]*>/i, '<meta name="twitter:card" content="summary_large_image"/>' ],
-    [/<meta\b(?=[^>]*name=["']twitter:image["'])[^>]*>/i, \`<meta name="twitter:image" content="\${socialImage}"/>\`]
+    [/<meta\b(?=[^>]*property=["']og:url["'])[^>]*>/i, '<meta property="og:url" content="' + canonicalFor(file) + '"/>'],
+    [/<meta\b(?=[^>]*property=["']og:image["'])[^>]*>/i, '<meta property="og:image" content="' + socialImage + '"/>'],
+    [/<meta\b(?=[^>]*property=["']og:image:alt["'])[^>]*>/i, '<meta property="og:image:alt" content="PRAVI Business Advisors LLP — finance, compliance and business advisory"/>'],
+    [/<meta\b(?=[^>]*name=["']twitter:card["'])[^>]*>/i, '<meta name="twitter:card" content="summary_large_image"/>'],
+    [/<meta\b(?=[^>]*name=["']twitter:image["'])[^>]*>/i, '<meta name="twitter:image" content="' + socialImage + '"/>']
   ];
   for (const [pattern, tag] of tags) html = replaceOrInsertHeadTag(html, pattern, tag);
   fs.writeFileSync(filePath, html, "utf8");
