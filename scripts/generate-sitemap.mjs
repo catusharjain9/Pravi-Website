@@ -29,7 +29,31 @@ const excluded = new Set(["404.html", "admin.html", "article.html", "privacy.htm
 const files = fs.readdirSync(dist)
   .filter((file) => file.endsWith(".html") && !excluded.has(file))
   .sort((a, b) => a === "index.html" ? -1 : b === "index.html" ? 1 : a.localeCompare(b));
-const urls = files.map((file) => new URL(file === "index.html" ? "" : file, siteRoot).href);
+const socialImage = new URL("assets/img/social-card.svg", siteRoot).href;
+const canonicalFor = (file) => new URL(file === "index.html" ? "" : file, siteRoot).href;
+const replaceOrInsertHeadTag = (html, pattern, tag) => {
+  if (pattern.test(html)) return html.replace(pattern, tag);
+  return html.replace(/<\/head>/i, \`  \${tag}\n</head>\`);
+};
+for (const file of files) {
+  const filePath = path.join(dist, file);
+  let html = fs.readFileSync(filePath, "utf8");
+  html = replaceOrInsertHeadTag(
+    html,
+    /<link\s+rel=["']canonical["'][^>]*>/i,
+    \`<link rel="canonical" href="\${canonicalFor(file)}"/>\`
+  );
+  const tags = [
+    [/<meta\b(?=[^>]*property=["']og:url["'])[^>]*>/i, \`<meta property="og:url" content="\${canonicalFor(file)}"/>\`],
+    [/<meta\b(?=[^>]*property=["']og:image["'])[^>]*>/i, \`<meta property="og:image" content="\${socialImage}"/>\`],
+    [/<meta\b(?=[^>]*property=["']og:image:alt["'])[^>]*>/i, '<meta property="og:image:alt" content="PRAVI Business Advisors LLP — finance, compliance and business advisory"/>' ],
+    [/<meta\b(?=[^>]*name=["']twitter:card["'])[^>]*>/i, '<meta name="twitter:card" content="summary_large_image"/>' ],
+    [/<meta\b(?=[^>]*name=["']twitter:image["'])[^>]*>/i, \`<meta name="twitter:image" content="\${socialImage}"/>\`]
+  ];
+  for (const [pattern, tag] of tags) html = replaceOrInsertHeadTag(html, pattern, tag);
+  fs.writeFileSync(filePath, html, "utf8");
+}
+const urls = files.map(canonicalFor);
 if (new Set(urls).size !== urls.length) throw new Error("Duplicate canonical URLs detected while generating the sitemap.");
 const xmlEscape = (value) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const entries = urls.map((url) => `  <url><loc>${xmlEscape(url)}</loc></url>`).join("\n");
