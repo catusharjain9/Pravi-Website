@@ -223,12 +223,12 @@ test("finance setup selector updates its pressure points and support pathway", a
   await expect(choices).toHaveCount(4);
   await expect(section.getByRole("radio", { name: /Founder-led/ })).toBeChecked();
 
-  await section.getByText("I have an in-house accountant", { exact: true }).click();
+  await section.getByText("One person handles the day-to-day work", { exact: true }).click();
   await expect(section.getByRole("radio", { name: /In-house accountant/ })).toBeChecked();
   await expect(section.locator(".pr-fit-result")).toContainText("A review layer protects continuity and quality.");
   await expect(section.locator(".pr-fit-result")).toContainText("month-end checklist");
 
-  await section.getByText("I work with a CA firm", { exact: true }).click();
+  await section.getByText("Year-end work and filings are handled externally", { exact: true }).click();
   await expect(section.locator(".pr-fit-result")).toContainText("Year-end compliance and monthly management serve different needs.");
   await expect(section.locator(".pr-fit-result")).toContainText("existing professional relationship");
 });
