@@ -5,6 +5,10 @@ const read = (path) => readFileSync(new URL(path, import.meta.url), "utf8");
 const app = read("../src/App.jsx");
 const tools = read("../tools.html");
 const packageJson = JSON.parse(read("../package.json"));
+const gstPage = read("../gst-reconciliation.html");
+const depreciationSource = read("../assets/js/depreciation-calculator.js");
+const complianceSource = read("../assets/js/compliance-tracker.js");
+
 const sitemap = read("../sitemap.xml");
 const robots = read("../robots.txt");
 const routePaths = [
@@ -48,4 +52,9 @@ assert.ok(!sitemap.includes("privacy.html"), "Draft privacy notice must not be i
 assert.ok(robots.includes("Sitemap: https://catusharjain9.github.io/Pravi-Website/sitemap.xml"), "robots.txt sitemap directive missing");
 assert.ok(app.includes('robots:"noindex,follow"'), "Draft privacy route must be noindex");
 assert.equal(packageJson.scripts["test:react-migration"], "node scripts/test-react-migration.mjs");
+
+assert.ok(gstPage.includes("cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"), "GST reconciliation must use the patched official SheetJS build");
+assert.ok(!gstPage.includes("xlsx@0.18.5"), "Vulnerable npm SheetJS version must not remain");
+assert.ok(depreciationSource.includes("import './csv-safety.js'") && depreciationSource.includes("window.PraviCSV.cell(v)"), "Depreciation CSV exports must use shared formula-neutralising CSV utility");
+assert.ok(complianceSource.includes("Reference frequency:") && complianceSource.includes("localStorage"), "Compliance tracker must disclose manual recurrence and browser-local persistence");
 console.log("React routes, approved PRAVI lock-up, founder-first homepage, 9 tools, sitemap and privacy indexing checks passed.");
