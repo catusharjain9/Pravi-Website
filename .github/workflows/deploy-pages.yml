@@ -52,3 +52,43 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Smoke-test deployed public routes
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          set -euo pipefail
+          if [ -z "${PAGE_URL:-}" ]; then
+            echo "GitHub Pages deployment did not return a page URL."
+            exit 1
+          fi
+          base="${PAGE_URL%/}"
+          body="$(mktemp)"
+          trap 'rm -f "$body"' EXIT
+          fetch_page() {
+            curl --fail --silent --show-error --location --retry 8 --retry-all-errors --retry-delay 5 "$1" --output "$body"
+          }
+
+          fetch_page "$base/"
+          grep -qi '<title>PRAVI Business Advisors LLP' "$body"
+
+          fetch_page "$base/who-we-help.html"
+          grep -qi 'Who We Help' "$body"
+          grep -qi 'manufacturing' "$body"
+          grep -qi 'trading' "$body"
+
+          fetch_page "$base/tools.html"
+          grep -qi 'PRAVI' "$body"
+
+          fetch_page "$base/robots.txt"
+          grep -q 'Sitemap:' "$body"
+
+          fetch_page "$base/sitemap.xml"
+          grep -q 'who-we-help.html' "$body"
+
+          status="$(curl --silent --show-error --location --output "$body" --write-out '%{http_code}' "$base/__pravi-smoke-test-not-a-real-page__")"
+          if [ "$status" != "404" ]; then
+            echo "Expected an HTTP 404 for an unknown path, received $status."
+            exit 1
+          fi
+          grep -qi 'Page not found' "$body"
+          echo "GitHub Pages smoke test passed: homepage, sector route, legacy tools, robots, sitemap and branded 404."
