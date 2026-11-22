@@ -31,7 +31,7 @@ test.describe("React public routes", () => {
 
 test("legacy index.html URL redirects to the canonical homepage", async ({ page }) => {
   await page.goto("index.html");
-  await expect(page).toHaveURL(/\\/Pravi-Website\\/$/);
+  await expect(page).toHaveURL(/\/Pravi-Website\/$/);
   await expect(page.getByRole("heading", { name: "Build the business. Stay in control." })).toBeVisible();
 });
 
@@ -204,7 +204,7 @@ test.describe("Legacy tools remain reachable", () => {
     await expect(page.locator("header.site-header .primary-nav .nav-link")).toHaveText(["About", "Services", "Tools", "Resources", "Insights"]);
     await expect(page.locator("header.site-header .nav-actions a")).toContainText("Get in touch");
     await headerBrand.click();
-    await expect(page).toHaveURL(/\/Pravi-Website\/$/);
+  await expect(page).toHaveURL(/\/Pravi-Website\/$/);
     await expect(page.getByRole("heading", { name: "Build the business. Stay in control." })).toBeVisible();
   });
 });
