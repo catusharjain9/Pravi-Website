@@ -21,7 +21,7 @@ test.describe("React public routes", () => {
       const title = await page.title();
       expect(title.length).toBeGreaterThan(15);
       if (route !== "/") await expect(page.locator(".pr-page-hero-panel")).toBeVisible();
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", new RegExp("/Pravi-Website/$"));
+      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", new RegExp("/Pravi-Website/"));
       const canonical = await page.locator('link[rel="canonical"]').getAttribute("href");
       expect(canonical).toContain(route === "/" ? "/Pravi-Website/" : route);
     });
