@@ -58,7 +58,7 @@ See `PRE-LAUNCH-CHECKLIST.md` for the remaining release gates. The public site i
 4. Test nav/menu on mobile, validate required form fields, select “Request a phone call”, and verify that the WhatsApp draft contains the preference and callback window. Do not send a real message unless intended.
 
 ## Current hosting and deployment
-The public site is deployed on GitHub Pages at `https://catusharjain9.github.io/Pravi-Website/`. GitHub Actions builds `dist`, stages retained tools, generates `sitemap.xml` and `robots.txt`, prerenders the React `.html` routes and publishes the validated artifact. Do not upload the repository root directly as a substitute for the build.
+The public site is deployed on GitHub Pages at `https://catusharjain9.github.io/Pravi-Website/`. GitHub Actions builds `dist`, stages retained tools, generates `sitemap.xml` and `robots.txt`, prerenders the React `.html` routes and publishes the validated artifact. A post-deployment smoke test checks the homepage, Who we help route, legacy tools hub, robots file, sitemap and branded 404 response. Do not upload the repository root directly as a substitute for the build.
 
 GitHub Pages does not activate the repository's `_headers`, `.htaccess` or Firebase Hosting response-header rules. To enforce CSP and other HTTP security headers, a supported hosting provider or edge proxy must be selected and the actual production responses tested. No DNS, custom-domain or hosting migration has been made. If a custom domain or different host is later approved, set `VITE_SITE_ORIGIN` and `VITE_BASE_PATH` correctly, rebuild the canonical metadata and sitemap, verify HTTPS/redirects, test all tools and update the privacy notice to match the new host and data flows.
 
