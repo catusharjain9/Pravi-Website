@@ -30,7 +30,7 @@ for rule in (':focus-visible','prefers-reduced-motion','max-width:1100px','.tabl
  if rule not in css and rule not in style: fail(f"required design/accessibility rule missing: {rule}")
 pages=sorted(ROOT.glob("*.html"))
 if len(pages)<30: fail(f"expected at least 30 HTML pages, found {len(pages)}")
-react_pages={"index.html","about.html","services.html","virtual-cfo.html","startup-support.html","direct-tax.html","gst-compliance.html","accounting-mis.html","business-advisory.html"}
+react_pages={"index.html","about.html","services.html","who-we-help.html","virtual-cfo.html","startup-support.html","direct-tax.html","gst-compliance.html","accounting-mis.html","business-advisory.html"}
 tool_shell_pages={"tools.html","gst-reconciliation.html","tax-calculators.html","depreciation-calculator.html","depreciation-register.html","currency-converter.html","cashflow-planner.html","mis-generator.html","compliance-tracker.html","pdf-tools.html"}
 branded_exception_pages={"404.html"}
 for page in pages:
