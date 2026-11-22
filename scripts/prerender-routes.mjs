@@ -84,5 +84,12 @@ try {
   console.log(`Prerender completed for ${routes.length} React routes.`);
 } finally {
   if (browser) await browser.close();
-  server.kill("SIGTERM");
+  if (server.exitCode === null) {
+    await new Promise((resolve) => {
+      const finish = () => resolve();
+      const timeout = setTimeout(() => { server.kill("SIGKILL"); resolve(); }, 5000);
+      server.once("exit", () => { clearTimeout(timeout); finish(); });
+      server.kill("SIGTERM");
+    });
+  }
 }
