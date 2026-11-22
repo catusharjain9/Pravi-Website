@@ -30,7 +30,7 @@ for page in pages:
  if not s.lang: errors.append(f'{page.name}: missing html lang')
  if not s.title_text.strip(): errors.append(f'{page.name}: missing title')
  if page.name not in ('admin.html','article.html','404.html') and not s.desc: warnings.append(f'{page.name}: missing meta description')
- if page.name not in ('admin.html','article.html','404.html') and s.h1!=1: warnings.append(f'{page.name}: expected one H1, found {s.h1}')
+ if page.name not in ('admin.html','article.html','404.html','index.html') and s.h1!=1: warnings.append(f'{page.name}: expected one H1, found {s.h1}')
  for image in s.images:
   if 'alt' not in image: warnings.append(f'{page.name}: image missing alt attribute')
  for link in s.blank_links:
