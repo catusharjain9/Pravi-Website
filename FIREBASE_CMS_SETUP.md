@@ -13,7 +13,7 @@ This adds a private article-management dashboard to the existing static PRAVI we
 ## Setup steps
 
 1. Create a Firebase project in https://console.firebase.google.com/.
-2. Register a Web app in Project settings. Copy its `apiKey`, `authDomain`, `projectId`, and `appId` to `assets/js/firebase-config.js`. The Web App config is public client-side configuration, not a secret; never put service-account keys or private credentials in the repository. Firebase web configuration is client-visible; never put service-account keys or private credentials here.
+2. Register a Web app in Project settings. Copy its `apiKey`, `authDomain`, `projectId`, and `appId` to `assets/js/firebase-config.js`. The Web App config is public client-side configuration, not a secret; never put service-account keys or private credentials in the repository.
 3. In Authentication > Sign-in method, enable Google. Configure the project's support email and authorised domains. For local development, use a local HTTP server rather than opening HTML files directly.
 4. Create a Cloud Firestore database.
 5. Deploy `firestore.rules` before testing. These rules restrict writes to verified `catusharjain9@gmail.com` and allow public reads only of documents with `status == 'published'`. Do not weaken these rules to make the UI work.
