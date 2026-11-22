@@ -205,7 +205,7 @@ test.describe("Legacy tools remain reachable", () => {
     const footerLogo = page.locator("footer.site-footer .footer-brand .brand img");
     await expect(footerLogo).toHaveAttribute("src", /pravi-approved-lockup\.webp/);
     await expect.poll(() => footerLogo.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
-    await expect(page.locator("header.site-header .primary-nav .nav-link")).toHaveText(["About", "Services", "Tools", "Resources", "Insights"]);
+    await expect(page.locator("header.site-header .primary-nav .nav-link")).toHaveText(["About", "Services", "Who we help", "Tools", "Resources", "Insights"]);
     await expect(page.locator("header.site-header .nav-actions a")).toContainText("Get in touch");
     await headerBrand.click();
   await expect(page).toHaveURL(new RegExp("/Pravi-Website/?$"));
