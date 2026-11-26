@@ -195,6 +195,19 @@ test.describe("Legacy tools remain reachable", () => {
     });
   }
 
+  
+  test("Office Print entry point redirects using the latest published tunnel URL", async ({ page }) => {
+    await page.route("https://raw.githubusercontent.com/catusharjain9/Pravi-Website/main/office-print-url.json?*", route =>
+      route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ url: "https://pravi-smoke-test.trycloudflare.com", updated_utc: "2026-11-26T00:00:00Z" }) })
+    );
+    await page.route("https://pravi-smoke-test.trycloudflare.com/login", route =>
+      route.fulfill({ status: 200, contentType: "text/html", body: "<!doctype html><title>Office Print Portal test target</title><h1>Portal test</h1>" })
+    );
+    await page.goto("office-print.html");
+    await expect(page).toHaveURL("https://pravi-smoke-test.trycloudflare.com/login");
+    await expect(page).toHaveTitle("Office Print Portal test target");
+  });
+
   test("retained tool pages use the approved logo and current PRAVI navigation", async ({ page }) => {
     await page.goto("tools.html");
     const headerBrand = page.locator("header.site-header .brand").first();
@@ -206,7 +219,7 @@ test.describe("Legacy tools remain reachable", () => {
     await expect(footerLogo).toHaveAttribute("src", /pravi-approved-lockup\.webp/);
     await expect.poll(() => footerLogo.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
     await expect(page.locator("header.site-header .primary-nav .nav-link")).toHaveText(["About", "Services", "Who we help", "Tools", "Resources", "Insights", "Office Print ↗"]);
-    await expect(page.locator('header.site-header .primary-nav a[href*="trycloudflare.com/login"]')).toHaveAttribute("target", "_blank");
+    await expect(page.locator('header.site-header .primary-nav a[href$="office-print.html"]')).toHaveAttribute("target", "_blank");
     await expect(page.locator("header.site-header .nav-actions a")).toContainText("Get in touch");
     await headerBrand.click();
   await expect(page).toHaveURL(new RegExp("/Pravi-Website/?$"));
