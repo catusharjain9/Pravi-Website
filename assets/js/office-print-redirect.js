@@ -18,7 +18,10 @@
       });
       if (!response.ok) throw new Error("The connection record could not be reached.");
       const record = await response.json();
-      const candidate = new URL(record.url || "");
+      if (!record || typeof record.url !== "string" || !record.url.trim()) {
+        throw new Error("The office printer connection is not currently published. Turn on the office PC and wait for its tunnel to start.");
+      }
+      const candidate = new URL(record.url);
       const validHost = /^[a-z0-9-]+\.trycloudflare\.com$/i.test(candidate.hostname);
       if (candidate.protocol !== "https:" || !validHost || candidate.hostname.toLowerCase() === "api.trycloudflare.com") {
         throw new Error("The office printer connection is not currently published.");

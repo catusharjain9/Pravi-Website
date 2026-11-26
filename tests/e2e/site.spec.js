@@ -208,6 +208,17 @@ test.describe("Legacy tools remain reachable", () => {
     await expect(page).toHaveTitle("Office Print Portal test target");
   });
 
+
+  test("Office Print page explains when the office PC has not published a tunnel", async ({ page }) => {
+    await page.route("https://raw.githubusercontent.com/catusharjain9/Pravi-Website/office-print-state/office-print-url.json?*", route =>
+      route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ url: "", status: "connecting", updated_utc: null }) })
+    );
+    await page.goto("office-print.html");
+    await expect(page.locator("#status")).toContainText("office printer connection is not currently published");
+    await expect(page.locator("#retry")).toBeVisible();
+    await expect(page).toHaveURL(/office-print\.html$/);
+  });
+
   test("retained tool pages use the approved logo and current PRAVI navigation", async ({ page }) => {
     await page.goto("tools.html");
     const headerBrand = page.locator("header.site-header .brand").first();
