@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#FFFBF3">
+  <meta name="theme-color" content="#FFFFFF">
   <meta name="description" content="Secure access to the PRAVI office printer portal. This page automatically locates the current office connection.">
   <meta name="robots" content="noindex,nofollow">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/paper-texture.css">
   <meta name="referrer" content="no-referrer">
   <title>Connecting to Office Print | PRAVI Business Advisors LLP</title>
   <style>
@@ -14,7 +15,7 @@
     *{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;display:grid;place-items:center;padding:24px}
     main{width:min(100%,560px);padding:clamp(25px,5vw,42px);border:1px solid var(--line);border-radius:22px;background:#fff;box-shadow:0 18px 60px rgba(24,62,53,.07)}
     .mark{display:inline-flex;align-items:center;gap:9px;font-size:.78rem;font-weight:850;letter-spacing:.12em;color:#315f50}
-    .mark span{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--yellow);font-size:1rem}
+    .mark img{display:block;width:34px;height:34px;object-fit:contain;border-radius:10px;background:var(--yellow);padding:5px}
     h1{margin:25px 0 10px;font-size:clamp(1.8rem,5vw,2.55rem);line-height:1.08;letter-spacing:-.045em}
     p{color:var(--muted);line-height:1.7;margin:0}
     .status{margin-top:22px;padding:16px;border-radius:13px;background:#f5f7f1;border:1px solid var(--line);font-weight:650}
@@ -25,10 +26,11 @@
     .spinner{display:inline-block;width:13px;height:13px;margin-right:8px;border:2px solid #bfd0c4;border-top-color:#315f50;border-radius:50%;vertical-align:-2px;animation:spin .8s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){.spinner{animation:none}}
   </style>
+  <link rel="stylesheet" href="assets/css/pravi-yellow-system.css">
 </head>
 <body>
   <main>
-    <div class="mark"><span aria-hidden="true">P</span> PRAVI BUSINESS ADVISORS</div>
+    <div class="mark"><img src="assets/img/pravi-logo.svg" alt="" width="34" height="34"> PRAVI BUSINESS ADVISORS</div>
     <h1>Connecting to Office Print</h1>
     <p>This page automatically finds the latest verified printer connection for the office computer.</p>
     <div class="status" id="status" role="status" aria-live="polite"><span class="spinner" aria-hidden="true"></span>Checking the office connection…</div>
