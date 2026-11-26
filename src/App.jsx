@@ -2,6 +2,7 @@ import React from "react";
 import {Link,Navigate,Route,Routes,useLocation} from "react-router-dom";
 import {motion,useReducedMotion,useScroll,useSpring} from "motion/react";
 import HomeRedesign from "./HomeRedesign.jsx";
+import { OFFICE_PRINT_PORTAL_URL } from "./officePrintConfig.js";
 const loadPage=(name)=>React.lazy(()=>import("./pages.jsx").then((module)=>({default:module[name]})));
 const AboutPage=loadPage("AboutPage");
 const ServicesPage=loadPage("ServicesPage");
@@ -98,6 +99,7 @@ function Header(){
    </button>
    <nav id="main-navigation" className={open?"nav open":"nav"} aria-label="Main navigation">
     {nav.map(([n,p])=><a key={p} href={legacyHref(p)} onClick={()=>setOpen(false)}>{n}</a>)}
+    <a className="nav-link" href={OFFICE_PRINT_PORTAL_URL} target="_blank" rel="noopener noreferrer" onClick={()=>setOpen(false)}>Office Print ↗</a>
     <a className="nav-cta" href={legacyHref("/contact.html")} onClick={()=>setOpen(false)}>Get in touch ↗</a>
    </nav>
   </div>
@@ -169,6 +171,7 @@ export default function App(){
      <a href={legacyHref("/about.html")}>About PRAVI</a>
      <a href={legacyHref("/tools.html")}>Business tools</a>
      <a href={legacyHref("/resources.html")}>Founder resources</a>
+     <a href={OFFICE_PRINT_PORTAL_URL} target="_blank" rel="noopener noreferrer">Office Print Portal ↗</a>
     </div>
     <div className="footer-column">
      <h2>Connect</h2>
