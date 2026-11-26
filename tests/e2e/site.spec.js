@@ -197,7 +197,7 @@ test.describe("Legacy tools remain reachable", () => {
 
   
   test("Office Print entry point redirects using the latest published tunnel URL", async ({ page }) => {
-    await page.route("https://raw.githubusercontent.com/catusharjain9/Pravi-Website/main/office-print-url.json?*", route =>
+    await page.route("https://raw.githubusercontent.com/catusharjain9/Pravi-Website/office-print-state/office-print-url.json?*", route =>
       route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ url: "https://pravi-smoke-test.trycloudflare.com", updated_utc: "2026-11-26T00:00:00Z" }) })
     );
     await page.route("https://pravi-smoke-test.trycloudflare.com/login", route =>
