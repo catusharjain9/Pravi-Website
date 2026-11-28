@@ -1,0 +1,86 @@
+name: Build PRAVI Office Print Engine
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "office-print-engine/patch/**"
+      - "office-print-engine/tests/**"
+      - ".github/workflows/build-office-print-engine.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pravi-office-print-engine
+  cancel-in-progress: false
+
+jobs:
+  windows-build:
+    runs-on: windows-2022
+    steps:
+      - name: Check out PRAVI patch
+        uses: actions/checkout@v4
+
+      - name: Check out pinned upstream print engine
+        shell: pwsh
+        run: |
+          git clone https://github.com/bogdik/mfp-print-scan-server.git upstream
+          git -C upstream checkout 23859a71a8838788175120f36e05348488462468
+          $patch = Join-Path $env:GITHUB_WORKSPACE 'office-print-engine\patch\app'
+          Copy-Item -Path (Join-Path $patch '*') -Destination (Join-Path $env:GITHUB_WORKSPACE 'upstream\app') -Recurse -Force
+          $testDir = Join-Path $env:GITHUB_WORKSPACE 'upstream\tests'
+          New-Item -ItemType Directory -Path $testDir -Force | Out-Null
+          Copy-Item (Join-Path $env:GITHUB_WORKSPACE 'office-print-engine\tests\test_page_range_pravi.py') $testDir -Force
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: upstream/requirements.txt
+
+      - name: Install build dependencies and test page-range parser
+        shell: pwsh
+        run: |
+          Set-Location upstream
+          python -m venv .venv
+          $python = Join-Path (Get-Location) '.venv\Scripts\python.exe'
+          & $python -m pip install --upgrade pip
+          & $python -m pip install -r requirements.txt pyinstaller
+          if ($LASTEXITCODE -ne 0) { throw 'Dependency installation failed.' }
+          & $python -m unittest discover -s tests -p 'test_page_range_pravi.py' -v
+          if ($LASTEXITCODE -ne 0) { throw 'Page-range unit tests failed.' }
+
+      - name: Build the standalone Windows print engine
+        shell: pwsh
+        run: |
+          Set-Location upstream
+          & powershell.exe -NoProfile -ExecutionPolicy Bypass -File packaging\windows\build-exe.ps1
+          if ($LASTEXITCODE -ne 0) { throw 'PyInstaller build failed.' }
+          if (-not (Test-Path 'dist\mfp-server\mfp-server.exe')) { throw 'mfp-server.exe was not created.' }
+          if (-not (Test-Path 'dist\mfp-server\_internal')) { throw 'The PyInstaller _internal folder was not created.' }
+
+      - name: Package the update and checksum
+        shell: pwsh
+        run: |
+          $bundle = Join-Path $env:GITHUB_WORKSPACE 'upstream\dist\mfp-server'
+          $zip = Join-Path $env:GITHUB_WORKSPACE 'mfp-server-upgraded.zip'
+          Compress-Archive -Path (Join-Path $bundle '*') -DestinationPath $zip -CompressionLevel Optimal -Force
+          $hash = (Get-FileHash -LiteralPath $zip -Algorithm SHA256).Hash.ToLowerInvariant()
+          Set-Content -LiteralPath (Join-Path $env:GITHUB_WORKSPACE 'mfp-server-upgraded.sha256') -Value ($hash + '  mfp-server-upgraded.zip') -Encoding ASCII
+
+      - name: Publish stable upgrade assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: pwsh
+        run: |
+          $tag = 'office-print-engine-latest'
+          gh release view $tag --repo $env:GITHUB_REPOSITORY 2>$null
+          if ($LASTEXITCODE -ne 0) {
+            gh release create $tag --repo $env:GITHUB_REPOSITORY --title 'PRAVI Office Print Engine' --notes 'Latest Windows build of the PRAVI office print engine. Install using the matching PRAVI Office Print feature-upgrade package.' --prerelease
+            if ($LASTEXITCODE -ne 0) { throw 'Could not create the engine release.' }
+          }
+          gh release upload $tag (Join-Path $env:GITHUB_WORKSPACE 'mfp-server-upgraded.zip') (Join-Path $env:GITHUB_WORKSPACE 'mfp-server-upgraded.sha256') --repo $env:GITHUB_REPOSITORY --clobber
+          if ($LASTEXITCODE -ne 0) { throw 'Could not publish the engine upgrade assets.' }

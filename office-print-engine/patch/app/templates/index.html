@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ t('web.title') }}</title>
+  <link rel="stylesheet" href="{{ static_url('style.css') }}" />
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="header-tools">
+        {% if user %}
+        <form method="post" action="/logout" class="user-box">
+          <span class="user-name">👤 {{ user }}<span id="quota-status" class="quota-status"></span></span>
+          <button type="submit" class="ghost-button">{{ t('web.logout') }}</button>
+        </form>
+        <button type="button" id="tokens-toggle" class="ghost-button">🔑 {{ t('web.tokens_button') }}</button>
+        {% if is_admin %}
+        <button type="button" id="quotas-toggle" class="ghost-button">{{ t('web.quota_button') }}</button>
+        {% endif %}
+        {% endif %}
+        <button type="button" id="qr-toggle" class="ghost-button" title="{{ t('web.qr_hint') }}">📱 {{ t('web.qr_button') }}</button>
+        <div class="lang-switch" role="group" aria-label="{{ t('web.language') }}">
+          {% for code in langs %}
+          <button type="button" class="lang-button" data-lang="{{ code }}" aria-pressed="{{ 'true' if code == lang else 'false' }}">{{ code | upper }}</button>
+          {% endfor %}
+        </div>
+      </div>
+      <div id="qr-panel" class="qr-panel" hidden>
+        <img src="/api/qrcode.png" alt="{{ t('web.qr_button') }}" width="160" height="160" />
+        <p class="qr-hint">{{ t('web.qr_hint') }}</p>
+        <p class="qr-url">{{ base_url }}</p>
+        <button type="button" id="qr-close" class="ghost-button">{{ t('web.hide') }}</button>
+      </div>
+      {% if user %}
+      <div id="tokens-panel" class="qr-panel tokens-panel" hidden>
+        <h3>{{ t('web.tokens_button') }}</h3>
+        <div id="tokens-list" class="tokens-list"></div>
+        <form id="tokens-create-form" class="tokens-create-form">
+          <input type="text" id="tokens-name-input" placeholder="{{ t('web.tokens_name_placeholder') }}" maxlength="60" />
+          <button type="submit" class="ghost-button">{{ t('web.tokens_create') }}</button>
+        </form>
+        <div id="tokens-new" class="tokens-new" hidden>
+          <p>{{ t('web.tokens_created_notice') }}</p>
+          <code id="tokens-new-value"></code>
+        </div>
+        <button type="button" id="tokens-close" class="ghost-button">{{ t('web.hide') }}</button>
+      </div>
+      {% endif %}
+      {% if is_admin %}
+      <div id="quotas-panel" class="qr-panel tokens-panel quotas-panel" hidden>
+        <h3>{{ t('web.quota_button') }}</h3>
+        <table class="usage-table quotas-table">
+          <thead>
+            <tr>
+              <th>{{ t('web.quota_user_col') }}</th>
+              <th>{{ t('web.quota_used_col') }}</th>
+              <th>{{ t('web.quota_limit_col') }}</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="quotas-list"></tbody>
+        </table>
+        <button type="button" id="quotas-close" class="ghost-button">{{ t('web.hide') }}</button>
+      </div>
+      {% endif %}
+      <h1>🖨️ {{ t('web.title') }}</h1>
+      <nav class="tabs" role="tablist">
+        <button type="button" class="tab" role="tab" data-tab="print" aria-selected="true">{{ t('web.tab_print') }}</button>
+        <button type="button" class="tab" role="tab" data-tab="scan" aria-selected="false">{{ t('web.tab_scan') }}</button>
+      </nav>
+    </header>
+
+    <div id="tab-print" class="tab-panel narrow">
+      <main class="card">
+        <form id="print-form">
+          <div id="dropzone" class="dropzone">
+            <input type="file" id="file-input" name="file" hidden />
+            <div class="dropzone-content">
+              <span class="dropzone-icon">📄</span>
+              <p id="dropzone-text">{{ t('web.dropzone') }}</p>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="printer-select">{{ t('web.printer') }}</label>
+            <select id="printer-select" name="printer"></select>
+          </div>
+
+          <div id="printer-status" class="printer-status" hidden>
+            <span id="printer-status-badge" class="status-badge"></span>
+            <span id="printer-status-reasons" class="printer-status-reasons"></span>
+          </div>
+          <div id="printer-supplies" class="printer-supplies"></div>
+
+          <div class="form-row">
+            <label for="copies-input">{{ t('web.copies') }}</label>
+            <input type="number" id="copies-input" name="copies" value="1" min="1" max="99" />
+          </div>
+
+          <section class="print-layout-settings" aria-label="{{ t('web.advanced_print_settings') }}">
+            <h3>{{ t('web.advanced_print_settings') }}</h3>
+            <div class="form-row">
+              <label for="page-range-input">{{ t('web.page_range') }}</label>
+              <input type="text" id="page-range-input" maxlength="200" placeholder="{{ t('web.page_range_placeholder') }}" autocomplete="off" />
+            </div>
+            <p class="field-hint">{{ t('web.page_range_hint') }}</p>
+            <div class="form-row">
+              <label for="pages-per-sheet-select">{{ t('web.pages_per_sheet') }}</label>
+              <select id="pages-per-sheet-select">
+                <option value="1">{{ t('web.pages_per_sheet_one') }}</option>
+                <option value="2">{{ t('web.pages_per_sheet_two') }}</option>
+                <option value="4">{{ t('web.pages_per_sheet_four') }}</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="orientation-select">{{ t('web.orientation') }}</label>
+              <select id="orientation-select">
+                <option value="auto">{{ t('web.orientation_auto') }}</option>
+                <option value="portrait">{{ t('web.orientation_portrait') }}</option>
+                <option value="landscape">{{ t('web.orientation_landscape') }}</option>
+              </select>
+            </div>
+          </section>
+
+          <div id="printer-options"></div>
+          <p id="duplex-hint" class="field-hint duplex-hint" hidden>{{ t('web.duplex_hint') }}</p>
+
+          <div class="actions">
+            <button type="button" id="preview-button" class="secondary-button" disabled>
+              {{ t('web.preview') }}
+            </button>
+            <button type="submit" id="print-button" class="print-button" disabled>
+              {{ t('web.print') }}
+            </button>
+          </div>
+          <p id="form-message" class="message"></p>
+
+          <div id="maintenance" class="maintenance" hidden>
+            <span class="maintenance-label">{{ t('web.maintenance') }}</span>
+            <div id="maintenance-actions" class="maintenance-actions"></div>
+          </div>
+
+          <section id="preview-panel" class="preview" hidden>
+            <div class="preview-header">
+              <span id="preview-info" class="preview-info"></span>
+              <button type="button" id="preview-close" class="ghost-button">{{ t('web.hide') }}</button>
+            </div>
+            <div id="preview-pages" class="preview-pages"></div>
+          </section>
+        </form>
+      </main>
+
+      <section class="card jobs-card">
+        <div class="jobs-header">
+          <h2>{{ t('web.recent_jobs') }}</h2>
+          <div class="scan-list-actions">
+            <label class="notify-toggle" title="{{ t('web.notify_hint') }}">
+              <input type="checkbox" id="notify-toggle" /> 🔔 {{ t('web.notify_label') }}
+            </label>
+            <button id="usage-toggle" class="ghost-button" type="button">{{ t('usage.title') }}</button>
+            <button id="clear-jobs" class="ghost-button danger" type="button">{{ t('web.clear') }}</button>
+            <button id="refresh-jobs" class="ghost-button" type="button">{{ t('web.refresh') }}</button>
+          </div>
+        </div>
+        <div id="usage-panel" class="usage-panel" hidden>
+          <div class="usage-totals">
+            <span><strong id="usage-jobs">0</strong> {{ t('usage.jobs') }}</span>
+            <span><strong id="usage-sheets">0</strong> {{ t('usage.sheets') }}</span>
+            <span><strong id="usage-sent">0</strong> {{ t('usage.sent') }}</span>
+            <span><strong id="usage-failed">0</strong> {{ t('usage.failed') }}</span>
+          </div>
+          <div class="usage-breakdowns">
+            <div>
+              <h3>{{ t('usage.by_user') }}</h3>
+              <table class="usage-table">
+                <thead><tr><th></th><th>{{ t('usage.jobs') }}</th><th>{{ t('usage.sheets') }}</th></tr></thead>
+                <tbody id="usage-by-user"></tbody>
+              </table>
+            </div>
+            <div>
+              <h3>{{ t('usage.by_printer') }}</h3>
+              <table class="usage-table">
+                <thead><tr><th></th><th>{{ t('usage.jobs') }}</th><th>{{ t('usage.sheets') }}</th></tr></thead>
+                <tbody id="usage-by-printer"></tbody>
+              </table>
+            </div>
+          </div>
+          <a id="usage-csv" class="ghost-button" href="/api/usage.csv" download>{{ t('usage.download_csv') }}</a>
+        </div>
+        <table class="jobs-table">
+          <colgroup>
+            <col class="col-file" />
+            <col class="col-printer" />
+            <col class="col-copies" />
+            <col class="col-options" />
+            <col class="col-status" />
+            <col class="col-time" />
+            <col class="col-actions" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th>{{ t('web.col_file') }}</th>
+              <th>{{ t('web.col_printer') }}</th>
+              <th title="{{ t('web.copies') }}">{{ t('web.copies_short') }}</th>
+              <th>{{ t('web.col_options') }}</th>
+              <th>{{ t('web.col_status') }}</th>
+              <th>{{ t('web.col_time') }}</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="jobs-body">
+            <tr><td colspan="7" class="empty">{{ t('web.no_jobs') }}</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+    <div id="tab-scan" class="tab-panel" hidden>
+      <main class="card scan-layout">
+        <div class="scan-bed-column">
+          <div id="scan-bed" class="scan-bed">
+            <img id="scan-preview-img" alt="" hidden />
+            <p id="scan-bed-hint" class="scan-bed-hint">{{ t('web.scan_hint') }}</p>
+            <div id="scan-selection" class="scan-selection" hidden></div>
+          </div>
+          <p class="scan-bed-caption">{{ t('web.scan_caption') }}</p>
+        </div>
+
+        <div class="scan-settings">
+          <div class="form-row">
+            <label for="scanner-select">{{ t('web.scanner') }}</label>
+            <select id="scanner-select"></select>
+          </div>
+          <div class="form-row">
+            <label for="scan-area">{{ t('web.area') }}</label>
+            <select id="scan-area">
+              <option value="">{{ t('web.area_all') }}</option>
+              <option value="210x297">A4 (210×297)</option>
+              <option value="148x210">A5 (148×210)</option>
+              <option value="105x148">A6 (105×148)</option>
+              <option value="216x279">Letter (216×279)</option>
+              <option value="102x152">{{ t('web.area_photo') }}</option>
+              <option value="90x50">{{ t('web.area_card') }}</option>
+              <option value="custom" hidden>{{ t('web.area_custom') }}</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="scan-mode">{{ t('web.mode') }}</label>
+            <select id="scan-mode"></select>
+          </div>
+          <div class="form-row">
+            <label for="scan-resolution">{{ t('web.resolution') }}</label>
+            <select id="scan-resolution"></select>
+          </div>
+          <div class="form-row" id="scan-brightness-row">
+            <label for="scan-brightness">{{ t('web.brightness') }} <output id="scan-brightness-value">0</output></label>
+            <input type="range" id="scan-brightness" min="-100" max="100" value="0" step="5" />
+          </div>
+          <div class="form-row" id="scan-contrast-row">
+            <label for="scan-contrast">{{ t('web.contrast') }} <output id="scan-contrast-value">0</output></label>
+            <input type="range" id="scan-contrast" min="-100" max="100" value="0" step="5" />
+          </div>
+          <div class="form-row">
+            <label for="scan-format">{{ t('web.format') }}</label>
+            <select id="scan-format">
+              <option value="jpeg">JPEG</option>
+              <option value="png">PNG</option>
+              <option value="pdf">PDF</option>
+              <option value="tiff">TIFF</option>
+            </select>
+          </div>
+          <p id="scan-estimate" class="scan-estimate"></p>
+
+          <div class="actions">
+            <button type="button" id="scan-preview-button" class="secondary-button" disabled>{{ t('web.preview') }}</button>
+            <button type="button" id="scan-button" class="print-button" disabled>{{ t('web.scan') }}</button>
+          </div>
+          <p id="scan-message" class="message"></p>
+        </div>
+      </main>
+
+      <section class="card">
+        <div class="jobs-header">
+          <h2>{{ t('web.scans') }}</h2>
+          <div class="scan-list-actions">
+            <button id="scan-merge" class="ghost-button" type="button" disabled>{{ t('web.merge_pdf') }}</button>
+            <button id="scan-refresh" class="ghost-button" type="button">{{ t('web.refresh') }}</button>
+          </div>
+        </div>
+        <div id="scan-list" class="scan-list">
+          <p class="empty">{{ t('web.no_scans') }}</p>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    window.I18N = {{ messages | tojson }};
+  </script>
+  <script src="{{ static_url('app.js') }}"></script>
+  <script src="{{ static_url('scan.js') }}"></script>
+</body>
+</html>
