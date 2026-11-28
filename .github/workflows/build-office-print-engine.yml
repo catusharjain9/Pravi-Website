@@ -34,6 +34,22 @@ jobs:
           New-Item -ItemType Directory -Path $testDir -Force | Out-Null
           Copy-Item (Join-Path $env:GITHUB_WORKSPACE 'office-print-engine\tests\test_page_range_pravi.py') $testDir -Force
 
+      - name: Set up Node.js for patched UI syntax check
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Check patched print UI JavaScript syntax
+        shell: pwsh
+        run: node --check upstream/app/static/app.js
+
+      - name: Compile patched Python modules
+        shell: pwsh
+        run: |
+          Set-Location upstream
+          python -m compileall -q app
+          if ($LASTEXITCODE -ne 0) { throw 'Python compile check failed.' }
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:

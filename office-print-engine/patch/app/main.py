@@ -525,7 +525,9 @@ async def print_file(
     except HTTPException:
         dest.unlink(missing_ok=True)
         raise
-    job_pages = len(selected_pages) if selected_pages is not None else pages
+    selected_count = len(selected_pages) if selected_pages is not None else pages
+    duplex_factor = 2 if parsed_options.get("duplex") in ("duplex_long", "duplex_short") else 1
+    job_pages = (selected_count + pages_per_sheet * duplex_factor - 1) // (pages_per_sheet * duplex_factor) if selected_count is not None else None
     try:
         quotas.enforce(user, job_pages, copies)
     except quotas.QuotaExceeded as exc:

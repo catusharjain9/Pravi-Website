@@ -34,8 +34,8 @@ function Start-PortalWatchdog {
 $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
 $principal = New-Object Security.Principal.WindowsPrincipal($identity)
 if (-not $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-    $args = '-NoProfile -ExecutionPolicy Bypass -File "{0}"' -f $PSCommandPath
-    Start-Process -FilePath $powershell -Verb RunAs -ArgumentList $args -Wait
+    $elevatedArgs = '-NoProfile -ExecutionPolicy Bypass -File "{0}"' -f $PSCommandPath
+    Start-Process -FilePath $powershell -Verb RunAs -ArgumentList $elevatedArgs -Wait
     exit
 }
 
