@@ -411,14 +411,12 @@ class WindowsPrintBackend(PrintBackend):
                     page = pdf[index]
 
                     def draw(hdc, p, page=page):
-                        page_w, page_h = page.get_size()
-                        placement = fit_page(page_w, page_h, p.w, p.h)
-                        placement.x += p.x
-                        placement.y += p.y
+                        # Keep the original fit_page placement and rotation exactly;
+                        # do not refit here or an auto-rotated landscape page can flip back.
                         pdfium_c.FPDF_RenderPage(
                             ctypes.c_void_p(hdc), page.raw,
-                            round(placement.x), round(placement.y), round(placement.w), round(placement.h),
-                            1 if placement.rotate else 0,
+                            round(p.x), round(p.y), round(p.w), round(p.h),
+                            1 if p.rotate else 0,
                             pdfium_c.FPDF_ANNOT | pdfium_c.FPDF_PRINTING,
                         )
 
